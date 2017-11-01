@@ -8,7 +8,7 @@
 #ifndef COMMON_SENSINGEVENTBASE_H_
 #define COMMON_SENSINGEVENTBASE_H_
 
-class SensingEvent {
+class SensingEventBase {
 };
 
 #endif /* COMMON_SENSINGEVENTBASE_H_ */

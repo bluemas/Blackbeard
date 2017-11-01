@@ -7,3 +7,10 @@
 
 #include "../sam/MapRepo.h"
 
+void MapRepo::map() {
+
+}
+
+void MapRepo::unMap() {
+
+}

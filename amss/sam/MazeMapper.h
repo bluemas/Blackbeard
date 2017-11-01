@@ -8,17 +8,24 @@
 #ifndef SAM_MAZEMAPPER_H_
 #define SAM_MAZEMAPPER_H_
 
-#include "../common/SensingEvent.h"
+#include "../common/SensingEventBase.h"
 #include "../common/Constants.h"
+
+#include "MapRepo.h"
 
 class MazeMapper {
 
 public:
-    MazeMapper();
+    MazeMapper(MapRepo *mapRepo);
     virtual ~MazeMapper();
 
-    void notify(SensingEvent e);
+    void init();
+    void notify(SensingEventBase e);
     void setNextDirection(Direction dir);
+
+private:
+    MapRepo *m_MapRepo;
 };
+
 
 #endif /* SAM_MAZEMAPPER_H_ */

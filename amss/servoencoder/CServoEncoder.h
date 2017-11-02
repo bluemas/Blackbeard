@@ -8,7 +8,7 @@
 #if !defined(EA_17844B71_26FD_42f6_90E4_8F998221E4DC__INCLUDED_)
 #define EA_17844B71_26FD_42f6_90E4_8F998221E4DC__INCLUDED_
 
-class ServoEncoder
+class CServoEncoder
 {
 
 public:

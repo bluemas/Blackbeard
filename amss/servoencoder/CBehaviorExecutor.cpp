@@ -1,19 +1,50 @@
-///////////////////////////////////////////////////////////
-//  BehaviorExecutor.cpp
-//  Implementation of the Class BehaviorExecutor
-//  Created on:      31-10-2017 PM 7:55:14
-//  Original author: bluem
-///////////////////////////////////////////////////////////
+// CBehaviorExecutor Class Source File
 
-#include "BehaviorExecutor.h"
+#include "CBehaviorExecutor.h"
 
+CBehaviorExecutor:: CBehaviorExecutor() 
+{
+	mServoEncoder = CServoEncoder.getInstance();
+	mPID = new CPID();
 
-BehaviorExecutor::BehaviorExecutor(){
+	mPID.InitPID(KP, KI, KD, BASESPEED, BASESPEEDFUDGEFACTOR);
+}
+
+CBehaviorExecutor::~CBehaviorExecutor() {}
+
+void CBehaviorExecutor::move(Direction dir)
+{
+	// move forward --> PID offset processing~!!
+}
+
+void CBehaviorExecutor::stop(void)
+{
 
 }
 
-
-
-BehaviorExecutor::~BehaviorExecutor(){
+void CBehaviorExecutor::manualMove(Direction dir)
+{
 
 }
+
+void CBehaviorExecutor::gotoCross(void)
+{
+
+}
+
+void CBehaviorExecutor::pan(void)
+{
+
+}
+
+void CBehaviorExecutor::tilt(void)
+{
+	
+}
+
+void CBehaviorExecutor::setOffset(float offset)
+{
+	mPID.SetError(offset);
+}
+
+

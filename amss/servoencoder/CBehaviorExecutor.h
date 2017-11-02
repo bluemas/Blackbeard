@@ -1,22 +1,31 @@
-///////////////////////////////////////////////////////////
-//  BehaviorExecutor.h
-//  Implementation of the Class BehaviorExecutor
-//  Created on:      31-10-2017 PM 7:55:14
-//  Original author: bluem
-///////////////////////////////////////////////////////////
+// CBehaviorExecutor Class Header File
 
-#if !defined(EA_1ABEB96D_B497_4b55_958A_E4E9216DD679__INCLUDED_)
-#define EA_1ABEB96D_B497_4b55_958A_E4E9216DD679__INCLUDED_
+#ifndef _CBEHAVIOREXECUTOR_H
+#define _CBEHAVIOREXECUTOR_H
 
-#include "ServoEncoder.h"
+#include "CServoEncoder.h"
+#include "CPID.h"
+#include "Constants.h"
 
-class BehaviorExecutor
-{
-
+class CBehaviorExecutor {
+private:
+	int mPan;
+	int mTilt;
+	int mSpeed;
+	CPID mPID;
+	CServoEncoder * mServoEncoder;
+	
 public:
 	BehaviorExecutor();
-	virtual ~BehaviorExecutor();
-	ServoEncoder *m_ServoEncoder;
+	~BehaviorExecutor();
+
+	void move(Direction dir);
+	void stop(void);
+	void manualMove(Direction dir);
+	void gotoCross(void);
+	void pan(void);
+	void tilt(void);
+	void setOffset(float offset);
 
 };
-#endif // !defined(EA_1ABEB96D_B497_4b55_958A_E4E9216DD679__INCLUDED_)
+#endif // _CBEHAVIOREXECUTOR_H

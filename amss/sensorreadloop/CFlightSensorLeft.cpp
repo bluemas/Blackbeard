@@ -64,15 +64,18 @@ void CFlightSensorLeft::saveValue(void)
 {
 	int32_t distance;
 
-	// Get distance from VL53L0X  on TCA9548A bus 1
-	distance = getDistance();
-	if(distance > 0)
-		printf("0: %d mm, %d cm\n", distance, (distance/10));
+	while(1)
+	{
+		// Get distance from VL53L0X  on TCA9548A bus 1
+		distance = getDistance();
+		if(distance > 0)
+			printf("0: %d mm, %d cm\n", distance, (distance/10));
 
-	//Data Save
-	mData->insertData(2, (int)distance);
-	
-	usleep(mTiming);
+		//Data Save
+		mData->insertData(2, (int)distance);
+		
+		usleep(mTiming);
+	}
 }
 
 /******************************************************************************

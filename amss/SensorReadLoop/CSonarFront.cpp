@@ -51,29 +51,32 @@ void CSonarFront::saveValue(void)
 	double distanceCm;
 
     if ((mTrigger==-1) || (mEcho==-1)) return(-1.0);
-    
-    delay(10);
-    digitalWrite(mTrigger, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(mTrigger, LOW);
 
-    timeoutstart=micros();
-
-    while (digitalRead(mEcho) == LOW)
+	while(1)
 	{
-    	if ( micros()-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
-    }
-    startTimeUsec = micros();
-    while ( digitalRead(mEcho) == HIGH )
-    {
-    	endTimeUsec = micros();
-        if (endTimeUsec-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
-    }
+	    delay(10);
+	    digitalWrite(mTrigger, HIGH);
+	    delayMicroseconds(10);
+	    digitalWrite(mTrigger, LOW);
 
-    travelTimeUsec = endTimeUsec - startTimeUsec;
-    distanceCm = travelTimeUsec/58.0;
+	    timeoutstart=micros();
 
-	//Save Sensor Data Class
-	mData.insertData(1, (int)distanceCm);	
+	    while (digitalRead(mEcho) == LOW)
+		{
+	    	if ( micros()-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
+	    }
+	    startTimeUsec = micros();
+	    while ( digitalRead(mEcho) == HIGH )
+	    {
+	    	endTimeUsec = micros();
+	        if (endTimeUsec-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
+	    }
+
+	    travelTimeUsec = endTimeUsec - startTimeUsec;
+	    distanceCm = travelTimeUsec/58.0;
+
+		//Save Sensor Data Class
+		mData.insertData(1, (int)distanceCm);	
+	}
 }
 

@@ -24,11 +24,56 @@ SOFTWARE.
 
 //VL53L0X Flight Range Sensor Class Source File
 
-#include "CVL53L0X.h"
+#include "CFlightSensorRight.h"
 
-CVL53L0X::CVL53L0X() {}
+CFlightSensorRight::CFlightSensorRight() 
+{
+	mData = CSensorData.getInstance();
+}
 
-CVL53L0X::~CVL53L0X() {}
+CFlightSensorRight::~CFlightSensorRight() {}
+
+void CFlightSensorRight::init(void)
+{
+	startRanging(VL53L0X_BETTER_ACCURACY_MODE, 0x29, 2, 0x70);
+
+	if((mTiming = GetTiming()) == 0)
+	{
+		printf("Error Getting Timing Budget\n");
+		stopRanging();
+	}
+
+	if(mTiming < 20000)	mTiming = 20000;
+	printf("Timing %d ms\n", mTiming/1000);
+}
+
+void CFlightSensorRight::start(void)
+{
+	int ret;
+
+	ret = pthread_create(&mThread, NULL, &CFlightSensorRight::saveValue, NULL);
+	if(ret != 0)
+	{
+
+	}
+	
+	pthread_exit(NULL);
+}
+
+void CFlightSensorRight::saveValue(void)
+{
+	int32_t distance;
+
+	// Get distance from VL53L0X  on TCA9548A bus 1
+	distance = getDistance();
+	if(distance > 0)
+		printf("0: %d mm, %d cm\n", distance, (distance/10));
+
+	//Data Save
+	mData->insertData(3, (int)distance);
+	
+	usleep(mTiming);
+}
 
 /******************************************************************************
  * @brief   Start Ranging
@@ -56,7 +101,7 @@ CVL53L0X::~CVL53L0X() {}
  *              being used. If not being used, set to 0.
  *
  *****************************************************************************/
-void CVL53L0X::startRanging(int mode, uint8_t i2c_address, uint8_t TCA9548A_Device, uint8_t TCA9548A_Address)
+void CFlightSensorRight::startRanging(int mode, uint8_t i2c_address, uint8_t TCA9548A_Device, uint8_t TCA9548A_Address)
 {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
     uint32_t refSpadCount;
@@ -340,7 +385,7 @@ void CVL53L0X::startRanging(int mode, uint8_t i2c_address, uint8_t TCA9548A_Devi
  * @brief   Get current distance in mm
  * @return  Current distance in mm or -1 on error
  *****************************************************************************/
-int32_t CVL53L0X::getDistance(void)
+int32_t CFlightSensorRight::getDistance(void)
 {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
     int32_t current_distance = -1;
@@ -375,7 +420,7 @@ int32_t CVL53L0X::getDistance(void)
 /******************************************************************************
  * @brief   Stop Ranging
  *****************************************************************************/
-void CVL53L0X::stopRanging(void)
+void CFlightSensorRight::stopRanging(void)
 {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
 
@@ -405,14 +450,14 @@ void CVL53L0X::stopRanging(void)
     }
 }
 
-void CVL53L0X::print_pal_error(VL53L0X_Error Status)
+void CFlightSensorRight::print_pal_error(VL53L0X_Error Status)
 {
     char buf[VL53L0X_MAX_STRING_LENGTH];
     VL53L0X_GetPalErrorString(Status, buf);
     printf("API Status: %i : %s\n", Status, buf);
 }
 
-VL53L0X_Error CVL53L0X::WaitMeasurementDataReady(VL53L0X_DEV Dev)
+VL53L0X_Error CFlightSensorRight::WaitMeasurementDataReady(VL53L0X_DEV Dev)
 {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
     uint8_t NewDatReady=0;
@@ -443,7 +488,7 @@ VL53L0X_Error CVL53L0X::WaitMeasurementDataReady(VL53L0X_DEV Dev)
     return Status;
 }
 
-VL53L0X_Error CVL53L0X::WaitStopCompleted(VL53L0X_DEV Dev)
+VL53L0X_Error CFlightSensorRight::WaitStopCompleted(VL53L0X_DEV Dev)
 {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
     uint32_t StopCompleted=0;
@@ -474,21 +519,18 @@ VL53L0X_Error CVL53L0X::WaitStopCompleted(VL53L0X_DEV Dev)
     return Status;
 }
 
-
-/******************************************************************************
- * @brief   Return the Dev Object to pass to Lib functions
- *****************************************************************************/
-VL53L0X_DEV getDev(int object_number)
+uint32_t CFlightSensorRight::GetTiming() 
 {
-    VL53L0X_DEV Dev = NULL;
-    if (object_number < MAX_DEVICES)
-    {
-        if (pMyDevice[object_number] != NULL)
-        {
-            Dev = pMyDevice[object_number];
-        }
-    }
+	VL53L0X_Error status;
+	uint32_t      budget;
 
-    return Dev;
+	status=VL53L0X_GetMeasurementTimingBudgetMicroSeconds(mpMyDevice,&budget);
+	if  (status==VL53L0X_ERROR_NONE)
+	{
+		printf("sleep time %d\n", budget);
+		return(budget+1000);
+	}
+	else 
+		return (0);
 }
 

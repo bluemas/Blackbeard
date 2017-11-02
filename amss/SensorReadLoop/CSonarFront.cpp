@@ -2,13 +2,18 @@
 
 #include "CSonarFront.h"
 
-CSonarFront::CSonarFront() {}
+CSonarFront::CSonarFront()
+{
+	mData = CSensorData.getInstance();
+}
+
 CSonarFront::~CSonarFront() {}
+
 CSonarFront* CSonarFront::getInstance()
 {
 	if(mSonar == NULL)
 	{
-		mSonar = new CsonarFront();
+		mSonar = new CSonarFront();
 		return mSonar;
 	}
 	else
@@ -17,17 +22,30 @@ CSonarFront* CSonarFront::getInstance()
 	}
 }
 
-void CSonarFront::init(int _trigger, int _echo)
+void CSonarFront::init(void)
 {
-	mTrigger = _trigger;
-	mEcho = _echo;
+	mTrigger = PIN_NUM_TRIGGER;
+	mEcho = PIN_NUM_ECHO;
 	pinMode(mTrigger, OUTPUT);
 	pinMOde(mEcho, INPUT);
 	digitalWrite(mTrigger, LOW);
 	delay(500);
 }
 
-double CsonarFront::getDistance(int timeout)
+void CSonarFront::start(void)
+{
+	int ret;
+
+	ret = pthread_create(&mThread, NULL, &CSonarFront::saveValue, NULL);
+	if(ret != 0)
+	{
+
+	}
+	
+	pthread_exit(NULL);
+}
+
+void CSonarFront::saveValue(void)
 {
 	long startTimeUsec,endTimeUsec,travelTimeUsec,timeoutstart;
 	double distanceCm;
@@ -43,18 +61,19 @@ double CsonarFront::getDistance(int timeout)
 
     while (digitalRead(mEcho) == LOW)
 	{
-    	if ( micros()-timeoutstart>=timeout) return (-1.0);
+    	if ( micros()-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
     }
     startTimeUsec = micros();
     while ( digitalRead(mEcho) == HIGH )
     {
     	endTimeUsec = micros();
-        if (endTimeUsec-timeoutstart>=timeout) return (-1.0);
+        if (endTimeUsec-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
     }
 
     travelTimeUsec = endTimeUsec - startTimeUsec;
     distanceCm = travelTimeUsec/58.0;
 
-    return distanceCm;
+	//Save Sensor Data Class
+	mData.insertData(1, (int)distanceCm);	
 }
 

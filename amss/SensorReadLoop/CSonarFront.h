@@ -4,19 +4,30 @@
 #define _CSONARFRONT_H
 
 #include <wiringPi.h>
+#include <pthread.h>
+#include "CSensorReaderLoop.h"
+#include "CSensorData.h"
 
-class CSonarFront{
+#define PIN_NUM_TRIGGER		28
+#define PIN_NUM_ECHO		29
+#define	SENSOR_TIMEOUT		30000
+
+class CSonarFront:public CSensorReaderLoop {
 private:
 	int mEcho;
 	int mTrigger;
 	static CSonarFront * mSonar;
+	pthread_t mThread;
+	CSensorData * mData;
 	CSonarFront();
 	
 public:
 	~CSonarFront();
 	static CSonarFront* getInstance(void);
-	void init(int _trigger, int _echo);
-	double getDistance(int timeout);
+
+	void init(void);
+	void start(void);
+	void saveValue(void);
 }
 
 #endif

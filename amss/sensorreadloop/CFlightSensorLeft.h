@@ -1,7 +1,7 @@
 //VL53L0X Flight Range Sensor Class Header File
 
-#ifndef _CVL53L0X_H
-#define _CVL53L0X_H
+#ifndef _CFLIGHTSENSORLEFT_H
+#define _CFLIGHTSENSORLEFT_H
 
 #include "vl53l0x_api.h"
 #include "vl53l0x_platform.h"
@@ -13,6 +13,8 @@
 #include <errno.h>
 #include <ctype.h>
 #include <time.h>
+#include <pthread.h>
+#include "CSensorReaderLoop.h"
 
 #define VERSION_REQUIRED_MAJOR 1
 #define VERSION_REQUIRED_MINOR 0
@@ -28,23 +30,30 @@
 
 #define MAX_DEVICES                     16
 
-class CVL53L0X {
+class CFlightSensorLeft:public CSensorReaderLoop {
 private:
 	VL53L0X_Dev_t mMyDevice;
 	VL53L0X_Dev_t * mpMyDevice = &mDevice;
 	VL53L0X_RangingMeasurementData_t mRangingMeasurementData;
 	VL53L0X_RangingMeasurementData_t * mpRangingMeasurementData;
+	pthread_t mThread;
+	CSensorData * mData;
+	uint32_t mTiming;
 	
 	void print_pal_error(VL53L0X_Error Status);
 	VL53L0X_Error WaitMeasurementDataReady(VL53L0X_DEV Dev);
-	VL53L0X_Error WaitStopCompleted(VL53L0X_DEV Dev);
-	
-public:
-	CVL53L0X();
-	~CVL53L0X();
-	
+	VL53L0X_Error WaitStopCompleted(VL53L0X_DEV Dev);	
 	void startRanging(int mode, uint8_t i2c_address, uint8_t TCA9548A_Device, uint8_t TCA9548A_Address);
 	int32_t getDistance(void);
+	uint32_t GetTiming(void); 
+	
+public:
+	CFlightSensorLeft();
+	~CFlightSensorLeft();
+
+	void init(void);
+	void start(void);
+	void saveValue(void);
 	void stopRanging(void);	
 }
 

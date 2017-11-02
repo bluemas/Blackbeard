@@ -24,7 +24,7 @@ public:
     void setNextDirection(Direction dir);
 
 private:
-    MapRepo *m_MapRepo;
+    MapRepo *mMapRepo;
 };
 
 

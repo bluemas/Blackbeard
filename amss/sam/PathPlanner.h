@@ -14,10 +14,10 @@
 
 class PathPlanner {
 public:
-    MapRepo *m_MapRepo;
-    MazeMapper *m_MazeMapper;
+    MapRepo *mMapRepo;
+    MazeMapper *mMazeMapper;
 
-    PathPlanner();
+    PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo);
     virtual ~PathPlanner();
 
     void init();

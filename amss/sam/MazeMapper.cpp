@@ -8,16 +8,15 @@
 #include "../sam/MazeMapper.h"
 
 MazeMapper::MazeMapper(MapRepo *mapRepo) {
-    m_MapRepo = mapRepo;
+    this->mMapRepo = mapRepo;
 }
 
 MazeMapper::~MazeMapper() {
-    delete m_MapRepo;
+
 }
 
 void MazeMapper::init() {
-    delete m_MapRepo;
-    m_MapRepo = new MapRepo();
+
 }
 
 void MazeMapper::notify(SensingEventBase e) {

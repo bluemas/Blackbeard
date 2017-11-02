@@ -8,11 +8,10 @@
 #include "../sam/MazeGrid.h"
 
 MazeGrid::MazeGrid() {
-    // TODO Auto-generated constructor stub
 
 }
 
 MazeGrid::~MazeGrid() {
-    // TODO Auto-generated destructor stub
+
 }
 

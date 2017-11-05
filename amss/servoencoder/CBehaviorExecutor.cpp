@@ -8,6 +8,9 @@ CBehaviorExecutor:: CBehaviorExecutor()
 	mPID = new CPID();
 
 	mPID.InitPID(KP, KI, KD, BASESPEED, BASESPEEDFUDGEFACTOR);
+
+	mPan = SERVO_CENTER_OR_STOP;
+	mTilt = SERVO_CENTER_OR_STOP;
 }
 
 CBehaviorExecutor::~CBehaviorExecutor() {}
@@ -70,14 +73,26 @@ void CBehaviorExecutor::gotoCross(void)
 	mServoEncoder->setWheelSpeed(0, 0);
 }
 
-void CBehaviorExecutor::pan(CamDirection dir)
+void CBehaviorExecutor::panAndTitl(CamDirection dir)
 {
-	
-}
-
-void CBehaviorExecutor::tilt(CamDirection dir)
-{
-	
+	switch(dir) {
+	case panleft:
+		mPan--;
+		mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
+		break;
+	case panright:
+		mPan++;
+		mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
+		break;
+	case tiltup:
+		mTilt--;
+		mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
+		break;
+	case tiltdown:
+		mTilt++;
+		mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
+		break;
+	}
 }
 
 void CBehaviorExecutor::setOffset(float offset)

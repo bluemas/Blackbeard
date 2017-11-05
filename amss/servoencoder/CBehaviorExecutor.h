@@ -27,8 +27,7 @@ public:
 	void stop(void);
 	void manualMove(Direction dir);
 	void gotoCross(void);
-	void pan(CamDirection dir);
-	void tilt(CamDirection dir);
+	void panAndTilt(CamDirection dir);
 	void setOffset(float offset);
 	void searchSign(Direction dir);
 	void setCamDefaultTrackLine(void);

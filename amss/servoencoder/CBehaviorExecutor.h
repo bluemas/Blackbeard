@@ -3,6 +3,7 @@
 #ifndef _CBEHAVIOREXECUTOR_H
 #define _CBEHAVIOREXECUTOR_H
 
+#include <unistd.h>
 #include "CServoEncoder.h"
 #include "CPID.h"
 #include "Constants.h"

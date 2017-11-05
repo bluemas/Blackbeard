@@ -1,19 +1,55 @@
-///////////////////////////////////////////////////////////
-//  ServoEncoder.h
-//  Implementation of the Class ServoEncoder
-//  Created on:      31-10-2017 PM 7:55:17
-//  Original author: bluem
-///////////////////////////////////////////////////////////
+// CServoEncoder Class Header File
 
-#if !defined(EA_17844B71_26FD_42f6_90E4_8F998221E4DC__INCLUDED_)
-#define EA_17844B71_26FD_42f6_90E4_8F998221E4DC__INCLUDED_
+#ifndef CSERVOENCORDER_H
+#define CSERVOENCORDER_H
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+
+#define SERVO_CENTER_OR_STOP	150
+
+#define TRK_LINE_CAM_PAN		149	//157
+#define TRK_LINE_CAM_TILT		211	//192
+
+#define CAMERA_PAN				0
+#define CAMERA_TILT				1		
+#define RIGHT_WHEEL				2
+#define LEFT_WHEEL				3
+#define NUM_SERVOS				4
+
+#define PAN_CAMERA_MIN			50
+#define PAN_CAMERA_MAX			250
+#define TILT_CAMERA_MIN			80
+#define TILT_CAMERA_MAX			220 
+#define WHEEL_MAX				200
+#define WHEEL_MIN				100
 
 class CServoEncoder
 {
-
-public:
+private:
+	int	mServoFd;
+	int mPan;
+	int mTilt;
+	int mWheelLSpeed;
+	int mWheelRSpeed;
+	static CServoEncoder * mpServo;
 	ServoEncoder();
-	virtual ~ServoEncoder();
+	int	getServoMinVal(unsigned int servo);
+	int	getServoMaxVal(unsigned int servo);
+	void setServoVal(unsigned int servo, int position);
+	
+public:
+	~ServoEncoder();
+	static CServoEncoder* getInstance();
 
+	int openServos(void);
+	void closeServos(void);
+	void resetServos(void);
+	int  setServoPosition(unsigned int servo,int position);
+	void setWheelSpeed(int left,int right);
+	void setCameraServosLineTrackMode(int pan,int tilt);
+	void setCameraServosLineTrackMode(void);
 };
-#endif // !defined(EA_17844B71_26FD_42f6_90E4_8F998221E4DC__INCLUDED_)
+#endif // CSERVOENCODER_H

@@ -16,6 +16,7 @@ void CBehaviorExecutor::move(Direction dir)
 {
 	switch(dir){
 	case forward:
+		//nothing to do in autonomous.. just move forward in offset function
 		break;
 	case left:
 		mServoEncoder->setWheelSpeed(-6, 6);
@@ -41,29 +42,40 @@ void CBehaviorExecutor::stop(void)
 
 void CBehaviorExecutor::manualMove(Direction dir)
 {
+	mSpeed = MANUALSPEED;
 	switch(dir){
 	case forward:
+		mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
 		break;
 	case left:
+		mServoEncoder->setWheelSpeed(-mSpeed, mSpeed);
+		usleep(20000);
+		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case right:
+		mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
+		usleep(20000);
+		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case backward:
+		// nothing
 		break;
 	}
 }
 
 void CBehaviorExecutor::gotoCross(void)
 {
-	
+	mServoEncoder->setWheelSpeed(BASESPEED, BASESPEED);
+	sleep(1);
+	mServoEncoder->setWheelSpeed(0, 0);
 }
 
-void CBehaviorExecutor::pan(void)
+void CBehaviorExecutor::pan(CamDirection dir)
 {
 	
 }
 
-void CBehaviorExecutor::tilt(void)
+void CBehaviorExecutor::tilt(CamDirection dir)
 {
 	
 }
@@ -73,12 +85,30 @@ void CBehaviorExecutor::setOffset(float offset)
 	double correction, left, right;
 
 	mPID.SetError(offset);
-
-	correction = mPID.RunPID();			// compute PID correction
+	
+	correction = mPID.RunPID(); 		// compute PID correction
 	left = BASESPEED - correction;		// compute left wheel speed
-	right = BASESPEED + correction;		// compute right wheel speed
+	right = BASESPEED + correction; 	// compute right wheel speed
 
-	mServoEncoder->setWheelSpeed(left, right);
+	mServoEncoder->setWheelSpeed(left, right);	
+}
+
+void CBehaviorExecutor::searchSign(Direction dir)
+{
+	// call function by thread.
+	switch(dir) {
+	case forward:
+		break;
+	case left:
+		break;
+	case right:
+		break;
+	}
+}
+
+void CBehaviorExecutor::setCamDefaultTrackLine(void)
+{
+	mServoEncoder->setCameraServosLineTrackMode();
 }
 
 

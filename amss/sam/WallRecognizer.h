@@ -9,7 +9,9 @@
 #define SAM_WALLRECOGNIZER_H_
 
 
+#include <atomic>
 #include <thread>
+#include <chrono>
 #include <functional>
 
 #include "../common/SensorDataRepo.h"
@@ -32,7 +34,8 @@ private:
     const int MIN_SIDE_DISTANCE  = 50;
 
     SensorDataRepo *mSensorDataRepo;
-    bool mIsRun = true;
+    std::atomic<bool> mIsRun = true;
+    std::thread mThread;
     std::function<void(int)> mMainControllerCallback;
 
     void run();

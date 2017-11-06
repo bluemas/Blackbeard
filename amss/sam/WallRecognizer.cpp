@@ -5,8 +5,6 @@
  *      Author: gtlove
  */
 
-#include <thread>
-#include <iostream>
 #include "WallRecognizer.h"
 
 WallRecognizer::WallRecognizer(SensorDataRepo *sensorDataRepo) {
@@ -24,7 +22,7 @@ void WallRecognizer::start() {
     mIsRun = true;
 
     // Start thread
-    std::thread checkCollisionThread(run);
+    mThread = std::thread(&WallRecognizer::run, this);
 }
 
 void WallRecognizer::stop() {
@@ -41,7 +39,7 @@ void WallRecognizer::run() {
         // if a collision is predicted
         //mMainControllerCallback();
 
-        std::this_thread::sleep_for(50ms);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 

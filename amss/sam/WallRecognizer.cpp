@@ -28,6 +28,7 @@ void WallRecognizer::start() {
 void WallRecognizer::stop() {
     mIsRun = false;
 
+    // Wait for thread stopping
     mThread.join();
 
     cout << "WallRecognizer thread is terminated" << endl;
@@ -52,5 +53,6 @@ void WallRecognizer::run() {
 }
 
 void WallRecognizer::addEventHandler(std::function<void(EventBase*)> eventHandler) {
+    // TODO Manage event handlers into Vector so that it enables to add a number of event handlers in recognizer => Modifiability
     mEventHandler = eventHandler;
 }

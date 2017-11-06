@@ -9,11 +9,13 @@
 #define SAM_WALLRECOGNIZER_H_
 
 
+#include <future>
 #include <atomic>
 #include <thread>
 #include <chrono>
 #include <functional>
 #include <iostream>
+#include <vector>
 
 //#include "../common/SensorDataRepo.h"
 #include "../common/EventBase.h"
@@ -28,11 +30,9 @@ public:
     WallRecognizer();
     virtual ~WallRecognizer();
 
-    void init();
-    void notify();
     void start();
     void stop();
-    void addEventHandler(std::function<void(EventBase*)> eventHandler);
+    void addEventHandler(std::function<void(const EventBase*)> eventHandler);
 
 private:
     const int MIN_FRONT_DISTANCE = 50;
@@ -41,7 +41,7 @@ private:
     //SensorDataRepo *mSensorDataRepo;
     std::atomic<bool> mIsRun;
     std::thread mThread;
-    std::function<void(EventBase*)> mEventHandler;
+    std::function<void(const EventBase*)> mEventHandler;
 
     void run();
 };

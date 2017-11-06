@@ -14,9 +14,6 @@ WallRecognizer::WallRecognizer() {
 WallRecognizer::~WallRecognizer() {
 }
 
-void WallRecognizer::init() {
-
-}
 
 void WallRecognizer::start() {
     mIsRun = true;
@@ -28,7 +25,6 @@ void WallRecognizer::start() {
 void WallRecognizer::stop() {
     mIsRun = false;
 
-    // Wait for thread stopping
     mThread.join();
 
     cout << "WallRecognizer thread is terminated" << endl;
@@ -44,15 +40,17 @@ void WallRecognizer::run() {
 
         // if a collision is predicted
         EventBase *ev = new WallRecognizerEvent();
-        mEventHandler(ev);
 
+        std::future<void> result (std::async(mEventHandler, ev));
+
+        result.wait();
         delete ev;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 }
 
-void WallRecognizer::addEventHandler(std::function<void(EventBase*)> eventHandler) {
-    // TODO Manage event handlers into Vector so that it enables to add a number of event handlers in recognizer => Modifiability
+void WallRecognizer::addEventHandler(std::function<void(const EventBase*)> eventHandler) {
+    // TODO mEventHandler ventor vector->push(eventHandler);
     mEventHandler = eventHandler;
 }

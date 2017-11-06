@@ -43,13 +43,12 @@ int main()
     wallRecognizer->start();
 
 
-    // 5. Wait for stopping AMSS
+    // 99. Wait for stopping AMSS
     std::thread mainThread(keyInRunner);
     mainThread.join();
 
     cout << "AMSS is terminating..." << endl;
 
-    // 6. Wait for stopping all threads
     wallRecognizer->stop();
 
     return 1;

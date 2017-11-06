@@ -7,8 +7,8 @@
 
 #include "WallRecognizer.h"
 
-WallRecognizer::WallRecognizer(SensorDataRepo *sensorDataRepo) {
-    this->mSensorDataRepo = sensorDataRepo;
+WallRecognizer::WallRecognizer() {
+
 }
 
 WallRecognizer::~WallRecognizer() {
@@ -32,20 +32,23 @@ void WallRecognizer::stop() {
 }
 
 void WallRecognizer::run() {
+    // Waiting for start main thread
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
     while(mIsRun) {
         // TODO Load sensor data & check whether a collision would occur or not
 
-
         // if a collision is predicted
-        //mMainControllerCallback();
+        EventBase *ev = new WallRecognizerEvent();
+        mEventHandler(ev);
+
+        delete ev;
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
-void WallRecognizer::addHandler(std::function<void(int)> callback) {
-    mMainControllerCallback = callback;
-
-    // ref. https://stackoverflow.com/questions/14189440/c-class-member-callback-simple-examples
-    // wallRecognizer->addHandler(std::bind(&MainController::callback, this, _1));
+void WallRecognizer::addEventHandler(std::function<void(EventBase*)> eventHandler) {
+    // callback has no return value and takes an integer as argument.
+    mEventHandler = eventHandler;
 }

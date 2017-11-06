@@ -8,12 +8,12 @@
 #include "ManualMode.h"
 
 
-ManualMode::ManualMode(){
+ManualMode::ManualMode() {
 
 }
 
 
 
-ManualMode::~ManualMode(){
+ManualMode::~ManualMode() {
 
 }

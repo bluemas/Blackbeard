@@ -8,9 +8,7 @@
 #if !defined(EA_DCDDC837_B7B9_432e_82A6_2E3467B20A63__INCLUDED_)
 #define EA_DCDDC837_B7B9_432e_82A6_2E3467B20A63__INCLUDED_
 
-#include "SharedMemory.h"
-
-class SensorDataRepo : public SharedMemory
+class SensorDataRepo
 {
 
 public:

@@ -8,12 +8,12 @@
 #include "SuspendMode.h"
 
 
-SuspendMode::SuspendMode(){
+SuspendMode::SuspendMode() {
 
 }
 
 
 
-SuspendMode::~SuspendMode(){
+SuspendMode::~SuspendMode() {
 
 }

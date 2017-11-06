@@ -8,9 +8,7 @@
 #if !defined(EA_7E37756C_D328_4988_9BEF_5432F9957535__INCLUDED_)
 #define EA_7E37756C_D328_4988_9BEF_5432F9957535__INCLUDED_
 
-#include "SharedMemory.h"
-
-class CameraImageRepo : public SharedMemory
+class CameraImageRepo
 {
 
 public:

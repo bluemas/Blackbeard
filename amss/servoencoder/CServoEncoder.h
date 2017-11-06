@@ -35,13 +35,13 @@ private:
 	int mWheelLSpeed;
 	int mWheelRSpeed;
 	static CServoEncoder * mpServo;
-	ServoEncoder();
+	CServoEncoder();
 	int	getServoMinVal(unsigned int servo);
 	int	getServoMaxVal(unsigned int servo);
 	void setServoVal(unsigned int servo, int position);
 	
 public:
-	~ServoEncoder();
+	~CServoEncoder();
 	static CServoEncoder* getInstance();
 
 	int openServos(void);

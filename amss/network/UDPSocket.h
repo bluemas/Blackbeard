@@ -38,7 +38,7 @@ typedef struct
     struct sockaddr_in remaddr;
 } TUdpDest;
 
-class CUDPSocket {
+class UDPSocket {
 
 public:
 

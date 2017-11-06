@@ -2,7 +2,7 @@
 // Created by bluem on 2017-10-25.
 //
 
-#include "CUDPSocket.h"
+#include "UDPSocket.h"
 
 //------------------------------------------------------------------------------------------------
 // File: NetworkUDP.cpp
@@ -15,13 +15,13 @@
 #include <new>
 #include <stdio.h>
 #include <string.h>
-#include "NetworkUDP.h"
+#include "UDPSocket.h"
 //-----------------------------------------------------------------
 // OpenUdpPort - Open the specified local UDP port on a socket,
 // increases the internal send/receive buffer sizes and then
 // returns a handle to the port on success and NULL on failure
 //-----------------------------------------------------------------
-TUdpLocalPort* CUDPSocket::OpenUdpPort(short localport)
+TUdpLocalPort* UDPSocket::OpenUdpPort(short localport)
 {
   TUdpLocalPort *UdpLocalPort;
   struct sockaddr_in myaddr;
@@ -87,7 +87,7 @@ TUdpLocalPort* CUDPSocket::OpenUdpPort(short localport)
 //-----------------------------------------------------------------
 // CloseUdpPort - Closes the specified local UDP port
 //-----------------------------------------------------------------
-void CUDPSocket::CloseUdpPort(TUdpLocalPort **UdpLocalPort)
+void UDPSocket::CloseUdpPort(TUdpLocalPort **UdpLocalPort)
 {
   if ((*UdpLocalPort)==NULL) return;
   if ((*UdpLocalPort)->UdpFd!=BAD_SOCKET_FD)
@@ -108,7 +108,7 @@ void CUDPSocket::CloseUdpPort(TUdpLocalPort **UdpLocalPort)
 // GetUdpDest - Provides a handle the remote jhost and port on
 // success and NULL on failure
 //-----------------------------------------------------------------
-TUdpDest * CUDPSocket::GetUdpDest(const char *remotehostname, const char * remoteportno)
+TUdpDest * UDPSocket::GetUdpDest(const char *remotehostname, const char * remoteportno)
 {
   TUdpDest * dest;
   int                s;
@@ -152,7 +152,7 @@ TUdpDest * CUDPSocket::GetUdpDest(const char *remotehostname, const char * remot
 //-----------------------------------------------------------------
 // DeleteUdpDest - Deletes the handle to the remote host and port
 //-----------------------------------------------------------------
-void CUDPSocket::DeleteUdpDest(TUdpDest **dest)
+void UDPSocket::DeleteUdpDest(TUdpDest **dest)
 {
   if ((*dest)==NULL) return;
   delete (*dest);
@@ -165,7 +165,7 @@ void CUDPSocket::DeleteUdpDest(TUdpDest **dest)
 // SendUDPMsg - Sends a UDP Message on the specified UDP local port
 // and Destination. return bytes sent on success and -1 on failure
 //-----------------------------------------------------------------
-int CUDPSocket::SendUDPMsg(TUdpLocalPort * UdpLocalPort,TUdpDest *dest, unsigned char *msg, size_t length)
+int UDPSocket::SendUDPMsg(TUdpLocalPort * UdpLocalPort,TUdpDest *dest, unsigned char *msg, size_t length)
 {
   int  slen;
   int  retval;
@@ -187,7 +187,7 @@ int CUDPSocket::SendUDPMsg(TUdpLocalPort * UdpLocalPort,TUdpDest *dest, unsigned
 // RecvUDPMsg - Receives a UDP Message on the specified UDP local port
 // return bytes received on success and -1 on failure
 //-----------------------------------------------------------------
-int CUDPSocket::RecvUDPMsg(TUdpLocalPort * UdpLocalPort, unsigned char *msg, size_t length,struct sockaddr *src_addr, socklen_t *addrlen)
+int UDPSocket::RecvUDPMsg(TUdpLocalPort * UdpLocalPort, unsigned char *msg, size_t length,struct sockaddr *src_addr, socklen_t *addrlen)
 {
   int  recvlen;
   if (UdpLocalPort==NULL) return(-1);

@@ -3,11 +3,11 @@
 #include "CServoEncoder.h"
 
 
-CServoEncoder::ServoEncoder(){
+CServoEncoder::CServoEncoder(){
 	mServoFd = -1;
 }
 
-CServoEncoder::~ServoEncoder(){
+CServoEncoder::~CServoEncoder(){
 
 }
 

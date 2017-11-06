@@ -10,37 +10,33 @@
 
 #include "Initializer.h"
 #include "CCommandHandler.h"
-#include "NetworkManager.h"
-#include "BehaviorExecutor.h"
-#include "PathPlanner.h"
-#include "DotRecognizer.h"
-#include "ImageSender.h"
-#include "LineRecognizer.h"
-#include "SignRecognizer.h"
-#include "WallRecognizer.h"
 #include "ModeManager.h"
+#include "ModeBase.h"
+#include "..\network\IMessageListener.h"
+#include "..\network\NetworkManager.h"
+#include "..\servoencoder\CBehaviorExecutor.h"
+#include "..\sam\PathPlanner.h"
 
-class MainController
+class MainController : public IMessageListener
 {
 
 public:
 	MainController();
-	virtual ~MainController();
-	Initializer *m_Initializer;
-	CCommandHandler *m_CCommandHandler;
-	NetworkManager *m_NetworkManager;
-	BehaviorExecutor *m_BehaviorExecutor;
-	PathPlanner *m_PathPlanner;
-	DotRecognizer *m_DotRecognizer;
-	ImageSender *m_ImageSender;
-	LineRecognizer *m_LineRecognizer;
-	SignRecognizer *m_SignRecognizer;
-	WallRecognizer *m_WallRecognizer;
-	ModeManager *m_ModeManager;
+	~MainController();
 
-	void init();
-	void runLoop();
 	static void start();
+    void handleMessage(int type, void* payload);
 
+private:
+    void init();
+    void runLoop();
+
+    ModeBase* mCurrentMode;
+
+    Initializer *m_Initializer;
+    CCommandHandler *m_CCommandHandler;
+    CBehaviorExecutor *m_BehaviorExecutor;
+    PathPlanner *m_PathPlanner;
+    ModeManager *m_ModeManager;
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

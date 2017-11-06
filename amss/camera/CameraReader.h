@@ -8,9 +8,7 @@
 #if !defined(EA_0A9D67FC_B1A3_4c04_B3B8_58B5020F0F48__INCLUDED_)
 #define EA_0A9D67FC_B1A3_4c04_B3B8_58B5020F0F48__INCLUDED_
 
-#include "Thread.h"
-
-class CameraReader : public Thread
+class CameraReader
 {
 
 public:

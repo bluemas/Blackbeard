@@ -20,6 +20,6 @@ enum class CamDirection {
 	panright,
 	tiltup,
 	tiltdown
-}
+};
 
 #endif /* COMMON_CONSTANTS_H_ */

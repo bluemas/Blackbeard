@@ -8,9 +8,7 @@
 #ifndef SAM_MAPREPO_H_
 #define SAM_MAPREPO_H_
 
-#include "../common/SharedMemory.h"
-
-class MapRepo : public SharedMemory {
+class MapRepo {
 
 public:
     void map();

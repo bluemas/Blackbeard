@@ -8,12 +8,12 @@
 #include "AutonomousMode.h"
 
 
-AutonomousMode::AutonomousMode(){
+AutonomousMode::AutonomousMode() {
 
 }
 
 
 
-AutonomousMode::~AutonomousMode(){
+AutonomousMode::~AutonomousMode() {
 
 }

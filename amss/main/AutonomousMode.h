@@ -17,7 +17,6 @@ class AutonomousMode : public ModeBase
 public:
 	AutonomousMode();
 	virtual ~AutonomousMode();
-	ModeManager *m_ModeManager;
 
 };
 #endif // !defined(EA_4F2E3F85_F445_4e38_AAF9_70029F74B0D1__INCLUDED_)

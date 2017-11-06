@@ -4,24 +4,25 @@
 #define _CBEHAVIOREXECUTOR_H
 
 #include <unistd.h>
-#include <thread.h>
+//#include <thread.h>
 #include "CServoEncoder.h"
 #include "CPID.h"
-#include "Constants.h"
+#include "..\common\Constants.h"
 
 #define MANUALSPEED	20
+
 
 class CBehaviorExecutor {
 private:
 	int mPan;
 	int mTilt;
 	int mSpeed;
-	CPID mPID;
+	CPID* mPID;
 	CServoEncoder * mServoEncoder;
 	
 public:
-	BehaviorExecutor();
-	~BehaviorExecutor();
+	CBehaviorExecutor();
+	~CBehaviorExecutor();
 
 	void move(Direction dir);
 	void stop(void);
@@ -33,4 +34,5 @@ public:
 	void setCamDefaultTrackLine(void);
 
 };
+
 #endif // _CBEHAVIOREXECUTOR_H

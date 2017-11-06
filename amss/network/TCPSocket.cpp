@@ -2,7 +2,7 @@
 // Created by bluem on 2017-10-25.
 //
 
-#include "CTCPSocket.h"
+#include "TCPSocket.h"
 #include <iostream>
 #include <new>
 #include <stdio.h>
@@ -12,7 +12,7 @@
 // OpenTCPListenPort - Creates a Listen TCP port to accept
 // connection requests
 //-----------------------------------------------------------------
-TTcpListenPort *CTCPSocket::OpenTcpListenPort(short localport) {
+TTcpListenPort *TCPSocket::OpenTcpListenPort(short localport) {
   TTcpListenPort *TcpListenPort;
   struct sockaddr_in myaddr;
 
@@ -78,7 +78,7 @@ TTcpListenPort *CTCPSocket::OpenTcpListenPort(short localport) {
 //-----------------------------------------------------------------
 // CloseTcpListenPort - Closes the specified TCP listen port
 //-----------------------------------------------------------------
-void CTCPSocket::CloseTcpListenPort(TTcpListenPort **TcpListenPort) {
+void TCPSocket::CloseTcpListenPort(TTcpListenPort **TcpListenPort) {
   if ((*TcpListenPort) == NULL) return;
   if ((*TcpListenPort)->ListenFd != BAD_SOCKET_FD) {
     CLOSE_SOCKET((*TcpListenPort)->ListenFd);
@@ -99,7 +99,7 @@ void CTCPSocket::CloseTcpListenPort(TTcpListenPort **TcpListenPort) {
 // Listening port
 //-----------------------------------------------------------------
 TTcpConnectedPort *
-CTCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
+TCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
                                 struct sockaddr_in *cli_addr,
                                 socklen_t *clilen) {
   TTcpConnectedPort *TcpConnectedPort;
@@ -144,7 +144,7 @@ CTCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
 // OpenTCPConnection - Creates a TCP Connection to a TCP port
 // accepting connection requests
 //-----------------------------------------------------------------
-TTcpConnectedPort *CTCPSocket::OpenTcpConnection(const char *remotehostname,
+TTcpConnectedPort *TCPSocket::OpenTcpConnection(const char *remotehostname,
                                                  const char *remoteportno) {
   TTcpConnectedPort *TcpConnectedPort;
   struct sockaddr_in myaddr;
@@ -226,7 +226,7 @@ TTcpConnectedPort *CTCPSocket::OpenTcpConnection(const char *remotehostname,
 //-----------------------------------------------------------------
 // CloseTcpConnectedPort - Closes the specified TCP connected port
 //-----------------------------------------------------------------
-void CTCPSocket::CloseTcpConnectedPort(TTcpConnectedPort **TcpConnectedPort) {
+void TCPSocket::CloseTcpConnectedPort(TTcpConnectedPort **TcpConnectedPort) {
   if ((*TcpConnectedPort) == NULL) return;
   if ((*TcpConnectedPort)->ConnectedFd != BAD_SOCKET_FD) {
     CLOSE_SOCKET((*TcpConnectedPort)->ConnectedFd);
@@ -245,7 +245,7 @@ void CTCPSocket::CloseTcpConnectedPort(TTcpConnectedPort **TcpConnectedPort) {
 //-----------------------------------------------------------------
 // ReadDataTcp - Reads the specified amount TCP data
 //-----------------------------------------------------------------
-ssize_t CTCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
+ssize_t TCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                 unsigned char *data, size_t length) {
   ssize_t bytes;
 
@@ -264,7 +264,7 @@ ssize_t CTCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
 //-----------------------------------------------------------------
 // WriteDataTcp - Writes the specified amount TCP data
 //-----------------------------------------------------------------
-ssize_t CTCPSocket::WriteDataTcp(TTcpConnectedPort *TcpConnectedPort,
+ssize_t TCPSocket::WriteDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                  unsigned char *data, size_t length) {
   ssize_t total_bytes_written = 0;
   ssize_t bytes_written;

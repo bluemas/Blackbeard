@@ -8,9 +8,7 @@
 #if !defined(EA_7AE228FD_FF22_4783_B962_455ED8427BD2__INCLUDED_)
 #define EA_7AE228FD_FF22_4783_B962_455ED8427BD2__INCLUDED_
 
-#include "SharedMemory.h"
-
-class MapRepo : public SharedMemory
+class MapRepo
 {
 
 public:

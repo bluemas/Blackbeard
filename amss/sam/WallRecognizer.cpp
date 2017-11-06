@@ -28,6 +28,9 @@ void WallRecognizer::start() {
 void WallRecognizer::stop() {
     mIsRun = false;
 
+    mThread.join();
+
+    cout << "WallRecognizer thread is terminated" << endl;
     // TODO thread detach???
 }
 
@@ -49,6 +52,5 @@ void WallRecognizer::run() {
 }
 
 void WallRecognizer::addEventHandler(std::function<void(EventBase*)> eventHandler) {
-    // callback has no return value and takes an integer as argument.
     mEventHandler = eventHandler;
 }

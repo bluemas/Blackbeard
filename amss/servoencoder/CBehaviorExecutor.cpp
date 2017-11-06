@@ -4,7 +4,7 @@
 
 CBehaviorExecutor:: CBehaviorExecutor() 
 {
-	mServoEncoder = CServoEncoder.getInstance();
+	mServoEncoder = CServoEncoder::getInstance();
 	mPID = new CPID();
 
 	mPID.InitPID(KP, KI, KD, BASESPEED, BASESPEEDFUDGEFACTOR);

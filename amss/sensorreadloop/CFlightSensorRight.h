@@ -55,6 +55,6 @@ public:
 	void start(void);
 	void saveValue(void);
 	void stopRanging(void);	
-}
+};
 
 #endif

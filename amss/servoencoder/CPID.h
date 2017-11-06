@@ -34,7 +34,7 @@ public:
 	void initPID();
 	void setError(double ErrorIn);
 	void runPID();	
-}
+};
 
 #endif
 

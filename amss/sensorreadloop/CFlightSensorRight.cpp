@@ -28,7 +28,7 @@ SOFTWARE.
 
 CFlightSensorRight::CFlightSensorRight() 
 {
-	mData = CSensorData.getInstance();
+	mData = CSensorData::getInstance();
 }
 
 CFlightSensorRight::~CFlightSensorRight() {}

@@ -21,13 +21,9 @@ void MainController::setWallRecognizer(WallRecognizer *wallRecognizer) {
     mWallRecognizer = wallRecognizer;
 
     // Set event handler to WallRecognizer
-    mWallRecognizer->addEventHandler(std::bind(&MainController::eventHandler, this, _1));
+    mWallRecognizer->addEventHandler(std::bind(&MainController::wallEventHandler, this, _1));
 }
 
-void MainController::eventHandler(EventBase *ev) {
-    if (dynamic_cast<WallRecognizerEvent*> (ev)) {
-        cout << "Collision warning!!!" << endl;
-    } else {
-        cerr << "Cannot find event type. Do nothing." << endl;
-    }
+void MainController::wallEventHandler(const EventBase *ev) {
+    cout << "Collision warning!!!" << endl;
 }

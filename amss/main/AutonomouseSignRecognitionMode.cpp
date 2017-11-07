@@ -5,7 +5,7 @@
 #include "AutonomouseSignRecognitionMode.h"
 
 AutonomouseSignRecognitionMode::AutonomouseSignRecognitionMode() {
-
+    mModeName = RobotMode::AutoSignRecognition;
 }
 
 AutonomouseSignRecognitionMode::~AutonomouseSignRecognitionMode() {

@@ -8,25 +8,12 @@
 #ifndef COMMON_CONSTANTS_H_
 #define COMMON_CONSTANTS_H_
 
-enum class Direction {
-    forward = 0,
-    left,
-    right,
-    backward
-};
-
-enum class CamDirection {
-	panleft = 0,
-	panright,
-	tiltup,
-	tiltdown
-};
-
 enum class RobotMode {
+    None,
 	Manual,
-	AutonomousPathPlanning,
-	AutonomousMoving,
-	AutonomousSignRecognition,
+	AutoPathPlanning,
+	AutoMoving,
+	AutoSignRecognition,
 	Suspend
 };
 

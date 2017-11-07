@@ -9,7 +9,7 @@
 
 
 SuspendMode::SuspendMode() {
-
+    mModeName = RobotMode::Suspend;
 }
 
 

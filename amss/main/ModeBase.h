@@ -8,6 +8,7 @@
 #if !defined(EA_244B529B_9638_4b0a_AE45_9D4E1717848B__INCLUDED_)
 #define EA_244B529B_9638_4b0a_AE45_9D4E1717848B__INCLUDED_
 
+#include "../common/Constants.h"
 class ModeBase
 {
 
@@ -15,10 +16,10 @@ public:
 	ModeBase();
 	virtual ~ModeBase();
 
-	ModeBase* getCurrentMode();
+	RobotMode getModeName();
 
-private:
-	ModeBase* mCurrentMode;
+protected:
+	RobotMode mModeName;
 
 };
 #endif // !defined(EA_244B529B_9638_4b0a_AE45_9D4E1717848B__INCLUDED_)

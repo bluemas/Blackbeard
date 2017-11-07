@@ -9,7 +9,7 @@
 
 
 ManualMode::ManualMode() {
-
+    mModeName = RobotMode::Manual;
 }
 
 

@@ -18,9 +18,6 @@ ModeBase::~ModeBase(){
 
 }
 
-ModeBase* ModeBase::getCurrentMode() {
-    if (this)
-        return this;
-    else
-        return nullptr;
+RobotMode ModeBase::getModeName() {
+    return mModeName;
 }

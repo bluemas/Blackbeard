@@ -32,11 +32,11 @@ void MainController::start() {
 void MainController::init() {
     // TODO
     // Create mode instances
-    mModeList.add(new ManualMode());
-    mModeList.push_back(new AutonomousPathPlanningMode());
-    mModeList.push_back(new AutonomousMovingMode());
-    mModeList.push_back(new AutonomouseSignRecognitionMode());
-    mModeList.push_back(new SuspendMode());
+    mModeList[RobotMode::Manual] = new ManualMode();
+    mModeList[RobotMode::AutoPathPlanning] = new AutonomousPathPlanningMode();
+    mModeList[RobotMode::AutoMoving] = new AutonomousMovingMode();
+    mModeList[RobotMode::AutoSignRecognition] = new AutonomouseSignRecognitionMode();
+    mModeList[RobotMode::Suspend] = new SuspendMode();
 
     // Initialize Camera Pan/Tilt
 
@@ -52,7 +52,7 @@ void MainController::setWallRecognizer(WallRecognizer* wallRecognizer) {
 
     // Set event handler to WallRecognizer
     mWallRecognizer->addEventHandler(std::bind(&MainController::eventHandler,
-                                               this, _1));
+                                               this, std::placeholders::_1));
 }
 
 void MainController::eventHandler(EventBase *ev) {
@@ -76,10 +76,16 @@ void MainController::handleMessage(int type, void* data) {
         case 1:
             break;
         case 2: // Mode Selection
-            char mode = *(char*)data;
+        {
+            char mode = *(char *) data;
             if (mode == 'A')
-                mCurrentMode =
+                if (mCurrentMode->getModeName() == RobotMode::Manual)
+                    mCurrentMode = mModeList[RobotMode::AutoPathPlanning];
+                else if (mode == 'M')
+                    mCurrentMode = mModeList[RobotMode::AutoPathPlanning];
+
             break;
+        }
         case 3:
             break;
         case 4:

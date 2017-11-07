@@ -9,7 +9,7 @@
 
 
 AutonomousPathPlanningMode::AutonomousPathPlanningMode() {
-
+    mModeName = RobotMode::AutoPathPlanning;
 }
 
 

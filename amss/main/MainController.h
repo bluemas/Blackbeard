@@ -12,13 +12,13 @@
 #include "CommandHandler.h"
 #include "ModeManager.h"
 #include "ModeBase.h"
-#include "../common/Constant.h"
+#include "AutonomousPathPlanningMode.h"
+#include "../common/Constants.h"
 #include "../network/NetMessageEventAdapter.h"
 #include "../network/NetworkManager.h"
-#include "../servoencoder/CBehaviorExecutor.h"
+#include "../servoencoder/BehaviorExecutor.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
-#include "AutonomousPathPlanningMode.h"
 #include <map>
 
 class MainController : public NetMessageEventAdapter
@@ -46,7 +46,7 @@ private:
 
     Initializer* mInitializer;
     CommandHandler* mCCommandHandler;
-    CBehaviorExecutor* mBehaviorExecutor;
+    BehaviorExecutor* mBehaviorExecutor;
     PathPlanner* mPathPlanner;
     ModeManager* mModeManager;
     WallRecognizer* mWallRecognizer;

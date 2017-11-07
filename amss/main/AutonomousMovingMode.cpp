@@ -9,7 +9,7 @@
 
 
 AutonomousMovingMode::AutonomousMovingMode() {
-
+    mModeName = RobotMode::AutoMoving;
 }
 
 

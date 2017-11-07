@@ -60,43 +60,31 @@ set(SOURCE_FILES
         sam/WallRecognizer.h
         sam/WallRecognizerEvent.cpp
         sam/WallRecognizerEvent.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_calibration.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_core.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_ranging.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_strings.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_def.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_device.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_interrupt_threshold_settings.h
-        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_tuning.h
-        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api.c
-        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_calibration.c
-        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_core.c
-        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_ranging.c
-        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_strings.c
-        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_i2c_platform.h
-        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_platform.h
-        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_platform_log.h
-        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_types.h
-        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_i2c_win_serial_comms.c
-        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_platform.c
-        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_platform_log.c
-        sensorreadloop/CFlightSensorLeft.cpp
-        sensorreadloop/CFlightSensorLeft.h
-        sensorreadloop/CFlightSensorRight.cpp
-        sensorreadloop/CFlightSensorRight.h
-        sensorreadloop/CSensorData.cpp
-        sensorreadloop/CSensorData.h
-        sensorreadloop/CSensorReaderLoop.h
-        sensorreadloop/CSonarFront.cpp
-        sensorreadloop/CSonarFront.h
+        sensorreadloop/VL53L0X_API/vl53l0x_api.h
+        sensorreadloop/VL53L0X_API/vl53l0x_api_calibration.h
+        sensorreadloop/VL53L0X_API/vl53l0x_api_core.h
+        sensorreadloop/VL53L0X_API/vl53l0x_api_ranging.h
+        sensorreadloop/VL53L0X_API/vl53l0x_api_strings.h
+        sensorreadloop/VL53L0X_API/vl53l0x_def.h
+        sensorreadloop/VL53L0X_API/vl53l0x_device.h
+        sensorreadloop/VL53L0X_API/vl53l0x_interrupt_threshold_settings.h
+        sensorreadloop/VL53L0X_API/vl53l0x_tuning.h
+        sensorreadloop/FlightSensorLeft.cpp
+        sensorreadloop/FlightSensorLeft.h
+        sensorreadloop/FlightSensorRight.cpp
+        sensorreadloop/FlightSensorRight.h
+        sensorreadloop/SensorData.cpp
+        sensorreadloop/SensorData.h
+        sensorreadloop/SensorReaderLoop.h
+        sensorreadloop/SonarFront.cpp
+        sensorreadloop/SonarFront.h
         sensorreadloop/test.cpp
-        servoencoder/CBehaviorExecutor.cpp
-        servoencoder/CBehaviorExecutor.h
-        servoencoder/CPID.cpp
-        servoencoder/CPID.h
-        servoencoder/CServoEncoder.cpp
-        servoencoder/CServoEncoder.h
+        servoencoder/BehaviorExecutor.cpp
+        servoencoder/BehaviorExecutor.h
+        servoencoder/PID.cpp
+        servoencoder/PID.h
+        servoencoder/ServoEncoder.cpp
+        servoencoder/ServoEncoder.h
         test/MainController.cpp
         test/MainController.h
         main.cpp main/AutonomousMovingMode.cpp main/AutonomouseSignRecognitionMode.cpp main/AutonomouseSignRecognitionMode.h)

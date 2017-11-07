@@ -22,4 +22,12 @@ enum class CamDirection {
 	tiltdown
 };
 
+enum class RobotMode {
+	Manual,
+	AutonomousPathPlanning,
+	AutonomousMoving,
+	AutonomousSignRecognition,
+	Suspend
+};
+
 #endif /* COMMON_CONSTANTS_H_ */

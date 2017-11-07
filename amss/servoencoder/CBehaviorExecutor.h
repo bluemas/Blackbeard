@@ -7,7 +7,7 @@
 //#include <thread.h>
 #include "CServoEncoder.h"
 #include "CPID.h"
-#include "..\common\Constants.h"
+#include "../common/Constants.h"
 
 #define MANUALSPEED	20
 

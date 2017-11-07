@@ -5,13 +5,10 @@
  *      Author: gtlove
  */
 
-#include <thread>
-#include <iostream>
-#include <chrono>
 #include "WallRecognizer.h"
 
-WallRecognizer::WallRecognizer(SensorDataRepo *sensorDataRepo) {
-    this->mSensorDataRepo = sensorDataRepo;
+WallRecognizer::WallRecognizer() {
+
 }
 
 WallRecognizer::~WallRecognizer() {
@@ -25,30 +22,37 @@ void WallRecognizer::start() {
     mIsRun = true;
 
     // Start thread
-    std::thread checkCollisionThread(run);
+    mThread = std::thread(&WallRecognizer::run, this);
 }
 
 void WallRecognizer::stop() {
     mIsRun = false;
 
+    // Wait for thread stopping
+    mThread.join();
+
+    cout << "WallRecognizer thread is terminated" << endl;
     // TODO thread detach???
 }
 
 void WallRecognizer::run() {
+    // Waiting for start main thread
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
     while(mIsRun) {
         // TODO Load sensor data & check whether a collision would occur or not
 
-
         // if a collision is predicted
-        //mMainControllerCallback();
+        EventBase *ev = new WallRecognizerEvent();
+        mEventHandler(ev);
 
-        std::this_thread::sleep_for(50ms);
+        delete ev;
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
-void WallRecognizer::addHandler(std::function<void(int)> callback) {
-    mMainControllerCallback = callback;
-
-    // ref. https://stackoverflow.com/questions/14189440/c-class-member-callback-simple-examples
-    // wallRecognizer->addHandler(std::bind(&MainController::callback, this, _1));
+void WallRecognizer::addEventHandler(std::function<void(EventBase*)> eventHandler) {
+    // TODO Manage event handlers into Vector so that it enables to add a number of event handlers in recognizer => Modifiability
+    mEventHandler = eventHandler;
 }

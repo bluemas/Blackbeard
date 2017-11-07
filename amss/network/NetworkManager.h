@@ -7,7 +7,7 @@
 
 #include "UDPSocket.h"
 #include "TCPSocket.h"
-#include "IMessageListener.h"
+#include "NetMessageEventAdapter.h"
 
 class NetworkManager {
 public:
@@ -16,7 +16,7 @@ public:
 
     static void start();
 
-    void addListener(IMessageListener* listener);
+    void addListener(NetMessageEventAdapter* listener);
 
 private:
     void init();
@@ -24,6 +24,6 @@ private:
 
     UDPSocket mCameraImageSendSocket;
     TCPSocket mCommandRecvSocket;
-    IMessageListener* mListener;
+    NetMessageEventAdapter* mListener;
 };
 #endif //BLACKBEARD_CNETWORKMANAGER_H

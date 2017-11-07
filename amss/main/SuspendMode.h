@@ -16,8 +16,7 @@ class SuspendMode : public ModeBase
 
 public:
 	SuspendMode();
-	virtual ~SuspendMode();
-	ModeManager *m_ModeManager;
+	~SuspendMode();
 
 };
 #endif // !defined(EA_45A10C10_98C9_4af6_AA28_B08639D786CE__INCLUDED_)

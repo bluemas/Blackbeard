@@ -15,5 +15,10 @@ public:
 	ModeBase();
 	virtual ~ModeBase();
 
+	ModeBase* getCurrentMode();
+
+private:
+	ModeBase* mCurrentMode;
+
 };
 #endif // !defined(EA_244B529B_9638_4b0a_AE45_9D4E1717848B__INCLUDED_)

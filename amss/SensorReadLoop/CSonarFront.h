@@ -28,6 +28,6 @@ public:
 	void init(void);
 	void start(void);
 	void saveValue(void);
-}
+};
 
 #endif

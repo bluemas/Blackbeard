@@ -7,7 +7,7 @@ CSensorData::CSensorData() {}
 CSensorData::~CSensorData() {}
 CSensorData* CSensorData::getInstance()
 {
-	if(mSensorData == NULL)
+	if(mSensorData == '\0')
 	{
 		mSensorData = new CSensorData();
 		return mSensorData;

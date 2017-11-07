@@ -5,12 +5,12 @@
 
 #include <map>
 
-using namespace std
+using namespace std;
 
 class CSensorData {
 private:
 	map<int, int> mData;
-	CSensorData * mSensorData;
+	static CSensorData * mSensorData;
 	CSensorData();
 	
 public:
@@ -20,6 +20,6 @@ public:
 	void insertData(int key, int value);
 	int getData(int key);
 	int getDataCount(void);
-}
+};
 
 #endif

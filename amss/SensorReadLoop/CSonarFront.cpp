@@ -4,7 +4,7 @@
 
 CSonarFront::CSonarFront()
 {
-	mData = CSensorData.getInstance();
+	mData = CSensorData::getInstance();
 }
 
 CSonarFront::~CSonarFront() {}
@@ -27,7 +27,7 @@ void CSonarFront::init(void)
 	mTrigger = PIN_NUM_TRIGGER;
 	mEcho = PIN_NUM_ECHO;
 	pinMode(mTrigger, OUTPUT);
-	pinMOde(mEcho, INPUT);
+	pinMode(mEcho, INPUT);
 	digitalWrite(mTrigger, LOW);
 	delay(500);
 }
@@ -50,7 +50,7 @@ void CSonarFront::saveValue(void)
 	long startTimeUsec,endTimeUsec,travelTimeUsec,timeoutstart;
 	double distanceCm;
 
-    if ((mTrigger==-1) || (mEcho==-1)) return(-1.0);
+    if ((mTrigger==-1) || (mEcho==-1)) return;
 
 	while(1)
 	{
@@ -63,20 +63,20 @@ void CSonarFront::saveValue(void)
 
 	    while (digitalRead(mEcho) == LOW)
 		{
-	    	if ( micros()-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
+	    	if ( micros()-timeoutstart>=SENSOR_TIMEOUT) return;
 	    }
 	    startTimeUsec = micros();
 	    while ( digitalRead(mEcho) == HIGH )
 	    {
 	    	endTimeUsec = micros();
-	        if (endTimeUsec-timeoutstart>=SENSOR_TIMEOUT) return (-1.0);
+	        if (endTimeUsec-timeoutstart>=SENSOR_TIMEOUT) return;
 	    }
 
 	    travelTimeUsec = endTimeUsec - startTimeUsec;
 	    distanceCm = travelTimeUsec/58.0;
 
 		//Save Sensor Data Class
-		mData.insertData(1, (int)distanceCm);	
+		mData->insertData(1, (int)distanceCm);	
 	}
 }
 

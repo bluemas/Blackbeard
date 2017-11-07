@@ -1,19 +1,19 @@
 ///////////////////////////////////////////////////////////
-//  CCommandHandler.cpp
-//  Implementation of the Class CCommandHandler
+//  CommandHandler.cpp
+//  Implementation of the Class CommandHandler
 //  Created on:      31-10-2017 PM 7:55:14
 //  Original author: bluem
 ///////////////////////////////////////////////////////////
 
-#include "CCommandHandler.h"
+#include "CommandHandler.h"
 
 
-CCommandHandler::CCommandHandler(){
+CommandHandler::CommandHandler(){
 
 }
 
 
 
-CCommandHandler::~CCommandHandler(){
+CommandHandler::~CommandHandler(){
 
 }

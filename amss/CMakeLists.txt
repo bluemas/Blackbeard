@@ -4,7 +4,6 @@ project(amss)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        main.cpp
         camera/CameraReader.cpp
         camera/CameraReader.h
         camera/DotRecognizer.cpp
@@ -17,14 +16,19 @@ set(SOURCE_FILES
         camera/SignRecognizer.h
         common/CameraImageRepo.cpp
         common/CameraImageRepo.h
+        common/Constants.h
+        common/EventBase.cpp
+        common/EventBase.h
         common/MapRepo.cpp
         common/MapRepo.h
+        common/SensingEventBase.cpp
+        common/SensingEventBase.h
         common/SensorDataRepo.cpp
         common/SensorDataRepo.h
-        main/AutonomousMode.cpp
-        main/AutonomousMode.h
-        main/CCommandHandler.cpp
-        main/CCommandHandler.h
+        main/AutonomousPathPlanningMode.cpp
+        main/AutonomousPathPlanningMode.h
+        main/CommandHandler.cpp
+        main/CommandHandler.h
         main/Initializer.cpp
         main/Initializer.h
         main/MainController.cpp
@@ -37,25 +41,64 @@ set(SOURCE_FILES
         main/ModeManager.h
         main/SuspendMode.cpp
         main/SuspendMode.h
+        network/NetMessageEventAdapter.h
         network/NetworkManager.cpp
         network/NetworkManager.h
         network/TCPSocket.cpp
         network/TCPSocket.h
         network/UDPSocket.cpp
         network/UDPSocket.h
+        sam/MapRepo.cpp
+        sam/MapRepo.h
+        sam/MazeGrid.cpp
+        sam/MazeGrid.h
         sam/MazeMapper.cpp
         sam/MazeMapper.h
         sam/PathPlanner.cpp
         sam/PathPlanner.h
         sam/WallRecognizer.cpp
         sam/WallRecognizer.h
-        sensorreadloop/README.md
+        sam/WallRecognizerEvent.cpp
+        sam/WallRecognizerEvent.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_calibration.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_core.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_ranging.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_api_strings.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_def.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_device.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_interrupt_threshold_settings.h
+        sensorreadloop/VL53L0X_API/core/inc/vl53l0x_tuning.h
+        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api.c
+        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_calibration.c
+        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_core.c
+        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_ranging.c
+        sensorreadloop/VL53L0X_API/core/src/vl53l0x_api_strings.c
+        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_i2c_platform.h
+        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_platform.h
+        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_platform_log.h
+        sensorreadloop/VL53L0X_API/platform/inc/vl53l0x_types.h
+        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_i2c_win_serial_comms.c
+        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_platform.c
+        sensorreadloop/VL53L0X_API/platform/src/vl53l0x_platform_log.c
+        sensorreadloop/CFlightSensorLeft.cpp
+        sensorreadloop/CFlightSensorLeft.h
+        sensorreadloop/CFlightSensorRight.cpp
+        sensorreadloop/CFlightSensorRight.h
+        sensorreadloop/CSensorData.cpp
+        sensorreadloop/CSensorData.h
+        sensorreadloop/CSensorReaderLoop.h
+        sensorreadloop/CSonarFront.cpp
+        sensorreadloop/CSonarFront.h
+        sensorreadloop/test.cpp
         servoencoder/CBehaviorExecutor.cpp
         servoencoder/CBehaviorExecutor.h
+        servoencoder/CPID.cpp
+        servoencoder/CPID.h
         servoencoder/CServoEncoder.cpp
-        servoencoder/CServoEncoder.h)
-
-# add extra include directories
-include_directories(/amss)
+        servoencoder/CServoEncoder.h
+        test/MainController.cpp
+        test/MainController.h
+        main.cpp main/AutonomousMovingMode.cpp main/AutonomouseSignRecognitionMode.cpp main/AutonomouseSignRecognitionMode.h)
 
 add_executable(amss ${SOURCE_FILES})

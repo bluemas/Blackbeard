@@ -16,7 +16,7 @@ class ManualMode : public ModeBase
 
 public:
 	ManualMode();
-	virtual ~ManualMode();
+	~ManualMode();
 
 };
 #endif // !defined(EA_D7F4455E_FAA3_42b8_9887_D9E5F1BD2D0C__INCLUDED_)

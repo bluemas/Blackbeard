@@ -9,34 +9,46 @@
 #define EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_
 
 #include "Initializer.h"
-#include "CCommandHandler.h"
+#include "CommandHandler.h"
 #include "ModeManager.h"
 #include "ModeBase.h"
-#include "..\network\IMessageListener.h"
-#include "..\network\NetworkManager.h"
-#include "..\servoencoder\CBehaviorExecutor.h"
-#include "..\sam\PathPlanner.h"
+#include "../common/Constant.h"
+#include "../network/NetMessageEventAdapter.h"
+#include "../network/NetworkManager.h"
+#include "../servoencoder/CBehaviorExecutor.h"
+#include "../sam/PathPlanner.h"
+#include "../sam/WallRecognizer.h"
+#include "AutonomousPathPlanningMode.h"
+#include <map>
 
-class MainController : public IMessageListener
+class MainController : public NetMessageEventAdapter
 {
 
 public:
 	MainController();
 	~MainController();
 
-	static void start();
-    void handleMessage(int type, void* payload);
+	void start();
+
+    void setWallRecognizer(WallRecognizer* wallRecognizer);
 
 private:
     void init();
     void runLoop();
 
-    ModeBase* mCurrentMode;
+    void eventHandler(EventBase* ev);
 
-    Initializer *m_Initializer;
-    CCommandHandler *m_CCommandHandler;
-    CBehaviorExecutor *m_BehaviorExecutor;
-    PathPlanner *m_PathPlanner;
-    ModeManager *m_ModeManager;
+    void handleMessage(int type, void* data);
+
+    ModeBase* mCurrentMode;
+	std::map<RobotMode, ModeBase*> mModeList;
+    AutonomousPathPlanningMode mAutoPathPlanning;
+
+    Initializer* mInitializer;
+    CommandHandler* mCCommandHandler;
+    CBehaviorExecutor* mBehaviorExecutor;
+    PathPlanner* mPathPlanner;
+    ModeManager* mModeManager;
+    WallRecognizer* mWallRecognizer;
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

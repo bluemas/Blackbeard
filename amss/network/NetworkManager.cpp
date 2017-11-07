@@ -13,7 +13,7 @@ NetworkManager::~NetworkManager() {
 
 }
 
-void NetworkManager::addListener(IMessageListener* listener) {
+void NetworkManager::addListener(NetMessageEventAdapter* listener) {
     mListener = listener;
 }
 

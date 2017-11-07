@@ -17,4 +17,18 @@ enum class RobotMode {
 	Suspend
 };
 
+enum class Direction {
+	forward = 0,
+	left,
+	right,
+	backward,
+};
+
+enum class CamDirection {
+	panleft = 0,
+	panright,
+	tiltup,
+	tiltdown,
+};
+
 #endif /* COMMON_CONSTANTS_H_ */

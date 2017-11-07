@@ -7,22 +7,9 @@
 #include <pthread.h>
 #include "ServoEncoder.h"
 #include "PID.h"
+#include "../common/Constants.h"
 
-#define MANUALSPEED	20
-
-enum Direction {
-    forward = 0,
-    left,
-    right,
-    backward
-};
-
-enum CamDirection {
-	panleft = 0,
-	panright,
-	tiltup,
-	tiltdown
-};
+#define MANUALSPEED	10
 
 class BehaviorExecutor {
 private:

@@ -2,6 +2,7 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include "BehaviorExecutor.h"
+#include "../common/Constants.h"
 
 int main()
 {
@@ -9,7 +10,10 @@ int main()
 
 	be.setCamDefaultTrackLine();
 
-	be.manualMove(forward);
-	sleep(2);
-	be.stop();	
+	be.manualMove(Direction::forward);
+	usleep(1700000);
+	be.stop();
+	sleep(1);
+	be.manualMove(Direction::left);
+
 }

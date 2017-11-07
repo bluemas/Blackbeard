@@ -50,16 +50,19 @@ void BehaviorExecutor::manualMove(Direction dir)
 	mSpeed = MANUALSPEED;
 	switch(dir){
 	case Direction::forward:
+		printf("Forward\n");
 		mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
 		break;
 	case Direction::left:
+		printf("Left turn\n");
 		mServoEncoder->setWheelSpeed(-mSpeed, mSpeed);
-		usleep(20000);
+		usleep(800000);
 		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::right:
+		printf("Right turn\n");
 		mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
-		usleep(20000);
+		usleep(800000);
 		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::backward:

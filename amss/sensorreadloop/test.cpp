@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <wiringPi.h>
 #include <unistd.h>
-#include "CSonarFront.h"
-#include "CFlightSensorLeft.h"
-#include "CFlightSensorRight.h"
-#include "CSensorData.h"
+#include "SonarFront.h"
+#include "FlightSensorLeft.h"
+#include "FlightSensorRight.h"
+#include "SensorData.h"
 
 
 int main()

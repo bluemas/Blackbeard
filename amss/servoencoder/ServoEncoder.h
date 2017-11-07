@@ -1,7 +1,7 @@
 // CServoEncoder Class Header File
 
-#ifndef CSERVOENCORDER_H
-#define CSERVOENCORDER_H
+#ifndef SERVOENCORDER_H
+#define SERVOENCORDER_H
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -26,7 +26,7 @@
 #define WHEEL_MAX				200
 #define WHEEL_MIN				100
 
-class CServoEncoder
+class ServoEncoder
 {
 private:
 	int	mServoFd;
@@ -34,7 +34,7 @@ private:
 	int mTilt;
 	int mWheelLSpeed;
 	int mWheelRSpeed;
-	static CServoEncoder * mpServo;
+	static ServoEncoder * mpServo;
 	ServoEncoder();
 	int	getServoMinVal(unsigned int servo);
 	int	getServoMaxVal(unsigned int servo);
@@ -42,7 +42,7 @@ private:
 	
 public:
 	~ServoEncoder();
-	static CServoEncoder* getInstance();
+	static ServoEncoder* getInstance();
 
 	int openServos(void);
 	void closeServos(void);

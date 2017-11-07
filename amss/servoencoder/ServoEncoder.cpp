@@ -2,20 +2,21 @@
 
 #include "ServoEncoder.h"
 
+ServoEncoder* ServoEncoder::mpServo = 0;
 
-CServoEncoder::ServoEncoder(){
+ServoEncoder::ServoEncoder(){
 	mServoFd = -1;
 }
 
-CServoEncoder::~ServoEncoder(){
+ServoEncoder::~ServoEncoder(){
 
 }
 
-CServoEncoder* CServoEncoder::getInstance()
+ServoEncoder* ServoEncoder::getInstance()
 {
 	if(mpServo == NULL)
 	{
-		mpServo = new CServoEncoder();
+		mpServo = new ServoEncoder();
 		return mpServo;
 	}
 	else
@@ -24,7 +25,7 @@ CServoEncoder* CServoEncoder::getInstance()
 	}
 }
 
-int CServoEncoder::openServos(void)
+int ServoEncoder::openServos(void)
 {
 	if(mServoFd != -1)
 	{
@@ -42,7 +43,7 @@ int CServoEncoder::openServos(void)
 	return (0);
 }
 
-void CServoEncoder::closeServos(void)
+void ServoEncoder::closeServos(void)
 {
 	if(mServoFd == -1)
 	{
@@ -53,7 +54,7 @@ void CServoEncoder::closeServos(void)
 	mServoFd = -1;
 }
 
-void CServoEncoder::resetServos(void)
+void ServoEncoder::resetServos(void)
 {
 	int value = SERVO_CENTER_OR_STOP;
 	
@@ -63,7 +64,7 @@ void CServoEncoder::resetServos(void)
 	setServoPosition(LEFT_WHEEL, value);
 }
 
-int CServoEncoder::getServoMinVal(unsigned int servo)
+int ServoEncoder::getServoMinVal(unsigned int servo)
 {
 	int retVal = 0;
 	switch(servo){
@@ -81,7 +82,7 @@ int CServoEncoder::getServoMinVal(unsigned int servo)
 	return retVal;
 }
 
-int CServoEncoder::getServoMaxVal(unsigned int servo)
+int ServoEncoder::getServoMaxVal(unsigned int servo)
 {
 	int retVal = 0;
 	switch(servo){
@@ -99,7 +100,7 @@ int CServoEncoder::getServoMaxVal(unsigned int servo)
 	return retVal;
 }
 
-void CServoEncoder::setServoVal(unsigned int servo, int position)
+void ServoEncoder::setServoVal(unsigned int servo, int position)
 {
 	switch(servo){
 	case CAMERA_PAN: 
@@ -117,7 +118,7 @@ void CServoEncoder::setServoVal(unsigned int servo, int position)
 	}
 }
 
-int CServoEncoder::setServoPosition(unsigned int servo,int position)
+int ServoEncoder::setServoPosition(unsigned int servo,int position)
 {
 	char buf[256];
 	size_t len;
@@ -146,7 +147,7 @@ int CServoEncoder::setServoPosition(unsigned int servo,int position)
 	return(0);
 }
 
-void CServoEncoder::setWheelSpeed(int left,int right)
+void ServoEncoder::setWheelSpeed(int left,int right)
 {
 	left = left + SERVO_CENTER_OR_STOP;
 	right = -right + SERVO_CENTER_OR_STOP;
@@ -154,7 +155,7 @@ void CServoEncoder::setWheelSpeed(int left,int right)
 	setServoPosition(RIGHT_WHEEL, right);	   
 }
 
-void CServoEncoder::setCameraServosLineTrackMode(int pan,int tilt)
+void ServoEncoder::setCameraServosLineTrackMode(int pan,int tilt)
 {
 	pan = TRK_LINE_CAM_PAN;
 	tilt = TRK_LINE_CAM_TILT;
@@ -162,7 +163,7 @@ void CServoEncoder::setCameraServosLineTrackMode(int pan,int tilt)
 	setServoPosition(CAMERA_TILT, tilt);
 }
 
-void CServoEncoder::setCameraServosLineTrackMode(void)
+void ServoEncoder::setCameraServosLineTrackMode(void)
 {
 	int pan = TRK_LINE_CAM_PAN;
 	int tilt = TRK_LINE_CAM_TILT;

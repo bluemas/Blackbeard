@@ -1,7 +1,7 @@
 // PID Class Header File
 
-#ifndef _CPID_H
-#define _CPID_H
+#ifndef _PID_H
+#define _PID_H
 
 // Parameters for PID
 #define KP        1.0               // defaut 1.0
@@ -10,7 +10,7 @@
 #define BASESPEED 6.0               // Range 0-50
 #define BASESPEEDFUDGEFACTOR 0.80   // default 1.25
 
-class CPID {
+class PID {
 private:
 	double	mKp;					// proportional gain
 	double	mKi;					// integral gain
@@ -27,13 +27,13 @@ private:
 	double	mSpeedFudgeFactor;		// fudge factor correction used in conjuction with the robot base speed
 
 public:
-	CPID();
-	~CPID();
+	PID();
+	~PID();
 
 	long getTimeMs(void);
-	void initPID();
+	void initPID(double, double, double, double, double);
 	void setError(double ErrorIn);
-	void runPID();	
+	double runPID();	
 };
 
 #endif

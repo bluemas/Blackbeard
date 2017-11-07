@@ -1,21 +1,23 @@
-// CBehaviorExecutor Class Source File
+// BehaviorExecutor Class Source File
 
 #include "BehaviorExecutor.h"
 
-CBehaviorExecutor:: CBehaviorExecutor() 
+BehaviorExecutor:: BehaviorExecutor() 
 {
-	mServoEncoder = CServoEncoder::getInstance();
-	mPID = new CPID();
+	mServoEncoder = ServoEncoder::getInstance();
+	mPID = new PID();
 
-	mPID.InitPID(KP, KI, KD, BASESPEED, BASESPEEDFUDGEFACTOR);
+	mPID->initPID(KP, KI, KD, BASESPEED, BASESPEEDFUDGEFACTOR);
 
 	mPan = SERVO_CENTER_OR_STOP;
 	mTilt = SERVO_CENTER_OR_STOP;
+
+	mServoEncoder->openServos();
 }
 
-CBehaviorExecutor::~CBehaviorExecutor() {}
+BehaviorExecutor::~BehaviorExecutor() {}
 
-void CBehaviorExecutor::move(Direction dir)
+void BehaviorExecutor::move(Direction dir)
 {
 	switch(dir){
 	case forward:
@@ -37,13 +39,13 @@ void CBehaviorExecutor::move(Direction dir)
 	}
 }
 
-void CBehaviorExecutor::stop(void)
+void BehaviorExecutor::stop(void)
 {
 	mSpeed = 0;
 	mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
 }
 
-void CBehaviorExecutor::manualMove(Direction dir)
+void BehaviorExecutor::manualMove(Direction dir)
 {
 	mSpeed = MANUALSPEED;
 	switch(dir){
@@ -66,14 +68,14 @@ void CBehaviorExecutor::manualMove(Direction dir)
 	}
 }
 
-void CBehaviorExecutor::gotoCross(void)
+void BehaviorExecutor::gotoCross(void)
 {
 	mServoEncoder->setWheelSpeed(BASESPEED, BASESPEED);
 	sleep(1);
 	mServoEncoder->setWheelSpeed(0, 0);
 }
 
-void CBehaviorExecutor::panAndTitl(CamDirection dir)
+void BehaviorExecutor::panAndTilt(CamDirection dir)
 {
 	switch(dir) {
 	case panleft:
@@ -95,20 +97,20 @@ void CBehaviorExecutor::panAndTitl(CamDirection dir)
 	}
 }
 
-void CBehaviorExecutor::setOffset(float offset)
+void BehaviorExecutor::setOffset(float offset)
 {
 	double correction, left, right;
 
-	mPID.SetError(offset);
+	mPID->setError(offset);
 	
-	correction = mPID.RunPID(); 		// compute PID correction
+	correction = mPID->runPID(); 		// compute PID correction
 	left = BASESPEED - correction;		// compute left wheel speed
 	right = BASESPEED + correction; 	// compute right wheel speed
 
 	mServoEncoder->setWheelSpeed(left, right);	
 }
 
-void CBehaviorExecutor::searchSign(Direction dir)
+void BehaviorExecutor::searchSign(Direction dir)
 {
 	// call function by thread.
 	switch(dir) {
@@ -121,7 +123,7 @@ void CBehaviorExecutor::searchSign(Direction dir)
 	}
 }
 
-void CBehaviorExecutor::setCamDefaultTrackLine(void)
+void BehaviorExecutor::setCamDefaultTrackLine(void)
 {
 	mServoEncoder->setCameraServosLineTrackMode();
 }

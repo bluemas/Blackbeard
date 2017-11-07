@@ -1,24 +1,37 @@
-// CBehaviorExecutor Class Header File
+// BehaviorExecutor Class Header File
 
-#ifndef _CBEHAVIOREXECUTOR_H
-#define _CBEHAVIOREXECUTOR_H
+#ifndef _BEHAVIOREXECUTOR_H
+#define _BEHAVIOREXECUTOR_H
 
 #include <unistd.h>
-#include <thread.h>
+#include <pthread.h>
 #include "ServoEncoder.h"
 #include "PID.h"
-#include "Constants.h"
 
 #define MANUALSPEED	20
 
-class CBehaviorExecutor {
+enum Direction {
+    forward = 0,
+    left,
+    right,
+    backward
+};
+
+enum CamDirection {
+	panleft = 0,
+	panright,
+	tiltup,
+	tiltdown
+};
+
+class BehaviorExecutor {
 private:
 	int mPan;
 	int mTilt;
 	int mSpeed;
-	CPID mPID;
-	CServoEncoder * mServoEncoder;
-	
+	PID* mPID;
+	ServoEncoder* mServoEncoder;
+
 public:
 	BehaviorExecutor();
 	~BehaviorExecutor();
@@ -31,6 +44,7 @@ public:
 	void setOffset(float offset);
 	void searchSign(Direction dir);
 	void setCamDefaultTrackLine(void);
-
+	
 };
-#endif // _CBEHAVIOREXECUTOR_H
+
+#endif // _BEHAVIOREXECUTOR_H

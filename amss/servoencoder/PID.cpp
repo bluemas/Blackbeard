@@ -1,17 +1,17 @@
-// CPID Class Source File
+// PID Class Source File
 
 #include <time.h>
 #include <math.h>
 #include <inttypes.h> 
 #include "PID.h"
 
-CPID::CPID() {}
-CPID::~CPID() {}
+PID::PID() {}
+PID::~PID() {}
 
 //-----------------------------------------------------------------
 // GetTimeMs returns the current time in miliseconds
 //-----------------------------------------------------------------
-long CPID::GetTimeMs(void)
+long PID::getTimeMs(void)
 {
     long            ms; // Milliseconds
     time_t          s;  // Seconds
@@ -28,9 +28,9 @@ long CPID::GetTimeMs(void)
 // Init_PID Initializes the Proportional Integral Derivative(PID)
 // Controller with desired constants
 //-----------------------------------------------------------------
-void CPID::InitPID(double Kpi, double Kii, double Kdi,double BaseSpeedi, double SpeedFudgeFactori) 
+void PID::initPID(double Kpi, double Kii, double Kdi, double BaseSpeedi, double SpeedFudgeFactori) 
 {
-	mErrorTime = GetTimeMs();
+	mErrorTime = getTimeMs();
 	mKp = Kpi;
 	mKi = Kii;
 	mKd = Kdi;
@@ -47,18 +47,18 @@ void CPID::InitPID(double Kpi, double Kii, double Kdi,double BaseSpeedi, double 
 // SetError Set the PIDS current calculated errror from desired
 // direction 
 //-----------------------------------------------------------------
-void CPID::SetError(double ErrorIn)
+void PID::setError(double ErrorIn)
 {
 	mError = (mBaseSpeed / mSpeedFudgeFactor) * ErrorIn;
 	mLastErrorTime =  mErrorTime;
-	mErrorTime = GetTimeMs();
+	mErrorTime = getTimeMs();
 }
 
 //-----------------------------------------------------------------
 // RunPID calculates the corrected direction, returens the
 // corrrected direction
 //-----------------------------------------------------------------
-double CPID::RunPID(void) 
+double PID::runPID(void) 
 {
 	long iterationTime = (long) (mErrorTime - mLastErrorTime);
 

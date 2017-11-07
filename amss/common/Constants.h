@@ -15,11 +15,4 @@ enum class Direction {
     backward
 };
 
-enum class CamDirection {
-	panleft = 0,
-	panright,
-	tiltup,
-	tiltdown
-}
-
 #endif /* COMMON_CONSTANTS_H_ */

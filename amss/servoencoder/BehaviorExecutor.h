@@ -5,8 +5,8 @@
 
 #include <unistd.h>
 #include <thread.h>
-#include "CServoEncoder.h"
-#include "CPID.h"
+#include "ServoEncoder.h"
+#include "PID.h"
 #include "Constants.h"
 
 #define MANUALSPEED	20

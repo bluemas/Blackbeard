@@ -1,6 +1,6 @@
 // CBehaviorExecutor Class Source File
 
-#include "CBehaviorExecutor.h"
+#include "BehaviorExecutor.h"
 
 CBehaviorExecutor:: CBehaviorExecutor() 
 {

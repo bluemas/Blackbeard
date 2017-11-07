@@ -3,7 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <inttypes.h> 
-#include "CPID.h"
+#include "PID.h"
 
 CPID::CPID() {}
 CPID::~CPID() {}

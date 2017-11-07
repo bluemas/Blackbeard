@@ -1,6 +1,6 @@
 // ServoEncoder Class Source File
 
-#include "CServoEncoder.h"
+#include "ServoEncoder.h"
 
 
 CServoEncoder::ServoEncoder(){

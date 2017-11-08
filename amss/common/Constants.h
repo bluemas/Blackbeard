@@ -31,4 +31,11 @@ enum class CamDirection {
 	tiltdown,
 };
 
+enum class SensorType {
+	front = 0,
+	left,
+	right,
+	//back
+};
+
 #endif /* COMMON_CONSTANTS_H_ */

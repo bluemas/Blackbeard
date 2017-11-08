@@ -5,7 +5,6 @@
 
 #include "VL53L0X_API/vl53l0x_api.h"
 #include "VL53L0X_API/vl53l0x_platform.h"
-#include <pthread.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,8 +12,8 @@
 #include <errno.h>
 #include <ctype.h>
 #include <time.h>
-#include "SensorReaderLoop.h"
-#include "SensorData.h"
+#include "SensorReader.h"
+#include "../common/Constants.h"
 
 #define VERSION_REQUIRED_MAJOR 1
 #define VERSION_REQUIRED_MINOR 0
@@ -30,13 +29,12 @@
 
 #define MAX_DEVICES                     16
 
-class FlightSensorRight:public SensorReaderLoop {
+class FlightSensorRight:public SensorReader {
 private:
 	VL53L0X_Dev_t mMyDevice;
 	VL53L0X_Dev_t* mpMyDevice;
 	VL53L0X_RangingMeasurementData_t mRangingMeasurementData;
 	VL53L0X_RangingMeasurementData_t* mpRangingMeasurementData;
-	SensorData * mData;
 	uint32_t mTiming;
 	
 	void print_pal_error(VL53L0X_Error Status);
@@ -49,7 +47,7 @@ private:
 public:
 	FlightSensorRight();
 
-	virtual void run();
+	virtual void read();
 	void stopRanging(void);	
 };
 

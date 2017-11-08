@@ -28,8 +28,6 @@ SOFTWARE.
 
 FlightSensorLeft::FlightSensorLeft() 
 {
-	mData = SensorData::getInstance();
-
 	mpMyDevice = &mMyDevice;
 	mpRangingMeasurementData = &mRangingMeasurementData;
 	
@@ -45,23 +43,20 @@ FlightSensorLeft::FlightSensorLeft()
 	printf("Timing %d ms\n", mTiming/1000);
 }
 
-void FlightSensorLeft::run()
+void FlightSensorLeft::read()
 {
 	int32_t distance;
 
-	while(1)
-	{
-		// Get distance from VL53L0X  on TCA9548A bus 1
-		distance = getDistance();
-		//if(distance > 0)
-		//	printf("Left: %d mm, %d cm\n\n", distance, (distance/10));
+	// Get distance from VL53L0X  on TCA9548A bus 1
+	distance = getDistance();
+	//if(distance > 0)
+	//	printf("Left: %d mm, %d cm\n\n", distance, (distance/10));
 
-		//Data Save
-		if(distance > 0)
-			mData->insertData(2, (int)(distance/10));
-		
-		usleep(mTiming);
-	}
+	//Data Save
+	if(distance > 0)
+		inputData(SensorType::left, (int)(distance/10));
+	
+	usleep(mTiming);
 }
 
 /******************************************************************************

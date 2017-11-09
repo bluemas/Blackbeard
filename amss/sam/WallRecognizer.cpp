@@ -15,9 +15,19 @@ WallRecognizer::WallRecognizer() {
 }
 
 WallRecognizer::~WallRecognizer() {
-
+    ~mSonarFront();
+    ~mFlightSensorLeft();
+    ~mFlightSensorRight();
 }
 
+void WallRecognizer::setMazeMapper(MazeMapper *mazeMapper) {
+    mMazeMapper = mazeMapper;
+}
+
+void WallRecognizer::addEventHandler(EventHandlerAdapter *eventHandler) {
+    // TODO mEventHandler ventor vector->push(eventHandler);
+    mEventHandler = eventHandler;
+}
 
 void WallRecognizer::start() {
     mIsRun = true;
@@ -48,63 +58,92 @@ void WallRecognizer::run() {
         double leftDistance = mSensorData->getData(SensorType::left);
         double rightDistance = mSensorData->getData(SensorType::right);
 
-        checkCollision(frontDistance, leftDistance, rightDistance);
-        checkWall(frontDistance, leftDistance, rightDistance);
+        // Check whether a collision would be occur
+        WallRecognizerEvent *warnCollisionEvent =
+                checkCollision(frontDistance, leftDistance, rightDistance);
 
+        if (warnCollisionEvent) {
+            // Notify to MainController
+            mEventHandler->wallEventHandler(warnCollisionEvent);
+        }
+
+        delete warnCollisionEvent;
+
+        // Check wall status in this position
+        WallSensingEvent* wallSensingEvent =
+                checkWallStatus(frontDistance, leftDistance, rightDistance);
+
+        // Notify to MazeMapper
+        mMazeMapper->updateWallSensingEvent(wallSensingEvent);
+
+        delete wallSensingEvent;
+
+
+        // Sleep for a while
         std::this_thread::sleep_for(std::chrono::milliseconds(SENSING_PERIOD_IN_MS));
     }
 }
 
-void WallRecognizer::addEventHandler(EventHandlerAdapter *eventHandler) {
-    // TODO mEventHandler ventor vector->push(eventHandler);
-    mEventHandler = eventHandler;
-}
+WallRecognizerEvent* WallRecognizer::checkCollision(
+        double frontDistance, double leftDistance, double rightDistance) {
 
-void WallRecognizer::checkCollision(double frontDistance, double leftDistance, double rightDistance) {
     // Check whether a collision is predicted
-    bool isPredictCollision = false;
-    WallRecognizerEvent *ev = new WallRecognizerEvent();
+    WallRecognizerEvent *ev;
 
     if (frontDistance < MIN_FRONT_COLLISION_DISTANCE) {
         // if a collision is predicted
-        isPredictCollision = true;
+        if (!ev) {
+            ev = new WallRecognizerEvent();
+        }
+
+        // TOOD set additional info
     }
 
     if (leftDistance < MIN_SIDE_COLLISION_DISTANCE) {
-        isPredictCollision = true;
+        if (!ev) {
+            ev = new WallRecognizerEvent();
+        }
+
+        // TOOD set additional info
     }
 
     if (rightDistance < MIN_SIDE_COLLISION_DISTANCE) {
-        isPredictCollision = true;
+        if (!ev) {
+            ev = new WallRecognizerEvent();
+        }
+
+        // TOOD set additional info
     }
 
-    if (isPredictCollision) {
+    if (ev) {
         cout << "Front : " << frontDistance << ", Left : " << leftDistance
                 << ", Right : " << rightDistance << endl;
-
-        mEventHandler->wallEventHandler(ev);
     }
 
-    delete ev;
+    return ev;
 }
 
-void WallRecognizer::checkWall(double frontDistance, double leftDistance, double rightDistace) {
+WallSensingEvent* WallRecognizer::checkWallStatus(
+        double frontDistance, double leftDistance, double rightDistace) {
+
     unsigned char wallStatus = 0;
 
     if (frontDistance < MIN_FRONT_DISTANCE) {
         // There is the wall in front
-        wallStatus |= 0;
+        wallStatus |= WallStatus::front;
     }
 
     if (leftDistance < MIN_SIDE_DISTANCE) {
         // There is the wall in left
-        wallStatus |= 1;
+        wallStatus |= WallStatus::left;
     }
 
     if (leftDistance < MIN_SIDE_DISTANCE) {
         // there is the wall in right
-        wallStatus |= 2;
+        wallStatus |= WallStatus::right;
     }
 
-    // TODO Send current wall status to MazeMapper
+    WallSensingEvent *ev = new WallSensingEvent(wallStatus);
+
+    return ev;
 }

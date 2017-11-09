@@ -60,19 +60,21 @@ int main() {
     MazeMapper *mazeMapper = new MazeMapper(mapRepo);
     PathPlanner *pathPlanner = new PathPlanner(mazeMapper, mapRepo);
 
-    // 5. Set other components to main controller
+    // 5. Make a relationship between components
     mainController->setPathPlanner(pathPlanner);
+    wallRecognizer->setMazeMapper(mazeMapper);
 
     // 5. Start threads
     wallRecognizer->start();
 
 
-    // 99. Wait for stopping AMSS
+    // 10. Wait for stopping AMSS
     std::thread mainThread(keyInRunner);
     mainThread.join();
 
     cout << "AMSS is terminating..." << endl;
 
+    // 99. Terminate instants
     wallRecognizer->stop();
 
     return 1;

@@ -19,7 +19,7 @@ void MazeMapper::init() {
     mMapRepo->init();
 }
 
-void MazeMapper::notify(SensingEventBase e) {
+void MazeMapper::updateWallSensingEvent(WallSensingEvent *e) {
 
 }
 

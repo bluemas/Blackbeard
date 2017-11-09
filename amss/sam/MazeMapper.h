@@ -9,7 +9,7 @@
 #define SAM_MAZEMAPPER_H_
 
 #include "../common/Constants.h"
-#include "../common/SensingEventBase.h"
+#include "WallSensingEvent.h"
 #include "MapRepo.h"
 
 class MazeMapper {
@@ -19,7 +19,7 @@ public:
     virtual ~MazeMapper();
 
     void init();
-    void notify(SensingEventBase e);
+    void updateWallSensingEvent(WallSensingEvent *e);
     void setNextDirection(Direction dir);
     void printMap();
 

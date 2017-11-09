@@ -1,8 +1,9 @@
 package rui.monitor;
 
-import java.io.BufferedWriter;
+import java.io.BufferedOutputStream;
+//import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+//import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import rui.Command;
@@ -12,10 +13,10 @@ import rui.configure.ConfigManager;
 public class NetworkManager {
 	private ConfigManager configManager = ConfigManager.getInstance();
 
-	private BufferedWriter bw = null;
+	private BufferedOutputStream bos = null;
 	private Socket socket = null;
 
-	RUIMain rui;
+	private RUIMain rui;
 
 	public NetworkManager(RUIMain rui) {
 		this.rui = rui;
@@ -25,21 +26,19 @@ public class NetworkManager {
 		try {
 			String ip = configManager.getRobotIpAddress();
 			int port = configManager.getRobotPort();
-			
+
 			rui.appendLogMessage(String.format("%s / IP : %s / PORT : %s", "Trying to connect the remote robot ", ip, port));
 
 			disconnect();
 
 			socket = new Socket(ip, port);
-			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();
 
 			rui.appendLogMessage("Connection established.");
 		} catch (Exception e) {
-			rui.appendLogMessage("Connection failed.");
-			rui.appendLogMessage(e.getMessage());
-
+			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -53,19 +52,26 @@ public class NetworkManager {
 				socket = null;
 			}
 
-		if (bw != null)
+		if (bos != null)
 			try {
-				bw.close();
+				bos.close();
 			} catch (Exception e) {
 			} finally {
-				bw = null;
+				bos = null;
 			}
 	}
 
+	public boolean isConnected() {
+		return socket != null && socket.isConnected();
+	}
+
 	public void sendCommand(Command command) {
+		if (!isConnected())
+			return;
+
 		try {
-			bw.write(command.getMessage());
-			bw.flush();
+			bos.write(command.getMessageBytes());
+			bos.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

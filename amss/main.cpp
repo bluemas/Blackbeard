@@ -41,8 +41,12 @@ int main()
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
 
+    // Initialize NetworkManager
+    NetworkManager* networkManager = new NetworkManager();
+
     // 3. Set recognizer to main controller as a composite object
     mainController->setWallRecognizer(wallRecognizer);
+    mainController->networkManager(networkManager);
 
     // 4. Start threads
     wallRecognizer->start();

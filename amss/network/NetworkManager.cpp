@@ -1,5 +1,5 @@
 //
-// Created by bluem on 2017-10-29.
+// Created by bluemas on 2017-10-29.
 //
 
 #include "NetworkManager.h"
@@ -30,4 +30,8 @@ void NetworkManager::init() {
 
 void NetworkManager::startTCPServer() {
     //TODO
+}
+
+void NetworkManager::send() {
+
 }

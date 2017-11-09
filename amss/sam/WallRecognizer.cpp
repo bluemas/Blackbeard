@@ -51,6 +51,6 @@ void WallRecognizer::run() {
 }
 
 void WallRecognizer::addEventHandler(std::function<void(const EventBase*)> eventHandler) {
-    // TODO mEventHandler ventor vector->push(eventHandler);
+    // TODO mEventHandler ventor vector->push(wallRecognizerEventHandler);
     mEventHandler = eventHandler;
 }

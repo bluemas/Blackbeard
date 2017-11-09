@@ -1,5 +1,5 @@
 //
-// Created by bluem on 2017-10-29.
+// Created by bluemas on 2017-10-29.
 //
 
 #ifndef BLACKBEARD_CNETWORKMANAGER_H
@@ -16,6 +16,7 @@ public:
 
     static void start();
 
+    void send();
     void addListener(NetMessageEventAdapter* listener);
 
 private:

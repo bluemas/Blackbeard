@@ -6,16 +6,10 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "ServoEncoder.h"
+#include "../common/Constants.h"
 #include "PID.h"
 
 #define MANUALSPEED	20
-
-enum Direction {
-    forward = 0,
-    left,
-    right,
-    backward
-};
 
 enum CamDirection {
 	panleft = 0,

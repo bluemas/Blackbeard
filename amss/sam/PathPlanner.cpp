@@ -8,6 +8,10 @@
 #include "../sam/PathPlanner.h"
 #include "MazeMapper.h"
 
+PathPlanner::PathPlanner() {
+
+}
+
 PathPlanner::PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo) {
     this->mMapRepo = mapRepo;
     this->mMazeMapper = mazeMapper;

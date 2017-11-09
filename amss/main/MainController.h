@@ -2,53 +2,65 @@
 //  MainController.h
 //  Implementation of the Class MainController
 //  Created on:      31-10-2017 PM 7:55:15
-//  Original author: bluem
+//  Original author: bluemas
 ///////////////////////////////////////////////////////////
 
 #if !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)
 #define EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_
 
 #include "Initializer.h"
-#include "CommandHandler.h"
-#include "ModeManager.h"
 #include "ModeBase.h"
 #include "AutonomousPathPlanningMode.h"
 #include "../common/Constants.h"
-#include "../network/NetMessageEventAdapter.h"
 #include "../network/NetworkManager.h"
 #include "../servoencoder/BehaviorExecutor.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
+#include "../camera/LineRecognizer.h"
+#include "../camera/SignRecognizer.h"
+#include "../camera/DotRecognizer.h"
+#include "../common/EventHandlerAdapter.h"
+#include "ManualMode.h"
 #include <map>
 
-class MainController : public NetMessageEventAdapter
-{
+class MainController : public EventHandlerAdapter, public NetMessageEventAdapter {
 
 public:
 	MainController();
 	~MainController();
 
 	void start();
-
     void setWallRecognizer(WallRecognizer* wallRecognizer);
+    void setLineRecognizer(LineRecognizer* lineRecognizer);
+    void setDotRecognizer(DotRecognizer* dotRecognizer);
+    void setSignRecognizer(SignRecognizer* signRecognizer);
+    void setNetworkManager(NetworkManager* networkManger);
+
+    PathPlanner* pathPlanner();
+    BehaviorExecutor* behaviorExecutor();
+    NetworkManager* networkManager();
+
+    void setCurrentMode(RobotMode mode);
+	ModeBase* currentMode();
 
 private:
     void init();
     void runLoop();
-
-    void eventHandler(EventBase* ev);
-
+    void wallRecognizerEventHandler(EventBase *ev);
+    void lineRecognizerEventHandler(EventBase *ev);
+    void dotRecognizerEventHandler(EventBase *ev);
+    void signRecognizerEventHandler(EventBase *ev);
     void handleMessage(int type, void* data);
 
-    ModeBase* mCurrentMode;
-	std::map<RobotMode, ModeBase*> mModeList;
-    AutonomousPathPlanningMode mAutoPathPlanning;
+    void initializeRobot();
+    void moveRobot(const void *data);
 
-    Initializer* mInitializer;
-    CommandHandler* mCCommandHandler;
-    BehaviorExecutor* mBehaviorExecutor;
-    PathPlanner* mPathPlanner;
-    ModeManager* mModeManager;
-    WallRecognizer* mWallRecognizer;
+	std::map<RobotMode, ModeBase*> mModeList;
+    ModeBase* mCurrentMode;
+    Initializer mInitializer;
+    BehaviorExecutor mBehaviorExecutor;
+    PathPlanner mPathPlanner;
+    NetworkManager* mNetworkManager;
+    SignRecognizer* mSignRecognizer;
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

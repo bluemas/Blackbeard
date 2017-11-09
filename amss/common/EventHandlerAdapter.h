@@ -15,7 +15,11 @@ public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
 
-    void wallEventHandler(EventBase *);
+    virtual void wallEventHandler(EventBase *ev) {}
+    virtual void lineRecognizerEventHandler(EventBase *ev) {}
+    virtual void redDotRecognizerEventHandler(EventBase *ev) {}
+    virtual void signRecognizerEventHandler(EventBase *ev) {}
+    virtual void squareRecognizerEventHandler(EventBase *ev) {}
 };
 
 #endif /* COMMON_EVENTHANDLERADAPTER_H_ */

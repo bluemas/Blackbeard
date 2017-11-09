@@ -1,5 +1,5 @@
 //
-// Created by bluem on 2017-11-05.
+// Created by bluemas on 2017-11-05.
 //
 
 #ifndef AMSS_IMESSAGEHANDLER_H

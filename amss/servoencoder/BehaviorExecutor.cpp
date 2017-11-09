@@ -36,6 +36,8 @@ void BehaviorExecutor::move(Direction dir)
 	case Direction::backward:
 		//nothing
 		break;
+	default:
+		break;
 	}
 }
 
@@ -68,6 +70,8 @@ void BehaviorExecutor::manualMove(Direction dir)
 	case Direction::backward:
 		// nothing
 		break;
+	default:
+		break;
 	}
 }
 
@@ -78,26 +82,53 @@ void BehaviorExecutor::gotoCross(void)
 	mServoEncoder->setWheelSpeed(0, 0);
 }
 
+void* BehaviorExecutor::runPanTilt(void* ptr)
+{
+	((BehaviorExecutor*)ptr)->panAndTiltDir();
+}
+
+void BehaviorExecutor::panAndTiltDir(void)
+{
+	while(1)
+	{
+		switch(mCamDir) {
+		case CamDirection::panleft:
+			mPan--;
+			mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
+			break;
+		case CamDirection::panright:
+			mPan++;
+			mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
+			break;
+		case CamDirection::tiltup:
+			mTilt--;
+			mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
+			break;
+		case CamDirection::tiltdown:
+			mTilt++;
+			mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
+			break;
+		default:
+			break;
+		}
+
+		usleep(100000);
+	}
+
+}
+
 void BehaviorExecutor::panAndTilt(CamDirection dir)
 {
-	switch(dir) {
-	case CamDirection::panleft:
-		mPan--;
-		mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
-		break;
-	case CamDirection::panright:
-		mPan++;
-		mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
-		break;
-	case CamDirection::tiltup:
-		mTilt--;
-		mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
-		break;
-	case CamDirection::tiltdown:
-		mTilt++;
-		mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
-		break;
-	}
+	mCamDir = dir;
+
+	printf("Pan And Tilt Thread!!\n");
+	
+	pthread_create(&mThreadPanTilt, NULL, &BehaviorExecutor::runPanTilt, (void*)this);
+}
+
+void BehaviorExecutor::stopPanAndTilt(void)
+{
+	pthread_cancel(mThreadPanTilt);
 }
 
 void BehaviorExecutor::setOffset(float offset)
@@ -113,7 +144,7 @@ void BehaviorExecutor::setOffset(float offset)
 	mServoEncoder->setWheelSpeed(left, right);	
 }
 
-void* BehaviorExecutor::run(void * ptr)
+void* BehaviorExecutor::runSign(void * ptr)
 {
 	((BehaviorExecutor*)ptr)->searchSignDir();
 }
@@ -121,8 +152,12 @@ void* BehaviorExecutor::run(void * ptr)
 void BehaviorExecutor::searchSignDir(void)
 {
 	int searchCnt = 0;
+	int check = 0;
+	int tiltPos = 0;
+	
 	mTilt = SERVO_CENTER_OR_STOP;
-
+	check = CAMSEARCHOFFSET * 2;
+	
 	switch(mSearchDir) {
 	case Direction::forward:
 		mPan = SERVO_CENTER_OR_STOP;
@@ -133,46 +168,48 @@ void BehaviorExecutor::searchSignDir(void)
 	case Direction::right:
 		mPan = PAN_CAMERA_MAX;
 		break;
+	default:
+		mPan = SERVO_CENTER_OR_STOP;
+		break;
 	}
 
-	printf("SearchSign DIR!!\n");
+	// Search Sign Direction
 	mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
 	mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
-	usleep(200000);
+	usleep(100000);
 
-	mServoEncoder->setServoPosition(CAMERA_TILT, mTilt-CAMSEARCHOFFSET);
-	usleep(200000);
-	printf("SearchSign DIR!! - Center + UP\n");
-	mServoEncoder->setServoPosition(CAMERA_TILT, mTilt+CAMSEARCHOFFSET);
-	usleep(200000);
-	printf("SearchSign DIR!! - Center + DOWN\n");
+	tiltPos = mTilt - CAMSEARCHOFFSET;
+	for(searchCnt = 0; searchCnt < check; searchCnt++)
+	{
+		mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
+		tiltPos++;
+		usleep(100000);
+	}
 
 	if(mSearchDir != Direction::left)
 	{
-		printf("SearchSign DIR!! - Right \n");
-		int tiltPos = mTilt-CAMSEARCHOFFSET;
+		tiltPos = mTilt-CAMSEARCHOFFSET;
 		mServoEncoder->setServoPosition(CAMERA_PAN, mPan-CAMSEARCHOFFSET);
-		for(searchCnt = 0 ; searchCnt < 3; searchCnt++)
+		for(searchCnt = 0 ; searchCnt < check; searchCnt++)
 		{
 			mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
-			tiltPos = tiltPos + CAMSEARCHOFFSET;
-			usleep(200000);
+			tiltPos++;
+			usleep(100000);
 		}
 	}
 
 	if(mSearchDir != Direction::right)
 	{
-		printf("SearchSign DIR!! - Left \n");
-		int tiltPos = mTilt-CAMSEARCHOFFSET;
+		tiltPos = mTilt-CAMSEARCHOFFSET;
 		mServoEncoder->setServoPosition(CAMERA_PAN, mPan+CAMSEARCHOFFSET);
-		for(searchCnt = 0 ; searchCnt < 3; searchCnt++)
+		for(searchCnt = 0 ; searchCnt < check; searchCnt++)
 		{
 			mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
-			tiltPos = tiltPos + CAMSEARCHOFFSET;
-			usleep(200000);
+			tiltPos++;
+			usleep(100000);
 		}
 	}
-	pthread_join(mThread, NULL);
+	pthread_join(mThreadSign, NULL);
 }
 
 void BehaviorExecutor::searchSign(Direction dir)
@@ -180,7 +217,13 @@ void BehaviorExecutor::searchSign(Direction dir)
 	// Save Search direction
 	mSearchDir = dir;
 
-	pthread_create(&mThread, NULL, &BehaviorExecutor::run, (void*)this);
+	pthread_create(&mThreadSign, NULL, &BehaviorExecutor::runSign, (void*)this);
+}
+
+void BehaviorExecutor::stopSign(void)
+{	
+	pthread_cancel(mThreadSign);
+	setCamDefaultTrackLine();
 }
 
 void BehaviorExecutor::setCamDefaultTrackLine(void)
@@ -189,6 +232,16 @@ void BehaviorExecutor::setCamDefaultTrackLine(void)
 	mTilt = TRK_LINE_CAM_TILT;
 	
 	mServoEncoder->setCameraServosLineTrackMode();
+}
+
+void BehaviorExecutor::setCamDefault(void)
+{
+	mPan = SERVO_CENTER_OR_STOP;
+	mTilt = SERVO_CENTER_OR_STOP;
+	
+	mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
+	mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
+	
 }
 
 

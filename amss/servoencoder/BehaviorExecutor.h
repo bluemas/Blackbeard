@@ -20,11 +20,15 @@ private:
 	int mSpeed;
 	PID* mPID;
 	ServoEncoder* mServoEncoder;
-	pthread_t mThread;
+	pthread_t mThreadSign;
+	pthread_t mThreadPanTilt;
 	Direction mSearchDir;
+	CamDirection mCamDir;
 
-	static void* run(void* ptr);
+	static void* runSign(void* ptr);
+	static void* runPanTilt(void* ptr);
 	void searchSignDir(void);
+	void panAndTiltDir(void);
 
 public:
 	BehaviorExecutor();
@@ -35,9 +39,12 @@ public:
 	void manualMove(Direction dir);
 	void gotoCross(void);
 	void panAndTilt(CamDirection dir);
+	void stopPanAndTilt(void);
 	void setOffset(float offset);
 	void searchSign(Direction dir);
+	void stopSign(void);
 	void setCamDefaultTrackLine(void);
+	void setCamDefault(void);
 	
 };
 

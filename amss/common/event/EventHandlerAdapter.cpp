@@ -14,7 +14,3 @@ EventHandlerAdapter::EventHandlerAdapter() {
 EventHandlerAdapter::~EventHandlerAdapter() {
 
 }
-
-void EventHandlerAdapter::wallEventHandler(const WallRecognizerEvent *) {
-
-}

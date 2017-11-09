@@ -19,17 +19,17 @@
 #include "../camera/LineRecognizer.h"
 #include "../camera/SignRecognizer.h"
 #include "../camera/DotRecognizer.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/EventHandlerAdapter.h"
 #include "ManualMode.h"
 #include <map>
 
 class MainController : public EventHandlerAdapter, public NetMessageEventAdapter {
 
 public:
-	MainController();
-	~MainController();
+    MainController();
+    ~MainController();
 
-	void start();
+    void start();
     void setWallRecognizer(WallRecognizer* wallRecognizer);
     void setLineRecognizer(LineRecognizer* lineRecognizer);
     void setDotRecognizer(DotRecognizer* dotRecognizer);
@@ -41,7 +41,7 @@ public:
     NetworkManager* networkManager();
 
     void setCurrentMode(RobotMode mode);
-	ModeBase* currentMode();
+    ModeBase* currentMode();
 
 private:
     void init();
@@ -55,7 +55,7 @@ private:
     void initializeRobot();
     void moveRobot(const void *data);
 
-	std::map<RobotMode, ModeBase*> mModeList;
+    std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
     Initializer mInitializer;
     BehaviorExecutor mBehaviorExecutor;

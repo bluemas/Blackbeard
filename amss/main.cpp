@@ -77,5 +77,13 @@ int main() {
     // 99. Terminate instants
     wallRecognizer->stop();
 
+    // 100. Clean up
+    delete mainController;
+    delete wallRecognizer;
+    delete mapRepo;
+    delete mazeMapper;
+    delete pathPlanner;
+    delete wallRecognizer;
+
     return 1;
 }

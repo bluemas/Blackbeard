@@ -20,3 +20,8 @@ PathPlanner::~PathPlanner() {
 void PathPlanner::init() {
 
 }
+
+Direction PathPlanner::nextDirection() {
+    // TODO Find next direction using MapRepo
+    return Direction::forward;
+}

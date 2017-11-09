@@ -8,10 +8,14 @@
 #include "WallRecognizer.h"
 
 WallRecognizer::WallRecognizer() {
-
+    mSensorData = SensorData::getInstance();
+    mSonarFront = new SonarFront();
+    mFlightSensorLeft = new FlightSensorLeft();
+    mFlightSensorRight = new FlightSensorRight();
 }
 
 WallRecognizer::~WallRecognizer() {
+
 }
 
 
@@ -36,13 +40,16 @@ void WallRecognizer::run() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     while(mIsRun) {
-        // TODO Load sensor data
-        double frontDistnace = 30.0;
-        double leftDistance = 30.0;
-        double rightDistance = 30.0;
+        mSonarFront->read();
+        mFlightSensorLeft->read();
+        mFlightSensorRight->read();
 
-        checkCollision(frontDistnace, leftDistance, rightDistance);
-        checkWall(frontDistnace, leftDistance, rightDistance);
+        double frontDistance = mSensorData->getData(SensorType::front);
+        double leftDistance = mSensorData->getData(SensorType::left);
+        double rightDistance = mSensorData->getData(SensorType::right);
+
+        checkCollision(frontDistance, leftDistance, rightDistance);
+        checkWall(frontDistance, leftDistance, rightDistance);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(SENSING_PERIOD_IN_MS));
     }
@@ -72,6 +79,9 @@ void WallRecognizer::checkCollision(double frontDistance, double leftDistance, d
     }
 
     if (isPredictCollision) {
+        cout << "Front : " << frontDistance << ", Left : " << leftDistance
+                << ", Right : " << rightDistance << endl;
+
         mEventHandler->wallEventHandler(ev);
     }
 
@@ -96,5 +106,5 @@ void WallRecognizer::checkWall(double frontDistance, double leftDistance, double
         wallStatus |= 2;
     }
 
-    // TODO Send current wall status
+    // TODO Send current wall status to MazeMapper
 }

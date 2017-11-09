@@ -20,8 +20,11 @@
 #include "../common/Constants.h"
 #include "../common/WallRecognizerEvent.h"
 #include "../common/EventHandlerAdapter.h"
-//#include "../common/SensorDataRepo.h"
 
+#include "../sensorreadloop/SensorData.h"
+#include "../sensorreadloop/SonarFront.h"
+#include "../sensorreadloop/FlightSensorLeft.h"
+#include "../sensorreadloop/FlightSensorRight.h"
 
 using namespace std;
 
@@ -36,9 +39,9 @@ public:
     void addEventHandler(EventHandlerAdapter *eventHandler);
 
 private:
-    const int SENSING_PERIOD_IN_MS = 100;
-    const double MIN_FRONT_COLLISION_DISTANCE = 40;
-    const double MIN_SIDE_COLLISION_DISTANCE  = 40;
+    const int SENSING_PERIOD_IN_MS = 500;
+    const double MIN_FRONT_COLLISION_DISTANCE = 50;
+    const double MIN_SIDE_COLLISION_DISTANCE  = 50;
     const double MIN_FRONT_DISTANCE = 50;
     const double MIN_SIDE_DISTANCE  = 50;
 
@@ -46,6 +49,10 @@ private:
     std::atomic<bool> mIsRun;
     std::thread mThread;
     EventHandlerAdapter *mEventHandler;
+    SensorData *mSensorData;
+    SonarFront *mSonarFront;
+    FlightSensorLeft *mFlightSensorLeft;
+    FlightSensorRight *mFlightSensorRight;
 
     void run();
     void checkCollision(double frontDistance, double leftDistance, double rightDistance);

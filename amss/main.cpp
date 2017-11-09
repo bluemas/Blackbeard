@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <thread>
+#include <wiringPi.h>
 
 #include "test/MainController.h"
 
@@ -32,8 +33,21 @@ void keyInRunner() {
     }
 }
 
-int main()
-{
+void init() {
+    if (wiringPiSetup() == -1) {
+        exit(0);
+    }
+
+    if(VL53L0X_i2c_init("/dev/i2c-1")==-1) {
+        cout << "VL53L0X_i2c_init failed" << endl;
+        exit(0);
+    }
+}
+
+int main() {
+    // 0. Initialize device
+    init();
+
     // 1. Initiate MainController
     MainController *mainController = new MainController();
 

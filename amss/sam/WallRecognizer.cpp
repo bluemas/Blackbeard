@@ -9,15 +9,16 @@
 
 WallRecognizer::WallRecognizer() {
     mSensorData = SensorData::getInstance();
+
     mSonarFront = new SonarFront();
     mFlightSensorLeft = new FlightSensorLeft();
     mFlightSensorRight = new FlightSensorRight();
 }
 
 WallRecognizer::~WallRecognizer() {
-    ~mSonarFront();
-    ~mFlightSensorLeft();
-    ~mFlightSensorRight();
+    delete mSonarFront;
+    delete mFlightSensorLeft;
+    delete mFlightSensorRight;
 }
 
 void WallRecognizer::setMazeMapper(MazeMapper *mazeMapper) {
@@ -130,17 +131,17 @@ WallSensingEvent* WallRecognizer::checkWallStatus(
 
     if (frontDistance < MIN_FRONT_DISTANCE) {
         // There is the wall in front
-        wallStatus |= WallStatus::front;
+        wallStatus |= static_cast<unsigned char>(WallStatus::front);
     }
 
     if (leftDistance < MIN_SIDE_DISTANCE) {
         // There is the wall in left
-        wallStatus |= WallStatus::left;
+        wallStatus |= static_cast<unsigned char>(WallStatus::left);
     }
 
     if (leftDistance < MIN_SIDE_DISTANCE) {
         // there is the wall in right
-        wallStatus |= WallStatus::right;
+        wallStatus |= static_cast<unsigned char>(WallStatus::right);
     }
 
     WallSensingEvent *ev = new WallSensingEvent(wallStatus);

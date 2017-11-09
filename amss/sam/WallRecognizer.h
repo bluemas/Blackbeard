@@ -18,15 +18,15 @@
 #include <vector>
 
 #include "../common/Constants.h"
-#include "../common/WallRecognizerEvent.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/WallRecognizerEvent.h"
+#include "../common/event/EventHandlerAdapter.h"
 #include "../sensorreadloop/SensorData.h"
 #include "../sensorreadloop/SonarFront.h"
 #include "../sensorreadloop/FlightSensorLeft.h"
 #include "../sensorreadloop/FlightSensorRight.h"
 
 #include "MazeMapper.h"
-#include "WallSensingEvent.h"
+#include "../common/event/WallSensingEvent.h"
 
 using namespace std;
 

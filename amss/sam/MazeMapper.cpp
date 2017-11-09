@@ -9,6 +9,7 @@
 
 MazeMapper::MazeMapper(MapRepo *mapRepo) {
     mMapRepo = mapRepo;
+    init();
 }
 
 MazeMapper::~MazeMapper() {
@@ -20,13 +21,5 @@ void MazeMapper::init() {
 }
 
 void MazeMapper::updateWallSensingEvent(WallSensingEvent *e) {
-
-}
-
-void MazeMapper::setNextDirection(Direction dir) {
-
-}
-
-void MazeMapper::printMap() {
 
 }

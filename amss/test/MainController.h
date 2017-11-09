@@ -10,8 +10,8 @@
 
 #include <iostream>
 
-#include "../common/EventHandlerAdapter.h"
-#include "../common/WallRecognizerEvent.h"
+#include "../common/event/EventHandlerAdapter.h"
+#include "../common/event/WallRecognizerEvent.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
 

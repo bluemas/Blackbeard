@@ -8,15 +8,10 @@
 #include "ServoEncoder.h"
 #include "../common/Constants.h"
 #include "PID.h"
+#include "../common/Constants.h"
 
-#define MANUALSPEED	20
-
-enum CamDirection {
-	panleft = 0,
-	panright,
-	tiltup,
-	tiltdown
-};
+#define MANUALSPEED	10
+#define CAMSEARCHOFFSET 10
 
 class BehaviorExecutor {
 private:
@@ -25,6 +20,11 @@ private:
 	int mSpeed;
 	PID* mPID;
 	ServoEncoder* mServoEncoder;
+	pthread_t mThread;
+	Direction mSearchDir;
+
+	static void* run(void* ptr);
+	void searchSignDir(void);
 
 public:
 	BehaviorExecutor();

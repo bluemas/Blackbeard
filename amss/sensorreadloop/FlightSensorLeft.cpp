@@ -26,42 +26,37 @@ SOFTWARE.
 
 #include "FlightSensorLeft.h"
 
-FlightSensorLeft::FlightSensorLeft() 
+FlightSensorLeft::FlightSensorLeft()
 {
-	mData = SensorData::getInstance();
+    mpMyDevice = &mMyDevice;
+    mpRangingMeasurementData = &mRangingMeasurementData;
 
-	mpMyDevice = &mMyDevice;
-	mpRangingMeasurementData = &mRangingMeasurementData;
-	
-	startRanging(VL53L0X_BETTER_ACCURACY_MODE, 0x29, 2, 0x70);
-	
-	if((mTiming = GetTiming()) == 0)
-	{
-		printf("Error Getting Timing Budget\n");
-		stopRanging();
-	}
+    startRanging(VL53L0X_BETTER_ACCURACY_MODE, 0x29, 2, 0x70);
 
-	if(mTiming < 20000)	mTiming = 20000;
-	printf("Timing %d ms\n", mTiming/1000);
+    if((mTiming = GetTiming()) == 0)
+    {
+        printf("Error Getting Timing Budget\n");
+        stopRanging();
+    }
+
+    if(mTiming < 20000)	mTiming = 20000;
+    printf("Timing %d ms\n", mTiming/1000);
 }
 
-void FlightSensorLeft::run()
+void FlightSensorLeft::read()
 {
-	int32_t distance;
+    int32_t distance;
 
-	while(1)
-	{
-		// Get distance from VL53L0X  on TCA9548A bus 1
-		distance = getDistance();
-		//if(distance > 0)
-		//	printf("Left: %d mm, %d cm\n\n", distance, (distance/10));
+    // Get distance from VL53L0X  on TCA9548A bus 1
+    distance = getDistance();
+    //if(distance > 0)
+    //	printf("Left: %d mm, %d cm\n\n", distance, (distance/10));
 
-		//Data Save
-		if(distance > 0)
-			mData->insertData(2, (int)(distance/10));
-		
-		usleep(mTiming);
-	}
+    //Data Save
+    if(distance > 0)
+        inputData(SensorType::left, (int)distance);
+
+    usleep(mTiming);
 }
 
 /******************************************************************************
@@ -134,7 +129,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
                 // Address requested not default so set the address.
                 // This assumes that the shutdown pin has been controlled
                 // externally to this function.
-                // TODO: Why does this function divide the address by 2? To get 
+                // TODO: Why does this function divide the address by 2? To get
                 // the address we want we have to mutiply by 2 in the call so
                 // it gets set right
                 Status = VL53L0X_SetDeviceAddress(mpMyDevice, (i2c_address * 2));
@@ -199,7 +194,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
                                     if(Status == VL53L0X_ERROR_NONE)
                                     {
                                         // Setup in continuous ranging mode
-                                        Status = VL53L0X_SetDeviceMode(mpMyDevice, VL53L0X_DEVICEMODE_CONTINUOUS_RANGING); 
+                                        Status = VL53L0X_SetDeviceMode(mpMyDevice, VL53L0X_DEVICEMODE_CONTINUOUS_RANGING);
 
                                         if(Status == VL53L0X_ERROR_NONE)
                                         {
@@ -222,9 +217,9 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
 
                                                             if (Status == VL53L0X_ERROR_NONE)
                                                             {
-                                                                Status = 
+                                                                Status =
                                                                     VL53L0X_SetMeasurementTimingBudgetMicroSeconds(mpMyDevice, 200000);
-                                                            } 
+                                                            }
                                                         }
                                                     }
                                                     break;
@@ -236,26 +231,26 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
                                                         Status = VL53L0X_SetLimitCheckValue(mpMyDevice,
                                                                     VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE,
                                                                     (FixPoint1616_t)(0.1*65536));
-                                            
+
                                                         if (Status == VL53L0X_ERROR_NONE)
                                                         {
                                                             Status = VL53L0X_SetLimitCheckValue(mpMyDevice,
                                                                         VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE,
                                                                         (FixPoint1616_t)(60*65536));
-                                                
+
                                                             if (Status == VL53L0X_ERROR_NONE)
                                                             {
-                                                                Status = 
+                                                                Status =
                                                                     VL53L0X_SetMeasurementTimingBudgetMicroSeconds(mpMyDevice, 33000);
-                                                    
+
                                                                 if (Status == VL53L0X_ERROR_NONE)
                                                                 {
-                                                                    Status = VL53L0X_SetVcselPulsePeriod(mpMyDevice, 
+                                                                    Status = VL53L0X_SetVcselPulsePeriod(mpMyDevice,
                                                                                 VL53L0X_VCSEL_PERIOD_PRE_RANGE, 18);
-                                                    
+
                                                                     if (Status == VL53L0X_ERROR_NONE)
                                                                     {
-                                                                        Status = VL53L0X_SetVcselPulsePeriod(mpMyDevice, 
+                                                                        Status = VL53L0X_SetVcselPulsePeriod(mpMyDevice,
                                                                                     VL53L0X_VCSEL_PERIOD_FINAL_RANGE, 14);
                                                                     }
                                                                 }
@@ -280,7 +275,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
 
                                                             if (Status == VL53L0X_ERROR_NONE)
                                                             {
-                                                                Status = 
+                                                                Status =
                                                                     VL53L0X_SetMeasurementTimingBudgetMicroSeconds(mpMyDevice, 20000);
                                                             }
                                                         }
@@ -291,7 +286,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
                                                     printf("VL53L0X_BETTER_ACCURACY_MODE\n");
                                                     if (Status == VL53L0X_ERROR_NONE)
                                                     {
-                                                        Status = 
+                                                        Status =
                                                             VL53L0X_SetMeasurementTimingBudgetMicroSeconds(mpMyDevice, 66000);
                                                     }
                                                     break;
@@ -301,7 +296,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
                                                     printf("VL53L0X_GOOD_ACCURACY_MODE\n");
                                                     if (Status == VL53L0X_ERROR_NONE)
                                                     {
-                                                        Status = 
+                                                        Status =
                                                             VL53L0X_SetMeasurementTimingBudgetMicroSeconds(mpMyDevice, 33000);
                                                     }
                                                     break;
@@ -366,7 +361,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
     }
     else
     {
-		printf("Invalid mode %d specified\n", mode);
+        printf("Invalid mode %d specified\n", mode);
     }
 }
 
@@ -382,7 +377,7 @@ int32_t FlightSensorLeft::getDistance(void)
     if (mpMyDevice != NULL)
     {
         Status = WaitMeasurementDataReady(mpMyDevice);
-		
+
         if(Status == VL53L0X_ERROR_NONE)
         {
             Status = VL53L0X_GetRangingMeasurementData(mpMyDevice,
@@ -414,7 +409,7 @@ void FlightSensorLeft::stopRanging(void)
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
 
     printf ("Call of VL53L0X_StopMeasurement\n");
-    
+
     if (mpMyDevice != NULL)
     {
         Status = VL53L0X_StopMeasurement(mpMyDevice);
@@ -508,18 +503,18 @@ VL53L0X_Error FlightSensorLeft::WaitStopCompleted(VL53L0X_DEV Dev)
     return Status;
 }
 
-uint32_t FlightSensorLeft::GetTiming() 
+uint32_t FlightSensorLeft::GetTiming()
 {
-	VL53L0X_Error status;
-	uint32_t      budget;
+    VL53L0X_Error status;
+    uint32_t      budget;
 
-	status=VL53L0X_GetMeasurementTimingBudgetMicroSeconds(mpMyDevice,&budget);
-	if  (status==VL53L0X_ERROR_NONE)
-	{
-		printf("sleep time %d\n", budget);
-		return(budget+1000);
-	}
-	else 
-		return (0);
+    status=VL53L0X_GetMeasurementTimingBudgetMicroSeconds(mpMyDevice,&budget);
+    if  (status==VL53L0X_ERROR_NONE)
+    {
+        printf("sleep time %d\n", budget);
+        return(budget+1000);
+    }
+    else
+        return (0);
 }
 

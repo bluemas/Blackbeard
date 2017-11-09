@@ -13,8 +13,8 @@ PathPlanner::PathPlanner() {
 }
 
 PathPlanner::PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo) {
-    this->mMapRepo = mapRepo;
-    this->mMazeMapper = mazeMapper;
+    mMapRepo = mapRepo;
+    mMazeMapper = mazeMapper;
 }
 
 PathPlanner::~PathPlanner() {
@@ -23,4 +23,9 @@ PathPlanner::~PathPlanner() {
 
 void PathPlanner::init() {
 
+}
+
+Direction PathPlanner::nextDirection() {
+    // TODO Find next direction using MapRepo
+    return Direction::forward;
 }

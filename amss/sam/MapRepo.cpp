@@ -4,13 +4,19 @@
  *  Created on: 2017. 10. 31.
  *      Author: gtlove
  */
+ 
+#include "MapRepo.h"
 
-#include "../sam/MapRepo.h"
 
-void MapRepo::map() {
+MapRepo::MapRepo() {
 
 }
 
-void MapRepo::unMap() {
 
+MapRepo::~MapRepo() {
+
+}
+
+void MapRepo::init() {
+    // TODO init MapRepo
 }

@@ -17,10 +17,16 @@
 #include <iostream>
 #include <vector>
 
-//#include "../common/SensorDataRepo.h"
-#include "../common/EventBase.h"
+#include "../common/Constants.h"
+#include "../common/WallRecognizerEvent.h"
+#include "../common/EventHandlerAdapter.h"
+#include "../sensorreadloop/SensorData.h"
+#include "../sensorreadloop/SonarFront.h"
+#include "../sensorreadloop/FlightSensorLeft.h"
+#include "../sensorreadloop/FlightSensorRight.h"
 
-#include "WallRecognizerEvent.h"
+#include "MazeMapper.h"
+#include "WallSensingEvent.h"
 
 using namespace std;
 
@@ -32,18 +38,30 @@ public:
 
     void start();
     void stop();
-    void addEventHandler(std::function<void(const EventBase*)> eventHandler);
+    void setMazeMapper(MazeMapper *mazeMapper);
+    void addEventHandler(EventHandlerAdapter *eventHandler);
 
 private:
-    const int MIN_FRONT_DISTANCE = 50;
-    const int MIN_SIDE_DISTANCE  = 50;
+    const int SENSING_PERIOD_IN_MS = 500;
 
-    //SensorDataRepo *mSensorDataRepo;
+    const double MIN_FRONT_COLLISION_DISTANCE = 50;
+    const double MIN_SIDE_COLLISION_DISTANCE  = 50;
+
+    const double MIN_FRONT_DISTANCE = 50;
+    const double MIN_SIDE_DISTANCE  = 50;
+
     std::atomic<bool> mIsRun;
     std::thread mThread;
-    std::function<void(const EventBase*)> mEventHandler;
+    MazeMapper *mMazeMapper;
+    EventHandlerAdapter *mEventHandler;
+    SensorData *mSensorData;
+    SonarFront *mSonarFront;
+    FlightSensorLeft *mFlightSensorLeft;
+    FlightSensorRight *mFlightSensorRight;
 
     void run();
+    WallRecognizerEvent* checkCollision(double frontDistance, double leftDistance, double rightDistance);
+    WallSensingEvent* checkWallStatus(double frontDistance, double leftDistance, double rightDistance);
 };
 
 #endif /* RECOGNIZER_WALLRECOGNIZER_H_ */

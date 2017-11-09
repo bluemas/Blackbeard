@@ -22,15 +22,15 @@ SensorData* SensorData::getInstance()
 	return mSensorData;
 }
 
-void SensorData::insertData(int key, int value)
+void SensorData::insertData(SensorType key, int value)
 {
-	map<int, int>::iterator it;
+	map<SensorType, int>::iterator it;
 	
 	it = mData.find(key);
 	
 	if(it == mData.end())
 	{
-		mData.insert(pair<int, int>(key, value));
+		mData.insert(pair<SensorType, int>(key, value));
 	}
 	else
 	{
@@ -38,10 +38,10 @@ void SensorData::insertData(int key, int value)
 	}
 }
 
-int SensorData::getData(int key)
+int SensorData::getData(SensorType key)
 {
 	int retVal = -1;
-	map<int, int>::iterator it;
+	map<SensorType, int>::iterator it;
 	
 	it = mData.find(key);
 

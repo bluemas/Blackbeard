@@ -151,6 +151,8 @@ void ServoEncoder::setWheelSpeed(int left,int right)
 {
 	left = left + SERVO_CENTER_OR_STOP;
 	right = -right + SERVO_CENTER_OR_STOP;
+	
+	printf("%d, %d\n", left, right);
 	setServoPosition(LEFT_WHEEL, left);
 	setServoPosition(RIGHT_WHEEL, right);	   
 }

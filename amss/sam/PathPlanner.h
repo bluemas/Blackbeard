@@ -23,9 +23,6 @@ public:
 
     void init();
     Direction nextDirection();
-
-private:
-
 };
 
 #endif /* SAM_PATHPLANNER_H_ */

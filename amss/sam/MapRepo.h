@@ -11,8 +11,10 @@
 class MapRepo {
 
 public:
-    void map();
-    void unMap();
+    MapRepo();
+    virtual ~MapRepo();
+
+    void init();
 };
 
 #endif /* SAM_MAPREPO_H_ */

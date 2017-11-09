@@ -8,11 +8,10 @@
 #include "EventBase.h"
 
 EventBase::EventBase() {
-    // TODO Auto-generated constructor stub
 
 }
 
 EventBase::~EventBase() {
-    // TODO Auto-generated destructor stub
+
 }
 

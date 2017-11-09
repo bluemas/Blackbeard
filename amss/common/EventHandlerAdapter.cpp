@@ -15,4 +15,6 @@ EventHandlerAdapter::~EventHandlerAdapter() {
 
 }
 
-void EventHandlerAdapter::wallEventHandler(EventBase *) { }
+void EventHandlerAdapter::wallEventHandler(const WallRecognizerEvent *) {
+    std::cout << "In EventHandlerAdapter" << std::endl;
+}

@@ -20,13 +20,14 @@ int main()
 	SensorData* data = SensorData::getInstance();
 	
 	SonarFront sonar;
-	sonar.start();
-	
+	sonar.read();
+		
 	FlightSensorLeft sleft;
-	sleft.start();
+	sleft.read();
 	
 	FlightSensorRight sright;
-	sright.start();
+	sright.read();
 
-	SonarFront sonar2;
+	printf("Data size = %d\n", data->getDataCount());
+	printf("Data - Front : %d, Left : %d, Right : %d\n", data->getData(SensorType::front), data->getData(SensorType::left), data->getData(SensorType::right));
 }

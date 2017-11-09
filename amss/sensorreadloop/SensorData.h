@@ -4,12 +4,13 @@
 #define _CSENSORDATA_H
 
 #include <map>
+#include "../common/Constants.h"
 
 using namespace std;
 
 class SensorData {
 private:
-	map<int, int> mData;
+	map<SensorType, int> mData;
 	
 	static SensorData* mSensorData;
 	SensorData();
@@ -18,8 +19,8 @@ public:
 	~SensorData();
 	static SensorData* getInstance();
 
-	void insertData(int key, int value);
-	int getData(int key);
+	void insertData(SensorType key, int value);
+	int getData(SensorType key);
 	int getDataCount(void);
 };
 

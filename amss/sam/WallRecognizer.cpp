@@ -37,9 +37,9 @@ void WallRecognizer::run() {
 
     while(mIsRun) {
         // TODO Load sensor data
-        double frontDistnace = 5.0;
-        double leftDistance = 5.0;
-        double rightDistance = 5.0;
+        double frontDistnace = 30.0;
+        double leftDistance = 30.0;
+        double rightDistance = 30.0;
 
         checkCollision(frontDistnace, leftDistance, rightDistance);
         checkWall(frontDistnace, leftDistance, rightDistance);
@@ -48,32 +48,31 @@ void WallRecognizer::run() {
     }
 }
 
-void WallRecognizer::addEventHandler(std::function<void(const EventBase*)> eventHandler) {
+void WallRecognizer::addEventHandler(EventHandlerAdapter *eventHandler) {
     // TODO mEventHandler ventor vector->push(eventHandler);
     mEventHandler = eventHandler;
 }
 
 void WallRecognizer::checkCollision(double frontDistance, double leftDistance, double rightDistance) {
     // Check whether a collision is predicted
-    EventBase *ev = new WallRecognizerEvent();
+    bool isPredictCollision = false;
+    WallRecognizerEvent *ev = new WallRecognizerEvent();
 
     if (frontDistance < MIN_FRONT_COLLISION_DISTANCE) {
         // if a collision is predicted
-
+        isPredictCollision = true;
     }
 
     if (leftDistance < MIN_SIDE_COLLISION_DISTANCE) {
-
+        isPredictCollision = true;
     }
 
     if (rightDistance < MIN_SIDE_COLLISION_DISTANCE) {
-
+        isPredictCollision = true;
     }
 
-    if (ev) {
-        std::future<void> result (std::async(mEventHandler, ev));
-
-        result.wait();
+    if (isPredictCollision) {
+        mEventHandler->wallEventHandler(ev);
     }
 
     delete ev;

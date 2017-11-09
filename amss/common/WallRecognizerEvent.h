@@ -5,10 +5,10 @@
  *      Author: gtlove
  */
 
-#ifndef SAM_WALLRECOGNIZEREVENT_H_
-#define SAM_WALLRECOGNIZEREVENT_H_
+#ifndef COMMON_WALLRECOGNIZEREVENT_H_
+#define COMMON_WALLRECOGNIZEREVENT_H_
 
-#include "../common/EventBase.h"
+#include "EventBase.h"
 
 class WallRecognizerEvent: public EventBase {
 public:
@@ -16,4 +16,4 @@ public:
     virtual ~WallRecognizerEvent();
 };
 
-#endif /* SAM_WALLRECOGNIZEREVENT_H_ */
+#endif /* COMMON_WALLRECOGNIZEREVENT_H_ */

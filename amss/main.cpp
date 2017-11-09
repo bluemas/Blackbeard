@@ -1,7 +1,3 @@
-//int main() {
-//    MainController::start();
-//    NetworkManager::start();
-//}
 //============================================================================
 // Name        : AMSS.cpp
 // Author      : Black Beard
@@ -13,9 +9,12 @@
 #include <iostream>
 #include <thread>
 
-#include "sam/WallRecognizer.h"
 #include "test/MainController.h"
-#include "network/NetworkManager.h"
+
+#include "sam/WallRecognizer.h"
+#include "sam/MapRepo.h"
+#include "sam/MazeMapper.h"
+#include "sam/PathPlanner.h"
 
 using namespace std;
 
@@ -40,11 +39,17 @@ int main()
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
+    wallRecognizer->addEventHandler(mainController);
 
-    // 3. Set recognizer to main controller as a composite object
-    mainController->setWallRecognizer(wallRecognizer);
+    // 4. Initiate other components
+    MapRepo *mapRepo = new MapRepo();
+    MazeMapper *mazeMapper = new MazeMapper(mapRepo);
+    PathPlanner *pathPlanner = new PathPlanner(mazeMapper, mapRepo);
 
-    // 4. Start threads
+    // 5. Set other components to main controller
+    mainController->setPathPlanner(pathPlanner);
+
+    // 5. Start threads
     wallRecognizer->start();
 
 

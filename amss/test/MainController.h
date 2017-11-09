@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include "../common/EventHandlerAdapter.h"
-#include "../common/EventBase.h"
+#include "../common/WallRecognizerEvent.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
 
@@ -23,12 +23,11 @@ public:
     virtual ~MainController();
 
     void setPathPlanner(PathPlanner *pathPlanner);
-    void setWallRecognizer(WallRecognizer *wallRecognizer);
+    void wallEventHandler(const WallRecognizerEvent *ev);
 private:
     PathPlanner *mPathPlanner;
     WallRecognizer *mWallRecognizer;
 
-    void wallEventHandler(const EventBase *ev);
 };
 
 #endif /* TEST_MAINCONTROLLER_H_ */

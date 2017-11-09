@@ -8,14 +8,15 @@
 #ifndef COMMON_EVENTHANDLERADAPTER_H_
 #define COMMON_EVENTHANDLERADAPTER_H_
 
-#include "EventBase.h"
+#include <iostream>
+#include "WallRecognizerEvent.h"
 
 class EventHandlerAdapter {
 public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
 
-    void wallEventHandler(EventBase *);
+    virtual void wallEventHandler(const WallRecognizerEvent *);
 };
 
 #endif /* COMMON_EVENTHANDLERADAPTER_H_ */

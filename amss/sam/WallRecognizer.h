@@ -18,10 +18,10 @@
 #include <vector>
 
 #include "../common/Constants.h"
-#include "../common/EventBase.h"
+#include "../common/WallRecognizerEvent.h"
+#include "../common/EventHandlerAdapter.h"
 //#include "../common/SensorDataRepo.h"
 
-#include "WallRecognizerEvent.h"
 
 using namespace std;
 
@@ -33,7 +33,7 @@ public:
 
     void start();
     void stop();
-    void addEventHandler(std::function<void(const EventBase*)> eventHandler);
+    void addEventHandler(EventHandlerAdapter *eventHandler);
 
 private:
     const int SENSING_PERIOD_IN_MS = 100;
@@ -45,7 +45,7 @@ private:
     //SensorDataRepo *mSensorDataRepo;
     std::atomic<bool> mIsRun;
     std::thread mThread;
-    std::function<void(const EventBase*)> mEventHandler;
+    EventHandlerAdapter *mEventHandler;
 
     void run();
     void checkCollision(double frontDistance, double leftDistance, double rightDistance);

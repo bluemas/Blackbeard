@@ -9,7 +9,7 @@
 #define AUTONOMOUSPATHMOVINGMODE
 
 #include "ModeBase.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/EventHandlerAdapter.h"
 
 class AutonomousMovingMode : public ModeBase, public EventHandlerAdapter {
 

@@ -7,8 +7,8 @@
 
 
 #include "ModeBase.h"
-#include "../common/EventBase.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/EventBase.h"
+#include "../common/event/EventHandlerAdapter.h"
 
 class AutonomousSignRecognitionMode : public ModeBase, public EventHandlerAdapter {
 public:

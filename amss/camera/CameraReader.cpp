@@ -7,13 +7,27 @@
 
 #include "CameraReader.h"
 
+#define WIDTH  320
+#define HEIGHT 240
+#define FPS 30
 
-CameraReader::CameraReader(){
 
+
+
+CameraReader::CameraReader() {
+    mCapture =cvCreateCameraCapture(0);   // Open default Camera
+    if(!mCapture) {
+         printf("Camera Not Initialized\n");
+    }
+}
+
+int CameraReader::readCamera(Mat &image) {
+    
+    return 0;
 }
 
 
-
 CameraReader::~CameraReader(){
-
+    if (mCapture)
+        cvReleaseCapture(&mCapture);
 }

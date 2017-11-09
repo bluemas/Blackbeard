@@ -55,6 +55,13 @@ int main() {
     WallRecognizer *wallRecognizer = new WallRecognizer();
     wallRecognizer->addEventHandler(mainController);
 
+    // Initialize NetworkManager
+    NetworkManager* networkManager = new NetworkManager();
+
+    // 3. Set recognizer to main controller as a composite object
+    mainController->setWallRecognizer(wallRecognizer);
+    mainController->networkManager(networkManager);
+
     // 4. Initiate other components
     MapRepo *mapRepo = new MapRepo();
     MazeMapper *mazeMapper = new MazeMapper(mapRepo);

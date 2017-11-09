@@ -1,35 +1,46 @@
 package rui.monitor;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
+import rui.Command;
 import rui.RUIMain;
 
 public class MonitoringReceiver implements Runnable {
-	private BufferedReader br;
+	private BufferedInputStream bis;
 	private RUIMain rui;
 
 	public MonitoringReceiver(RUIMain rui, Socket socket) throws IOException {
-		this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		this.bis = new BufferedInputStream(socket.getInputStream());
 		this.rui = rui;
 	}
 
 	@Override
 	public void run() {
-		String message;
-
 		try {
-			while ((message = br.readLine()) != null) {
-				rui.notify(message);
+			byte[] typeByte = new byte[1];
+
+			while (bis.read(typeByte) != -1) {
+				int type = new Integer(typeByte[0]);
+
+				byte[] payloadSizeByte = new byte[4];
+				bis.read(payloadSizeByte);
+				int payloadSize = ByteBuffer.wrap(payloadSizeByte).getInt();
+
+				byte[] payloadByte = new byte[payloadSize];
+				bis.read(payloadByte);
+				String payload = new String(payloadByte);
+
+				rui.notify(new Command(type, payload));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (br != null)
+			if (bis != null)
 				try {
-					br.close();
+					bis.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

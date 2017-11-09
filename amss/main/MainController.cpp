@@ -2,14 +2,14 @@
 //  MainController.cpp
 //  Implementation of the Class MainController
 //  Created on:      31-10-2017 PM 7:55:15
-//  Original author: bluem
+//  Original author: bluemas
 ///////////////////////////////////////////////////////////
 
 #include "MainController.h"
 #include "ManualMode.h"
 #include "AutonomousPathPlanningMode.h"
 #include "AutonomousMovingMode.h"
-#include "AutonomouseSignRecognitionMode.h"
+#include "AutonomousSignRecognitionMode.h"
 #include "SuspendMode.h"
 #include <thread>
 
@@ -30,13 +30,12 @@ void MainController::start() {
 }
 
 void MainController::init() {
-    // TODO
     // Create mode instances
-    mModeList[RobotMode::Manual] = new ManualMode();
-    mModeList[RobotMode::AutoPathPlanning] = new AutonomousPathPlanningMode();
-    mModeList[RobotMode::AutoMoving] = new AutonomousMovingMode();
-    mModeList[RobotMode::AutoSignRecognition] = new AutonomouseSignRecognitionMode();
-    mModeList[RobotMode::Suspend] = new SuspendMode();
+    mModeList[RobotMode::Manual] = new ManualMode(this);
+    mModeList[RobotMode::AutoPathPlanning] = new AutonomousPathPlanningMode(this);
+    mModeList[RobotMode::AutoMoving] = new AutonomousMovingMode(this);
+    mModeList[RobotMode::AutoSignRecognition] = new AutonomousSignRecognitionMode(this);
+    mModeList[RobotMode::Suspend] = new SuspendMode(this);
 
     // Initialize Camera Pan/Tilt
 
@@ -44,18 +43,7 @@ void MainController::init() {
 
 }
 
-
-void MainController::setWallRecognizer(WallRecognizer* wallRecognizer) {
-    using namespace std::placeholders;
-
-    mWallRecognizer = wallRecognizer;
-
-    // Set event handler to WallRecognizer
-    mWallRecognizer->addEventHandler(std::bind(&MainController::eventHandler,
-                                               this, std::placeholders::_1));
-}
-
-void MainController::eventHandler(EventBase *ev) {
+void MainController::wallRecognizerEventHandler(EventBase *ev) {
     if (dynamic_cast<WallRecognizerEvent*> (ev)) {
         cout << "Collision warning!!!" << endl;
     } else {
@@ -73,34 +61,82 @@ void MainController::runLoop() {
 
 void MainController::handleMessage(int type, void* data) {
     switch (type) {
-        case 1:
+        case 1: // Initialize robot
+            initializeRobot();
             break;
         case 2: // Mode Selection
         {
-            char mode = *(char *) data;
+            auto mode = *(char*)data;
             if (mode == 'A')
-                if (mCurrentMode->getModeName() == RobotMode::Manual)
-                    mCurrentMode = mModeList[RobotMode::AutoPathPlanning];
-                else if (mode == 'M')
-                    mCurrentMode = mModeList[RobotMode::AutoPathPlanning];
-
+                setCurrentMode(RobotMode::AutoPathPlanning);
+            else if (mode == 'M')
+                setCurrentMode(RobotMode::Manual);
             break;
         }
-        case 3:
+        case 3: // Move robot
+            if (currentMode()->getModeName() == RobotMode::Manual)
+                ((ManualMode*)currentMode())->moveRobot();
             break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-        case 8:
-            break;
-        case 9:
+        case 4: // Adjust camera Pan/Tilt
+            if (currentMode()->getModeName() == RobotMode::Manual)
+                ((ManualMode*)currentMode())->adjustCamera();
             break;
         default:
             break;
     }
+}
+
+void MainController::initializeRobot() {
+    // TODO : implement function which initializes robot
+}
+
+void MainController::moveRobot(const void *data) {
+
+}
+
+void MainController::setWallRecognizer(WallRecognizer* wallRecognizer) {
+//    using namespace std::placeholders;
+//
+//    // Set event handler to WallRecognizer
+//    wallRecognizer->addEventHandler(std::bind(
+//            &MainController::wallRecognizerEventHandler,
+//                                               this, std::placeholders::_1));
+}
+
+void MainController::setSignRecognizer(SignRecognizer *signRecognizer) {
+    mSignRecognizer = signRecognizer;
+}
+
+void MainController::setLineRecognizer(LineRecognizer *lineRecognizer) {
+
+}
+
+void MainController::setDotRecognizer(DotRecognizer *dotRecognizer) {
+
+}
+
+void MainController::setNetworkManager(NetworkManager *networkManger) {
+    mNetworkManager = networkManger;
+}
+
+PathPlanner* MainController::pathPlanner() {
+    return &mPathPlanner;
+}
+
+BehaviorExecutor* MainController::behaviorExecutor() {
+    return &mBehaviorExecutor;
+}
+
+void MainController::setCurrentMode(RobotMode mode) {
+    mCurrentMode->doExitAction();
+    mCurrentMode = mModeList[mode];
+    mCurrentMode->doEntryAction();
+}
+
+NetworkManager* MainController::networkManager() {
+    return mNetworkManager;
+}
+
+ModeBase* MainController::currentMode() {
+    return mCurrentMode;
 }

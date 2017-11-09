@@ -17,6 +17,7 @@ public:
     MapRepo *mMapRepo;
     MazeMapper *mMazeMapper;
 
+    PathPlanner();
     PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo);
     virtual ~PathPlanner();
 

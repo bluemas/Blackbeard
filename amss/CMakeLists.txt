@@ -27,8 +27,6 @@ set(SOURCE_FILES
         common/SensorDataRepo.h
         main/AutonomousPathPlanningMode.cpp
         main/AutonomousPathPlanningMode.h
-        main/CommandHandler.cpp
-        main/CommandHandler.h
         main/Initializer.cpp
         main/Initializer.h
         main/MainController.cpp
@@ -37,8 +35,6 @@ set(SOURCE_FILES
         main/ManualMode.h
         main/ModeBase.cpp
         main/ModeBase.h
-        main/ModeManager.cpp
-        main/ModeManager.h
         main/SuspendMode.cpp
         main/SuspendMode.h
         network/NetMessageEventAdapter.h
@@ -85,8 +81,6 @@ set(SOURCE_FILES
         servoencoder/PID.h
         servoencoder/ServoEncoder.cpp
         servoencoder/ServoEncoder.h
-        test/MainController.cpp
-        test/MainController.h
-        main.cpp main/AutonomousMovingMode.cpp main/AutonomouseSignRecognitionMode.cpp main/AutonomouseSignRecognitionMode.h)
+        main.cpp main/AutonomousMovingMode.cpp main/AutonomousSignRecognitionMode.cpp main/AutonomousSignRecognitionMode.h)
 
 add_executable(amss ${SOURCE_FILES})

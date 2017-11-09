@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "ServoEncoder.h"
+#include "../common/Constants.h"
 #include "PID.h"
 #include "../common/Constants.h"
 

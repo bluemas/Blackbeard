@@ -3,15 +3,17 @@ package rui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
@@ -22,6 +24,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import rui.maze.MazeDrawer;
+import rui.maze.MazeRepository;
 import rui.monitor.CameraImageReceiver;
 import rui.monitor.NetworkManager;
 import rui.utils.Utils;
@@ -35,6 +39,26 @@ public class RUIMain {
 	private Text txtLogMessge;
 	private CameraImageReceiver imageReceiver;
 	private NetworkManager networkManager;
+	private Canvas canvas;
+	private MazeDrawer mazeDrawer;
+
+	private Button btnUp;
+	private Button btnRight;
+	private Button btnDown;
+	private Button btnLeft;
+
+	private Button btnCameraUp;
+	private Button btnCameraLeft;
+	private Button btnCameraRight;
+	private Button btnCameraDown;
+
+	private Label lblLeftDistance;
+	private Label lblFrontDistance;
+	private Label lblRightDistance;
+
+	private Button btnAuto;
+	private Button btnManual;
+	private Button btnSuspend;
 
 	/**
 	 * Launch the application.
@@ -64,16 +88,21 @@ public class RUIMain {
 		new Thread(imageReceiver).start();
 
 		networkManager = new NetworkManager(this);
+		mazeDrawer = new MazeDrawer(this);
+
+		setEnableRobotMovement(false);
 
 		shlBlackbeardPirates.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				if (imageReceiver != null) {
 					imageReceiver.close();
 				}
-				
+
 				if (networkManager != null) {
 					networkManager.disconnect();
 				}
+
+				SWTResourceManager.dispose();
 			}
 		});
 
@@ -89,7 +118,7 @@ public class RUIMain {
 	 */
 	protected void createContents() {
 		shlBlackbeardPirates = new Shell();
-		shlBlackbeardPirates.setSize(1104, 700);
+		shlBlackbeardPirates.setSize(1400, 750);
 		shlBlackbeardPirates.setText("Blackbeard Pirates");
 		shlBlackbeardPirates.setLayout(new GridLayout(1, false));
 
@@ -99,7 +128,9 @@ public class RUIMain {
 
 		Group grpRemoteSetup = new Group(composite, SWT.NONE);
 		grpRemoteSetup.setLayout(new GridLayout(1, false));
-		grpRemoteSetup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		GridData gd_grpRemoteSetup = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		gd_grpRemoteSetup.widthHint = 150;
+		grpRemoteSetup.setLayoutData(gd_grpRemoteSetup);
 		grpRemoteSetup.setText("Remote Setup");
 		formToolkit.adapt(grpRemoteSetup);
 		formToolkit.paintBordersFor(grpRemoteSetup);
@@ -122,7 +153,7 @@ public class RUIMain {
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				networkManager.sendCommand(new Command("1", ""));
+				networkManager.sendCommand(new Command(1, ""));
 			}
 		});
 		GridData gd_btnInitialize = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
@@ -133,9 +164,9 @@ public class RUIMain {
 
 		Group grpCameraView = new Group(composite, SWT.NONE);
 		grpCameraView.setLayout(new FillLayout(SWT.HORIZONTAL));
-		GridData gd_grpCameraView = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 2);
+		GridData gd_grpCameraView = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 2);
 		gd_grpCameraView.heightHint = 256;
-		gd_grpCameraView.widthHint = 256;
+		gd_grpCameraView.widthHint = 356;
 		grpCameraView.setLayoutData(gd_grpCameraView);
 		grpCameraView.setText("Camera View");
 		formToolkit.adapt(grpCameraView);
@@ -159,72 +190,70 @@ public class RUIMain {
 
 		new Label(grpRobotMovement, SWT.NONE);
 
-		Button btnUp = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
+		btnUp = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
 		btnUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "F"));
+//				networkManager.sendCommand(new Command(3, "F"));
+				networkManager.sendCommand(new Command(2, "A"));
 			}
 
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "S"));
+				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
-		btnUp.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true, 1, 1));
 		btnUp.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-up-01_186407.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		Button btnLeft = new Button(grpRobotMovement, SWT.FLAT);
+		btnLeft = new Button(grpRobotMovement, SWT.FLAT);
 		btnLeft.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "L"));
+				networkManager.sendCommand(new Command(3, "L"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "S"));
+				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnLeft.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-left-01_186410.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		Button btnRight = new Button(grpRobotMovement, SWT.FLAT);
+		btnRight = new Button(grpRobotMovement, SWT.FLAT);
 		btnRight.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "R"));
+				networkManager.sendCommand(new Command(3, "R"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "S"));
+				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnRight.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-right-01_186409.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		Button btnDown = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
+		btnDown = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
 		btnDown.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "B"));
+				networkManager.sendCommand(new Command(3, "B"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("3", "S"));
+				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnDown.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-down-01_186411.png"));
 		new Label(grpRobotMovement, SWT.NONE);
-		new Label(grpRobotMovement, SWT.NONE);
-		new Label(grpRobotMovement, SWT.NONE);
-		new Label(grpRobotMovement, SWT.NONE);
 
 		Group grpMapView = new Group(composite, SWT.NONE);
 		grpMapView.setLayout(new FillLayout(SWT.HORIZONTAL));
-		GridData gd_grpMapView = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
-		gd_grpMapView.widthHint = 256;
-		grpMapView.setLayoutData(gd_grpMapView);
+		grpMapView.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
 		grpMapView.setText("Map View");
 		formToolkit.adapt(grpMapView);
 		formToolkit.paintBordersFor(grpMapView);
@@ -232,30 +261,77 @@ public class RUIMain {
 		Composite compositeMap = new Composite(grpMapView, SWT.NONE);
 		formToolkit.adapt(compositeMap);
 		formToolkit.paintBordersFor(compositeMap);
+		compositeMap.setLayout(new GridLayout(1, false));
+
+		canvas = new Canvas(compositeMap, SWT.NONE);
+		canvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		formToolkit.adapt(canvas);
+		formToolkit.paintBordersFor(canvas);
+		canvas.setLayout(new GridLayout(1, false));
+
+		canvas.addPaintListener(new PaintListener() {
+			public void paintControl(PaintEvent e) {
+				mazeDrawer.draw(e);
+			}
+		});
 
 		Group grpMode = new Group(composite, SWT.NONE);
+		grpMode.setLayout(new GridLayout(1, false));
 		grpMode.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		grpMode.setText("Mode Selection");
 		formToolkit.adapt(grpMode);
 		formToolkit.paintBordersFor(grpMode);
 
-		RowLayout rl_grpMode = new RowLayout(SWT.VERTICAL);
-		rl_grpMode.center = true;
-		rl_grpMode.justify = true;
-		rl_grpMode.fill = true;
-		grpMode.setLayout(rl_grpMode);
+		Listener modeListener = new Listener() {
+			public void handleEvent(Event e) {
+				Control[] children = grpMode.getChildren();
+				for (int i = 0; i < children.length; i++) {
+					Control child = children[i];
+					if (e.widget != child && child instanceof Button && (child.getStyle() & SWT.TOGGLE) != 0) {
+						((Button) child).setSelection(false);
+					}
+				}
+				((Button) e.widget).setSelection(true);
+			}
+		};
 
-		Button btnAuto = new Button(grpMode, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
-		btnAuto.setLayoutData(new RowData(SWT.DEFAULT, 32));
+		btnAuto = new Button(grpMode, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
+		btnAuto.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				networkManager.sendCommand(new Command(2, "A"));
+			}
+		});
+		GridData gd_btnAuto = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_btnAuto.heightHint = 32;
+		btnAuto.setLayoutData(gd_btnAuto);
 		btnAuto.setText("Autonomous");
+		btnAuto.addListener(SWT.Selection, modeListener);
 
-		Button btnManual = new Button(grpMode, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
-		btnManual.setLayoutData(new RowData(SWT.DEFAULT, 32));
+		btnManual = new Button(grpMode, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
+		btnManual.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				networkManager.sendCommand(new Command(2, "M"));
+			}
+		});
+		GridData gd_btnManual = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_btnManual.heightHint = 32;
+		btnManual.setLayoutData(gd_btnManual);
 		btnManual.setText("Manual");
+		btnManual.addListener(SWT.Selection, modeListener);
 
-		Button btnSuspend = new Button(grpMode, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
-		btnSuspend.setLayoutData(new RowData(164, 32));
-		btnSuspend.setText("Suspend");
+		Label label = new Label(grpMode, SWT.SEPARATOR | SWT.HORIZONTAL);
+		GridData gd_label = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_label.heightHint = 10;
+		label.setLayoutData(gd_label);
+		formToolkit.adapt(label, true, true);
+
+		btnSuspend = new Button(grpMode, SWT.FLAT | SWT.CENTER);
+		GridData gd_btnSuspend = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_btnSuspend.heightHint = 32;
+		btnSuspend.setLayoutData(gd_btnSuspend);
+		btnSuspend.setText("Suspended");
 
 		Group grpPanTilt = new Group(composite, SWT.NONE);
 		grpPanTilt.setLayout(new GridLayout(3, false));
@@ -265,60 +341,64 @@ public class RUIMain {
 		formToolkit.paintBordersFor(grpPanTilt);
 		new Label(grpPanTilt, SWT.NONE);
 
-		Button btnCameraUp = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraUp = new Button(grpPanTilt, SWT.FLAT);
 		btnCameraUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "U"));
+				networkManager.sendCommand(new Command(4, "U"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "S"));
+				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
 		btnCameraUp.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow_up_alt1_118743.png"));
 		formToolkit.adapt(btnCameraUp, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		Button btnCameraLeft = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraLeft = new Button(grpPanTilt, SWT.FLAT);
 		btnCameraLeft.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "L"));
+				networkManager.sendCommand(new Command(4, "L"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "S"));
+				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
 		btnCameraLeft.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow_left_alt1_118748.png"));
 		formToolkit.adapt(btnCameraLeft, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		Button btnCameraRight = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraRight = new Button(grpPanTilt, SWT.FLAT);
 		btnCameraRight.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "R"));
+				networkManager.sendCommand(new Command(4, "R"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "S"));
+				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
 		btnCameraRight.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow_right_alt1_118746.png"));
 		formToolkit.adapt(btnCameraRight, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		Button btnCameraDown = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraDown = new Button(grpPanTilt, SWT.FLAT);
 		btnCameraDown.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "D"));
+				networkManager.sendCommand(new Command(4, "D"));
 			}
+
 			@Override
 			public void mouseUp(MouseEvent e) {
-				networkManager.sendCommand(new Command("4", "S"));
+				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
 		btnCameraDown.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow_down_alt1_118751.png"));
@@ -400,7 +480,7 @@ public class RUIMain {
 		formToolkit.adapt(grpDistanceLeft);
 		formToolkit.paintBordersFor(grpDistanceLeft);
 
-		Label lblLeftDistance = new Label(grpDistanceLeft, SWT.NONE);
+		lblLeftDistance = new Label(grpDistanceLeft, SWT.NONE);
 		lblLeftDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblLeftDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
 		formToolkit.adapt(lblLeftDistance, true, true);
@@ -414,7 +494,7 @@ public class RUIMain {
 		formToolkit.adapt(grpDistanceFront);
 		formToolkit.paintBordersFor(grpDistanceFront);
 
-		Label lblFrontDistance = new Label(grpDistanceFront, SWT.NONE);
+		lblFrontDistance = new Label(grpDistanceFront, SWT.NONE);
 		lblFrontDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblFrontDistance.setText("100 mm");
 		lblFrontDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
@@ -431,7 +511,7 @@ public class RUIMain {
 		formToolkit.adapt(grpDistanceRight);
 		formToolkit.paintBordersFor(grpDistanceRight);
 
-		Label lblRightDistance = new Label(grpDistanceRight, SWT.NONE);
+		lblRightDistance = new Label(grpDistanceRight, SWT.NONE);
 		lblRightDistance.setBackground(SWTResourceManager.getColor(SWT.COLOR_TRANSPARENT));
 		lblRightDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblRightDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
@@ -440,22 +520,31 @@ public class RUIMain {
 
 		Group grpConsole = new Group(composite, SWT.NONE);
 		grpConsole.setLayout(new GridLayout(1, false));
-		GridData gd_grpConsole = new GridData(SWT.FILL, SWT.FILL, true, true, 4, 1);
-		gd_grpConsole.heightHint = 102;
+		GridData gd_grpConsole = new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1);
+		gd_grpConsole.heightHint = 100;
 		grpConsole.setLayoutData(gd_grpConsole);
 		grpConsole.setText("Log Console");
 		formToolkit.adapt(grpConsole);
 		formToolkit.paintBordersFor(grpConsole);
 
-		txtLogMessge = new Text(grpConsole, SWT.BORDER | SWT.READ_ONLY | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		txtLogMessge = new Text(grpConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		txtLogMessge.setFont(SWTResourceManager.getFont("Courier", 11, SWT.NORMAL));
 		txtLogMessge.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		formToolkit.adapt(txtLogMessge, true, true);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
 	}
 
 	public Label getCameraImageLabel() {
 		return this.cameraImage;
 	}
-	
+
 	public void appendLogMessage(String message) {
 		display.asyncExec(new Runnable() {
 			public void run() {
@@ -467,8 +556,84 @@ public class RUIMain {
 			}
 		});
 	}
-	
-	public void notify(String message) {
-		appendLogMessage(message);
+
+	protected void executeCommand(Command command) {
+		appendLogMessage(command.toString());
+
+		int cmdType = command.getType();
+		
+		switch (cmdType) {
+		case 1:
+			initialize();
+			break;
+		case 2:
+			changeMode(command.getPayload());
+			break;
+		case 5:
+			changeSensorData(command.getPayload());
+			break;
+		case 6:
+			MazeRepository.getInstance().updateMaze(command.getPayload());
+			canvas.redraw();
+			break;
+		case 9:
+			handleErrorState(command.getPayload());
+			break;
+		}
 	}
+
+	private void handleErrorState(String payload) {
+
+	}
+
+	private void initialize() {
+
+	}
+
+	// mode change
+	// A: autonomous, M : Manual, S : Suspend
+	private void changeMode(String mode) {
+		if ("A".equals(mode)) {
+			btnAuto.setSelection(true);
+			setEnableRobotMovement(false);
+		} else if ("M".equals(mode)) {
+			btnManual.setSelection(true);
+			setEnableRobotMovement(true);
+		} else {
+//			btnManual.setSelection(true);
+		}
+	}
+
+	// get sensor data
+	// Front distance / Left distance / Right distance
+	private void changeSensorData(String payload) {
+		String[] data = payload.split("/");
+		if (data.length != 3)
+			return;
+
+		lblFrontDistance.setText(data[0] + " mm");
+		lblLeftDistance.setText(data[1] + " mm");
+		lblRightDistance.setText(data[2] + " mm");
+	}
+
+	public void notify(Command command) {
+		display.asyncExec(new Runnable() {
+			public void run() {
+				executeCommand(command);
+			}
+		});
+	}
+
+	private void setEnableRobotMovement(boolean enabled) {
+//		btnUp.setEnabled(enabled);
+		btnRight.setEnabled(enabled);
+		btnDown.setEnabled(enabled);
+		btnLeft.setEnabled(enabled);
+
+		btnCameraUp.setEnabled(enabled);
+		btnCameraRight.setEnabled(enabled);
+		btnCameraDown.setEnabled(enabled);
+		btnCameraLeft.setEnabled(enabled);
+	}
+
 }

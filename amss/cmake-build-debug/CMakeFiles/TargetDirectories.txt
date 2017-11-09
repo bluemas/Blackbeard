@@ -1,0 +1,3 @@
+C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir
+C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/rebuild_cache.dir

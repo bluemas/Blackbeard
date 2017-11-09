@@ -9,18 +9,30 @@
 #define COMMON_EVENT_EVENTHANDLERADAPTER_H_
 
 #include <iostream>
-#include "WallRecognizerEvent.h"
 
-class EventHandlerAdapter {
+#include "WallCollisionEventHandler.h"
+#include "WallSensingEventHandler.h"
+#include "LineRecognizedEventHandler.h"
+#include "RedDotRecognizedEventHandler.h"
+#include "SignRecognizedEventHandler.h"
+#include "SquareRecognizedEventHandler.h"
+
+class EventHandlerAdapter : public WallCollisionEventHandler,
+                            public WallSensingEventHandler,
+                            public LineRecognizedEventHandler,
+                            public RedDotRecognizedEventHandler,
+                            public SignRecognizedEventHandler,
+                            public SquareRecognizedEventHandler {
 public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
 
-    virtual void wallEventHandler(const WallRecognizerEvent *) {}
-    virtual void lineRecognizerEventHandler(EventBase *ev) {}
-    virtual void redDotRecognizerEventHandler(EventBase *ev) {}
-    virtual void signRecognizerEventHandler(EventBase *ev) {}
-    virtual void squareRecognizerEventHandler(EventBase *ev) {}
+    virtual void handleCollisionEvent(const WallCollisionEvent ev) {}
+    virtual void handleWallSensingEvent(const WallSensingEvent ev) {}
+    virtual void handleLineRecognizedEvent(const LineRecognizedEvent ev) {}
+    virtual void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) {}
+    virtual void handleSignRecognizedEvent(const SignRecognizedEvent ev) {}
+    virtual void handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {}
 };
 
 #endif /* COMMON_EVENT_EVENTHANDLERADAPTER_H_ */

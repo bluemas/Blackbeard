@@ -17,6 +17,8 @@
 #include "sam/MazeMapper.h"
 #include "sam/PathPlanner.h"
 
+#include "network/NetworkManager.h"
+
 using namespace std;
 
 
@@ -53,14 +55,15 @@ int main() {
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
-    wallRecognizer->addEventHandler(mainController);
+    wallRecognizer->addWallCollisionEventHandler(mainController);
+    wallRecognizer->addWallSensingEventHandler(mainController);
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
 
     // 3. Set recognizer to main controller as a composite object
     mainController->setWallRecognizer(wallRecognizer);
-    mainController->networkManager(networkManager);
+    mainController->setNetworkManager(networkManager);
 
     // 4. Initiate other components
     MapRepo *mapRepo = new MapRepo();
@@ -90,7 +93,6 @@ int main() {
     delete mapRepo;
     delete mazeMapper;
     delete pathPlanner;
-    delete wallRecognizer;
 
     return 1;
 }

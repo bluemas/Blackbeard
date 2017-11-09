@@ -1,7 +1,7 @@
 CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread -lwiringPi -lvl53l0x -Lsensorreadloop
 
 OBJS = common/event/EventHandlerAdapter.o common/event/EventBase.o \
-       common/event/WallRecognizerEvent.o \
+       common/event/WallCollisionEvent.o \
        sam/WallRecognizer.o \
        sam/MapRepo.o sam/MazeMapper.o sam/PathPlanner.o \
        sensorreadloop/SensorReader.o sensorreadloop/SonarFront.o \

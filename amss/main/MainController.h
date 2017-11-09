@@ -46,10 +46,13 @@ public:
 private:
     void init();
     void runLoop();
-    void wallRecognizerEventHandler(EventBase *ev);
-    void lineRecognizerEventHandler(EventBase *ev);
-    void dotRecognizerEventHandler(EventBase *ev);
-    void signRecognizerEventHandler(EventBase *ev);
+
+    void handleWallCollisionEvent(const handleCollisionEvent ev);
+    void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
+    void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
+
     void handleMessage(int type, void* data);
 
     void initializeRobot();

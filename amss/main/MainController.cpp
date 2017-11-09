@@ -43,20 +43,32 @@ void MainController::init() {
 
 }
 
-void MainController::wallRecognizerEventHandler(EventBase *ev) {
-    if (dynamic_cast<WallRecognizerEvent*> (ev)) {
-        cout << "Collision warning!!!" << endl;
-    } else {
-        cerr << "Cannot find event type. Do nothing." << endl;
-    }
-}
-
 void MainController::runLoop() {
     while (true) {
 
         sleep(1);
     }
 
+}
+
+void MainController::handleWallCollisionEvent(const WallCollisionEvent ev) {
+    cout << "WallCollisionEvent!!!" << endl;
+}
+
+void MainController::handleLineRecognizedEvent(const LineRecognizedEvent ev) {
+    cout << "LineRecognizedEvent!!!" << endl;
+}
+
+void MainController::handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) {
+    cout << "RedDotRecognizedEvent!!!" << endl;
+}
+
+void MainController::handleSignRecognizedEvent(const SignRecognizedEvent ev) {
+    cout << "SignRecognizedEvent!!!" << endl;
+}
+
+void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {
+    cout << "SquareRecognizedEvent!!!" << endl;
 }
 
 void MainController::handleMessage(int type, void* data) {

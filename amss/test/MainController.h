@@ -11,9 +11,10 @@
 #include <iostream>
 
 #include "../common/event/EventHandlerAdapter.h"
-#include "../common/event/WallRecognizerEvent.h"
+#include "../common/event/WallCollisionEvent.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
+#include "../network/NetworkManager.h"
 
 using namespace std;
 
@@ -22,8 +23,15 @@ public:
     MainController();
     virtual ~MainController();
 
+    void setWallRecognizer(WallRecognizer *wallRecognizer);
     void setPathPlanner(PathPlanner *pathPlanner);
-    void wallEventHandler(const WallRecognizerEvent *ev);
+    void setNetworkManager(NetworkManager *networkManager);
+
+    void handleWallCollisionEvent(const WallCollisionEvent ev);
+    void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
+    void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
 private:
     PathPlanner *mPathPlanner;
     WallRecognizer *mWallRecognizer;

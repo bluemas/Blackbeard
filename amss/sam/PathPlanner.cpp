@@ -9,8 +9,8 @@
 #include "MazeMapper.h"
 
 PathPlanner::PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo) {
-    this->mMapRepo = mapRepo;
-    this->mMazeMapper = mazeMapper;
+    mMapRepo = mapRepo;
+    mMazeMapper = mazeMapper;
 }
 
 PathPlanner::~PathPlanner() {

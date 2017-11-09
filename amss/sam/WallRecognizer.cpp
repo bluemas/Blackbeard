@@ -36,21 +36,66 @@ void WallRecognizer::run() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     while(mIsRun) {
-        // TODO Load sensor data & check whether a collision would occur or not
+        // TODO Load sensor data
+        double frontDistnace = 5.0;
+        double leftDistance = 5.0;
+        double rightDistance = 5.0;
 
-        // if a collision is predicted
-        EventBase *ev = new WallRecognizerEvent();
+        checkCollision(frontDistnace, leftDistance, rightDistance);
+        checkWall(frontDistnace, leftDistance, rightDistance);
 
-        std::future<void> result (std::async(mEventHandler, ev));
-
-        result.wait();
-        delete ev;
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(SENSING_PERIOD_IN_MS));
     }
 }
 
 void WallRecognizer::addEventHandler(std::function<void(const EventBase*)> eventHandler) {
     // TODO mEventHandler ventor vector->push(eventHandler);
     mEventHandler = eventHandler;
+}
+
+void WallRecognizer::checkCollision(double frontDistance, double leftDistance, double rightDistance) {
+    // Check whether a collision is predicted
+    EventBase *ev = new WallRecognizerEvent();
+
+    if (frontDistance < MIN_FRONT_COLLISION_DISTANCE) {
+        // if a collision is predicted
+
+    }
+
+    if (leftDistance < MIN_SIDE_COLLISION_DISTANCE) {
+
+    }
+
+    if (rightDistance < MIN_SIDE_COLLISION_DISTANCE) {
+
+    }
+
+    if (ev) {
+        std::future<void> result (std::async(mEventHandler, ev));
+
+        result.wait();
+    }
+
+    delete ev;
+}
+
+void WallRecognizer::checkWall(double frontDistance, double leftDistance, double rightDistace) {
+    unsigned char wallStatus = 0;
+
+    if (frontDistance < MIN_FRONT_DISTANCE) {
+        // There is the wall in front
+        wallStatus |= 0;
+    }
+
+    if (leftDistance < MIN_SIDE_DISTANCE) {
+        // There is the wall in left
+        wallStatus |= 1;
+    }
+
+    if (leftDistance < MIN_SIDE_DISTANCE) {
+        // there is the wall in right
+        wallStatus |= 2;
+    }
+
+    // TODO Send current wall status
 }

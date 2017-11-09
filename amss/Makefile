@@ -1,6 +1,9 @@
-CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread 
+CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread
 
-OBJS = common/EventHandlerAdapter.o common/EventBase.o sam/WallRecognizer.o sam/WallRecognizerEvent.o test/MainController.o main.o
+OBJS = common/EventHandlerAdapter.o common/EventBase.o common/SensingEventBase.o \
+       sam/WallRecognizer.o sam/WallRecognizerEvent.o \
+       sam/MapRepo.o sam/MazeMapper.o sam/PathPlanner.o \
+       test/MainController.o main.o
 
 LIBS =
 

@@ -15,6 +15,10 @@ MainController::~MainController() {
 
 }
 
+void MainController::setPathPlanner(PathPlanner *pathPlanner) {
+    mPathPlanner = pathPlanner;
+}
+
 void MainController::setWallRecognizer(WallRecognizer *wallRecognizer) {
     using namespace std::placeholders;
 

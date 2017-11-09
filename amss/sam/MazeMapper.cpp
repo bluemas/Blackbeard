@@ -5,10 +5,10 @@
  *      Author: gtlove
  */
 
-#include "../sam/MazeMapper.h"
+#include "MazeMapper.h"
 
 MazeMapper::MazeMapper(MapRepo *mapRepo) {
-    this->mMapRepo = mapRepo;
+    mMapRepo = mapRepo;
 }
 
 MazeMapper::~MazeMapper() {
@@ -16,12 +16,17 @@ MazeMapper::~MazeMapper() {
 }
 
 void MazeMapper::init() {
-
+    mMapRepo->init();
 }
 
 void MazeMapper::notify(SensingEventBase e) {
 
 }
+
 void MazeMapper::setNextDirection(Direction dir) {
+
+}
+
+void MazeMapper::printMap() {
 
 }

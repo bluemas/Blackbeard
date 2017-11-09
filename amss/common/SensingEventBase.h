@@ -1,7 +1,7 @@
 /*
  * SensingEventBase.h
  *
- *  Created on: 2017. 10. 31.
+ *  Created on: 2017. 11. 6.
  *      Author: gtlove
  */
 
@@ -9,6 +9,9 @@
 #define COMMON_SENSINGEVENTBASE_H_
 
 class SensingEventBase {
+public:
+    SensingEventBase();
+    virtual ~SensingEventBase();
 };
 
 #endif /* COMMON_SENSINGEVENTBASE_H_ */

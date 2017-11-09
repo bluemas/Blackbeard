@@ -12,6 +12,7 @@
 
 #include "../common/EventHandlerAdapter.h"
 #include "../common/EventBase.h"
+#include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
 
 using namespace std;
@@ -21,8 +22,10 @@ public:
     MainController();
     virtual ~MainController();
 
+    void setPathPlanner(PathPlanner *pathPlanner);
     void setWallRecognizer(WallRecognizer *wallRecognizer);
 private:
+    PathPlanner *mPathPlanner;
     WallRecognizer *mWallRecognizer;
 
     void wallEventHandler(const EventBase *ev);

@@ -9,13 +9,13 @@
 
 class SensorReader {
 private:
-	SensorData* mData;
-	
+    SensorData* mData;
+
 public:
-	SensorReader();
-	~SensorReader();
-	virtual void read() =0;
-	void inputData(SensorType type, int value);
+    SensorReader();
+    virtual ~SensorReader();
+    virtual void read() =0;
+    void inputData(SensorType type, int value);
 };
 
 #endif

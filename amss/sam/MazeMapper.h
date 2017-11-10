@@ -10,9 +10,16 @@
 
 #include "../common/Constants.h"
 #include "../common/event/WallSensingEventHandler.h"
+#include "../common/event/RedDotRecognizedEventHandler.h"
+#include "../common/event/SignRecognizedEventHandler.h"
+#include "../common/event/SquareRecognizedEventHandler.h"
+
 #include "MapRepo.h"
 
-class MazeMapper : public WallSensingEventHandler {
+class MazeMapper : public WallSensingEventHandler,
+                   public RedDotRecognizedEventHandler,
+                   public SignRecognizedEventHandler,
+                   public SquareRecognizedEventHandler {
 
 public:
     MazeMapper(MapRepo *mapRepo);
@@ -20,6 +27,9 @@ public:
 
     void init();
     void handleWallSensingEvent(const WallSensingEvent ev);
+    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
+    void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
 
 private:
     MapRepo *mMapRepo;

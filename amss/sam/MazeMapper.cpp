@@ -23,3 +23,15 @@ void MazeMapper::init() {
 void MazeMapper::handleWallSensingEvent(const WallSensingEvent ev) {
 
 }
+
+void MazeMapper::handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) {
+
+}
+
+void MazeMapper::handleSignRecognizedEvent(const SignRecognizedEvent ev){
+
+}
+
+void MazeMapper::handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {
+
+}

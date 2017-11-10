@@ -68,7 +68,7 @@ int main() {
     // 4. Initiate other components
     MapRepo *mapRepo = new MapRepo();
     MazeMapper *mazeMapper = new MazeMapper(mapRepo);
-    PathPlanner *pathPlanner = new PathPlanner(mazeMapper, mapRepo);
+    PathPlanner *pathPlanner = new PathPlanner(mapRepo);
 
     // 5. Make a relationship between components
     mainController->setPathPlanner(pathPlanner);

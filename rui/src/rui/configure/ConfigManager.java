@@ -5,7 +5,7 @@ public class ConfigManager {
 	private static int PORT = 3000;
 
 	private static int MAZE_ROW_COUNT = 10;
-	private static int MAZE_COLUMN_COUNT = 8;
+	private static int MAZE_COLUMN_COUNT = 10;
 
 	private static String ROBOT_IP = "192.168.56.10";
 	private static int ROBOT_PORT = 11999;

@@ -25,10 +25,10 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import rui.maze.MazeDrawer;
-import rui.maze.MazeRepository;
 import rui.monitor.CameraImageReceiver;
 import rui.monitor.NetworkManager;
 import rui.utils.Utils;
+import org.eclipse.swt.custom.CLabel;
 
 public class RUIMain {
 	protected Shell shlBlackbeardPirates;
@@ -58,7 +58,11 @@ public class RUIMain {
 
 	private Button btnAuto;
 	private Button btnManual;
-	private Button btnSuspend;
+	private CLabel lblSuspended;
+
+	private Label lblConnected;
+	private Label lblRobotMessage;
+	private Label lblTime;
 
 	/**
 	 * Launch the application.
@@ -91,6 +95,7 @@ public class RUIMain {
 		mazeDrawer = new MazeDrawer(this);
 
 		setEnableRobotMovement(false);
+		setNetworkStatus(false);
 
 		shlBlackbeardPirates.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
@@ -139,7 +144,14 @@ public class RUIMain {
 		btnConnect.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				networkManager.connect();
+				display.asyncExec(new Runnable() {
+					public void run() {
+						try {
+							networkManager.connect();
+						} catch (Exception e) {
+						}
+					}
+				});
 			}
 		});
 
@@ -147,7 +159,7 @@ public class RUIMain {
 		gd_btnConnect.heightHint = 32;
 		btnConnect.setLayoutData(gd_btnConnect);
 		formToolkit.adapt(btnConnect, true, true);
-		btnConnect.setText("Connect To Robot");
+		btnConnect.setText("Connect to Robot");
 
 		Button btnInitialize = new Button(grpRemoteSetup, SWT.FLAT | SWT.CENTER);
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
@@ -194,7 +206,7 @@ public class RUIMain {
 		btnUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-//				networkManager.sendCommand(new Command(3, "F"));
+				// networkManager.sendCommand(new Command(3, "F"));
 				networkManager.sendCommand(new Command(2, "A"));
 			}
 
@@ -327,11 +339,15 @@ public class RUIMain {
 		label.setLayoutData(gd_label);
 		formToolkit.adapt(label, true, true);
 
-		btnSuspend = new Button(grpMode, SWT.FLAT | SWT.CENTER);
-		GridData gd_btnSuspend = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_btnSuspend.heightHint = 32;
-		btnSuspend.setLayoutData(gd_btnSuspend);
-		btnSuspend.setText("Suspended");
+		lblSuspended = new CLabel(grpMode, SWT.BORDER);
+		GridData gd_lblSuspended = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_lblSuspended.heightHint = 32;
+		lblSuspended.setLayoutData(gd_lblSuspended);
+		lblSuspended.setForeground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+		lblSuspended.setAlignment(SWT.CENTER);
+		formToolkit.adapt(lblSuspended);
+		formToolkit.paintBordersFor(lblSuspended);
+		lblSuspended.setText("Suspended");
 
 		Group grpPanTilt = new Group(composite, SWT.NONE);
 		grpPanTilt.setLayout(new GridLayout(3, false));
@@ -413,7 +429,7 @@ public class RUIMain {
 		formToolkit.paintBordersFor(grpMonitoringInfo);
 
 		Composite compositeStatus = new Composite(grpMonitoringInfo, SWT.NONE);
-		compositeStatus.setFont(SWTResourceManager.getFont("Courier", 11, SWT.BOLD));
+		compositeStatus.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		compositeStatus.setBackground(SWTResourceManager.getColor(SWT.COLOR_TRANSPARENT));
 		compositeStatus.setLayout(new GridLayout(8, false));
 		GridData gd_compositeStatus = new GridData(SWT.FILL, SWT.CENTER, true, false, 5, 1);
@@ -426,12 +442,11 @@ public class RUIMain {
 		formToolkit.adapt(lblNetworkStatus, true, true);
 		lblNetworkStatus.setText("Network Status :");
 
-		Label lblConnected = new Label(compositeStatus, SWT.NONE);
+		lblConnected = new Label(compositeStatus, SWT.NONE);
 		GridData gd_lblConnected = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_lblConnected.widthHint = 82;
+		gd_lblConnected.widthHint = 30;
 		lblConnected.setLayoutData(gd_lblConnected);
 		formToolkit.adapt(lblConnected, true, true);
-		lblConnected.setText("Connected");
 
 		Label split0 = new Label(compositeStatus, SWT.SEPARATOR | SWT.VERTICAL);
 		GridData gd_split0 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -443,7 +458,7 @@ public class RUIMain {
 		formToolkit.adapt(lblTimeElapsed, true, true);
 		lblTimeElapsed.setText("Time Elapsed :");
 
-		Label lblTime = new Label(compositeStatus, SWT.NONE);
+		lblTime = new Label(compositeStatus, SWT.NONE);
 		GridData gd_lblTime = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblTime.widthHint = 60;
 		lblTime.setLayoutData(gd_lblTime);
@@ -460,16 +475,10 @@ public class RUIMain {
 		formToolkit.adapt(lblRobotStatus, true, true);
 		lblRobotStatus.setText("Robot Status :");
 
-		Label lblRobotMessage = new Label(compositeStatus, SWT.NONE);
+		lblRobotMessage = new Label(compositeStatus, SWT.NONE);
 		lblRobotMessage.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		lblRobotMessage.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.adapt(lblRobotMessage, true, true);
-		lblRobotMessage.setText("WARNING COLLISION");
-		new Label(grpMonitoringInfo, SWT.NONE);
-		new Label(grpMonitoringInfo, SWT.NONE);
-		new Label(grpMonitoringInfo, SWT.NONE);
-		new Label(grpMonitoringInfo, SWT.NONE);
-		new Label(grpMonitoringInfo, SWT.NONE);
 
 		Group grpDistanceLeft = new Group(grpMonitoringInfo, SWT.NONE);
 		GridData gd_grpDistanceLeft = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -482,9 +491,9 @@ public class RUIMain {
 
 		lblLeftDistance = new Label(grpDistanceLeft, SWT.NONE);
 		lblLeftDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
-		lblLeftDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
+		lblLeftDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		formToolkit.adapt(lblLeftDistance, true, true);
-		lblLeftDistance.setText("100 mm");
+		lblLeftDistance.setText("0 mm");
 		new Label(grpMonitoringInfo, SWT.NONE);
 
 		Group grpDistanceFront = new Group(grpMonitoringInfo, SWT.NONE);
@@ -496,8 +505,8 @@ public class RUIMain {
 
 		lblFrontDistance = new Label(grpDistanceFront, SWT.NONE);
 		lblFrontDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
-		lblFrontDistance.setText("100 mm");
-		lblFrontDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
+		lblFrontDistance.setText("0 mm");
+		lblFrontDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		lblFrontDistance.setBounds(0, 0, 155, 37);
 		formToolkit.adapt(lblFrontDistance, true, true);
 		new Label(grpMonitoringInfo, SWT.NONE);
@@ -514,31 +523,23 @@ public class RUIMain {
 		lblRightDistance = new Label(grpDistanceRight, SWT.NONE);
 		lblRightDistance.setBackground(SWTResourceManager.getColor(SWT.COLOR_TRANSPARENT));
 		lblRightDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
-		lblRightDistance.setFont(SWTResourceManager.getFont("Courier", 26, SWT.BOLD));
+		lblRightDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		formToolkit.adapt(lblRightDistance, true, true);
-		lblRightDistance.setText("100 mm");
+		lblRightDistance.setText("0 mm");
 
 		Group grpConsole = new Group(composite, SWT.NONE);
 		grpConsole.setLayout(new GridLayout(1, false));
 		GridData gd_grpConsole = new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1);
 		gd_grpConsole.heightHint = 100;
 		grpConsole.setLayoutData(gd_grpConsole);
-		grpConsole.setText("Log Console");
+		grpConsole.setText("Message Console");
 		formToolkit.adapt(grpConsole);
 		formToolkit.paintBordersFor(grpConsole);
 
 		txtLogMessge = new Text(grpConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
-		txtLogMessge.setFont(SWTResourceManager.getFont("Courier", 11, SWT.NORMAL));
+		txtLogMessge.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.NORMAL));
 		txtLogMessge.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		formToolkit.adapt(txtLogMessge, true, true);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
-		new Label(composite, SWT.NONE);
 	}
 
 	public Label getCameraImageLabel() {
@@ -548,11 +549,7 @@ public class RUIMain {
 	public void appendLogMessage(String message) {
 		display.asyncExec(new Runnable() {
 			public void run() {
-				try {
-					txtLogMessge.append(String.format("[%s] %s \n", Utils.getLogTime(), message));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				txtLogMessge.append(String.format("[%s] %s \n", Utils.getLogTime(), message));
 			}
 		});
 	}
@@ -561,7 +558,7 @@ public class RUIMain {
 		appendLogMessage(command.toString());
 
 		int cmdType = command.getType();
-		
+
 		switch (cmdType) {
 		case 1:
 			initialize();
@@ -573,38 +570,48 @@ public class RUIMain {
 			changeSensorData(command.getPayload());
 			break;
 		case 6:
-			MazeRepository.getInstance().updateMaze(command.getPayload());
-			canvas.redraw();
+			mazeDrawer.updateMaze(command.getPayload());
 			break;
 		case 9:
 			handleErrorState(command.getPayload());
+			break;
+		default:
 			break;
 		}
 	}
 
 	private void handleErrorState(String payload) {
+		if ("S".equals(payload)) {
+			lblRobotMessage.setText("Can not recognize a sign");
+		} else if ("P".equals(payload)) {
+			lblRobotMessage.setText("Can not find a path to go");
+		} else {
+			lblRobotMessage.setText("Unknown message");
+		}
+	}
 
+	public Canvas getMazeCanvas() {
+		return canvas;
 	}
 
 	private void initialize() {
-
+		mazeDrawer.clear();
+		btnManual.notifyListeners(SWT.Selection, new Event());
 	}
 
-	// mode change
 	// A: autonomous, M : Manual, S : Suspend
 	private void changeMode(String mode) {
 		if ("A".equals(mode)) {
 			btnAuto.setSelection(true);
 			setEnableRobotMovement(false);
-		} else if ("M".equals(mode)) {
+		} else if ("M".equals(mode) || "S".equals(mode)) {
 			btnManual.setSelection(true);
 			setEnableRobotMovement(true);
-		} else {
-//			btnManual.setSelection(true);
 		}
+
+		lblSuspended.setForeground(SWTResourceManager.getColor("S".equals(mode) ? SWT.COLOR_RED : SWT.COLOR_GRAY));
 	}
 
-	// get sensor data
 	// Front distance / Left distance / Right distance
 	private void changeSensorData(String payload) {
 		String[] data = payload.split("/");
@@ -625,7 +632,7 @@ public class RUIMain {
 	}
 
 	private void setEnableRobotMovement(boolean enabled) {
-//		btnUp.setEnabled(enabled);
+		btnUp.setEnabled(enabled);
 		btnRight.setEnabled(enabled);
 		btnDown.setEnabled(enabled);
 		btnLeft.setEnabled(enabled);
@@ -636,4 +643,11 @@ public class RUIMain {
 		btnCameraLeft.setEnabled(enabled);
 	}
 
+	public void setNetworkStatus(boolean connected) {
+		display.asyncExec(new Runnable() {
+			public void run() {
+				lblConnected.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/" + (connected ? "connected-16.png" : "disconnected-16.png")));
+			}
+		});
+	}
 }

@@ -37,13 +37,16 @@ public class NetworkManager {
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();
 
 			rui.appendLogMessage("Connection established.");
+			rui.setNetworkStatus(true);
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
-			e.printStackTrace();
+			rui.setNetworkStatus(false);
 		}
 	}
 
 	public void disconnect() {
+		rui.setNetworkStatus(false);
+
 		if (socket != null)
 			try {
 				socket.close();

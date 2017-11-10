@@ -53,7 +53,6 @@ public class CameraImageReceiver implements Runnable {
 				});
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 

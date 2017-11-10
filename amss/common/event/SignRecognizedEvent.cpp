@@ -7,11 +7,16 @@
 
 #include "SignRecognizedEvent.h"
 
-SignRecognizedEvent::SignRecognizedEvent() {
+SignRecognizedEvent::SignRecognizedEvent(SignType sign)
+        :mSign(sign) {
 
 }
 
 SignRecognizedEvent::~SignRecognizedEvent() {
 
+}
+
+SignType SignRecognizedEvent::getSignType() {
+    return mSign;
 }
 

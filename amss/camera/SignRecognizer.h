@@ -8,12 +8,17 @@
 #if !defined(EA_70044A3D_0794_4325_802A_75007D298813__INCLUDED_)
 #define EA_70044A3D_0794_4325_802A_75007D298813__INCLUDED_
 
+#include <opencv2/opencv.hpp>
+#include <Constants.h>
+
+using namespace cv;
 class SignRecognizer
 {
 
 public:
 	SignRecognizer();
 	virtual ~SignRecognizer();
+    SignType recognizeSign(Mat& orgImage, Mat& synthImage);
 
 };
 #endif // !defined(EA_70044A3D_0794_4325_802A_75007D298813__INCLUDED_)

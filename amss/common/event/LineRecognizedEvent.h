@@ -13,7 +13,11 @@
 class LineRecognizedEvent : public EventBase {
 public:
     virtual ~LineRecognizedEvent();
-    LineRecognizedEvent();
+    LineRecognizedEvent(float offset);
+    float getOffset();
+
+private:
+    float mOffset;
 };
 
 #endif /* COMMON_EVENT_LINERECOGNIZEDEVENT_H_ */

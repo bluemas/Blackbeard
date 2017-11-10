@@ -54,4 +54,19 @@ enum class WallStatus {
     right = 2,
 };
 
+
+enum class SignType {
+    SignNone = -1,
+    SignLeft = 0,
+    SignRight,
+    SignTurnAround,
+    SignStraight,
+    SignPush,
+    SignStop,
+    SignBall,
+    SignLeft45,
+    SignRight45,
+    SignGo
+};
+
 #endif /* COMMON_CONSTANTS_H_ */

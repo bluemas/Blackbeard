@@ -11,8 +11,11 @@ LineRecognizedEvent::~LineRecognizedEvent() {
     // TODO Auto-generated destructor stub
 }
 
-LineRecognizedEvent::LineRecognizedEvent() {
+LineRecognizedEvent::LineRecognizedEvent(float offset)
+        : mOffset(offset) {
     // TODO Auto-generated constructor stub
-
 }
 
+float LineRecognizedEvent::getOffset() {
+    return mOffset;
+}

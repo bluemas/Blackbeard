@@ -12,8 +12,10 @@ DotRecognizer::DotRecognizer(){
 
 }
 
-
-
 DotRecognizer::~DotRecognizer(){
 
+}
+
+bool DotRecognizer::recognizeDot(Mat& orgImg, Mat& synthImg) {
+    return false;
 }

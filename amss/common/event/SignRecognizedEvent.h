@@ -9,11 +9,16 @@
 #define COMMON_EVENT_SIGNRECOGNIZEDEVENT_H_
 
 #include "EventBase.h"
+#include "Constants.h"
 
 class SignRecognizedEvent : public EventBase {
 public:
-    SignRecognizedEvent();
+    SignRecognizedEvent(SignType sign);
     virtual ~SignRecognizedEvent();
+    SignType getSignType();    
+
+private:
+    SignType mSign;
 };
 
 #endif /* COMMON_EVENT_SIGNRECOGNIZEDEVENT_H_ */

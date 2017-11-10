@@ -12,8 +12,10 @@ SignRecognizer::SignRecognizer(){
 
 }
 
-
-
 SignRecognizer::~SignRecognizer(){
 
+}
+
+SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
+    return SignType::SignNone;
 }

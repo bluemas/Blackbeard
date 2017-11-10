@@ -6,11 +6,9 @@
  */
 
 #include "../sam/PathPlanner.h"
-#include "MazeMapper.h"
 
-PathPlanner::PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo) {
+PathPlanner::PathPlanner(MapRepo *mapRepo) {
     mMapRepo = mapRepo;
-    mMazeMapper = mazeMapper;
 }
 
 PathPlanner::~PathPlanner() {

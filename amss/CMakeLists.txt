@@ -54,8 +54,8 @@ set(SOURCE_FILES
         sam/PathPlanner.h
         sam/WallRecognizer.cpp
         sam/WallRecognizer.h
-        sam/WallRecognizerEvent.cpp
-        sam/WallRecognizerEvent.h
+        sam/WallSensingEvent.cpp
+        sam/WallSensingEvent.h
         sensorreadloop/VL53L0X_API/vl53l0x_api.h
         sensorreadloop/VL53L0X_API/vl53l0x_api_calibration.h
         sensorreadloop/VL53L0X_API/vl53l0x_api_core.h
@@ -71,7 +71,7 @@ set(SOURCE_FILES
         sensorreadloop/FlightSensorRight.h
         sensorreadloop/SensorData.cpp
         sensorreadloop/SensorData.h
-        sensorreadloop/SensorReaderLoop.h
+        sensorreadloop/SensorReader.h
         sensorreadloop/SonarFront.cpp
         sensorreadloop/SonarFront.h
         sensorreadloop/test.cpp

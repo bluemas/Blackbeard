@@ -851,32 +851,32 @@ sam/WallRecognizer.cpp.s:
 	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallRecognizer.cpp.s
 .PHONY : sam/WallRecognizer.cpp.s
 
-sam/WallRecognizerEvent.obj: sam/WallRecognizerEvent.cpp.obj
+sam/WallSensingEvent.obj: sam/WallSensingEvent.cpp.obj
 
-.PHONY : sam/WallRecognizerEvent.obj
+.PHONY : sam/WallSensingEvent.obj
 
 # target to build an object file
-sam/WallRecognizerEvent.cpp.obj:
-	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj
-.PHONY : sam/WallRecognizerEvent.cpp.obj
+sam/WallSensingEvent.cpp.obj:
+	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj
+.PHONY : sam/WallSensingEvent.cpp.obj
 
-sam/WallRecognizerEvent.i: sam/WallRecognizerEvent.cpp.i
+sam/WallSensingEvent.i: sam/WallSensingEvent.cpp.i
 
-.PHONY : sam/WallRecognizerEvent.i
+.PHONY : sam/WallSensingEvent.i
 
 # target to preprocess a source file
-sam/WallRecognizerEvent.cpp.i:
-	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.i
-.PHONY : sam/WallRecognizerEvent.cpp.i
+sam/WallSensingEvent.cpp.i:
+	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.i
+.PHONY : sam/WallSensingEvent.cpp.i
 
-sam/WallRecognizerEvent.s: sam/WallRecognizerEvent.cpp.s
+sam/WallSensingEvent.s: sam/WallSensingEvent.cpp.s
 
-.PHONY : sam/WallRecognizerEvent.s
+.PHONY : sam/WallSensingEvent.s
 
 # target to generate assembly for a file
-sam/WallRecognizerEvent.cpp.s:
-	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.s
-.PHONY : sam/WallRecognizerEvent.cpp.s
+sam/WallSensingEvent.cpp.s:
+	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.s
+.PHONY : sam/WallSensingEvent.cpp.s
 
 sensorreadloop/FlightSensorLeft.obj: sensorreadloop/FlightSensorLeft.cpp.obj
 
@@ -1184,9 +1184,9 @@ help:
 	@echo ... sam/WallRecognizer.obj
 	@echo ... sam/WallRecognizer.i
 	@echo ... sam/WallRecognizer.s
-	@echo ... sam/WallRecognizerEvent.obj
-	@echo ... sam/WallRecognizerEvent.i
-	@echo ... sam/WallRecognizerEvent.s
+	@echo ... sam/WallSensingEvent.obj
+	@echo ... sam/WallSensingEvent.i
+	@echo ... sam/WallSensingEvent.s
 	@echo ... sensorreadloop/FlightSensorLeft.obj
 	@echo ... sensorreadloop/FlightSensorLeft.i
 	@echo ... sensorreadloop/FlightSensorLeft.s

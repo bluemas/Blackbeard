@@ -31,7 +31,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Share/Blackbeard/amss/sam/MazeMapper.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sam/MazeMapper.cpp.obj"
   "C:/Share/Blackbeard/amss/sam/PathPlanner.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sam/PathPlanner.cpp.obj"
   "C:/Share/Blackbeard/amss/sam/WallRecognizer.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj"
-  "C:/Share/Blackbeard/amss/sam/WallRecognizerEvent.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj"
+  "C:/Share/Blackbeard/amss/sam/WallSensingEvent.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj"
   "C:/Share/Blackbeard/amss/sensorreadloop/FlightSensorLeft.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj"
   "C:/Share/Blackbeard/amss/sensorreadloop/FlightSensorRight.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.obj"
   "C:/Share/Blackbeard/amss/sensorreadloop/SensorData.cpp" "C:/Share/Blackbeard/amss/cmake-build-debug/CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.obj"

@@ -245,10 +245,10 @@
 		<Unit filename="C:/Share/Blackbeard/amss/sam/WallRecognizer.h">
 			<Option target="amss"/>
 		</Unit>
-		<Unit filename="C:/Share/Blackbeard/amss/sam/WallRecognizerEvent.cpp">
+		<Unit filename="C:/Share/Blackbeard/amss/sam/WallSensingEvent.cpp">
 			<Option target="amss"/>
 		</Unit>
-		<Unit filename="C:/Share/Blackbeard/amss/sam/WallRecognizerEvent.h">
+		<Unit filename="C:/Share/Blackbeard/amss/sam/WallSensingEvent.h">
 			<Option target="amss"/>
 		</Unit>
 		<Unit filename="C:/Share/Blackbeard/amss/sensorreadloop/FlightSensorLeft.cpp">
@@ -269,7 +269,7 @@
 		<Unit filename="C:/Share/Blackbeard/amss/sensorreadloop/SensorData.h">
 			<Option target="amss"/>
 		</Unit>
-		<Unit filename="C:/Share/Blackbeard/amss/sensorreadloop/SensorReaderLoop.h">
+		<Unit filename="C:/Share/Blackbeard/amss/sensorreadloop/SensorReader.h">
 			<Option target="amss"/>
 		</Unit>
 		<Unit filename="C:/Share/Blackbeard/amss/sensorreadloop/SonarFront.cpp">

@@ -632,28 +632,28 @@ CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj.provides: CMakeFiles/amss.dir/sam
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj.provides.build: CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj
 
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj: CMakeFiles/amss.dir/flags.make
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj: ../sam/WallRecognizerEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Share\Blackbeard\amss\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\amss.dir\sam\WallRecognizerEvent.cpp.obj -c C:\Share\Blackbeard\amss\sam\WallRecognizerEvent.cpp
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj: CMakeFiles/amss.dir/flags.make
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj: ../sam/WallSensingEvent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Share\Blackbeard\amss\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\amss.dir\sam\WallSensingEvent.cpp.obj -c C:\Share\Blackbeard\amss\sam\WallSensingEvent.cpp
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Share\Blackbeard\amss\sam\WallRecognizerEvent.cpp > CMakeFiles\amss.dir\sam\WallRecognizerEvent.cpp.i
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Share\Blackbeard\amss\sam\WallSensingEvent.cpp > CMakeFiles\amss.dir\sam\WallSensingEvent.cpp.i
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Share\Blackbeard\amss\sam\WallRecognizerEvent.cpp -o CMakeFiles\amss.dir\sam\WallRecognizerEvent.cpp.s
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Share\Blackbeard\amss\sam\WallSensingEvent.cpp -o CMakeFiles\amss.dir\sam\WallSensingEvent.cpp.s
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.requires:
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.requires:
 
-.PHONY : CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.requires
+.PHONY : CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.requires
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.provides: CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.provides.build
-.PHONY : CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.provides
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.provides: CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\amss.dir\build.make CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.provides.build
+.PHONY : CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.provides
 
-CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.provides.build: CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj
+CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.provides.build: CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj
 
 
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj: CMakeFiles/amss.dir/flags.make
@@ -946,7 +946,7 @@ amss_OBJECTS = \
 "CMakeFiles/amss.dir/sam/MazeMapper.cpp.obj" \
 "CMakeFiles/amss.dir/sam/PathPlanner.cpp.obj" \
 "CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj" \
-"CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj" \
+"CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj" \
 "CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj" \
 "CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.obj" \
 "CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.obj" \
@@ -986,7 +986,7 @@ amss.exe: CMakeFiles/amss.dir/sam/MazeGrid.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sam/MazeMapper.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sam/PathPlanner.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj
-amss.exe: CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj
+amss.exe: CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.obj
 amss.exe: CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.obj
@@ -1034,7 +1034,7 @@ CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/MazeGrid.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/MazeMapper.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/PathPlanner.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj.requires
-CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj.requires
+CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.obj.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.obj.requires

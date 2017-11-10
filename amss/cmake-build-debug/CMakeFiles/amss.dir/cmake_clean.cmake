@@ -23,7 +23,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/amss.dir/sam/MazeMapper.cpp.obj"
   "CMakeFiles/amss.dir/sam/PathPlanner.cpp.obj"
   "CMakeFiles/amss.dir/sam/WallRecognizer.cpp.obj"
-  "CMakeFiles/amss.dir/sam/WallRecognizerEvent.cpp.obj"
+  "CMakeFiles/amss.dir/sam/WallSensingEvent.cpp.obj"
   "CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.obj"
   "CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.obj"
   "CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.obj"

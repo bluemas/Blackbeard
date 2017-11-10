@@ -4,6 +4,7 @@
 
 #include "AutonomousSignRecognitionMode.h"
 #include "../common/EventBase.h"
+#include "MainController.h"
 
 AutonomousSignRecognitionMode::AutonomousSignRecognitionMode(MainController* mainController) {
     mModeName = RobotMode::AutoSignRecognition;

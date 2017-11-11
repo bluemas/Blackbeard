@@ -1,0 +1,1 @@
+cmake --build /media/sf_Share/Blackbeard/amss/cmake-build-debug --target amss -- -j 2 -k

@@ -13,9 +13,10 @@
 
 class WallSensingEvent: public EventBase {
 public:
-    WallSensingEvent(unsigned char wallStatus);
+    WallSensingEvent();
     virtual ~WallSensingEvent();
 
+    unsigned char getWallStatus();
     bool isFrontWall();
     bool isLeftWall();
     bool isRightWall();
@@ -23,7 +24,7 @@ public:
     void setLeftWall();
     void setRightWall();
 private:
-    unsigned char mWallStatus = 0;
+    unsigned char mWallStatus;
 };
 
 #endif /* SAM_WALLSENSINGEVENT_H_ */

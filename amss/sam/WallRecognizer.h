@@ -47,8 +47,8 @@ private:
     const double MIN_FRONT_COLLISION_DISTANCE = 50;
     const double MIN_SIDE_COLLISION_DISTANCE  = 50;
 
-    const double MIN_FRONT_DISTANCE = 50;
-    const double MIN_SIDE_DISTANCE  = 50;
+    const double MIN_FRONT_DISTANCE = 80;
+    const double MIN_SIDE_DISTANCE  = 80;
 
     std::atomic<bool> mIsRun;
     std::thread mThread;

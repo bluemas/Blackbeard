@@ -7,6 +7,7 @@
 
 #include "MazeMapper.h"
 
+
 MazeMapper::MazeMapper(MapData *mapData) {
     mMapData = mapData;
 }
@@ -15,6 +16,6 @@ MazeMapper::~MazeMapper() {
 
 }
 
-void MazeMapper::handleWallSensingEvent(const WallSensingEvent ev) {
-
+void MazeMapper::handleWallSensingEvent(WallSensingEvent ev) {
+    cout << "Received WallSensingEvent : " << (int) ev.getWallStatus() << endl;
 }

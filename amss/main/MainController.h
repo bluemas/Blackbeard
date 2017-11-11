@@ -11,56 +11,71 @@
 #include "Initializer.h"
 #include "ModeBase.h"
 #include "AutonomousPathPlanningMode.h"
+#include "ManualMode.h"
+#include "../camera/DotRecognizer.h"
+#include "../camera/ImageRecognizer.h"
+#include "../camera/LineRecognizer.h"
+#include "../camera/SignRecognizer.h"
 #include "../common/Constants.h"
+#include "../common/event/EventHandlerAdapter.h"
 #include "../network/NetworkManager.h"
 #include "../servoencoder/BehaviorExecutor.h"
 #include "../sam/PathPlanner.h"
 #include "../sam/WallRecognizer.h"
-#include "../camera/LineRecognizer.h"
-#include "../camera/SignRecognizer.h"
-#include "../camera/DotRecognizer.h"
-#include "../common/EventHandlerAdapter.h"
-#include "ManualMode.h"
+#include "../camera/ImageRecognizer.h"
 #include <map>
 
-class MainController : public EventHandlerAdapter, public NetMessageEventAdapter {
+class MainController :
+    public WallSensingEventHandler,
+    public WallCollisionEventHandler,
+    public SquareRecognizedEventHandler,
+    public SignRecognizedEventHandler,
+    public RedDotRecognizedEventHandler,
+    public LineRecognizedEventHandler,
+    public NetMessageEventAdapter {
 
 public:
-	MainController();
-	~MainController();
+    MainController();
+    ~MainController();
 
-	void start();
-    void setWallRecognizer(WallRecognizer* wallRecognizer);
-    void setLineRecognizer(LineRecognizer* lineRecognizer);
-    void setDotRecognizer(DotRecognizer* dotRecognizer);
-    void setSignRecognizer(SignRecognizer* signRecognizer);
+    void start();
+    void setImageRecognizer(ImageRecognizer* imageRecognizer);
     void setNetworkManager(NetworkManager* networkManger);
+    void setPathPlanner(PathPlanner* pathPlanner);
 
-    PathPlanner* pathPlanner();
     BehaviorExecutor* behaviorExecutor();
+    ImageRecognizer* imageRecognizer();
+    PathPlanner* pathPlanner();
     NetworkManager* networkManager();
 
     void setCurrentMode(RobotMode mode);
-	ModeBase* currentMode();
+    ModeBase* currentMode();
 
 private:
     void init();
+    void createModeInstances();
     void runLoop();
-    void wallRecognizerEventHandler(EventBase *ev);
-    void lineRecognizerEventHandler(EventBase *ev);
-    void dotRecognizerEventHandler(EventBase *ev);
-    void signRecognizerEventHandler(EventBase *ev);
+
+    void handleWallSensingEvent(const WallSensingEvent ev);
+    void handleWallCollisionEvent(const WallCollisionEvent ev);
+    void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
+    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
+    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+
+    void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+
     void handleMessage(int type, void* data);
-
     void initializeRobot();
-    void moveRobot(const void *data);
 
-	std::map<RobotMode, ModeBase*> mModeList;
+    void moveRobot(const void *data);
+    std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
     Initializer mInitializer;
     BehaviorExecutor mBehaviorExecutor;
-    PathPlanner mPathPlanner;
+    PathPlanner* mPathPlanner;
     NetworkManager* mNetworkManager;
     SignRecognizer* mSignRecognizer;
+
+    ImageRecognizer* mImageRecognizer;
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

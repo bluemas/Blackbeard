@@ -356,7 +356,7 @@ void FlightSensorLeft::startRanging(int mode, uint8_t i2c_address, uint8_t TCA95
         }
         else
         {
-            printf("Object %d not initialized\n");
+            printf("Object not initialized\n");
         }
     }
     else

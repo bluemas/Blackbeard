@@ -8,8 +8,19 @@
 #ifndef COMMON_CONSTANTS_H_
 #define COMMON_CONSTANTS_H_
 
+/*
+enum Direction {
+    none = -1,
+    forward = 0,
+    left,
+    right,
+    backward
+};
+*/
+
 enum class RobotMode {
-    None,    Manual,
+    None,
+    Manual,
     AutoPathPlanning,
     AutoMoving,
     AutoSignRecognition,
@@ -41,6 +52,21 @@ enum class WallStatus {
     front = 0,
     left = 1,
     right = 2,
+};
+
+
+enum class SignType {
+    SignNone = -1,
+    SignLeft = 0,
+    SignRight,
+    SignTurnAround,
+    SignStraight,
+    SignPush,
+    SignStop,
+    SignBall,
+    SignLeft45,
+    SignRight45,
+    SignGo
 };
 
 #endif /* COMMON_CONSTANTS_H_ */

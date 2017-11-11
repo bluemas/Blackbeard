@@ -7,10 +7,9 @@
 
 #include "SuspendMode.h"
 
-
-SuspendMode::SuspendMode(MainController* mainController) {
-    mModeName = RobotMode::Suspend;
-    mMainController = mainController;
+SuspendMode::SuspendMode(MainController* mainController) :
+    mModeName(RobotMode::Suspend),
+    mMainController(mainController) {
 }
 
 void SuspendMode::doEntryAction() {

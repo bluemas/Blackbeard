@@ -9,12 +9,12 @@
 #define EA_4F2E3F85_F445_4e38_AAF9_70029F74B0D1__INCLUDED_
 
 #include "ModeBase.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/EventHandlerAdapter.h"
 
-class AutonomousPathPlanningMode : public ModeBase, public EventHandlerAdapter {
+class AutonomousPathPlanningMode : public ModeBase {
 public:
-	AutonomousPathPlanningMode(MainController* mainController);
-	~AutonomousPathPlanningMode();
+    AutonomousPathPlanningMode(MainController* mainController);
+    ~AutonomousPathPlanningMode() {}
 
     void doEntryAction();
 

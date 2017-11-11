@@ -9,17 +9,17 @@
 #define EA_D7F4455E_FAA3_42b8_9887_D9E5F1BD2D0C__INCLUDED_
 
 #include "ModeBase.h"
-#include "../common/EventHandlerAdapter.h"
+#include "../common/event/EventHandlerAdapter.h"
 #include "../network/NetMessageEventAdapter.h"
 
-class ManualMode : public ModeBase, public EventHandlerAdapter {
+class ManualMode : public ModeBase {
 public:
-	ManualMode(MainController* mainController);
-	~ManualMode() {}
+    ManualMode(MainController* mainController);
+    ~ManualMode() {}
 
-	void adjustCamera(void *data);
-	void moveRobot(void *data);
-	void wallEventHandler(EventBase *ev);
-	void signRecognizerEventHandler(EventBase *ev);
+    void adjustCamera(void *data);
+    void moveRobot(void *data);
+    void wallEventHandler(EventBase *ev);
+    void signRecognizerEventHandler(EventBase *ev);
 };
 #endif // !defined(EA_D7F4455E_FAA3_42b8_9887_D9E5F1BD2D0C__INCLUDED_)

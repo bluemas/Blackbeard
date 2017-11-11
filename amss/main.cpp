@@ -10,12 +10,14 @@
 #include <thread>
 #include <wiringPi.h>
 
-#include "test/MainController.h"
+#include "main/MainController.h"
 
 #include "sam/WallRecognizer.h"
 #include "sam/MapRepo.h"
 #include "sam/MazeMapper.h"
 #include "sam/PathPlanner.h"
+
+#include "network/NetworkManager.h"
 
 using namespace std;
 
@@ -53,14 +55,19 @@ int main() {
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
-    wallRecognizer->addEventHandler(mainController);
+    wallRecognizer->addWallCollisionEventHandler(mainController);
+    wallRecognizer->addWallSensingEventHandler(mainController);
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
+    mainController->setNetworkManager(networkManager);
 
-    // 3. Set recognizer to main controller as a composite object
-    mainController->setWallRecognizer(wallRecognizer);
-    mainController->networkManager(networkManager);
+    ImageRecognizer* imageRecognizer = new ImageRecognizer();
+    imageRecognizer->addLineRecogEventHandler(mainController);
+    imageRecognizer->addRedDotRecogEventHandler(mainController);
+    imageRecognizer->addSignRecogEventHandler(mainController);
+    imageRecognizer->(mainController);
+    mainController->setImageRecognizer(imageRecognizer);
 
     // 4. Initiate other components
     MapRepo *mapRepo = new MapRepo();
@@ -90,7 +97,6 @@ int main() {
     delete mapRepo;
     delete mazeMapper;
     delete pathPlanner;
-    delete wallRecognizer;
 
     return 1;
 }

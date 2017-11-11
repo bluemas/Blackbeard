@@ -12,8 +12,10 @@ LineRecognizer::LineRecognizer(){
 
 }
 
-
-
 LineRecognizer::~LineRecognizer(){
 
+}
+
+float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg) {
+    return 0.0;
 }

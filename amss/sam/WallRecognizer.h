@@ -18,15 +18,14 @@
 #include <vector>
 
 #include "../common/Constants.h"
-#include "../common/WallRecognizerEvent.h"
-#include "../common/EventHandlerAdapter.h"
 #include "../sensorreadloop/SensorData.h"
 #include "../sensorreadloop/SonarFront.h"
 #include "../sensorreadloop/FlightSensorLeft.h"
 #include "../sensorreadloop/FlightSensorRight.h"
 
 #include "MazeMapper.h"
-#include "WallSensingEvent.h"
+#include "../common/event/WallCollisionEventHandler.h"
+#include "../common/event/WallSensingEventHandler.h"
 
 using namespace std;
 
@@ -39,7 +38,8 @@ public:
     void start();
     void stop();
     void setMazeMapper(MazeMapper *mazeMapper);
-    void addEventHandler(EventHandlerAdapter *eventHandler);
+    void addWallCollisionEventHandler(WallCollisionEventHandler *eventHandler);
+    void addWallSensingEventHandler(WallSensingEventHandler *eventHandler);
 
 private:
     const int SENSING_PERIOD_IN_MS = 500;
@@ -53,15 +53,16 @@ private:
     std::atomic<bool> mIsRun;
     std::thread mThread;
     MazeMapper *mMazeMapper;
-    EventHandlerAdapter *mEventHandler;
+    WallCollisionEventHandler *mWallCollisionEventHandler;
+    WallSensingEventHandler *mWallSensingEventHandler;
     SensorData *mSensorData;
     SonarFront *mSonarFront;
     FlightSensorLeft *mFlightSensorLeft;
     FlightSensorRight *mFlightSensorRight;
 
     void run();
-    WallRecognizerEvent* checkCollision(double frontDistance, double leftDistance, double rightDistance);
-    WallSensingEvent* checkWallStatus(double frontDistance, double leftDistance, double rightDistance);
+    WallCollisionEvent checkCollision(double frontDistance, double leftDistance, double rightDistance);
+    WallSensingEvent checkWallStatus(double frontDistance, double leftDistance, double rightDistance);
 };
 
 #endif /* RECOGNIZER_WALLRECOGNIZER_H_ */

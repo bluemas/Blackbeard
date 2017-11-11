@@ -14,7 +14,7 @@ SonarFront::SonarFront()
 
 void SonarFront::read(void)
 {
-    long startTimeUsec,endTimeUsec,travelTimeUsec,timeoutstart;
+    long startTimeUsec,endTimeUsec = 0,travelTimeUsec,timeoutstart;
     double distanceMm;
 
     if ((mTrigger==-1) || (mEcho==-1)) return;

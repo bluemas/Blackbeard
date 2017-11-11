@@ -9,11 +9,11 @@
 #define EA_244B529B_9638_4b0a_AE45_9D4E1717848B__INCLUDED_
 
 #include "../common/Constants.h"
+#include "../common/event/EventHandlerAdapter.h"
 
 class MainController;
 
-class ModeBase
-{
+class ModeBase : public EventHandlerAdapter {
 
 public:
 	ModeBase();

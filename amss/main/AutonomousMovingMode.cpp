@@ -8,28 +8,28 @@
 #include "AutonomousMovingMode.h"
 #include "MainController.h"
 
-AutonomousMovingMode::AutonomousMovingMode(MainController* mainController) {
-    mModeName = RobotMode::AutoMoving;
-    mMainController = mainController;
+AutonomousMovingMode::AutonomousMovingMode(
+        MainController* mainController) :
+    mModeName(RobotMode::AutoMoving),
+    mMainController(mainController) {
 }
 
-void AutonomousMovingMode::lineRecognizerEventHandler(EventBase *ev) {
-    // TODO : define Event Handler Parameter
-    mMainController->behaviorExecutor()->setOffset(0.0);
+void AutonomousMovingMode::handleCollisionEvent(const WallCollisionEvent ev) {
+    // TODO : define collision warning message(ethernet)
+    if (ev.isWarnCollision())
+        mMainController->networkManager()->send(/* Collision Warning Message */);
 }
 
-void AutonomousMovingMode::redDotRecognizerEventHandler(EventBase *ev) {
+void AutonomousMovingMode::handleWallSensingEvent(const WallSensingEvent ev) {
+    // TODO : Do I need to implement this handler in Moving Mode?
+}
+
+void AutonomousMovingMode::handleLineRecognizedEvent(const LineRecognizedEvent ev) {
+    mMainController->behaviorExecutor()->setOffset(ev.getOffset());
+}
+
+void AutonomousMovingMode::handleRedDotRecognizedEvent(
+        const RedDotRecognizedEvent ev) {
     mMainController->behaviorExecutor()->gotoCross();
     mMainController->setCurrentMode(RobotMode::AutoSignRecognition);
 }
-
-void AutonomousMovingMode::squareRecognizerEventHandler(EventBase *ev) {
-    // TODO : Do I need to update map to include sign into map?
-    // Or SquareRecognizer will update map?
-}
-
-void AutonomousMovingMode::wallEventHandler(EventBase *ev) {
-    // TODO : define collision warning message(ethernet)
-    mMainController->networkManager()->send(/* Collision Warning Message */);
-}
-

@@ -9,19 +9,17 @@
 #define SAM_MAZEMAPPER_H_
 
 #include "../common/Constants.h"
-#include "WallSensingEvent.h"
+#include "../common/event/WallSensingEventHandler.h"
 #include "MapRepo.h"
 
-class MazeMapper {
+class MazeMapper : public WallSensingEventHandler {
 
 public:
     MazeMapper(MapRepo *mapRepo);
     virtual ~MazeMapper();
 
     void init();
-    void updateWallSensingEvent(WallSensingEvent *e);
-    void setNextDirection(Direction dir);
-    void printMap();
+    void handleWallSensingEvent(const WallSensingEvent ev);
 
 private:
     MapRepo *mMapRepo;

@@ -1,4 +1,4 @@
-CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread -lwiringPi -lvl53l0x
+CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread -lwiringPi -lvl53l0x -lraspicamcv -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_video -I/usr/local/include -I/home/pi/git/robidouille/raspicam_cv
 
 OBJS = \
 	common/RecognizerBase.o common/event/EventHandlerAdapter.o common/event/EventBase.o \
@@ -8,7 +8,7 @@ OBJS = \
 	common/event/WallCollisionEventHandler.o common/event/WallSensingEventHandler.o \
 	common/event/LineRecognizedEventHandler.o common/event/RedDotRecognizedEventHandler.o \
 	common/event/SignRecognizedEventHandler.o common/event/SquareRecognizedEventHandler.o \
-	sam/WallRecognizer.o sam/MapData.o sam/MazeMapper.o sam/PathPlanner.o \
+	sam/WallRecognizer.o sam/MapData.o sam/MazeMapper.o sam/PathPlanner.o sam/MazeGrid.o \
 	camera/CameraReader.o camera/ImageRecognizer.o camera/DotRecognizer.o \
 	camera/SquareRecognizer.o camera/LineRecognizer.o camera/SignRecognizer.o \
 	camera/ImageSender.o \
@@ -23,7 +23,7 @@ OBJS = \
 	main/MainController.o \
 	main.o
 
-LIBS = -Lsensorreadloop
+LIBS = -Lsensorreadloop -L/home/pi/git/robidouille/raspicam_cv -L/usr/local/lib
 
 TARGET = AMSS
 

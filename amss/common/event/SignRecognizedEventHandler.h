@@ -13,7 +13,7 @@
 class SignRecognizedEventHandler {
 public:
     virtual ~SignRecognizedEventHandler();
-    virtual void handleSignRecognizedEvent(const SignRecognizedEvent ev) = 0;
+    virtual void handleSignRecognizedEvent(SignRecognizedEvent ev) = 0;
 
 };
 

@@ -36,13 +36,12 @@ public class MonitoringReceiver implements Runnable {
 				rui.notify(new Command(type, payload));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			rui.setNetworkStatus(false);
 		} finally {
 			if (bis != null)
 				try {
 					bis.close();
 				} catch (Exception e) {
-					e.printStackTrace();
 				}
 		}
 	}

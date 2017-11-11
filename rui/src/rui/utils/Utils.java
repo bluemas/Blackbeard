@@ -5,14 +5,55 @@ import java.awt.image.ComponentColorModel;
 import java.awt.image.DirectColorModel;
 import java.awt.image.IndexColorModel;
 import java.awt.image.WritableRaster;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 
 public class Utils {
+	public static int showMessageDialog(Shell shell, String message, int dialogType) {
+		MessageBox messageBox = new MessageBox(shell, dialogType);
+		messageBox.setMessage(message);
+		return messageBox.open();	
+	}
+	
+	public static String getStackTrace(Throwable ex) {
+		StringWriter sw = null;
+		PrintWriter pw = null;
+		String s = "";
+
+		try {
+			sw = new StringWriter();
+			pw = new PrintWriter(sw);
+			
+			ex.printStackTrace(pw);
+			pw.flush();
+
+			s = sw.toString();
+		} catch (Throwable throwable) {
+		} finally {
+			if (sw != null)
+				try {
+					sw.close();
+				} catch (Exception e) {
+				}
+
+			if (pw != null)
+				try {
+					pw.close();
+				} catch (Exception e) {
+				}
+		}
+
+		return s;
+	}
+	
 	public static boolean isEmpty(String value) {
 		if(value == null || value.trim().length() == 0) return true;
 		else return false;

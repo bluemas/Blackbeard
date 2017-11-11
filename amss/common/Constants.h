@@ -18,7 +18,8 @@ enum class RobotMode {
 };
 
 enum class Direction {
-    forward = 0,
+    none = 0,
+    forward,
     left,
     right,
     backward,
@@ -39,9 +40,9 @@ enum class SensorType {
 };
 
 enum class WallStatus {
-    front = 0,
-    left = 1,
-    right = 2,
+    front = 1,
+    left = 2,
+    right = 4,
 };
 
 

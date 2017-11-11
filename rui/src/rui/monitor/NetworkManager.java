@@ -24,7 +24,7 @@ public class NetworkManager {
 
 	public void connect() {
 		try {
-			String ip = configManager.getRobotIpAddress();
+			String ip = configManager.getRobotIp();
 			int port = configManager.getRobotPort();
 
 			rui.appendLogMessage(String.format("%s / IP : %s / PORT : %s", "Trying to connect the remote robot ", ip, port));
@@ -37,13 +37,16 @@ public class NetworkManager {
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();
 
 			rui.appendLogMessage("Connection established.");
+			rui.setNetworkStatus(true);
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
-			e.printStackTrace();
+			rui.setNetworkStatus(false);
 		}
 	}
 
 	public void disconnect() {
+		rui.setNetworkStatus(false);
+
 		if (socket != null)
 			try {
 				socket.close();

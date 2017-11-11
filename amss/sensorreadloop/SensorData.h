@@ -19,7 +19,7 @@ public:
 	~SensorData();
 	static SensorData* getInstance();
 
-	void insertData(SensorType key, int value);
+	void putData(SensorType key, int value);
 	int getData(SensorType key);
 	int getDataCount(void);
 };

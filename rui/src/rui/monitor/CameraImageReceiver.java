@@ -26,10 +26,10 @@ public class CameraImageReceiver implements Runnable {
 
 	public void run() {
 		try {
-			this.clientsocket = new DatagramSocket(configManager.getImageListenPort());
+			this.clientsocket = new DatagramSocket(configManager.getCameraListenport());
 
 			/* Setup byte array to store data received */
-			byte[] buffer = new byte[configManager.getImageMaxSize()];
+			byte[] buffer = new byte[configManager.getCameraDatagramMaxSize()];
 
 			/* Receiving loop */
 			while (!this.clientsocket.isClosed()) {
@@ -53,7 +53,6 @@ public class CameraImageReceiver implements Runnable {
 				});
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 

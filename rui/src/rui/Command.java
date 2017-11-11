@@ -2,6 +2,8 @@ package rui;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
+import java.util.LinkedList;
+import java.util.List;
 
 import rui.utils.Utils;
 
@@ -55,6 +57,24 @@ public class Command {
 		return result;
 	}
 
+	public static List<Command> getCommand(String text) {
+		String[] strs = text.split("\n");
+		
+		List<Command> list = new LinkedList<>();
+		
+		for (String str : strs) {
+			if (Utils.isEmpty(str) || str.indexOf("type") == -1 || str.indexOf("payload") == -1) 
+				continue;
+			
+			str = str.trim();
+			
+			
+			
+		}
+		
+		return list;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

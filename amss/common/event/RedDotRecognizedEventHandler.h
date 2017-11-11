@@ -13,7 +13,7 @@
 class RedDotRecognizedEventHandler {
 public:
     virtual ~RedDotRecognizedEventHandler();
-    virtual void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) = 0;
+    virtual void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) = 0;
 };
 
 #endif /* COMMON_EVENT_REDDOTRECOGNIZEDEVENTHANDLER_H_ */

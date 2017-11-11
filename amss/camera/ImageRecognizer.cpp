@@ -14,7 +14,7 @@
 
 
 ImageRecognizer::ImageRecognizer()
-        : mMode(RobotMode::None) {
+        : mSignRecogEnable(false) {
     mCamera = new CameraReader();
 }
 
@@ -59,8 +59,8 @@ void ImageRecognizer::addSquareRecogEventHandler(SquareRecognizedEventHandler *e
     mSquareRecogHandlers.push_back(eventHandler);
 }
 
-void ImageRecognizer::setRobotMode(RobotMode mode) {
-    mMode = mode;
+void ImageRecognizer::setSignRecognizeMode(bool enable) {
+    mSignRecogEnable = enable;
 }
 
 void ImageRecognizer::RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg) {
@@ -122,22 +122,14 @@ void ImageRecognizer::run() {
         mCamera->readCamera(orgImage);
         orgImage.copyTo(synthImage);
 
-        switch(mMode) {
-            case RobotMode::Manual:
-            case RobotMode::AutoSignRecognition:
-                RecognizeSignAndNotify(orgImage, synthImage);
-                break;
-            case RobotMode::AutoMoving: 
-                RecognizeLineDotSquareAndNotify(orgImage, synthImage);
-                break;
-            default:
-                break;
+        if (mSignRecogEnable) {
+            RecognizeSignAndNotify(orgImage, synthImage);
+        } else {
+            RecognizeLineDotSquareAndNotify(orgImage, synthImage);
         }
-
         //encode synthesized Image as Jpeg
         //store encoded Image
     }
-
 }
 
 

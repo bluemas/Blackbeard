@@ -177,8 +177,6 @@ void BehaviorExecutor::searchSignDir(void)
 
 	// Search Sign Direction
 	mServoEncoder->setServoPosition(CAMERA_PAN, mPan);
-	mServoEncoder->setServoPosition(CAMERA_TILT, mTilt);
-	usleep(200000);
 
 	tiltPos = mTilt - CAMSEARCHOFFSET;
 	for(searchCnt = 0; searchCnt < check; searchCnt++)

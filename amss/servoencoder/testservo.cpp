@@ -17,27 +17,27 @@ int main()
 	//be.manualMove(Direction::left);
 
 	be.searchSign(Direction::left);
-	sleep(5);
+	sleep(20);
 	be.searchSign(Direction::forward);
-	sleep(5);
+	sleep(20);
 	be.searchSign(Direction::right);
-	sleep(5);
+	sleep(20);
 
 /*
 	be.panAndTilt(CamDirection::panleft);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::panright);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::tiltup);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::tiltdown);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 */
 }

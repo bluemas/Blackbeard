@@ -152,7 +152,6 @@ void ServoEncoder::setWheelSpeed(int left,int right)
     left = left + SERVO_CENTER_OR_STOP;
     right = -right + SERVO_CENTER_OR_STOP;
 
-    printf("%d, %d\n", left, right);
     setServoPosition(LEFT_WHEEL, left);
     setServoPosition(RIGHT_WHEEL, right);
 }
@@ -161,6 +160,7 @@ void ServoEncoder::setCameraServosLineTrackMode(int pan,int tilt)
 {
     pan = TRK_LINE_CAM_PAN;
     tilt = TRK_LINE_CAM_TILT;
+	
     setServoPosition(CAMERA_PAN, pan);
     setServoPosition(CAMERA_TILT, tilt);
 }
@@ -169,6 +169,7 @@ void ServoEncoder::setCameraServosLineTrackMode(void)
 {
     int pan = TRK_LINE_CAM_PAN;
     int tilt = TRK_LINE_CAM_TILT;
+	
     setServoPosition(CAMERA_PAN, pan);
     setServoPosition(CAMERA_TILT, tilt);
 }

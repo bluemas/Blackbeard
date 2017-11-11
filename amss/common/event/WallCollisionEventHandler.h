@@ -13,7 +13,7 @@
 class WallCollisionEventHandler {
 public:
     virtual ~WallCollisionEventHandler();
-    virtual void handleWallCollisionEvent(const WallCollisionEvent ev) = 0;
+    virtual void handleWallCollisionEvent(WallCollisionEvent ev) = 0;
 };
 
 #endif /* COMMON_EVENT_WALLCOLLISIONEVENTHANDLER_H_ */

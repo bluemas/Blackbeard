@@ -13,11 +13,11 @@
 #include "main/MainController.h"
 
 #include "sam/WallRecognizer.h"
-#include "sam/MapRepo.h"
 #include "sam/MazeMapper.h"
 #include "sam/PathPlanner.h"
 
 #include "network/NetworkManager.h"
+#include "sam/MapData.h"
 
 using namespace std;
 
@@ -35,7 +35,7 @@ void keyInRunner() {
     }
 }
 
-void init() {
+void initDevices() {
     if (wiringPiSetup() == -1) {
         exit(0);
     }
@@ -48,7 +48,7 @@ void init() {
 
 int main() {
     // 0. Initialize device
-    init();
+    initDevices();
 
     // 1. Initiate MainController
     MainController *mainController = new MainController();
@@ -60,23 +60,26 @@ int main() {
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
+    networkManager->addListener(mainController);
     mainController->setNetworkManager(networkManager);
+    networkManager->start();
 
+    // Initialize ImageRecognizer
     ImageRecognizer* imageRecognizer = new ImageRecognizer();
     imageRecognizer->addLineRecogEventHandler(mainController);
     imageRecognizer->addRedDotRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mainController);
-    imageRecognizer->(mainController);
-    mainController->setImageRecognizer(imageRecognizer);
+    imageRecognizer->addSquareRecogEventHandler(mainController);
 
     // 4. Initiate other components
-    MapRepo *mapRepo = new MapRepo();
+    MapData *mapRepo = new MapData();
     MazeMapper *mazeMapper = new MazeMapper(mapRepo);
     PathPlanner *pathPlanner = new PathPlanner(mapRepo);
 
     // 5. Make a relationship between components
-    mainController->setPathPlanner(pathPlanner);
     wallRecognizer->setMazeMapper(mazeMapper);
+    mainController->setPathPlanner(pathPlanner);
+    mainController->setImageRecognizer(imageRecognizer);
 
     // 5. Start threads
     wallRecognizer->start();

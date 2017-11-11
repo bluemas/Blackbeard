@@ -18,8 +18,7 @@ AutonomousSignRecognitionMode::AutonomousSignRecognitionMode(
 
 void AutonomousSignRecognitionMode::doEntryAction() {
     // Start sign recognizer
-    // REVIEW : Sign Recognizer만 Start/Stop 할 수 있는 기능 필요(정윤식)
-    mMainController->imageRecognizer()->start();
+    mMainController->imageRecognizer()->setSignRecognizeMode(true);
 
     // Search sign on left wall
     if (mLeftWallDetected)
@@ -40,11 +39,11 @@ void AutonomousSignRecognitionMode::doEntryAction() {
 }
 
 void AutonomousSignRecognitionMode::handleSignRecognizedEvent(
-        const SignRecognizedEvent ev) {
+        SignRecognizedEvent ev) {
     mSignFound = true;
 
-    // Stop sign recognizer
-    mMainController->imageRecognizer()->stop();
+    // Disable sign recognizer
+    mMainController->imageRecognizer()->setSignRecognizeMode(false);
 
     // Stop adjusting camera pan/tilt for sign searching
     mMainController->behaviorExecutor()->stopSign();
@@ -54,7 +53,7 @@ void AutonomousSignRecognitionMode::handleSignRecognizedEvent(
 }
 
 void AutonomousSignRecognitionMode::handleWallSensingEvent(
-        const WallSensingEvent ev) {
+        WallSensingEvent ev) {
     mLeftWallDetected = ev.isLeftWall();
     mFrontWallDetected = ev.isFrontWall();
     mRightWallDetected = ev.isRightWall();

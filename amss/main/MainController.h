@@ -51,7 +51,7 @@ public:
     ModeBase* currentMode();
 
 private:
-    void init();
+    void initDevices();
     void createModeInstances();
     void runLoop();
 
@@ -69,7 +69,6 @@ private:
     void moveRobot(const void *data);
     std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
-    Initializer mInitializer;
     BehaviorExecutor mBehaviorExecutor;
     PathPlanner* mPathPlanner;
     NetworkManager* mNetworkManager;

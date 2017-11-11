@@ -20,24 +20,22 @@ MainController::MainController() :
 }
 
 void MainController::start() {
-    init();
+    initDevices();
     std::thread t(&MainController::runLoop, this);
     t.join();
 }
 
-void MainController::init() {
+void MainController::initDevices() {
     // Create mode instances
     createModeInstances();
 
     mCurrentMode = mModeList[RobotMode::Manual];
 
     // Initialize Camera Pan/Tilt
-    behaviorExecutor()->setCamDefault();
-    // REVIEW : setCamDefault()와 setCamDefaultTrackLine() 차이점? 최초 초기화 어떤걸 불러야 될지?(양승완)
+    behaviorExecutor()->setCamDefaultTrackLine();
 
     // Initialize maze map
-    // REVIEW : 맵 초기화 함수 필요 @WallRecognizer나 PathPlanner에 getMazeMapper() 추가 필요(김지성)
-    //mazeMapper()->init();
+    pathPlanner()->init();
 }
 
 void MainController::createModeInstances()  {

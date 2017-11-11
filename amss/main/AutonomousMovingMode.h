@@ -17,9 +17,9 @@ public:
     AutonomousMovingMode(MainController* mainController);
     ~AutonomousMovingMode() {}
 
-    void handleCollisionEvent(const WallCollisionEvent ev);
-    void handleWallSensingEvent(const WallSensingEvent ev);
-    void handleLineRecognizedEvent(const LineRecognizedEvent ev);
-    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+    void handleCollisionEvent(WallCollisionEvent ev);
+    void handleWallSensingEvent(WallSensingEvent ev);
+    void handleLineRecognizedEvent(LineRecognizedEvent ev);
+    void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev);
 };
 #endif

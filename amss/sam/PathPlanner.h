@@ -15,7 +15,7 @@
 class PathPlanner {
 public:
     PathPlanner();
-    PathPlanner(MapData *mapRepo);
+    PathPlanner(MapData *mapData);
     virtual ~PathPlanner();
 
     void init();

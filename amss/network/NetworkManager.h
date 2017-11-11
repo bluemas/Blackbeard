@@ -12,15 +12,14 @@
 class NetworkManager {
 public:
     NetworkManager();
-    ~NetworkManager();
+    ~NetworkManager() {}
 
-    static void start();
-
+    void start();
     void send();
     void addListener(NetMessageEventAdapter* listener);
 
 private:
-    void init();
+    void initDevices();
     void startTCPServer();
 
     UDPSocket mCameraImageSendSocket;

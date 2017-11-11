@@ -6,6 +6,7 @@
  */
 
 #include "../sam/PathPlanner.h"
+#include "MazeMapper.h"
 
 PathPlanner::PathPlanner(MapData *mapData) {
     mMapData = mapData;
@@ -21,7 +22,7 @@ void PathPlanner::init() {
 }
 
 Direction PathPlanner::nextDirection() {
-    Direction dir = Direction::right;
+    Direction dir = Direction::forward;
 
     // TODO Find next direction using MapRepo
 

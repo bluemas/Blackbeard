@@ -6,12 +6,9 @@
 #include <thread>
 
 // TODO : 초기화 파라미터 정의 필요(양승완, 윤태희)
+// - 서보 속도, ...
 
 NetworkManager::NetworkManager() {
-
-}
-
-NetworkManager::~NetworkManager() {
 
 }
 
@@ -20,13 +17,12 @@ void NetworkManager::addListener(NetMessageEventAdapter* listener) {
 }
 
 void NetworkManager::start() {
-    NetworkManager* networkManager = new NetworkManager();
-    networkManager->init();
-    std::thread t(&NetworkManager::startTCPServer, networkManager);
+    initDevices();
+    std::thread t(&NetworkManager::startTCPServer, this);
     t.join();
 }
 
-void NetworkManager::init() {
+void NetworkManager::initDevices() {
     //TODO : Not implemented
 }
 

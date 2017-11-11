@@ -1,16 +1,16 @@
 package rui.maze;
 
-import rui.Command;
 import rui.configure.ConfigManager;
 
 public class MazeRepository {
 	private static MazeRepository instance = new MazeRepository();
 
 	private MazeRepository() {
-		initialize();
+
 	}
 
 	private MazeCell[][] maze = new MazeCell[0][0];
+
 	private int nRow = 0;
 	private int nColumn = 0;
 
@@ -30,11 +30,11 @@ public class MazeRepository {
 				maze[i][j] = new MazeCell(i, j);
 			}
 		}
-
-		generateMaze();
 	}
 
 	public void generateMaze() {
+		initialize();
+
 		for (int i = 0; i < maze.length; i++) {
 			MazeCell[] mazeCells = maze[i];
 			for (int j = 0; j < mazeCells.length; j++) {

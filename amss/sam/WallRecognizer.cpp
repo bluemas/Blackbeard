@@ -8,6 +8,7 @@
 #include "WallRecognizer.h"
 
 WallRecognizer::WallRecognizer() {
+    mMazeMapper = NULL;
     mSensorData = SensorData::getInstance();
 
     mSonarFront = new SonarFront();
@@ -26,13 +27,11 @@ void WallRecognizer::setMazeMapper(MazeMapper *mazeMapper) {
 }
 
 void WallRecognizer::addWallCollisionEventHandler(WallCollisionEventHandler *eventHandler) {
-    // TODO mEventHandler vector vector->push(eventHandler);
-    mWallCollisionEventHandler = eventHandler;
+    mWallCollisionEventHandlers.push_back(eventHandler);
 }
 
 void WallRecognizer::addWallSensingEventHandler(WallSensingEventHandler *eventHandler) {
-    // TODO mEventHandler vector vector->push(eventHandler);
-    mWallSensingEventHandler = eventHandler;
+    mWallSensingEventHandlers.push_back(eventHandler);
 }
 
 void WallRecognizer::start() {
@@ -65,21 +64,26 @@ void WallRecognizer::run() {
         int rightDistance = mSensorData->getData(SensorType::right);
 
         // Check whether a collision would be occur
-        WallCollisionEvent wallColisionEvent =
+        WallCollisionEvent wallCollisionEvent =
                 checkCollision(frontDistance, leftDistance, rightDistance);
 
-        if (wallColisionEvent.isWarnCollision()) {
+        if (wallCollisionEvent.isWarnCollision()) {
             // Notify to MainController
-            mWallCollisionEventHandler->handleWallCollisionEvent(wallColisionEvent);
+            for(WallCollisionEventHandler *handler : mWallCollisionEventHandlers) {
+                // TODO async call
+                handler->handleWallCollisionEvent(wallCollisionEvent);
+            }
         }
 
         // Check wall status in this position
         WallSensingEvent wallSensingEvent =
                 checkWallStatus(frontDistance, leftDistance, rightDistance);
 
-        // Notify to MazeMapper
-        mMazeMapper->handleWallSensingEvent(wallSensingEvent);
-
+        // Notify to WallSensingEventHandlers
+        for(WallSensingEventHandler *handler : mWallSensingEventHandlers) {
+            // TODO async call
+            handler->handleWallSensingEvent(wallSensingEvent);
+        }
 
         // Sleep for a while
         std::this_thread::sleep_for(std::chrono::milliseconds(SENSING_PERIOD_IN_MS));

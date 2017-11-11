@@ -11,16 +11,12 @@
 #include "AutonomousMovingMode.h"
 #include "AutonomousSignRecognitionMode.h"
 #include "SuspendMode.h"
+#include "../camera/ImageRecognizer.h"
 #include <thread>
 
 
-MainController::MainController() {
-
-}
-
-
-MainController::~MainController() {
-
+MainController::MainController() :
+    mCurrentMode(NULL) {
 }
 
 void MainController::start() {
@@ -31,16 +27,25 @@ void MainController::start() {
 
 void MainController::init() {
     // Create mode instances
+    createModeInstances();
+
+    mCurrentMode = mModeList[RobotMode::Manual];
+
+    // Initialize Camera Pan/Tilt
+    behaviorExecutor()->setCamDefault();
+    // REVIEW : setCamDefault()와 setCamDefaultTrackLine() 차이점? 최초 초기화 어떤걸 불러야 될지?(양승완)
+
+    // Initialize maze map
+    // REVIEW : 맵 초기화 함수 필요 @WallRecognizer나 PathPlanner에 getMazeMapper() 추가 필요(김지성)
+    //mazeMapper()->init();
+}
+
+void MainController::createModeInstances()  {
     mModeList[RobotMode::Manual] = new ManualMode(this);
     mModeList[RobotMode::AutoPathPlanning] = new AutonomousPathPlanningMode(this);
     mModeList[RobotMode::AutoMoving] = new AutonomousMovingMode(this);
     mModeList[RobotMode::AutoSignRecognition] = new AutonomousSignRecognitionMode(this);
     mModeList[RobotMode::Suspend] = new SuspendMode(this);
-
-    // Initialize Camera Pan/Tilt
-
-    // Initialize maze map
-
 }
 
 void MainController::runLoop() {
@@ -51,24 +56,74 @@ void MainController::runLoop() {
 
 }
 
+void MainController::initializeRobot() {
+    // TODO : implement function which initializes robot
+}
+
+void MainController::moveRobot(const void *data) {
+
+}
+
+void MainController::setCurrentMode(RobotMode mode) {
+    mCurrentMode->doExitAction();
+    mCurrentMode = mModeList[mode];
+    mCurrentMode->doEntryAction();
+}
+
+void MainController::setImageRecognizer(ImageRecognizer* imageRecognizer) {
+    mImageRecognizer = imageRecognizer;
+}
+
+void MainController::setNetworkManager(NetworkManager *networkManger) {
+    mNetworkManager = networkManger;
+}
+
+void MainController::setPathPlanner(PathPlanner *pathPlanner) {
+    mPathPlanner = pathPlanner;
+}
+
+PathPlanner* MainController::pathPlanner() {
+    return mPathPlanner;
+}
+
+BehaviorExecutor* MainController::behaviorExecutor() {
+    return &mBehaviorExecutor;
+}
+
+NetworkManager* MainController::networkManager() {
+    return mNetworkManager;
+}
+
+ImageRecognizer *MainController::imageRecognizer() {
+    return mImageRecognizer;
+}
+
+ModeBase* MainController::currentMode() {
+    return mCurrentMode;
+}
+
+void MainController::handleWallSensingEvent(const WallSensingEvent ev) {
+    currentMode()->handleWallSensingEvent(ev);
+}
+
 void MainController::handleWallCollisionEvent(const WallCollisionEvent ev) {
-    cout << "WallCollisionEvent!!!" << endl;
+    currentMode()->handleWallCollisionEvent(ev);
 }
 
 void MainController::handleLineRecognizedEvent(const LineRecognizedEvent ev) {
-    cout << "LineRecognizedEvent!!!" << endl;
+    currentMode()->handleLineRecognizedEvent(ev);
 }
 
 void MainController::handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) {
-    cout << "RedDotRecognizedEvent!!!" << endl;
+    currentMode()->handleRedDotRecognizedEvent(ev);
 }
 
 void MainController::handleSignRecognizedEvent(const SignRecognizedEvent ev) {
-    cout << "SignRecognizedEvent!!!" << endl;
+    currentMode()->handleSignRecognizedEvent(ev);
 }
 
 void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {
-    cout << "SquareRecognizedEvent!!!" << endl;
+    currentMode()->handleSquareRecognizedEvent(ev);
 }
 
 void MainController::handleMessage(int type, void* data) {
@@ -96,59 +151,4 @@ void MainController::handleMessage(int type, void* data) {
         default:
             break;
     }
-}
-
-void MainController::initializeRobot() {
-    // TODO : implement function which initializes robot
-}
-
-void MainController::moveRobot(const void *data) {
-
-}
-
-void MainController::setWallRecognizer(WallRecognizer* wallRecognizer) {
-//    using namespace std::placeholders;
-//
-//    // Set event handler to WallRecognizer
-//    wallRecognizer->addEventHandler(std::bind(
-//            &MainController::wallRecognizerEventHandler,
-//                                               this, std::placeholders::_1));
-}
-
-void MainController::setSignRecognizer(SignRecognizer *signRecognizer) {
-    mSignRecognizer = signRecognizer;
-}
-
-void MainController::setLineRecognizer(LineRecognizer *lineRecognizer) {
-
-}
-
-void MainController::setDotRecognizer(DotRecognizer *dotRecognizer) {
-
-}
-
-void MainController::setNetworkManager(NetworkManager *networkManger) {
-    mNetworkManager = networkManger;
-}
-
-PathPlanner* MainController::pathPlanner() {
-    return &mPathPlanner;
-}
-
-BehaviorExecutor* MainController::behaviorExecutor() {
-    return &mBehaviorExecutor;
-}
-
-void MainController::setCurrentMode(RobotMode mode) {
-    mCurrentMode->doExitAction();
-    mCurrentMode = mModeList[mode];
-    mCurrentMode->doEntryAction();
-}
-
-NetworkManager* MainController::networkManager() {
-    return mNetworkManager;
-}
-
-ModeBase* MainController::currentMode() {
-    return mCurrentMode;
 }

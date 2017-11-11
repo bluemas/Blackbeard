@@ -5,6 +5,8 @@
 #include "NetworkManager.h"
 #include <thread>
 
+// TODO : 초기화 파라미터 정의 필요(양승완, 윤태희)
+
 NetworkManager::NetworkManager() {
 
 }
@@ -25,13 +27,13 @@ void NetworkManager::start() {
 }
 
 void NetworkManager::init() {
-    //TODO
+    //TODO : Not implemented
 }
 
 void NetworkManager::startTCPServer() {
-    //TODO
+    //TODO : Not implemented
 }
 
 void NetworkManager::send() {
-
+    //TODO : Not implemented
 }

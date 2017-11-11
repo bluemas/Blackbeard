@@ -6,6 +6,11 @@
 ///////////////////////////////////////////////////////////
 
 #include "ImageRecognizer.h"
+#include "../common/Constants.h"
+#include "../common/event/LineRecognizedEventHandler.h"
+#include "../common/event/RedDotRecognizedEventHandler.h"
+#include "../common/event/SignRecognizedEventHandler.h"
+#include "../common/event/SquareRecognizedEventHandler.h"
 
 
 ImageRecognizer::ImageRecognizer()

@@ -12,7 +12,7 @@
 #include "../common/event/EventHandlerAdapter.h"
 #include "../network/NetMessageEventAdapter.h"
 
-class ManualMode : public ModeBase, public EventHandlerAdapter {
+class ManualMode : public ModeBase {
 public:
     ManualMode(MainController* mainController);
     ~ManualMode() {}

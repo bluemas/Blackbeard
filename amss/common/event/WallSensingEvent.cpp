@@ -26,3 +26,15 @@ bool WallSensingEvent::isLeftWall() {
 bool WallSensingEvent::isRightWall() {
     return (mWallStatus & static_cast<unsigned char>(WallStatus::right)) == 1;
 }
+
+void WallSensingEvent::setFrontWall() {
+
+}
+
+void WallSensingEvent::setLeftWall() {
+
+}
+
+void WallSensingEvent::setRightWall() {
+
+}

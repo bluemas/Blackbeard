@@ -10,19 +10,18 @@
 
 #include "../common/Constants.h"
 #include "MapRepo.h"
-#include "MazeMapper.h"
 
 class PathPlanner {
 public:
-    MapRepo *mMapRepo;
-    MazeMapper *mMazeMapper;
-
     PathPlanner();
-    PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo);
+    PathPlanner(MapRepo *mapRepo);
     virtual ~PathPlanner();
 
     void init();
     Direction nextDirection();
+
+private:
+    MapRepo *mMapRepo;
 };
 
 #endif /* SAM_PATHPLANNER_H_ */

@@ -9,7 +9,7 @@
 #define COMMON_EVENT_SIGNRECOGNIZEDEVENT_H_
 
 #include "EventBase.h"
-#include "Constants.h"
+#include "../Constants.h"
 
 class SignRecognizedEvent : public EventBase {
 public:

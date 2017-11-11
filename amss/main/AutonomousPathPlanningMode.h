@@ -11,10 +11,10 @@
 #include "ModeBase.h"
 #include "../common/event/EventHandlerAdapter.h"
 
-class AutonomousPathPlanningMode : public ModeBase, public EventHandlerAdapter {
+class AutonomousPathPlanningMode : public ModeBase {
 public:
     AutonomousPathPlanningMode(MainController* mainController);
-    ~AutonomousPathPlanningMode();
+    ~AutonomousPathPlanningMode() {}
 
     void doEntryAction();
 

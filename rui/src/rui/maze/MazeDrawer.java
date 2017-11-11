@@ -12,10 +12,23 @@ import rui.configure.ConfigManager;
 
 public class MazeDrawer {
 	private ConfigManager configManager = ConfigManager.getInstance();
-	private RUIMain rui;
-
+	private Canvas canvas;
+	
 	public MazeDrawer(RUIMain rui) {
-		this.rui = rui;
+		this.canvas = rui.getMazeCanvas();
+		
+		// @ TODO
+		MazeRepository.getInstance().generateMaze();
+	}
+	
+	public void updateMaze(String data) {
+		MazeRepository.getInstance().updateMaze(data);
+		canvas.redraw();
+	}
+	
+	public void clear() {
+		MazeRepository.getInstance().initialize();
+		canvas.redraw();
 	}
 
 	public void draw(PaintEvent e) {
@@ -55,6 +68,6 @@ public class MazeDrawer {
 			}
 		}
 
-		rui.appendLogMessage(">>> maze drawing completed");
+//		rui.appendLogMessage(">>> maze drawing completed");
 	}
 }

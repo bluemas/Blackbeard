@@ -9,7 +9,7 @@
 #define SAM_MAPREPO_H_
 
 #include "../common/Constants.h"
-
+#include "MazeGrid.h"
 
 class MapRepo {
 
@@ -25,7 +25,10 @@ public:
     void printMap();
 
 private:
-    Direction mNextDirection;
+    static const int MAZE_SIZE = 10;
+
+    MazeGrid mazeArr[MAZE_SIZE][MAZE_SIZE];
+    Direction mNextDirection = Direction::forward;
 };
 
 #endif /* SAM_MAPREPO_H_ */

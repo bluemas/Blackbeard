@@ -8,10 +8,9 @@
 #include "AutonomousMovingMode.h"
 #include "MainController.h"
 
-AutonomousMovingMode::AutonomousMovingMode(
-        MainController* mainController) :
-    mModeName(RobotMode::AutoMoving),
-    mMainController(mainController) {
+AutonomousMovingMode::AutonomousMovingMode(MainController* mainController) {
+     mMainController = mainController;
+     mModeName = RobotMode::AutoMoving;
 }
 
 void AutonomousMovingMode::handleCollisionEvent(WallCollisionEvent ev) {

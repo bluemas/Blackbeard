@@ -140,11 +140,11 @@ void MainController::handleMessage(int type, void* data) {
         }
         case 3: // Move robot
             if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->moveRobot();
+                ((ManualMode*)currentMode())->moveRobot(NULL);  // FIXME : Need to modify parameter
             break;
         case 4: // Adjust camera Pan/Tilt
             if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->adjustCamera();
+                ((ManualMode*)currentMode())->adjustCamera(NULL);     // FIXME : Need to modify parameter
             break;
         default:
             break;

@@ -11,9 +11,9 @@ AutonomousSignRecognitionMode::AutonomousSignRecognitionMode(
     mLeftWallDetected(false),
     mFrontWallDetected(false),
     mRightWallDetected(false),
-    mModeName(RobotMode::AutoSignRecognition),
-    mMainController(mainController),
     mSignFound(false) {
+    mModeName = RobotMode::AutoSignRecognition;
+    mMainController = mainController;
 }
 
 void AutonomousSignRecognitionMode::doEntryAction() {

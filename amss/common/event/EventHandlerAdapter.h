@@ -27,7 +27,7 @@ public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
 
-    virtual void handleCollisionEvent(WallCollisionEvent ev) {}
+    virtual void handleWallCollisionEvent(WallCollisionEvent ev) {}
     virtual void handleWallSensingEvent(WallSensingEvent ev) {}
     virtual void handleLineRecognizedEvent(LineRecognizedEvent ev) {}
     virtual void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {}

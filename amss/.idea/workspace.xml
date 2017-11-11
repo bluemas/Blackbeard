@@ -16,53 +16,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78d942c9-01cc-484a-b201-9b55e4484737" name="Default" comment="Conflicts merged">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/connected-16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/connected-30.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/disconnected-16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/disconnected-30.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/RecognizerBase.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/RecognizerBase.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sam/MapData.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sam/MapData.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/rui/configure/IConfigKeys.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/CameraImageRepo.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/CameraImageRepo.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CMakeCCompiler.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CMakeCXXCompiler.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CMakeDetermineCompilerABI_C.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CMakeDetermineCompilerABI_CXX.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CMakeSystem.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CompilerIdC/CMakeCCompilerId.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.8.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/23" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/24" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/25" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/26" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/27" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/29" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/37" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/42" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/43" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/47" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/48" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/CXX.includecache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/DependInfo.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/build.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/cmake_clean.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/depend.internal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/depend.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/flags.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/link.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/amss.dir/progress.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/amss.cbp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/ImageRecognizer.cpp" afterPath="$PROJECT_DIR$/camera/ImageRecognizer.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/ImageRecognizer.h" afterPath="$PROJECT_DIR$/camera/ImageRecognizer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/Constants.h" afterPath="$PROJECT_DIR$/common/Constants.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/EventHandlerAdapter.h" afterPath="$PROJECT_DIR$/common/event/EventHandlerAdapter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/LineRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/LineRecognizedEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/RedDotRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/RedDotRecognizedEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallCollisionEventHandler.h" afterPath="$PROJECT_DIR$/common/event/WallCollisionEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEvent.cpp" afterPath="$PROJECT_DIR$/common/event/WallSensingEvent.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEvent.h" afterPath="$PROJECT_DIR$/common/event/WallSensingEvent.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEventHandler.h" afterPath="$PROJECT_DIR$/common/event/WallSensingEventHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MapRepo.cpp" afterPath="$PROJECT_DIR$/sam/MapRepo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MapRepo.h" afterPath="$PROJECT_DIR$/sam/MapRepo.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeGrid.h" afterPath="$PROJECT_DIR$/sam/MazeGrid.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeMapper.cpp" afterPath="$PROJECT_DIR$/sam/MazeMapper.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeMapper.h" afterPath="$PROJECT_DIR$/sam/MazeMapper.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/PathPlanner.cpp" afterPath="$PROJECT_DIR$/sam/PathPlanner.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/PathPlanner.h" afterPath="$PROJECT_DIR$/sam/PathPlanner.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/WallRecognizer.cpp" afterPath="$PROJECT_DIR$/sam/WallRecognizer.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/WallRecognizer.h" afterPath="$PROJECT_DIR$/sam/WallRecognizer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" afterPath="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorData.h" afterPath="$PROJECT_DIR$/sensorreadloop/SensorData.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorReader.cpp" afterPath="$PROJECT_DIR$/sensorreadloop/SensorReader.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/bin/.gitignore" afterPath="$PROJECT_DIR$/../rui/bin/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/Command.java" afterPath="$PROJECT_DIR$/../rui/src/rui/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/RUIMain.java" afterPath="$PROJECT_DIR$/../rui/src/rui/RUIMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/configure/ConfigManager.java" afterPath="$PROJECT_DIR$/../rui/src/rui/configure/ConfigManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/maze/MazeDrawer.java" afterPath="$PROJECT_DIR$/../rui/src/rui/maze/MazeDrawer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/maze/MazeRepository.java" afterPath="$PROJECT_DIR$/../rui/src/rui/maze/MazeRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/CameraImageReceiver.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/CameraImageReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/MonitoringReceiver.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/MonitoringReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/NetworkManager.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/NetworkManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/utils/Utils.java" afterPath="$PROJECT_DIR$/../rui/src/rui/utils/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/AutonomousMovingMode.cpp" afterPath="$PROJECT_DIR$/main/AutonomousMovingMode.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp" afterPath="$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp" afterPath="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/MainController.cpp" afterPath="$PROJECT_DIR$/main/MainController.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/ManualMode.cpp" afterPath="$PROJECT_DIR$/main/ManualMode.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/SuspendMode.cpp" afterPath="$PROJECT_DIR$/main/SuspendMode.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,88 +82,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Constants.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/Constants.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-              <folding>
-                <marker date="1510364950837" expanded="true" signature="281:287" ph="{...}" />
-                <marker date="1510364950837" expanded="true" signature="577:580" ph="{...}" />
-                <marker date="1510364950837" expanded="true" signature="604:783" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutonomousMovingMode.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SquareRecognizedEventHandler.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageRecognizer.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/camera/ImageRecognizer.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+            <state relative-caret-position="513">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
-                <marker date="1510364950604" expanded="true" signature="3773:3775" ph="{...}" />
+                <marker date="1510366429453" expanded="true" signature="275:444" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutonomousPathPlanningMode.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp">
+      <file leaf-file-name="SignRecognizedEventHandler.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEventHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutonomousSignRecognitionMode.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp">
+      <file leaf-file-name="SignRecognizedEventHandler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="32" column="42" lean-forward="false" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SensorData.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sensorreadloop/SensorData.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutonomousSignRecognitionMode.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="351">
               <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRecognizedEventHandler.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WallCollisionEventHandler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEventHandler.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventHandlerAdapter.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/EventHandlerAdapter.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManualMode.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/ManualMode.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManualMode.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/ManualMode.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BehaviorExecutor.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="119" column="36" lean-forward="false" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/Constants.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="23" />
+              <folding>
+                <marker date="1510364950837" expanded="true" signature="281:287" ph="{...}" />
+                <marker date="1510364950837" expanded="true" signature="577:580" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -195,7 +218,6 @@
       <find>AcceptTcpConnection</find>
       <find>suspendmode</find>
       <find>const</find>
-      <find>const</find>
     </findStrings>
     <replaceStrings>
       <replace>() {</replace>
@@ -211,7 +233,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sam/MapRepo.h" />
         <option value="$PROJECT_DIR$/servoencoder/CServoEncoder.h" />
         <option value="$PROJECT_DIR$/servoencoder/CPID.h" />
         <option value="$PROJECT_DIR$/servoencoder/CServoEncoder.cpp" />
@@ -239,7 +260,6 @@
         <option value="$PROJECT_DIR$/main/AutonomousPathPlanningMode.h" />
         <option value="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h" />
         <option value="$PROJECT_DIR$/main/ModeBase.cpp" />
-        <option value="$PROJECT_DIR$/main/ManualMode.cpp" />
         <option value="$PROJECT_DIR$/servoencoder/BehaviorExecutor.h" />
         <option value="$PROJECT_DIR$/camera/ImageRecognizer.cpp" />
         <option value="$PROJECT_DIR$/common/event/LineRecognizedEvent.cpp" />
@@ -249,19 +269,21 @@
         <option value="$PROJECT_DIR$/main/SuspendMode.h" />
         <option value="$PROJECT_DIR$/camera/ImageRecognizer.h" />
         <option value="$PROJECT_DIR$/camera/SignRecognizer.h" />
-        <option value="$PROJECT_DIR$/main/SuspendMode.cpp" />
         <option value="$PROJECT_DIR$/network/NetworkManager.cpp" />
         <option value="$PROJECT_DIR$/network/NetworkManager.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" />
         <option value="$PROJECT_DIR$/common/Constants.h" />
-        <option value="$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp" />
         <option value="$PROJECT_DIR$/main/MainController.cpp" />
         <option value="$PROJECT_DIR$/main/AutonomousMovingMode.h" />
-        <option value="$PROJECT_DIR$/main/AutonomousMovingMode.cpp" />
-        <option value="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp" />
         <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomousMovingMode.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp" />
+        <option value="$PROJECT_DIR$/main/SuspendMode.cpp" />
+        <option value="$PROJECT_DIR$/common/event/EventHandlerAdapter.h" />
+        <option value="$PROJECT_DIR$/main/ManualMode.cpp" />
       </list>
     </option>
   </component>
@@ -352,7 +374,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="full.screen.before.presentation.mode" value="false" />
   </component>
   <component name="RunDashboard">
@@ -421,12 +443,12 @@
       <workItem from="1510360348332" duration="33000" />
       <workItem from="1510360383985" duration="3565000" />
       <workItem from="1510364135430" duration="35000" />
-      <workItem from="1510364179549" duration="93000" />
+      <workItem from="1510364179549" duration="1000000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66238000" />
+    <option name="totallyTimeSpent" value="68940000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -438,17 +460,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="91" y="-11" width="2080" height="1462" extended-state="6" />
+    <frame x="410" y="-4" width="1993" height="1357" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.250503" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26217982" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33077514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2686109" sideWeight="0.49771166" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28801286" sideWeight="0.49771166" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32343584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27041358" sideWeight="0.50228834" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3902439" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435843" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24861321" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23867998" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23867998" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834594" sideWeight="0.5150784" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -459,16 +483,16 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32343584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27041358" sideWeight="0.50228834" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435843" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23867998" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2496233" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3902439" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24861321" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834594" sideWeight="0.5150784" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -537,46 +561,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEvent.h" />
-    <entry file="file://$PROJECT_DIR$/common/event/EventHandlerAdapter.h" />
-    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEvent.cpp" />
-    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEvent.h" />
-    <entry file="file://$PROJECT_DIR$/main/ManualMode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEventHandler.h" />
-    <entry file="file://$PROJECT_DIR$/main/ModeBase.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servoencoder/ServoEncoder.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-468">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sam/WallRecognizer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="236" column="36" lean-forward="false" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEvent.cpp" />
     <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -586,7 +570,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/event/LineRecognizedEvent.cpp" />
-    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEvent.cpp" />
     <entry file="file://$PROJECT_DIR$/network/TCPSocket.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3022">
@@ -604,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+        <state relative-caret-position="560">
+          <caret line="90" column="48" lean-forward="false" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -621,13 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/ModeBase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -649,13 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/SuspendMode.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -684,20 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEventHandler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/ManualMode.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -750,57 +705,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/MainController.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="37" column="19" lean-forward="false" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="0">
           <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.h" />
     <entry file="file://$PROJECT_DIR$/camera/ImageRecognizer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="0">
           <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
           <folding>
             <marker date="1510364950604" expanded="true" signature="3773:3775" ph="{...}" />
@@ -808,61 +724,209 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.cpp">
+    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.cpp" />
+    <entry file="file://$PROJECT_DIR$/build.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="0" column="50" lean-forward="false" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp">
+    <entry file="file://$PROJECT_DIR$/sensorreadloop/SensorData.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+        <state relative-caret-position="286">
+          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        <state relative-caret-position="297">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="38" />
+          <folding>
+            <element signature="e#283#316#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="13" column="37" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="32" column="42" lean-forward="false" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+        <state relative-caret-position="351">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.sh">
+    <entry file="file://$PROJECT_DIR$/main/SuspendMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/ModeBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="26" column="10" lean-forward="false" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/MainController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="41" column="43" lean-forward="true" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEventHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEvent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEvent.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEventHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="88" lean-forward="true" selection-start-line="0" selection-start-column="88" selection-end-line="0" selection-end-column="88" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <marker date="1510366429453" expanded="true" signature="275:444" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEventHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/EventHandlerAdapter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/Constants.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+        <state relative-caret-position="285">
+          <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="23" />
           <folding>
             <marker date="1510364950837" expanded="true" signature="281:287" ph="{...}" />
             <marker date="1510364950837" expanded="true" signature="577:580" ph="{...}" />
-            <marker date="1510364950837" expanded="true" signature="604:783" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sensorreadloop/SensorData.cpp">
+    <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+        <state relative-caret-position="285">
+          <caret line="119" column="36" lean-forward="false" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/ManualMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/ManualMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
           <folding />
         </state>
       </provider>

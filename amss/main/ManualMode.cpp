@@ -8,9 +8,9 @@
 #include "ManualMode.h"
 #include "MainController.h"
 
-ManualMode::ManualMode(MainController* mainController) :
-    mModeName(RobotMode::Manual),
-    mMainController(mainController) {
+ManualMode::ManualMode(MainController* mainController) {
+    mModeName = RobotMode::Manual;
+    mMainController = mainController;
 }
 
 void ManualMode::wallEventHandler(EventBase *ev) {
@@ -23,11 +23,11 @@ void ManualMode::signRecognizerEventHandler(EventBase *ev) {
 }
 
 void ManualMode::moveRobot(void *data) {
-    mMainController->behaviorExecutor()->manualMove();
+    mMainController->behaviorExecutor()->manualMove(Direction::forward); // FIXME :
 }
 
-void ManualMode::adjustCamera(const void *data) {
-    mMainController->behaviorExecutor()->panAndTilt();
+void ManualMode::adjustCamera(void *data) {
+    mMainController->behaviorExecutor()->panAndTilt(CamDirection::panleft); // FIXME :
 }
 
 

@@ -9,9 +9,9 @@
 #include "MainController.h"
 
 AutonomousPathPlanningMode::AutonomousPathPlanningMode(
-        MainController* mainController) :
-    mModeName(RobotMode::AutoPathPlanning),
-    mMainController(mainController) {
+        MainController* mainController) {
+    mModeName = RobotMode::AutoPathPlanning;
+    mMainController = mainController;
 }
 
 void AutonomousPathPlanningMode::doEntryAction() {

@@ -16,7 +16,7 @@
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
 
-#include "MapRepo.h"
+#include "MapData.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ class MazeMapper : public WallSensingEventHandler,
                    public SquareRecognizedEventHandler {
 
 public:
-    MazeMapper(MapRepo *mapRepo);
+    MazeMapper(MapData *mapRepo);
     virtual ~MazeMapper();
 
     void handleWallSensingEvent(const WallSensingEvent ev);
@@ -35,7 +35,7 @@ public:
     void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
 
 private:
-    MapRepo *mMapRepo;
+    MapData *mMapData;
 };
 
 

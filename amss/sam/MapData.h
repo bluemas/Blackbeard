@@ -5,17 +5,17 @@
  *      Author: gtlove
  */
 
-#ifndef SAM_MAPREPO_H_
-#define SAM_MAPREPO_H_
+#ifndef SAM_MAPDATA_H_
+#define SAM_MAPDATA_H_
 
 #include "../common/Constants.h"
 #include "MazeGrid.h"
 
-class MapRepo {
+class MapData {
 
 public:
-    MapRepo();
-    virtual ~MapRepo();
+    MapData();
+    virtual ~MapData();
 
     void init();
     void setNextDirection(Direction dir);
@@ -31,4 +31,4 @@ private:
     Direction mNextDirection = Direction::forward;
 };
 
-#endif /* SAM_MAPREPO_H_ */
+#endif /* SAM_MAPDATA_H_ */

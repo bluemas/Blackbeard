@@ -7,8 +7,8 @@
 
 #include "../sam/PathPlanner.h"
 
-PathPlanner::PathPlanner(MapRepo *mapRepo) {
-    mMapRepo = mapRepo;
+PathPlanner::PathPlanner(MapData *mapData) {
+    mMapData = mapData;
     init();
 }
 
@@ -17,7 +17,7 @@ PathPlanner::~PathPlanner() {
 }
 
 void PathPlanner::init() {
-    mMapRepo->init();
+    mMapData->init();
 }
 
 Direction PathPlanner::nextDirection() {
@@ -25,7 +25,7 @@ Direction PathPlanner::nextDirection() {
 
     // TODO Find next direction using MapRepo
 
-    mMapRepo->setNextDirection(dir);
+    mMapData->setNextDirection(dir);
 
     return dir;
 }

@@ -7,8 +7,8 @@
 
 #include "MazeMapper.h"
 
-MazeMapper::MazeMapper(MapRepo *mapRepo) {
-    mMapRepo = mapRepo;
+MazeMapper::MazeMapper(MapData *mapData) {
+    mMapData = mapData;
 }
 
 MazeMapper::~MazeMapper() {

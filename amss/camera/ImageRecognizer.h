@@ -10,12 +10,12 @@
 
 
 #include "CameraReader.h"
-#include <event/LineRecognizedEventHandler.h>
-#include <event/RedDotRecognizedEventHandler.h>
-#include <event/SignRecognizedEventHandler.h>
-#include <event/SquareRecognizedEventHandler.h>
-#include <event/EventHandlerAdapter.h>
-#include <Constants.h>
+#include "../common/event/LineRecognizedEventHandler.h"
+#include "../common/event/RedDotRecognizedEventHandler.h"
+#include "../common/event/SignRecognizedEventHandler.h"
+#include "../common/event/SquareRecognizedEventHandler.h"
+#include "../common/event/EventHandlerAdapter.h"
+#include "../common/Constants.h"
 
 #include "DotRecognizer.h"
 #include "LineRecognizer.h"

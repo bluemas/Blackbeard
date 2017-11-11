@@ -8,9 +8,9 @@
 #include "ManualMode.h"
 #include "MainController.h"
 
-ManualMode::ManualMode(MainController* mainController) {
-    mModeName = RobotMode::Manual;
-    mMainController = mainController;
+ManualMode::ManualMode(MainController* mainController) :
+    mModeName(RobotMode::Manual),
+    mMainController(mainController) {
 }
 
 void ManualMode::wallEventHandler(EventBase *ev) {
@@ -19,8 +19,7 @@ void ManualMode::wallEventHandler(EventBase *ev) {
 }
 
 void ManualMode::signRecognizerEventHandler(EventBase *ev) {
-    // TODO : Do I need to update map to include sign into map?
-    // Or SquareRecognizer will update map?
+    // REVIEW : Do I need to update map to include sign into map in Manual Mode?
 }
 
 void ManualMode::moveRobot(void *data) {

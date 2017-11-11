@@ -8,12 +8,10 @@
 #include "LineRecognizedEvent.h"
 
 LineRecognizedEvent::~LineRecognizedEvent() {
-    // TODO Auto-generated destructor stub
 }
 
 LineRecognizedEvent::LineRecognizedEvent(float offset)
         : mOffset(offset) {
-    // TODO Auto-generated constructor stub
 }
 
 float LineRecognizedEvent::getOffset() {

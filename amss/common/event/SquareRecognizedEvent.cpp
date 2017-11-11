@@ -8,11 +8,9 @@
 #include "SquareRecognizedEvent.h"
 
 SquareRecognizedEvent::SquareRecognizedEvent() {
-    // TODO Auto-generated constructor stub
 
 }
 
 SquareRecognizedEvent::~SquareRecognizedEvent() {
-    // TODO Auto-generated destructor stub
 }
 

@@ -9,7 +9,7 @@
 #define EA_70044A3D_0794_4325_802A_75007D298813__INCLUDED_
 
 #include <opencv2/opencv.hpp>
-#include <Constants.h>
+#include "../common/Constants.h"
 
 using namespace cv;
 class SignRecognizer

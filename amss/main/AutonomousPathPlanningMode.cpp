@@ -8,19 +8,18 @@
 #include "AutonomousPathPlanningMode.h"
 #include "MainController.h"
 
-AutonomousPathPlanningMode::AutonomousPathPlanningMode(MainController* mainController) {
-    mModeName = RobotMode::AutoPathPlanning;
-    mMainController = mainController;
-}
-
-AutonomousPathPlanningMode::~AutonomousPathPlanningMode() {
+AutonomousPathPlanningMode::AutonomousPathPlanningMode(
+        MainController* mainController) :
+    mModeName(RobotMode::AutoPathPlanning),
+    mMainController(mainController) {
 }
 
 void AutonomousPathPlanningMode::doEntryAction() {
     // Determine next direction
     Direction nextDirection = mMainController->pathPlanner()->nextDirection();
 
-    if (nextDirection != none) {
+    // TODO : Direction에 none 추가 필요. 매핑이 끝난 경우(김지성)
+    if (nextDirection != Direction::none) {
         // If robot needed to turn left or right, go to cross before turning direction
         if (nextDirection == Direction::left || nextDirection == Direction::right)
             mMainController->behaviorExecutor()->gotoCross();

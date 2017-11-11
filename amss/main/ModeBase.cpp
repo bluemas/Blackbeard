@@ -12,8 +12,6 @@ ModeBase::ModeBase(){
 
 }
 
-
-
 ModeBase::~ModeBase(){
 
 }

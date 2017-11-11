@@ -11,15 +11,15 @@
 #include "ModeBase.h"
 #include "../common/event/EventHandlerAdapter.h"
 
-class AutonomousMovingMode : public ModeBase, public EventHandlerAdapter {
+class AutonomousMovingMode : public ModeBase {
 
 public:
     AutonomousMovingMode(MainController* mainController);
     ~AutonomousMovingMode() {}
 
-    void wallEventHandler(EventBase *ev);
-    void lineRecognizerEventHandler(EventBase *ev);
-    void redDotRecognizerEventHandler(EventBase *ev);
-    void squareRecognizerEventHandler(EventBase *ev);
+    void handleCollisionEvent(const WallCollisionEvent ev);
+    void handleWallSensingEvent(const WallSensingEvent ev);
+    void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+    void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
 };
 #endif

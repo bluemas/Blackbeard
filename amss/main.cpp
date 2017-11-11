@@ -10,7 +10,7 @@
 #include <thread>
 #include <wiringPi.h>
 
-#include "test/MainController.h"
+#include "main/MainController.h"
 
 #include "sam/WallRecognizer.h"
 #include "sam/MapRepo.h"
@@ -60,10 +60,14 @@ int main() {
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
-
-    // 3. Set recognizer to main controller as a composite object
-    mainController->setWallRecognizer(wallRecognizer);
     mainController->setNetworkManager(networkManager);
+
+    ImageRecognizer* imageRecognizer = new ImageRecognizer();
+    imageRecognizer->addLineRecogEventHandler(mainController);
+    imageRecognizer->addRedDotRecogEventHandler(mainController);
+    imageRecognizer->addSignRecogEventHandler(mainController);
+    imageRecognizer->(mainController);
+    mainController->setImageRecognizer(imageRecognizer);
 
     // 4. Initiate other components
     MapRepo *mapRepo = new MapRepo();

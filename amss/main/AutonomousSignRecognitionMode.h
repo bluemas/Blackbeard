@@ -10,15 +10,19 @@
 #include "../common/event/EventBase.h"
 #include "../common/event/EventHandlerAdapter.h"
 
-class AutonomousSignRecognitionMode : public ModeBase, public EventHandlerAdapter {
+class AutonomousSignRecognitionMode : public ModeBase {
 public:
     AutonomousSignRecognitionMode(MainController* mainController);
     ~AutonomousSignRecognitionMode() {}
     void doEntryAction();
 
-    void signRecognizerEventHandler(EventBase *ev);
+    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
+    void handleWallSensingEvent(const WallSensingEvent ev);
 private:
     bool mSignFound;
+    bool mLeftWallDetected;
+    bool mFrontWallDetected;
+    bool mRightWallDetected;
 };
 
 

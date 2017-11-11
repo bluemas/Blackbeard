@@ -51,7 +51,7 @@ public:
     ModeBase* currentMode();
 
 private:
-    void init();
+    void initDevices();
     void createModeInstances();
     void runLoop();
 

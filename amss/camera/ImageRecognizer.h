@@ -37,7 +37,7 @@ public:
     void addRedDotRecogEventHandler(RedDotRecognizedEventHandler *eventHandler);
     void addSignRecogEventHandler(SignRecognizedEventHandler *eventHandler);
     void addSquareRecogEventHandler(SquareRecognizedEventHandler *eventHandler);
-    void setRobotMode(RobotMode mode);
+    void setSignRecognizeMode(bool enable);
     void start();
     void stop();
 
@@ -57,7 +57,7 @@ private:
     vector<SignRecognizedEventHandler*> mSignRecogHandlers;
     vector<SquareRecognizedEventHandler*> mSquareRecogHandlers;
 
-    RobotMode mMode;
+    bool mSignRecogEnable;
 
     void run();
     void RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg);

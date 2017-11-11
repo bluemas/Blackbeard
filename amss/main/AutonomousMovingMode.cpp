@@ -14,22 +14,22 @@ AutonomousMovingMode::AutonomousMovingMode(
     mMainController(mainController) {
 }
 
-void AutonomousMovingMode::handleCollisionEvent(const WallCollisionEvent ev) {
+void AutonomousMovingMode::handleCollisionEvent(WallCollisionEvent ev) {
     // TODO : define collision warning message(ethernet)
     if (ev.isWarnCollision())
         mMainController->networkManager()->send(/* Collision Warning Message */);
 }
 
-void AutonomousMovingMode::handleWallSensingEvent(const WallSensingEvent ev) {
+void AutonomousMovingMode::handleWallSensingEvent(WallSensingEvent ev) {
     // TODO : Do I need to implement this handler in Moving Mode?
 }
 
-void AutonomousMovingMode::handleLineRecognizedEvent(const LineRecognizedEvent ev) {
+void AutonomousMovingMode::handleLineRecognizedEvent(LineRecognizedEvent ev) {
     mMainController->behaviorExecutor()->setOffset(ev.getOffset());
 }
 
 void AutonomousMovingMode::handleRedDotRecognizedEvent(
-        const RedDotRecognizedEvent ev) {
+        RedDotRecognizedEvent ev) {
     mMainController->behaviorExecutor()->gotoCross();
     mMainController->setCurrentMode(RobotMode::AutoSignRecognition);
 }

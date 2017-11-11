@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/network/TCPSocket.cpp" line="250" />
+    <bookmark url="file://$PROJECT_DIR$/main/MainController.cpp" line="70" />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="amss" targetName="amss" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true" ADDITIONAL_BUILD_OPTIONS="-j 2 -k">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="78d942c9-01cc-484a-b201-9b55e4484737" name="Default" comment="Conflicts merged">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/connected-16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/connected-30.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/disconnected-16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/resources/disconnected-30.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/RecognizerBase.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/RecognizerBase.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sam/MapData.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sam/MapData.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../rui/src/rui/configure/IConfigKeys.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/CameraImageRepo.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/CameraImageRepo.h" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/ImageRecognizer.cpp" afterPath="$PROJECT_DIR$/camera/ImageRecognizer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/ImageRecognizer.h" afterPath="$PROJECT_DIR$/camera/ImageRecognizer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/Constants.h" afterPath="$PROJECT_DIR$/common/Constants.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/EventHandlerAdapter.h" afterPath="$PROJECT_DIR$/common/event/EventHandlerAdapter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/LineRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/LineRecognizedEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/RedDotRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/RedDotRecognizedEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/SignRecognizedEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" afterPath="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallCollisionEventHandler.h" afterPath="$PROJECT_DIR$/common/event/WallCollisionEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEvent.cpp" afterPath="$PROJECT_DIR$/common/event/WallSensingEvent.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEvent.h" afterPath="$PROJECT_DIR$/common/event/WallSensingEvent.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/event/WallSensingEventHandler.h" afterPath="$PROJECT_DIR$/common/event/WallSensingEventHandler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MapRepo.cpp" afterPath="$PROJECT_DIR$/sam/MapRepo.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MapRepo.h" afterPath="$PROJECT_DIR$/sam/MapRepo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeGrid.h" afterPath="$PROJECT_DIR$/sam/MazeGrid.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeMapper.cpp" afterPath="$PROJECT_DIR$/sam/MazeMapper.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/MazeMapper.h" afterPath="$PROJECT_DIR$/sam/MazeMapper.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/PathPlanner.cpp" afterPath="$PROJECT_DIR$/sam/PathPlanner.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/PathPlanner.h" afterPath="$PROJECT_DIR$/sam/PathPlanner.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/WallRecognizer.cpp" afterPath="$PROJECT_DIR$/sam/WallRecognizer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam/WallRecognizer.h" afterPath="$PROJECT_DIR$/sam/WallRecognizer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" afterPath="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorData.h" afterPath="$PROJECT_DIR$/sensorreadloop/SensorData.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensorreadloop/SensorReader.cpp" afterPath="$PROJECT_DIR$/sensorreadloop/SensorReader.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/bin/.gitignore" afterPath="$PROJECT_DIR$/../rui/bin/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/Command.java" afterPath="$PROJECT_DIR$/../rui/src/rui/Command.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/RUIMain.java" afterPath="$PROJECT_DIR$/../rui/src/rui/RUIMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/configure/ConfigManager.java" afterPath="$PROJECT_DIR$/../rui/src/rui/configure/ConfigManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/maze/MazeDrawer.java" afterPath="$PROJECT_DIR$/../rui/src/rui/maze/MazeDrawer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/maze/MazeRepository.java" afterPath="$PROJECT_DIR$/../rui/src/rui/maze/MazeRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/CameraImageReceiver.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/CameraImageReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/MonitoringReceiver.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/MonitoringReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/monitor/NetworkManager.java" afterPath="$PROJECT_DIR$/../rui/src/rui/monitor/NetworkManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../rui/src/rui/utils/Utils.java" afterPath="$PROJECT_DIR$/../rui/src/rui/utils/Utils.java" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="false" />
+  <component name="FavoritesManager">
+    <favorites_list name="amss" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Constants.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/Constants.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+              <folding>
+                <marker date="1510364950837" expanded="true" signature="281:287" ph="{...}" />
+                <marker date="1510364950837" expanded="true" signature="577:580" ph="{...}" />
+                <marker date="1510364950837" expanded="true" signature="604:783" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutonomousMovingMode.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRecognizedEventHandler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageRecognizer.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/camera/ImageRecognizer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+              <folding>
+                <marker date="1510364950604" expanded="true" signature="3773:3775" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutonomousPathPlanningMode.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutonomousSignRecognitionMode.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="32" column="42" lean-forward="false" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SensorData.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sensorreadloop/SensorData.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutonomousSignRecognitionMode.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>* m_</find>
+      <find>(){</find>
+      <find>thread</find>
+      <find>CBehaviorExecutor</find>
+      <find>*</find>
+      <find>m_</find>
+      <find>AutonomousPathPlanningMode</find>
+      <find>EA_4F2E3F85_F445_4e38_AAF9_70029F74B0D1__INCLUDED_</find>
+      <find>AutonomousMovingMode</find>
+      <find>mWallRecognizer</find>
+      <find>changeMode</find>
+      <find>changemod</find>
+      <find>adjest</find>
+      <find>bluem</find>
+      <find>ImageRecognizer</find>
+      <find>mCurrentMode</find>
+      <find>init</find>
+      <find>handleWallSensingEvent</find>
+      <find>Conflicts merged</find>
+      <find>mWallCollisionEventHandler</find>
+      <find>setPathPlanner</find>
+      <find>wallRecognizer</find>
+      <find>setCameraServosLineTrackMode</find>
+      <find>wallrecognizer</find>
+      <find>AcceptTcpConnection</find>
+      <find>suspendmode</find>
+      <find>const</find>
+      <find>const</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>() {</replace>
+      <replace>*</replace>
+      <replace>m</replace>
+      <replace>AutonomousPathMovingMode</replace>
+      <replace>bluemas</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sam/MapRepo.h" />
+        <option value="$PROJECT_DIR$/servoencoder/CServoEncoder.h" />
+        <option value="$PROJECT_DIR$/servoencoder/CPID.h" />
+        <option value="$PROJECT_DIR$/servoencoder/CServoEncoder.cpp" />
+        <option value="$PROJECT_DIR$/servoencoder/CBehaviorExecutor.cpp" />
+        <option value="$PROJECT_DIR$/network/IMessageHandler.h" />
+        <option value="$PROJECT_DIR$/main/CommandHandler.h" />
+        <option value="$PROJECT_DIR$/servoencoder/CBehaviorExecutor.h" />
+        <option value="$PROJECT_DIR$/test/MainController.cpp" />
+        <option value="$PROJECT_DIR$/network/IMessageListener.h" />
+        <option value="$PROJECT_DIR$/servoencoder/ServoEncoder.cpp" />
+        <option value="$PROJECT_DIR$/servoencoder/ServoEncoder.h" />
+        <option value="$PROJECT_DIR$/servoencoder/BehaviorExecutor.cpp" />
+        <option value="$PROJECT_DIR$/sam/PathPlanner.h" />
+        <option value="$PROJECT_DIR$/sam/PathPlanner.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomouseSignRecognitionMode.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomouseSignRecognitionMode.h" />
+        <option value="$PROJECT_DIR$/network/NetMessageEventAdapter.h" />
+        <option value="$PROJECT_DIR$/camera/CameraReader.cpp" />
+        <option value="$PROJECT_DIR$/sam/WallRecognizer.cpp" />
+        <option value="$PROJECT_DIR$/common/EventHandlerAdapter.h" />
+        <option value="$PROJECT_DIR$/common/event/SignRecognizedEvent.h" />
+        <option value="$PROJECT_DIR$/test/MainController.h" />
+        <option value="$PROJECT_DIR$/main/ModeBase.h" />
+        <option value="$PROJECT_DIR$/main/ManualMode.h" />
+        <option value="$PROJECT_DIR$/main/AutonomousPathPlanningMode.h" />
+        <option value="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h" />
+        <option value="$PROJECT_DIR$/main/ModeBase.cpp" />
+        <option value="$PROJECT_DIR$/main/ManualMode.cpp" />
+        <option value="$PROJECT_DIR$/servoencoder/BehaviorExecutor.h" />
+        <option value="$PROJECT_DIR$/camera/ImageRecognizer.cpp" />
+        <option value="$PROJECT_DIR$/common/event/LineRecognizedEvent.cpp" />
+        <option value="$PROJECT_DIR$/common/event/SquareRecognizedEvent.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/main/MainController.h" />
+        <option value="$PROJECT_DIR$/main/SuspendMode.h" />
+        <option value="$PROJECT_DIR$/camera/ImageRecognizer.h" />
+        <option value="$PROJECT_DIR$/camera/SignRecognizer.h" />
+        <option value="$PROJECT_DIR$/main/SuspendMode.cpp" />
+        <option value="$PROJECT_DIR$/network/NetworkManager.cpp" />
+        <option value="$PROJECT_DIR$/network/NetworkManager.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h" />
+        <option value="$PROJECT_DIR$/common/Constants.h" />
+        <option value="$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp" />
+        <option value="$PROJECT_DIR$/main/MainController.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomousMovingMode.h" />
+        <option value="$PROJECT_DIR$/main/AutonomousMovingMode.cpp" />
+        <option value="$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp" />
+        <option value="$PROJECT_DIR$/build.sh" />
+        <option value="$PROJECT_DIR$/sensorreadloop/SensorData.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="410" />
+    <option name="y" value="-4" />
+    <option name="width" value="1398" />
+    <option name="height" value="989" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="camera" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="sam" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="sensorreadloop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amss" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="amss" type="462c0819:PsiDirectoryNode" />
+              <item name="servoencoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.amss">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
+    <configuration name="amss" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="amss" TARGET_NAME="amss" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="amss" RUN_TARGET_NAME="amss">
+      <envs />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.amss" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="78d942c9-01cc-484a-b201-9b55e4484737" name="Default" comment="" />
+      <created>1509492173673</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1509492173673</updated>
+      <workItem from="1509492175061" duration="2743000" />
+      <workItem from="1509564346608" duration="2123000" />
+      <workItem from="1509755468079" duration="676000" />
+      <workItem from="1509907403933" duration="17000" />
+      <workItem from="1509928969868" duration="9207000" />
+      <workItem from="1509974818711" duration="803000" />
+      <workItem from="1509997009737" duration="1360000" />
+      <workItem from="1510001650467" duration="7347000" />
+      <workItem from="1510018947478" duration="2027000" />
+      <workItem from="1510022562737" duration="648000" />
+      <workItem from="1510031682552" duration="897000" />
+      <workItem from="1510060942072" duration="666000" />
+      <workItem from="1510078453482" duration="2667000" />
+      <workItem from="1510117256273" duration="3749000" />
+      <workItem from="1510162538739" duration="1396000" />
+      <workItem from="1510189894087" duration="3612000" />
+      <workItem from="1510193799176" duration="5427000" />
+      <workItem from="1510200495925" duration="718000" />
+      <workItem from="1510201456776" duration="377000" />
+      <workItem from="1510243983737" duration="70000" />
+      <workItem from="1510276465295" duration="27000" />
+      <workItem from="1510286094667" duration="2329000" />
+      <workItem from="1510289629989" duration="2025000" />
+      <workItem from="1510318331532" duration="2480000" />
+      <workItem from="1510353444114" duration="6397000" />
+      <workItem from="1510360062662" duration="222000" />
+      <workItem from="1510360348332" duration="33000" />
+      <workItem from="1510360383985" duration="3565000" />
+      <workItem from="1510364135430" duration="35000" />
+      <workItem from="1510364179549" duration="93000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="66238000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="91" y="-11" width="2080" height="1462" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.250503" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33077514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2686109" sideWeight="0.49771166" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32343584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27041358" sideWeight="0.50228834" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3902439" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435843" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24861321" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23867998" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834594" sideWeight="0.5150784" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33077514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26790023" sideWeight="0.49771166" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32343584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27041358" sideWeight="0.50228834" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435843" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23867998" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2496233" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3902439" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24861321" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834594" sideWeight="0.5150784" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21047619" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28418803" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32694355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34428087" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27688786" sideWeight="0.4849216" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39071348" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2491175" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834594" sideWeight="0.5150784" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merged" />
+    <MESSAGE value="Conflicts merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conflicts merged" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEvent.h" />
+    <entry file="file://$PROJECT_DIR$/common/event/EventHandlerAdapter.h" />
+    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEvent.cpp" />
+    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEvent.h" />
+    <entry file="file://$PROJECT_DIR$/main/ManualMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEventHandler.h" />
+    <entry file="file://$PROJECT_DIR$/main/ModeBase.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servoencoder/ServoEncoder.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/WallRecognizer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="236" column="36" lean-forward="false" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SignRecognizedEvent.cpp" />
+    <entry file="file://$PROJECT_DIR$/servoencoder/BehaviorExecutor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="45" column="38" lean-forward="true" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/LineRecognizedEvent.cpp" />
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEvent.cpp" />
+    <entry file="file://$PROJECT_DIR$/network/TCPSocket.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3022">
+          <caret line="264" column="54" lean-forward="false" selection-start-line="264" selection-start-column="54" selection-end-line="264" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensorreadloop/FlightSensorLeft.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="131" column="19" lean-forward="false" selection-start-line="131" selection-start-column="19" selection-end-line="131" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/MainController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/UDPSocket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/ModeBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/SuspendMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="13" column="37" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera/ImageRecognizer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera/SignRecognizer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/SuspendMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/NetworkManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/WallRecognizer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallSensingEvent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEvent.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/WallCollisionEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/ManualMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera/SignRecognizer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="80" column="27" lean-forward="true" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/MapRepo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/MazeMapper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/MazeMapper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="25" column="2" lean-forward="true" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/NetworkManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam/PathPlanner.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/MainController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="37" column="19" lean-forward="false" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/event/SquareRecognizedEventHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera/ImageRecognizer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+          <folding>
+            <marker date="1510364950604" expanded="true" signature="3773:3775" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/CameraImageRepo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousPathPlanningMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousMovingMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/AutonomousSignRecognitionMode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="32" column="42" lean-forward="false" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="88" lean-forward="true" selection-start-line="0" selection-start-column="88" selection-end-line="0" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/Constants.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding>
+            <marker date="1510364950837" expanded="true" signature="281:287" ph="{...}" />
+            <marker date="1510364950837" expanded="true" signature="577:580" ph="{...}" />
+            <marker date="1510364950837" expanded="true" signature="604:783" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensorreadloop/SensorData.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

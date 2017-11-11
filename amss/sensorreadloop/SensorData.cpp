@@ -22,7 +22,7 @@ SensorData* SensorData::getInstance()
 	return mSensorData;
 }
 
-void SensorData::insertData(SensorType key, int value)
+void SensorData::putData(SensorType key, int value)
 {
 	map<SensorType, int>::iterator it;
 	

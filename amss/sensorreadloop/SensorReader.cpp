@@ -11,6 +11,6 @@ SensorReader::~SensorReader() {}
 
 void SensorReader::inputData(SensorType type, int value)
 {
-	mData->insertData(type, value);
+	mData->putData(type, value);
 }
 

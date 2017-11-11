@@ -35,7 +35,7 @@ void keyInRunner() {
     }
 }
 
-void init() {
+void initDevices() {
     if (wiringPiSetup() == -1) {
         exit(0);
     }
@@ -48,7 +48,7 @@ void init() {
 
 int main() {
     // 0. Initialize device
-    init();
+    initDevices();
 
     // 1. Initiate MainController
     MainController *mainController = new MainController();
@@ -60,8 +60,11 @@ int main() {
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
+    networkManager->addListener(mainController);
     mainController->setNetworkManager(networkManager);
+    networkManager->start();
 
+    // Initialize ImageRecognizer
     ImageRecognizer* imageRecognizer = new ImageRecognizer();
     imageRecognizer->addLineRecogEventHandler(mainController);
     imageRecognizer->addRedDotRecogEventHandler(mainController);

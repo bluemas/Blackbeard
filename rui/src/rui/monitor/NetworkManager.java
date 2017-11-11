@@ -24,7 +24,7 @@ public class NetworkManager {
 
 	public void connect() {
 		try {
-			String ip = configManager.getRobotIpAddress();
+			String ip = configManager.getRobotIp();
 			int port = configManager.getRobotPort();
 
 			rui.appendLogMessage(String.format("%s / IP : %s / PORT : %s", "Trying to connect the remote robot ", ip, port));

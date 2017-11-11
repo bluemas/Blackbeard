@@ -1,6 +1,7 @@
 package rui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.PaintEvent;
@@ -20,15 +21,17 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import rui.configure.ConfigManager;
 import rui.maze.MazeDrawer;
 import rui.monitor.CameraImageReceiver;
 import rui.monitor.NetworkManager;
 import rui.utils.Utils;
-import org.eclipse.swt.custom.CLabel;
 
 public class RUIMain {
 	protected Shell shlBlackbeardPirates;
@@ -63,6 +66,13 @@ public class RUIMain {
 	private Label lblConnected;
 	private Label lblRobotMessage;
 	private Label lblTime;
+	private Text txtIP;
+	private Text txtPort;
+	private Text txtListenPort;
+	private Text txtRowCnt;
+	private Text txtColumnCnt;
+	private Text txtMaxPacketSize;
+	private Text txtCommandMessages;
 
 	/**
 	 * Launch the application.
@@ -96,6 +106,7 @@ public class RUIMain {
 
 		setEnableRobotMovement(false);
 		setNetworkStatus(false);
+		setConfigData();
 
 		shlBlackbeardPirates.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
@@ -116,6 +127,17 @@ public class RUIMain {
 				display.sleep();
 			}
 		}
+	}
+
+	private void setConfigData() {
+		ConfigManager configManager = ConfigManager.getInstance();
+
+		this.txtIP.setText(configManager.getRobotIp());
+		this.txtPort.setText(configManager.getRobotPort() + "");
+		this.txtListenPort.setText(configManager.getCameraListenport() + "");
+		this.txtMaxPacketSize.setText(configManager.getCameraDatagramMaxSize() + "");
+		this.txtRowCnt.setText(configManager.getMazeRowCount() + "");
+		this.txtColumnCnt.setText(configManager.getMazeColumnCount() + "");
 	}
 
 	/**
@@ -527,19 +549,156 @@ public class RUIMain {
 		formToolkit.adapt(lblRightDistance, true, true);
 		lblRightDistance.setText("0 mm");
 
-		Group grpConsole = new Group(composite, SWT.NONE);
-		grpConsole.setLayout(new GridLayout(1, false));
-		GridData gd_grpConsole = new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1);
-		gd_grpConsole.heightHint = 100;
-		grpConsole.setLayoutData(gd_grpConsole);
-		grpConsole.setText("Message Console");
-		formToolkit.adapt(grpConsole);
-		formToolkit.paintBordersFor(grpConsole);
+		TabFolder tabFolder = new TabFolder(composite, SWT.NONE);
+		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1));
+		formToolkit.adapt(tabFolder);
+		formToolkit.paintBordersFor(tabFolder);
 
-		txtLogMessge = new Text(grpConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		TabItem tbtmMessageConsole = new TabItem(tabFolder, SWT.NONE);
+		tbtmMessageConsole.setText("Message Console");
+
+		txtLogMessge = new Text(tabFolder, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		tbtmMessageConsole.setControl(txtLogMessge);
 		txtLogMessge.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.NORMAL));
-		txtLogMessge.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		formToolkit.adapt(txtLogMessge, true, true);
+
+		TabItem tbtmSettings = new TabItem(tabFolder, SWT.NONE);
+		tbtmSettings.setText("Settings");
+
+		Composite compositeSettings = new Composite(tabFolder, SWT.NONE);
+		tbtmSettings.setControl(compositeSettings);
+		formToolkit.paintBordersFor(compositeSettings);
+		compositeSettings.setLayout(new GridLayout(3, false));
+
+		Label lblRobotIp = new Label(compositeSettings, SWT.NONE);
+		lblRobotIp.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblRobotIp, true, true);
+		lblRobotIp.setText("Robot IP");
+
+		txtIP = new Text(compositeSettings, SWT.BORDER);
+		txtIP.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtIP, true, true);
+
+		Button btnSave = new Button(compositeSettings, SWT.NONE);
+		btnSave.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				display.syncExec(new Runnable() {
+					public void run() {
+						ConfigManager configManager = ConfigManager.getInstance();
+
+						try {
+							configManager.setRobotIp(txtIP.getText());
+							configManager.setRobotPort(Integer.parseInt(txtPort.getText()));
+							configManager.setCameraListenport(Integer.parseInt(txtListenPort.getText()));
+							configManager.setCameraDatagramMaxSize(Integer.parseInt(txtMaxPacketSize.getText()));
+							configManager.setMazeRowCount(Integer.parseInt(txtRowCnt.getText()));
+							configManager.setMazeColumnCount(Integer.parseInt(txtColumnCnt.getText()));
+
+							configManager.persist();
+							
+							Utils.showMessageDialog(shlBlackbeardPirates, "Configuration Saving completed.\n\nFile Path = " + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
+						} catch (Exception ex) {
+							RUIMain.this.appendLogMessage(Utils.getStackTrace(ex));
+							Utils.showMessageDialog(shlBlackbeardPirates, "Error occurred while saving.\nPlease check the error message in Message Console Tab", SWT.ICON_ERROR);
+						}
+					}
+				});
+			}
+		});
+		btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 5));
+		formToolkit.adapt(btnSave, true, true);
+		btnSave.setText("Save");
+
+		Label lblRobotPort = new Label(compositeSettings, SWT.NONE);
+		lblRobotPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblRobotPort, true, true);
+		lblRobotPort.setText("Robot Port");
+
+		txtPort = new Text(compositeSettings, SWT.BORDER);
+		txtPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtPort, true, true);
+
+		Label lblCameraListenPort = new Label(compositeSettings, SWT.NONE);
+		lblCameraListenPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblCameraListenPort, true, true);
+		lblCameraListenPort.setText("Camera Listen Port");
+
+		txtListenPort = new Text(compositeSettings, SWT.BORDER);
+		txtListenPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtListenPort, true, true);
+
+		Label lblImageMaxPacket = new Label(compositeSettings, SWT.NONE);
+		lblImageMaxPacket.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblImageMaxPacket, true, true);
+		lblImageMaxPacket.setText("Image Max Packet Size");
+
+		txtMaxPacketSize = new Text(compositeSettings, SWT.BORDER);
+		txtMaxPacketSize.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtMaxPacketSize, true, true);
+
+		Label lblDefaultMaze = new Label(compositeSettings, SWT.NONE);
+		lblDefaultMaze.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblDefaultMaze, true, true);
+		lblDefaultMaze.setText("Maze Size");
+
+		Composite compositeMaze = new Composite(compositeSettings, SWT.NONE);
+		compositeMaze.setLayout(new GridLayout(4, false));
+		GridData gd_compositeMaze = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_compositeMaze.heightHint = 27;
+		compositeMaze.setLayoutData(gd_compositeMaze);
+		formToolkit.adapt(compositeMaze);
+		formToolkit.paintBordersFor(compositeMaze);
+
+		Label lblOfRow = new Label(compositeMaze, SWT.NONE);
+		lblOfRow.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblOfRow, true, true);
+		lblOfRow.setText("# of Row:");
+
+		txtRowCnt = new Text(compositeMaze, SWT.BORDER);
+		txtRowCnt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtRowCnt, true, true);
+
+		Label lblOfColumn = new Label(compositeMaze, SWT.NONE);
+		lblOfColumn.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblOfColumn, true, true);
+		lblOfColumn.setText("# of Column");
+
+		txtColumnCnt = new Text(compositeMaze, SWT.BORDER);
+		txtColumnCnt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtColumnCnt, true, true);
+		
+		TabItem tbtmSimulation = new TabItem(tabFolder, SWT.NONE);
+		tbtmSimulation.setText("Simulation");
+		
+		Composite compositeSimulation = new Composite(tabFolder, SWT.NONE);
+		tbtmSimulation.setControl(compositeSimulation);
+		formToolkit.paintBordersFor(compositeSimulation);
+		compositeSimulation.setLayout(new GridLayout(2, false));
+		
+		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
+		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
+		formToolkit.adapt(txtCommandMessages, true, true);
+		
+		Button btnLoopback = new Button(compositeSimulation, SWT.NONE);
+		btnLoopback.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
+		btnLoopback.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+		formToolkit.adapt(btnLoopback, true, true);
+		btnLoopback.setText("Loopback");
+		
+		Button btnSend = new Button(compositeSimulation, SWT.NONE);
+		btnSend.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+		formToolkit.adapt(btnSend, true, true);
+		btnSend.setText("Send");
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
 	}
 
 	public Label getCameraImageLabel() {

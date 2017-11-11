@@ -15,8 +15,5 @@ class SuspendMode : public ModeBase {
 public:
     SuspendMode(MainController* mainController);
     ~SuspendMode() {}
-
-    void doEntryAction();
-
 };
 #endif // !defined(EA_45A10C10_98C9_4af6_AA28_B08639D786CE__INCLUDED_)

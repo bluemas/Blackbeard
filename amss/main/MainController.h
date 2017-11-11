@@ -8,7 +8,6 @@
 #if !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)
 #define EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_
 
-#include "Initializer.h"
 #include "ModeBase.h"
 #include "AutonomousPathPlanningMode.h"
 #include "ManualMode.h"

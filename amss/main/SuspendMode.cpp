@@ -6,12 +6,10 @@
 ///////////////////////////////////////////////////////////
 
 #include "SuspendMode.h"
+#include "MainController.h"
 
 SuspendMode::SuspendMode(MainController* mainController) :
     mModeName(RobotMode::Suspend),
     mMainController(mainController) {
 }
 
-void SuspendMode::doEntryAction() {
-
-}

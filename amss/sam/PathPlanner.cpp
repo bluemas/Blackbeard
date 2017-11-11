@@ -9,6 +9,7 @@
 
 PathPlanner::PathPlanner(MapRepo *mapRepo) {
     mMapRepo = mapRepo;
+    init();
 }
 
 PathPlanner::~PathPlanner() {
@@ -16,7 +17,7 @@ PathPlanner::~PathPlanner() {
 }
 
 void PathPlanner::init() {
-
+    mMapRepo->init();
 }
 
 Direction PathPlanner::nextDirection() {

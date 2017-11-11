@@ -10,6 +10,7 @@
 
 #include "../common/Constants.h"
 #include "MapRepo.h"
+#include "MazeMapper.h"
 
 class PathPlanner {
 public:

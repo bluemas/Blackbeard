@@ -29,7 +29,6 @@ public:
     MazeMapper(MapRepo *mapRepo);
     virtual ~MazeMapper();
 
-    void init();
     void handleWallSensingEvent(const WallSensingEvent ev);
     void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
     void handleSignRecognizedEvent(const SignRecognizedEvent ev);

@@ -56,12 +56,10 @@ void ServoEncoder::closeServos(void)
 
 void ServoEncoder::resetServos(void)
 {
-    int value = SERVO_CENTER_OR_STOP;
-
-    setServoPosition(CAMERA_PAN, value);
-    setServoPosition(CAMERA_TILT, value);
-    setServoPosition(RIGHT_WHEEL, value);
-    setServoPosition(LEFT_WHEEL, value);
+    setServoPosition(CAMERA_PAN, SERVO_CENTER_OR_STOP);
+    setServoPosition(CAMERA_TILT, SERVO_CENTER_OR_STOP);
+    setServoPosition(RIGHT_WHEEL, SERVO_WHEEL_CENTER);
+    setServoPosition(LEFT_WHEEL, SERVO_WHEEL_CENTER);
 }
 
 int ServoEncoder::getServoMinVal(unsigned int servo)
@@ -149,8 +147,8 @@ int ServoEncoder::setServoPosition(unsigned int servo,int position)
 
 void ServoEncoder::setWheelSpeed(int left,int right)
 {
-    left = left + SERVO_CENTER_OR_STOP;
-    right = -right + SERVO_CENTER_OR_STOP;
+    left = left + SERVO_WHEEL_CENTER;
+    right = -right + SERVO_WHEEL_CENTER;
 
     setServoPosition(LEFT_WHEEL, left);
     setServoPosition(RIGHT_WHEEL, right);

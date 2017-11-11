@@ -25,17 +25,22 @@ void BehaviorExecutor::move(Direction dir)
 		mServoEncoder->setWheelSpeed(BASESPEED, BASESPEED);
 		break;
 	case Direction::left:
+		printf("Left turn\n");
 		mServoEncoder->setWheelSpeed(-BASESPEED, BASESPEED);
-		sleep(2);
+		usleep(950000);
 		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::right:
+		printf("Right turn\n");
 		mServoEncoder->setWheelSpeed(BASESPEED, -BASESPEED);
-		sleep(2);
+		usleep(850000);
 		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::backward:
-		//nothing
+		printf("Backward \n");
+		mServoEncoder->setWheelSpeed(-BASESPEED, BASESPEED);
+		usleep(1850000);
+		mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	default:
 		break;

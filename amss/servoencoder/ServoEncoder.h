@@ -8,6 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#define SERVO_WHEEL_CENTER		150
 #define SERVO_CENTER_OR_STOP	157	//150
 
 #define TRK_LINE_CAM_PAN		157	//149	//157

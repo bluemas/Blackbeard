@@ -18,7 +18,6 @@ void AutonomousPathPlanningMode::doEntryAction() {
     // Determine next direction
     Direction nextDirection = mMainController->pathPlanner()->nextDirection();
 
-    // TODO : Direction에 none 추가 필요. 매핑이 끝난 경우(김지성)
     if (nextDirection != Direction::none) {
         // If robot needed to turn left or right, go to cross before turning direction
         if (nextDirection == Direction::left || nextDirection == Direction::right)

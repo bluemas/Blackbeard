@@ -21,7 +21,7 @@ public:
     PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo);
     virtual ~PathPlanner();
 
-    void init();
+    void initDevices();
     Direction nextDirection();
 };
 

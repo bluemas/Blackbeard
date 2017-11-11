@@ -18,7 +18,7 @@ public:
     MazeMapper(MapRepo *mapRepo);
     virtual ~MazeMapper();
 
-    void init();
+    void initDevices();
     void handleWallSensingEvent(const WallSensingEvent ev);
 
 private:

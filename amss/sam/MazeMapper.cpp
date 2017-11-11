@@ -9,15 +9,15 @@
 
 MazeMapper::MazeMapper(MapRepo *mapRepo) {
     mMapRepo = mapRepo;
-    init();
+    initDevices();
 }
 
 MazeMapper::~MazeMapper() {
 
 }
 
-void MazeMapper::init() {
-    mMapRepo->init();
+void MazeMapper::initDevices() {
+    mMapRepo->initDevices();
 }
 
 void MazeMapper::handleWallSensingEvent(const WallSensingEvent ev) {

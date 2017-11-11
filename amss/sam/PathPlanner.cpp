@@ -17,7 +17,7 @@ PathPlanner::~PathPlanner() {
 
 }
 
-void PathPlanner::init() {
+void PathPlanner::initDevices() {
 
 }
 

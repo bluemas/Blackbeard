@@ -17,7 +17,7 @@ public:
     MapRepo();
     virtual ~MapRepo();
 
-    void init();
+    void initDevices();
     void setNextDirection(Direction dir);
     Direction getNextDirection();
 

@@ -17,8 +17,8 @@ MapRepo::~MapRepo() {
 
 }
 
-void MapRepo::init() {
-    // TODO init MapRepo
+void MapRepo::initDevices() {
+    // TODO initDevices MapRepo
 }
 
 void MapRepo::setNextDirection(Direction dir) {

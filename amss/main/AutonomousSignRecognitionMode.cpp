@@ -7,11 +7,11 @@
 #include "MainController.h"
 
 AutonomousSignRecognitionMode::AutonomousSignRecognitionMode(
-        MainController* mainController) :
-    mLeftWallDetected(false),
-    mFrontWallDetected(false),
-    mRightWallDetected(false),
-    mSignFound(false) {
+        MainController* mainController) {
+    mLeftWallDetected = false;
+    mFrontWallDetected = false;
+    mRightWallDetected = false;
+    mSignFound = false;
     mModeName = RobotMode::AutoSignRecognition;
     mMainController = mainController;
 }

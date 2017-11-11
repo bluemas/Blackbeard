@@ -7,17 +7,12 @@
 
 #include "MazeMapper.h"
 
-MazeMapper::MazeMapper(MapRepo *mapRepo) {
-    mMapRepo = mapRepo;
-    init();
+MazeMapper::MazeMapper(MapData *mapData) {
+    mMapData = mapData;
 }
 
 MazeMapper::~MazeMapper() {
 
-}
-
-void MazeMapper::init() {
-    mMapRepo->init();
 }
 
 void MazeMapper::handleWallSensingEvent(const WallSensingEvent ev) {

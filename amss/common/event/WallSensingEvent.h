@@ -19,8 +19,11 @@ public:
     bool isFrontWall();
     bool isLeftWall();
     bool isRightWall();
+    void setFrontWall();
+    void setLeftWall();
+    void setRightWall();
 private:
-    unsigned char mWallStatus;
+    unsigned char mWallStatus = 0;
 };
 
 #endif /* SAM_WALLSENSINGEVENT_H_ */

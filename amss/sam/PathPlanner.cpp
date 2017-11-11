@@ -8,9 +8,8 @@
 #include "../sam/PathPlanner.h"
 #include "MazeMapper.h"
 
-PathPlanner::PathPlanner(MazeMapper *mazeMapper, MapRepo *mapRepo) {
-    mMapRepo = mapRepo;
-    mMazeMapper = mazeMapper;
+PathPlanner::PathPlanner(MapData *mapData) {
+    mMapData = mapData;
 }
 
 PathPlanner::~PathPlanner() {
@@ -26,7 +25,7 @@ Direction PathPlanner::nextDirection() {
 
     // TODO Find next direction using MapRepo
 
-    mMapRepo->setNextDirection(dir);
+    mMapData->setNextDirection(dir);
 
     return dir;
 }

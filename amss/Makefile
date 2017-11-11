@@ -11,7 +11,7 @@ OBJS = \
 	sam/WallRecognizer.o sam/MapData.o sam/MazeMapper.o sam/PathPlanner.o \
 	camera/CameraReader.o camera/ImageRecognizer.o camera/DotRecognizer.o \
 	camera/SquareRecognizer.o camera/LineRecognizer.o camera/SignRecognizer.o \
-	camera/ImageSender.o \
+	camera/ImageSender.o camera/ImageData.o \
 	sensorreadloop/SensorReader.o sensorreadloop/SonarFront.o \
 	sensorreadloop/FlightSensorLeft.o sensorreadloop/FlightSensorRight.o \
 	sensorreadloop/SensorData.o \

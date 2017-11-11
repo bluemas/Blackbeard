@@ -85,6 +85,7 @@ void BehaviorExecutor::gotoCross(void)
 void* BehaviorExecutor::runPanTilt(void* ptr)
 {
 	((BehaviorExecutor*)ptr)->panAndTiltDir();
+	return NULL;
 }
 
 void BehaviorExecutor::panAndTiltDir(void)
@@ -147,6 +148,7 @@ void BehaviorExecutor::setOffset(float offset)
 void* BehaviorExecutor::runSign(void * ptr)
 {
 	((BehaviorExecutor*)ptr)->searchSignDir();
+	return NULL;
 }
 
 void BehaviorExecutor::searchSignDir(void)

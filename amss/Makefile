@@ -18,7 +18,7 @@ OBJS = \
 	servoencoder/BehaviorExecutor.o servoencoder/PID.o servoencoder/ServoEncoder.o \
 	network/TCPSocket.o network/UDPSocket.o \
 	network/NetworkManager.o \
-	main/ModeBase.o main/AutonomousMovingMode.o main/AutonomousPlannerMode.o \
+	main/ModeBase.o main/AutonomousMovingMode.o main/AutonomousPathPlanningMode.o \
 	main/AutonomousSignRecognitionMode.o main/ManualMode.o main/SuspendMode.o \
 	main/MainController.o \
 	main.o

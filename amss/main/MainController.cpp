@@ -19,6 +19,8 @@ MainController::MainController() :
     mCurrentMode(NULL) {
 }
 
+MainController::~MainController() {}
+
 void MainController::start() {
     initDevices();
     std::thread t(&MainController::runLoop, this);

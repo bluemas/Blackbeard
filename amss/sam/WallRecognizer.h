@@ -18,20 +18,20 @@
 #include <vector>
 
 #include "../common/Constants.h"
+#include "../common/RecognizerBase.h"
+#include "../common/event/WallCollisionEventHandler.h"
+#include "../common/event/WallSensingEventHandler.h"
 #include "../sensorreadloop/SensorData.h"
 #include "../sensorreadloop/SonarFront.h"
 #include "../sensorreadloop/FlightSensorLeft.h"
 #include "../sensorreadloop/FlightSensorRight.h"
 
 #include "MazeMapper.h"
-#include "../common/event/WallCollisionEventHandler.h"
-#include "../common/event/WallSensingEventHandler.h"
 
 using namespace std;
 
-class WallRecognizer {
+class WallRecognizer : public RecognizerBase {
 public:
-    //WallRecognizer(SensorDataRepo *sensorDataRepo);
     WallRecognizer();
     virtual ~WallRecognizer();
 
@@ -53,8 +53,8 @@ private:
     std::atomic<bool> mIsRun;
     std::thread mThread;
     MazeMapper *mMazeMapper;
-    WallCollisionEventHandler *mWallCollisionEventHandler;
-    WallSensingEventHandler *mWallSensingEventHandler;
+    vector<WallCollisionEventHandler*> mWallCollisionEventHandlers;
+    vector<WallSensingEventHandler*> mWallSensingEventHandlers;
     SensorData *mSensorData;
     SonarFront *mSonarFront;
     FlightSensorLeft *mFlightSensorLeft;

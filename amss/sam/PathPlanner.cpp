@@ -20,7 +20,7 @@ void PathPlanner::init() {
 }
 
 Direction PathPlanner::nextDirection() {
-    Direction dir = Direction::forward;
+    Direction dir = Direction::right;
 
     // TODO Find next direction using MapRepo
 

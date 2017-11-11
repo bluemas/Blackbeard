@@ -23,7 +23,7 @@ public:
     virtual ~MazeGrid();
 
 private:
-
+    int mWallStatus = WALL_NONE;
 };
 
 

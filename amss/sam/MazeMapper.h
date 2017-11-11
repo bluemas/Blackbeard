@@ -8,6 +8,8 @@
 #ifndef SAM_MAZEMAPPER_H_
 #define SAM_MAZEMAPPER_H_
 
+#include <iostream>
+
 #include "../common/Constants.h"
 #include "../common/event/WallSensingEventHandler.h"
 #include "../common/event/RedDotRecognizedEventHandler.h"
@@ -15,6 +17,8 @@
 #include "../common/event/SquareRecognizedEventHandler.h"
 
 #include "MapRepo.h"
+
+using namespace std;
 
 class MazeMapper : public WallSensingEventHandler,
                    public RedDotRecognizedEventHandler,

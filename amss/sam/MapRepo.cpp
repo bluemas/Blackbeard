@@ -28,3 +28,8 @@ void MapRepo::setNextDirection(Direction dir) {
 Direction MapRepo::getNextDirection() {
     return mNextDirection;
 }
+
+void MapRepo::printMap() {
+
+}
+

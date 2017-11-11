@@ -27,12 +27,12 @@ public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
 
-    virtual void handleCollisionEvent(const WallCollisionEvent ev) {}
-    virtual void handleWallSensingEvent(const WallSensingEvent ev) {}
-    virtual void handleLineRecognizedEvent(const LineRecognizedEvent ev) {}
-    virtual void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev) {}
-    virtual void handleSignRecognizedEvent(const SignRecognizedEvent ev) {}
-    virtual void handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {}
+    virtual void handleCollisionEvent(WallCollisionEvent ev) {}
+    virtual void handleWallSensingEvent(WallSensingEvent ev) {}
+    virtual void handleLineRecognizedEvent(LineRecognizedEvent ev) {}
+    virtual void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {}
+    virtual void handleSignRecognizedEvent(SignRecognizedEvent ev) {}
+    virtual void handleSquareRecognizedEvent(SquareRecognizedEvent ev) {}
 };
 
 #endif /* COMMON_EVENT_EVENTHANDLERADAPTER_H_ */

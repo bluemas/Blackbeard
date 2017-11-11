@@ -13,7 +13,7 @@
 class SquareRecognizedEventHandler {
 public:
     virtual ~SquareRecognizedEventHandler();
-    virtual void handleSquareRecognizedEvent(const SquareRecognizedEvent ev) = 0;
+    virtual void handleSquareRecognizedEvent(SquareRecognizedEvent ev) = 0;
 };
 
 #endif /* COMMON_EVENT_SQUARERECOGNIZEDEVENTHANDLER_H_ */

@@ -13,7 +13,7 @@
 class LineRecognizedEventHandler {
 public:
     virtual ~LineRecognizedEventHandler();
-    virtual void handleLineRecognizedEvent(const LineRecognizedEvent ev) = 0;
+    virtual void handleLineRecognizedEvent(LineRecognizedEvent ev) = 0;
 };
 
 #endif /* COMMON_EVENT_LINERECOGNIZEDEVENTHANDLER_H_ */

@@ -15,14 +15,15 @@ int main()
 	//be.stop();
 	//sleep(1);
 	//be.manualMove(Direction::left);
-	//be.searchSign(Direction::left);
-	//sleep(10);
-	//be.searchSign(Direction::right);
-	//sleep(10);
-	//be.searchSign(Direction::forward);
-	//sleep(10);
 
+	be.searchSign(Direction::left);
+	sleep(5);
+	be.searchSign(Direction::forward);
+	sleep(5);
+	be.searchSign(Direction::right);
+	sleep(5);
 
+/*
 	be.panAndTilt(CamDirection::panleft);
 	sleep(2);
 	be.stopPanAndTilt();
@@ -38,5 +39,5 @@ int main()
 	be.panAndTilt(CamDirection::tiltdown);
 	sleep(2);
 	be.stopPanAndTilt();
-
+*/
 }

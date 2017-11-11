@@ -18,7 +18,7 @@ public:
     PathPlanner(MapData *mapData);
     virtual ~PathPlanner();
 
-    void initDevices();
+    void init();
     Direction nextDirection();
 
 private:

@@ -10,14 +10,15 @@
 
 PathPlanner::PathPlanner(MapData *mapData) {
     mMapData = mapData;
+    init();
 }
 
 PathPlanner::~PathPlanner() {
 
 }
 
-void PathPlanner::initDevices() {
-
+void PathPlanner::init() {
+    mMapData->init();
 }
 
 Direction PathPlanner::nextDirection() {

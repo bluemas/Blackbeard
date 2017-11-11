@@ -10,19 +10,18 @@
 
 #include "../common/Constants.h"
 #include "../common/event/WallSensingEventHandler.h"
-#include "MapRepo.h"
+#include "MapData.h"
 
 class MazeMapper : public WallSensingEventHandler {
 
 public:
-    MazeMapper(MapRepo *mapRepo);
+    MazeMapper(MapData *mapData);
     virtual ~MazeMapper();
 
-    void initDevices();
     void handleWallSensingEvent(const WallSensingEvent ev);
 
 private:
-    MapRepo *mMapRepo;
+    MapData *mMapData;
 };
 
 

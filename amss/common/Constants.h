@@ -28,7 +28,8 @@ enum class RobotMode {
 };
 
 enum class Direction {
-    forward = 0,
+    none = 0,
+    forward,
     left,
     right,
     backward,

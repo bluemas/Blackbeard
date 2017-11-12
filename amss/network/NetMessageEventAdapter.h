@@ -7,7 +7,9 @@
 
 
 class NetMessageEventAdapter {
-    void handleMessage(int type, void* data) {}
+public:
+    virtual void handleMessage(int type, void* data) {}
+    virtual void handleDisconnectionEvent() {}
 };
 
 

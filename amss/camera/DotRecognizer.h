@@ -9,7 +9,7 @@
 #define EA_3DD6C7C0_C4D0_4758_8EE9_2911312FEBA7__INCLUDED_
 
 #include <opencv2/opencv.hpp>
-using namespace cv;
+
 
 class DotRecognizer
 {
@@ -17,7 +17,7 @@ class DotRecognizer
 public:
 	DotRecognizer();
 	virtual ~DotRecognizer();
-    bool recognizeDot(Mat& orgImg, Mat& synthImg);
+    bool recognizeDot(cv::Mat& orgImg, cv::Mat& synthImg);
 
 };
 #endif // !defined(EA_3DD6C7C0_C4D0_4758_8EE9_2911312FEBA7__INCLUDED_)

@@ -48,7 +48,9 @@ void initDevices() {
 
 int main() {
     // 0. Initialize device
+    #ifndef UBUNTU
     initDevices();
+    #endif
 
     // 1. Initiate MainController
     MainController *mainController = new MainController();
@@ -70,6 +72,7 @@ int main() {
     imageRecognizer->addRedDotRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mainController);
     imageRecognizer->addSquareRecogEventHandler(mainController);
+//    imageRecognizer->start();
 
     // 4. Initiate other components
     MapData *mapRepo = new MapData();
@@ -82,8 +85,10 @@ int main() {
     mainController->setImageRecognizer(imageRecognizer);
 
     // 5. Start threads
-    wallRecognizer->start();
+//    wallRecognizer->start();  // FIXME : CPU Usage goes high
 
+
+    mainController->start();
 
     // 10. Wait for stopping AMSS
     std::thread mainThread(keyInRunner);

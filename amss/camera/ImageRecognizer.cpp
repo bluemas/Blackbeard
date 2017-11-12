@@ -12,6 +12,7 @@
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
 
+using namespace cv;
 
 ImageRecognizer::ImageRecognizer()
         : mSignRecogEnable(false) {

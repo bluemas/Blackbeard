@@ -12,30 +12,28 @@
 #include "AutonomousSignRecognitionMode.h"
 #include "SuspendMode.h"
 #include "../camera/ImageRecognizer.h"
+#include "../common/Logging.h"
 #include <thread>
 
+// TODO : Implement function sending robot status
 
 MainController::MainController() :
     mCurrentMode(NULL) {
 }
 
 void MainController::start() {
-    initDevices();
+    init();
     std::thread t(&MainController::runLoop, this);
     t.join();
 }
 
-void MainController::initDevices() {
+void MainController::init() {
     // Create mode instances
     createModeInstances();
 
     mCurrentMode = mModeList[RobotMode::Manual];
 
-    // Initialize Camera Pan/Tilt
-    behaviorExecutor()->setCamDefaultTrackLine();
-
-    // Initialize maze map
-    pathPlanner()->init();
+//    initializeRobot();
 }
 
 void MainController::createModeInstances()  {
@@ -48,14 +46,22 @@ void MainController::createModeInstances()  {
 
 void MainController::runLoop() {
     while (true) {
-
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-
 }
 
 void MainController::initializeRobot() {
-    // TODO : implement function which initializes robot
+    // Initialize Camera Pan/Tilt
+    behaviorExecutor()->setCamDefaultTrackLine();
+    Logging::logOutput(Logging::DEBUG, "Camera position initialized");
+
+    // Initialize maze map
+    pathPlanner()->init();
+    Logging::logOutput(Logging::DEBUG, "Maze Map initialized");
+
+    // Set robot mode as manual
+    setCurrentMode(RobotMode::Manual);
+    Logging::logOutput(Logging::DEBUG, "Robot mode changed to Manual Mode");
 }
 
 void MainController::moveRobot(const void *data) {
@@ -64,7 +70,23 @@ void MainController::moveRobot(const void *data) {
 
 void MainController::setCurrentMode(RobotMode mode) {
     mCurrentMode->doExitAction();
+
+    char msg[255] = { 0 };
+    snprintf(msg, 255, "Current robot mode changed to %s.",
+             mode == RobotMode::Manual ? "Manual" :
+             (mode == RobotMode::AutoSignRecognition ? "AutoSignRecognition" :
+              (mode == RobotMode::AutoMoving ? "AutoMoving" :
+               (mode == RobotMode::AutoPathPlanning ? "AutoPathPlanning" :
+                (mode == RobotMode::Suspend ? "Suspend" : "Unknown")))));
+
+    Logging::logOutput(Logging::DEBUG, msg);
+
     mCurrentMode = mModeList[mode];
+
+    // Send new robot mode to RUI
+    char robotMode = mCurrentMode->getModeNameChar();
+    networkManager()->send(7, sizeof(char), &robotMode);
+
     mCurrentMode->doEntryAction();
 }
 
@@ -136,15 +158,18 @@ void MainController::handleMessage(int type, void* data) {
                 setCurrentMode(RobotMode::AutoPathPlanning);
             else if (mode == 'M')
                 setCurrentMode(RobotMode::Manual);
+            else if (mode == 'S')
+                setCurrentMode(RobotMode::Suspend);
             break;
         }
-        case 3: // Move robot
-            if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->moveRobot(NULL);  // FIXME : Need to modify parameter
+        case 3: // Move robot manually
+            if (currentMode()->getModeName() == RobotMode::Manual) {
+               ((ManualMode *)currentMode())->moveRobot(*(char*)(data));
+            }
             break;
         case 4: // Adjust camera Pan/Tilt
             if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->adjustCamera(NULL);     // FIXME : Need to modify parameter
+                ((ManualMode*)currentMode())->adjustCamera(*(char*)(data));
             break;
         default:
             break;

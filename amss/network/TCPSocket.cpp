@@ -98,7 +98,7 @@ void TCPSocket::CloseTcpListenPort(TTcpListenPort **TcpListenPort) {
 // AcceptTcpConnection -Accepts a TCP Connection request from a
 // Listening port
 //-----------------------------------------------------------------
-TTcpConnectedPort *
+TTcpConnectedPort*
 TCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
                                 struct sockaddr_in *cli_addr,
                                 socklen_t *clilen) {
@@ -247,15 +247,7 @@ void TCPSocket::CloseTcpConnectedPort(TTcpConnectedPort **TcpConnectedPort) {
 //-----------------------------------------------------------------
 ssize_t TCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                 unsigned char *data, size_t length) {
-  ssize_t bytes;
-
-  for (size_t i = 0; i < length; i += bytes) {
-    if ((bytes = recv(TcpConnectedPort->ConnectedFd, (char *) (data + i),
-                      length - i, 0)) == -1) {
-      return (-1);
-    }
-  }
-  return (length);
+    return recv(TcpConnectedPort->ConnectedFd, (char *)data, length, 0);
 }
 
 //-----------------------------------------------------------------

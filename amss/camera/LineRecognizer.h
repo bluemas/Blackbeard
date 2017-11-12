@@ -9,13 +9,13 @@
 #define EA_99423EA0_8F71_479e_BC46_399A5087FDC7__INCLUDED_
 
 #include <opencv2/opencv.hpp>
-using namespace cv;
+
 class LineRecognizer
 {
 
 public:
 	LineRecognizer();
 	virtual ~LineRecognizer();
-    float calculateLineOffset(Mat& orgImg, Mat& synthImg);
+    float calculateLineOffset(cv::Mat& orgImg, cv::Mat& synthImg);
 };
 #endif // !defined(EA_99423EA0_8F71_479e_BC46_399A5087FDC7__INCLUDED_)

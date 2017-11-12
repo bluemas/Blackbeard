@@ -7,11 +7,11 @@
 
 #include "CameraReader.h"
 
+using namespace cv;
+
 #define WIDTH  320
 #define HEIGHT 240
 #define FPS 30
-
-
 
 CameraReader::CameraReader() {
     mCapture =cvCreateCameraCapture(0);   // Open default Camera

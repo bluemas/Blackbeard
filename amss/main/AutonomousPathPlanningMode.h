@@ -17,8 +17,6 @@ public:
     ~AutonomousPathPlanningMode() {}
 
     void doEntryAction();
-
-private:
-
+    void handleCollisionEvent(WallCollisionEvent ev);
 };
 #endif // !defined(EA_4F2E3F85_F445_4e38_AAF9_70029F74B0D1__INCLUDED_)

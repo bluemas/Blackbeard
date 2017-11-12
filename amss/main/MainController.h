@@ -35,7 +35,7 @@ class MainController :
 
 public:
     MainController();
-    ~MainController();
+    ~MainController() {}
 
     void start();
     void setImageRecognizer(ImageRecognizer* imageRecognizer);
@@ -51,7 +51,7 @@ public:
     ModeBase* currentMode();
 
 private:
-    void initDevices();
+    void init();
     void createModeInstances();
     void runLoop();
 

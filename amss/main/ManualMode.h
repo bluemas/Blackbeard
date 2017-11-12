@@ -17,8 +17,8 @@ public:
     ManualMode(MainController* mainController);
     ~ManualMode() {}
 
-    void adjustCamera(void *data);
-    void moveRobot(void *data);
+    void adjustCamera(char direction);
+    void moveRobot(char direction);
     void wallEventHandler(EventBase *ev);
     void signRecognizerEventHandler(EventBase *ev);
 };

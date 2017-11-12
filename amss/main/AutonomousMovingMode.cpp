@@ -15,8 +15,8 @@ AutonomousMovingMode::AutonomousMovingMode(MainController* mainController) {
 
 void AutonomousMovingMode::handleCollisionEvent(WallCollisionEvent ev) {
     // TODO : define collision warning message(ethernet)
-    if (ev.isWarnCollision())
-        mMainController->networkManager()->send(/* Collision Warning Message */);
+//    if (ev.isWarnCollision())
+//        mMainController->networkManager()->send(/* Collision Warning Message */);
 }
 
 void AutonomousMovingMode::handleWallSensingEvent(WallSensingEvent ev) {

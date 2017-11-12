@@ -14,6 +14,7 @@ public class NetworkManager {
 	private BufferedOutputStream bos = null;
 	private Socket socket = null;
 
+	private NetworkWatchdog watchdog = null;
 	private RUIMain rui;
 
 	public NetworkManager(RUIMain rui) {
@@ -36,8 +37,8 @@ public class NetworkManager {
 
 			rui.appendLogMessage("Connection established.");
 			rui.setNetworkStatus(true);
-			
-			rui.startNetworkWatchdog();
+
+			startNetworkWatchdog();
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			rui.setNetworkStatus(false);
@@ -77,6 +78,40 @@ public class NetworkManager {
 			bos.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void startNetworkWatchdog() {
+		if (watchdog != null)
+			watchdog.stop();
+
+		watchdog = new NetworkWatchdog();
+		new Thread(watchdog).start();
+	}
+
+	class NetworkWatchdog implements Runnable {
+		private boolean isRunning = true;
+
+		@Override
+		public void run() {
+			while (isRunning && !rui.getShell().isDisposed()) {
+				try {
+					if (!isConnected()) {
+//						rui.appendLogMessage("Error > Network connection is lost ... ");
+						rui.notify(new Command(7, "S"));
+//						rui.notify(new Command(8, "E/Network connection is lost"));
+						connect();
+					}
+
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		public void stop() {
+			isRunning = false;
 		}
 	}
 }

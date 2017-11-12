@@ -45,6 +45,10 @@ void MazeMapper::handleWallSensingEvent(WallSensingEvent ev) {
     }
 }
 
+void MazeMapper::handleCrossRecognizedEvent(CrossRecognizedEvent ev) {
+    cout << "Cross recognized." << endl;
+}
+
 void MazeMapper::handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {
     MazeGrid grid;
     grid.setRedDotFound();

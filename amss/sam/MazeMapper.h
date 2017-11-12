@@ -12,6 +12,7 @@
 #include <atomic>
 #include "../common/Constants.h"
 #include "../common/event/WallSensingEventHandler.h"
+#include "../common/event/CrossRecognizedEventHandler.h"
 #include "../common/event/RedDotRecognizedEventHandler.h"
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
@@ -21,6 +22,7 @@ using namespace std;
 
 class MazeMapper :
         public WallSensingEventHandler,
+        public CrossRecognizedEventHandler,
         public RedDotRecognizedEventHandler,
         public SignRecognizedEventHandler,
         public SquareRecognizedEventHandler {
@@ -30,6 +32,7 @@ public:
     virtual ~MazeMapper();
 
     void handleWallSensingEvent(WallSensingEvent ev);
+    void handleCrossRecognizedEvent(CrossRecognizedEvent ev);
     void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev);
     void handleSignRecognizedEvent(SignRecognizedEvent ev);
     void handleSquareRecognizedEvent(SquareRecognizedEvent ev);

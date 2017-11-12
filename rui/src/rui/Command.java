@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 
+import rui.configure.IConstants;
 import rui.utils.Utils;
 
 public class Command {
@@ -34,11 +35,11 @@ public class Command {
 
 	public byte[] getMessageBytes() {
 		byte[] result = new byte[0];
-	
+
 		try (ByteArrayOutputStream byteos = new ByteArrayOutputStream()) {
 			boolean hasPayload = !Utils.isEmpty(payload);
 			int payloadSize = hasPayload ? payload.length() : 0;
-			
+
 			ByteBuffer bb = ByteBuffer.allocate(4);
 			bb.putInt(payloadSize);
 
@@ -48,7 +49,7 @@ public class Command {
 			if (hasPayload) {
 				byteos.write(payload.getBytes());
 			}
-			
+
 			result = byteos.toByteArray();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,24 +58,34 @@ public class Command {
 		return result;
 	}
 
-	public static List<Command> getCommand(String text) {
-		String[] strs = text.split("\n");
-		
-		List<Command> list = new LinkedList<>();
-		
-		for (String str : strs) {
-			if (Utils.isEmpty(str) || str.indexOf("type") == -1 || str.indexOf("payload") == -1) 
-				continue;
-			
-			str = str.trim();
-			
-			
-			
+	public static List<Command> getCommandList(String text) {
+		List<Command> commands = new LinkedList<>();
+
+		if (!Utils.isEmpty(text)) {
+			String[] strs = text.split("\n");
+
+			for (String str : strs) {
+				if (Utils.isEmpty(str))
+					continue;
+
+				str = str.substring(str.indexOf("{") + 1, str.lastIndexOf("}")).trim();
+
+				int idxType = str.indexOf(IConstants.TYPE);
+				int idxPayload = str.indexOf(IConstants.PAYLOAD);
+
+				if (idxType == -1 || idxPayload == -1)
+					continue;
+
+				String type = str.substring(idxType + IConstants.TYPE.length() + 1, str.indexOf(","));
+				String payload = str.substring(idxPayload + IConstants.PAYLOAD.length() + 1);
+
+				commands.add(new Command(Integer.parseInt(type), payload));
+			}
 		}
-		
-		return list;
+
+		return commands;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

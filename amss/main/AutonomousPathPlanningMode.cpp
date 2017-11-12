@@ -19,7 +19,7 @@ void AutonomousPathPlanningMode::doEntryAction() {
     // Determine next direction
     Direction nextDirection = mMainController->pathPlanner()->nextDirection();
 
-    Logging::logOutput(Logging::DEBUG, "Next direction is %s.",
+    Logging::logOutput(Logging::INFO, "Next direction is %s.",
                        nextDirection == Direction::forward ? "Forward" :
                        (nextDirection == Direction::left ? "Left" :
                         (nextDirection == Direction::right ? "Right" :
@@ -31,7 +31,7 @@ void AutonomousPathPlanningMode::doEntryAction() {
         if (nextDirection == Direction::left ||
             nextDirection == Direction::right) {
 
-            Logging::logOutput(Logging::DEBUG, "Moving to cross line");
+            Logging::logOutput(Logging::INFO, "Moving to cross line");
 
             mMainController->behaviorExecutor()->gotoCross();
         }
@@ -46,7 +46,7 @@ void AutonomousPathPlanningMode::doEntryAction() {
         // In case of fail to determine next direction, transition to suspend mode
         mMainController->setCurrentMode(RobotMode::Suspend);
 
-        Logging::logOutput(Logging::DEBUG, "Failed to determine next direction.");
+        Logging::logOutput(Logging::ERROR, "Failed to determine next direction.");
     }
 }
 

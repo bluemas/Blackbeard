@@ -74,9 +74,10 @@ void NetworkManager::startTCPServer() {
 //            }
 
             // FIXME : Remove test
-            char temp[2] { 0 };
-            snprintf(temp, 2, "%c", msg[0]);
-            mListener->handleMessage(atoi(temp), &msg[5]);
+//            char temp[2] { 0 };
+//            snprintf(temp, 2, "%c", msg[0]);
+//            mListener->handleMessage(atoi(temp), &msg[5]);
+            mListener->handleMessage(int(msg[0]), &msg[5]);
 
 //            mListener->handleMessage((int)msg[0], &msg[5]);
         }

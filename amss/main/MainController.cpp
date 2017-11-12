@@ -53,15 +53,15 @@ void MainController::runLoop() {
 void MainController::initializeRobot() {
     // Initialize Camera Pan/Tilt
     behaviorExecutor()->setCamDefaultTrackLine();
-    Logging::logOutput(Logging::DEBUG, "Camera position initialized");
+    Logging::logOutput(Logging::INFO, "Camera position initialized");
 
     // Initialize maze map
     pathPlanner()->init();
-    Logging::logOutput(Logging::DEBUG, "Maze Map initialized");
+    Logging::logOutput(Logging::INFO, "Maze Map initialized");
 
     // Set robot mode as manual
     setCurrentMode(RobotMode::Manual);
-    Logging::logOutput(Logging::DEBUG, "Robot mode changed to Manual Mode");
+    Logging::logOutput(Logging::INFO, "Robot mode changed to Manual Mode");
 }
 
 void MainController::moveRobot(const void *data) {

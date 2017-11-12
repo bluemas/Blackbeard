@@ -82,7 +82,7 @@ int main() {
 
     // 5. Make a relationship between components
     wallRecognizer->setMazeMapper(mazeMapper);
-    //mainController->setPathPlanner(pathPlanner);
+    mainController->setPathPlanner(pathPlanner);
     //mainController->setImageRecognizer(imageRecognizer);
 
     imageRecognizer->addRedDotRecogEventHandler(mazeMapper);

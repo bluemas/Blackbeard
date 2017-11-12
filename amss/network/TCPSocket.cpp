@@ -147,7 +147,6 @@ TCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
 TTcpConnectedPort *TCPSocket::OpenTcpConnection(const char *remotehostname,
                                                  const char *remoteportno) {
   TTcpConnectedPort *TcpConnectedPort;
-  struct sockaddr_in myaddr;
   int s;
   struct addrinfo hints;
   struct addrinfo *result = NULL;
@@ -258,7 +257,7 @@ ssize_t TCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
 //-----------------------------------------------------------------
 ssize_t TCPSocket::WriteDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                  unsigned char *data, size_t length) {
-  ssize_t total_bytes_written = 0;
+  size_t total_bytes_written = 0;
   ssize_t bytes_written;
   while (total_bytes_written != length) {
     bytes_written = send(TcpConnectedPort->ConnectedFd,

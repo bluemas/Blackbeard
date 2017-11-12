@@ -562,6 +562,7 @@ CMakeFiles/amss.dir/main/SuspendMode.cpp.o
  /media/sf_Share/Blackbeard/amss/servoencoder/PID.h
  /media/sf_Share/Blackbeard/amss/servoencoder/ServoEncoder.h
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/Logging.h
  /media/sf_Share/Blackbeard/amss/network/NetMessageEventAdapter.h

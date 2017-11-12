@@ -54,7 +54,7 @@ private:
     void createModeInstances();
     void initializeRobot();
     void runLoop();
-
+    void sendSensorData();
     void handleWallSensingEvent(const WallSensingEvent ev);
     void handleWallCollisionEvent(const WallCollisionEvent ev);
     void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
@@ -71,5 +71,7 @@ private:
     NetworkManager* mNetworkManager;
     SignRecognizer* mSignRecognizer;
     ImageRecognizer* mImageRecognizer;
+
+
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

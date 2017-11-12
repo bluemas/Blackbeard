@@ -98,7 +98,7 @@ int main() {
     #ifndef UBUNTU
     imageRecognizer->start(); // FIXME : SIGSEGV
     #endif
-    
+
     mainController->start();
 
     // 10. Wait for stopping AMSS

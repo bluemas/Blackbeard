@@ -5,6 +5,7 @@
 #include "NetworkManager.h"
 #include "../common/Logging.h"
 #include "../common/Constants.h"
+#include "../camera/ImageData.h"
 #include <thread>
 #include <iostream>
 #include <cstring>
@@ -12,11 +13,12 @@
 #define TCP_RECV_PORT 3001
 #define SEND_BUFFER_SIZE 1024
 #define RECV_BUFFER_SIZE 1024
-#define RUI_ADDRESS "192.168.253.1"
 #define RUI_PORT "3000"
 
 NetworkManager::NetworkManager() :
     mConnected(false) {
+    mListenPort = NULL;
+    mClientPort = NULL;
 }
 
 void NetworkManager::addListener(NetMessageEventAdapter* listener) {
@@ -24,8 +26,6 @@ void NetworkManager::addListener(NetMessageEventAdapter* listener) {
 }
 
 void NetworkManager::start() {
-    init();
-
     // Start TCP Server
     mSvrThread = new std::thread(&NetworkManager::startTCPServer, this);
 
@@ -33,10 +33,10 @@ void NetworkManager::start() {
     mImageSender = new std::thread(&NetworkManager::sendCameraImage, this);
 }
 
-void NetworkManager::init() {
-    //TODO : Not implemented
-    mRUIUDPDest = mCameraImageSendSocket.GetUdpDest(RUI_ADDRESS, RUI_PORT);
+void NetworkManager::initUDPPort(char* address) {
+    mRUIUDPDest = mCameraImageSendSocket.GetUdpDest(address, RUI_PORT);
     mRUIUDPPort = mCameraImageSendSocket.OpenUdpPort(3000);
+    mIPReceived = true;
 }
 
 void NetworkManager::startTCPServer() {
@@ -58,15 +58,16 @@ void NetworkManager::startTCPServer() {
 //                continue;
 //            }
 
-            // FIXME : Remove test code
-//            char temp[2] { 0 };
-//            snprintf(temp, 2, "%c", msg[0]);
-//            mListener->handleMessage(atoi(temp), &msg[5]);
-            mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
+            if (NetworkMsg(msg[0]) == NetworkMsg::RUIIpAddress) {
+                initUDPPort((char*)&msg[5]);
+            }
+            else
+                mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
         }
         else {
             // Notify network connection
             mConnected = false;
+            mIPReceived = false;
             mListener->handleMessage(NetworkMsg::NetworkDisconnection, NULL);
 
             // Try to reestablish connection
@@ -125,23 +126,23 @@ void NetworkManager::send(NetworkMsg type, int length, void* data) {
             break;
     }
 
-//    std::cout << "[(" << (int)type << ") " << msgLen << ": " << (char*)&msg[5] << "]" << std::endl;
     mCommandRcvSocket.WriteDataTcp(mClientPort,
                                    reinterpret_cast<unsigned char *>(msg), msgLen);
 }
 
 void NetworkManager::sendCameraImage() {
-    while (true) {
-        if (mConnected) {
-            // TODO : Retrieve camera image from image repo
-
-            // TODO : Send JPEG Image to RUI
-            //        cv::imencode(".jpg", Image, sendbuff, param);
-            //        return(SendUDPMsg(UdpLocalPort,dest,sendbuff.data(), sendbuff.size()));
-
-            //        mCameraImageSendSocket.SendUDPMsg(mRUIUDPPort, mRUIUDPDest, ,);
-
-            // REVIEW : Determine the period of camara image transmission
+    bool bRun = true;
+    while (bRun) {
+        if (mConnected && mIPReceived) {
+            // Retrieve camera image from image repo and send image to RUI
+            ImageData* imageData = ImageData::getInstance();
+            int imgSize = imageData->getImageSize();
+            if (imgSize > 0) {
+                unsigned char *image = new unsigned char[imgSize];
+                imageData->readData(image, imgSize);
+                mCameraImageSendSocket.SendUDPMsg(mRUIUDPPort, mRUIUDPDest,
+                                                  image, imgSize);
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

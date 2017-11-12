@@ -449,6 +449,8 @@ NetworkManager.h
 /media/sf_Share/Blackbeard/amss/common/Logging.h
 ../common/Constants.h
 /media/sf_Share/Blackbeard/amss/common/Constants.h
+../camera/ImageData.h
+/media/sf_Share/Blackbeard/amss/camera/ImageData.h
 thread
 -
 iostream

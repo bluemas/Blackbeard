@@ -162,7 +162,8 @@ public class RUIMain {
 		}
 
 		public void reset() {
-			this.time = 0;
+			isPaused = false;
+			time = 0;
 		}
 		
 		public void toggle() {
@@ -741,7 +742,7 @@ public class RUIMain {
 		compositeSimulation.setLayout(new GridLayout(2, false));
 
 		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
-		txtCommandMessages.setText("{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload=TBD}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Waring Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
+		txtCommandMessages.setText("{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload=TBD}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Warning Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
 		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		formToolkit.adapt(txtCommandMessages, true, true);
 
@@ -840,8 +841,8 @@ public class RUIMain {
 	}
 
 	private void setMissionCompleted() {
-		Utils.showMessageDialog(shell, IConstants.MISSION_COMPLETED, SWT.ICON_INFORMATION);
 		timer.pause();
+		Utils.showMessageDialog(shell, IConstants.MISSION_COMPLETED, SWT.ICON_INFORMATION);
 	}
 
 	private void changeStatusMessage(String payload) {

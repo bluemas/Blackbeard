@@ -20,7 +20,7 @@ void ManualMode::moveRobot(char direction) {
         Logging::logOutput(Logging::DEBUG, "Stop robot");
     }
     else {
-        Direction newDirection;
+        Direction newDirection = Direction::forward;
         switch (direction) {
             case 'F':
                 newDirection = Direction::forward;

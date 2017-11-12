@@ -11,32 +11,38 @@ int main()
 	be.setCamDefault();
 
 	//be.manualMove(Direction::forward);
-	//usleep(1700000);
+	//usleep(700000);
 	//be.stop();
 	//sleep(1);
 	//be.manualMove(Direction::left);
-	//be.searchSign(Direction::left);
-	//sleep(10);
-	//be.searchSign(Direction::right);
-	//sleep(10);
-	//be.searchSign(Direction::forward);
-	//sleep(10);
 
+	be.move(Direction::left);
+	sleep(1);
+	be.move(Direction::right);
+	sleep(1);
+	be.move(Direction::backward);
+/*
+	be.searchSign(Direction::left);
+	sleep(20);
+	be.searchSign(Direction::forward);
+	sleep(20);
+	be.searchSign(Direction::right);
+	sleep(20);
 
 	be.panAndTilt(CamDirection::panleft);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::panright);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::tiltup);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
 	
 	be.panAndTilt(CamDirection::tiltdown);
-	sleep(2);
+	sleep(5);
 	be.stopPanAndTilt();
-
+*/
 }

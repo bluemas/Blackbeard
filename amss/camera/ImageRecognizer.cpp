@@ -12,10 +12,13 @@
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
 
+static  int gInitJpgValues[2] = { cv::IMWRITE_JPEG_QUALITY,80 }; //default(95) 0-100
+static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
 
 ImageRecognizer::ImageRecognizer()
         : mSignRecogEnable(false) {
     mCamera = new CameraReader();
+    mImgData = ImageData::getInstance();
 }
 
 ImageRecognizer::~ImageRecognizer(){
@@ -26,6 +29,7 @@ ImageRecognizer::~ImageRecognizer(){
 }
 
 void ImageRecognizer::start() {
+    cout << "ImageRecognizer thread started" << endl;
     mIsRun = true;
 
     // Start thread
@@ -116,10 +120,15 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
 void ImageRecognizer::run() {
     Mat orgImage;
     Mat synthImage;
-
+    std::vector<uchar> imgWriteBuf;
+    if(!IsPi3) {
+        printf("create synth image\n");
+        namedWindow("synthImage", CV_WINDOW_AUTOSIZE);
+    }
     while (mIsRun) {
         // read Camera image
         mCamera->readCamera(orgImage);
+
         orgImage.copyTo(synthImage);
 
         if (mSignRecogEnable) {
@@ -127,9 +136,20 @@ void ImageRecognizer::run() {
         } else {
             RecognizeLineDotSquareAndNotify(orgImage, synthImage);
         }
+
+        if(!IsPi3) {
+            printf("show synthImage\n");
+            imshow("synthImage",synthImage);
+        }
+
         //encode synthesized Image as Jpeg
         //store encoded Image
+
+        imencode(".jpg", synthImage, imgWriteBuf, gJpgParam);
+        mImgData->writeData(imgWriteBuf.data(), imgWriteBuf.size());
+        waitKey(1);
     }
+    cout << "ImageRecognizer run is finished" << endl;
 }
 
 

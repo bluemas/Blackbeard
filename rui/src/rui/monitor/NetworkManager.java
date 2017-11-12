@@ -1,9 +1,7 @@
 package rui.monitor;
 
 import java.io.BufferedOutputStream;
-//import java.io.BufferedWriter;
 import java.io.IOException;
-//import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import rui.Command;
@@ -38,6 +36,8 @@ public class NetworkManager {
 
 			rui.appendLogMessage("Connection established.");
 			rui.setNetworkStatus(true);
+			
+			rui.startNetworkWatchdog();
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			rui.setNetworkStatus(false);
@@ -65,7 +65,7 @@ public class NetworkManager {
 	}
 
 	public boolean isConnected() {
-		return socket != null && socket.isConnected();
+		return socket != null && socket.isConnected() && !socket.isClosed();
 	}
 
 	public void sendCommand(Command command) {

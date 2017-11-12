@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 
 import rui.Command;
 import rui.RUIMain;
+import rui.utils.Utils;
 
 public class MonitoringReceiver implements Runnable {
 	private BufferedInputStream bis;
@@ -36,7 +37,7 @@ public class MonitoringReceiver implements Runnable {
 				rui.notify(new Command(type, payload));
 			}
 		} catch (Exception e) {
-			rui.setNetworkStatus(false);
+			rui.appendLogMessage(Utils.getStackTrace(e));
 		} finally {
 			if (bis != null)
 				try {

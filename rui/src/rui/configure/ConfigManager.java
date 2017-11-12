@@ -22,8 +22,6 @@ public class ConfigManager {
 
 	private ConfigManager() {
 		try {
-			System.out.println(configFile.getAbsolutePath());
-
 			this.load();
 		} catch (IOException e) {
 			e.printStackTrace();

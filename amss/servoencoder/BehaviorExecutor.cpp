@@ -51,34 +51,51 @@ void BehaviorExecutor::stop(void)
 {
 	mSpeed = 0;
 	mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
+	
+	pthread_cancel(mThreadMove);
 }
+
+void* BehaviorExecutor::runManualMove(void* ptr)
+{
+	((BehaviorExecutor*)ptr)->manualMoveDir();
+	return ptr;
+}
+
+void BehaviorExecutor::manualMoveDir(void)
+{
+	mSpeed = MANUALSPEED;
+	while(1)
+	{
+		switch(mMoveDir){
+		case Direction::forward:
+			printf("Forward\n");
+			mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
+			break;
+		case Direction::left:
+			printf("Left turn\n");
+			mServoEncoder->setWheelSpeed(-mSpeed, mSpeed);
+			break;
+		case Direction::right:
+			printf("Right turn\n");
+			mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
+			break;
+		case Direction::backward:
+			// nothing
+			break;
+		default:
+			break;
+		}
+		sleep(1);
+	}
+
+}
+
 
 void BehaviorExecutor::manualMove(Direction dir)
 {
-	mSpeed = MANUALSPEED;
-	switch(dir){
-	case Direction::forward:
-		printf("Forward\n");
-		mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
-		break;
-	case Direction::left:
-		printf("Left turn\n");
-		mServoEncoder->setWheelSpeed(-mSpeed, mSpeed);
-		//usleep(800000);
-		//mServoEncoder->setWheelSpeed(0, 0);
-		break;
-	case Direction::right:
-		printf("Right turn\n");
-		mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
-		//usleep(800000);
-		//mServoEncoder->setWheelSpeed(0, 0);
-		break;
-	case Direction::backward:
-		// nothing
-		break;
-	default:
-		break;
-	}
+	mMoveDir = dir;
+
+	pthread_create(&mThreadMove, NULL, &BehaviorExecutor::runManualMove, (void*)this);
 }
 
 void BehaviorExecutor::gotoCross(void)

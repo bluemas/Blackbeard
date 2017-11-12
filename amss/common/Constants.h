@@ -66,6 +66,7 @@ enum class NetworkMsg {
     ChangeMode = 2,
     MoveRobot = 3,
     AdjustCameraPanTilt = 4,
+    RUIIpAddress = 11,
 
     // from AMSS
     SensorData = 5,

@@ -17,6 +17,7 @@ public:
 
     void writeData(unsigned char *buf, size_t length);
     int readData(unsigned char *buf, size_t bufSize); //return value is image size
+    int getImageSize();
 
 private:
     unsigned char mBuf[BUFSIZE];

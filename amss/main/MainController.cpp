@@ -28,8 +28,6 @@ void MainController::init() {
     createModeInstances();
 
     mCurrentMode = mModeList[RobotMode::Manual];
-
-//    initializeRobot();
 }
 
 void MainController::createModeInstances()  {
@@ -41,24 +39,28 @@ void MainController::createModeInstances()  {
 }
 
 void MainController::runLoop() {
-    while (true) {
+    bool bRun = true;
+    while (bRun) {
         // Send sensor data to RUI
-        SensorData* sensorData = SensorData::getInstance();
-
-        int leftDistance = sensorData->getData(SensorType::left);
-        int frontDistance = sensorData->getData(SensorType::front);
-        int rightDistance = sensorData->getData(SensorType::right);
-
-        char distances[100] = { 0 };
-        snprintf(distances, 100, "%d/%d/%d",
-                 leftDistance, frontDistance, rightDistance);
-
         if (mConnected) {
-            networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
+            sendSensorData();
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+}
+
+void MainController::sendSensorData() {
+    SensorData* sensorData = SensorData::getInstance();
+
+    int leftDistance = sensorData->getData(SensorType::left);
+    int frontDistance = sensorData->getData(SensorType::front);
+    int rightDistance = sensorData->getData(SensorType::right);
+
+    char distances[100] = { 0 };
+    snprintf(distances, 100, "%d/%d/%d",
+             leftDistance, frontDistance, rightDistance);
+    networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
 }
 
 void MainController::initializeRobot() {
@@ -72,6 +74,11 @@ void MainController::initializeRobot() {
 
     // Set robot mode as manual
     setCurrentMode(RobotMode::Manual);
+
+    // Send new robot mode to RUI
+    char robotMode = mCurrentMode->getModeNameChar();
+    networkManager()->send(NetworkMsg::RobotMode, sizeof(char), &robotMode);
+
     Logging::logOutput(Logging::INFO, "Robot mode changed to Manual Mode");
 
     // Send robot initialization status to RUI

@@ -21,10 +21,11 @@ public:
     void sendCameraImage();
 
 private:
-    void init();
+    void initUDPPort(char* address);
     void startTCPServer();
 
     bool mConnected;
+    bool mIPReceived;
     UDPSocket mCameraImageSendSocket;
     TCPSocket mCommandRcvSocket;
     NetMessageEventAdapter* mListener;

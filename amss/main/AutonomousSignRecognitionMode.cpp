@@ -21,17 +21,22 @@ void AutonomousSignRecognitionMode::doEntryAction() {
     mMainController->imageRecognizer()->setSignRecognizeMode(true);
 
     // Search sign on left wall
-    if (mLeftWallDetected)
+    if (mLeftWallDetected) {
+//        mMainController->imageRecognizer()->setCameraDirection(Direction::left)
         mMainController->behaviorExecutor()->searchSign(Direction::left);
+    }
 
     // Search sign on front wall
     if (!mSignFound && mFrontWallDetected) {
+//        mMainController->imageRecognizer()->setCameraDirection(Direction::forward);
         mMainController->behaviorExecutor()->searchSign(Direction::forward);
     }
 
     // Search sign on right wall
-    if (!mSignFound && mRightWallDetected)
+    if (!mSignFound && mRightWallDetected) {
+//        mMainController->imageRecognizer()->setCameraDirection(Direction::right);
         mMainController->behaviorExecutor()->searchSign(Direction::right);
+    }
 
     // If sign is not found, transition to suspend mode
     if (!mSignFound)

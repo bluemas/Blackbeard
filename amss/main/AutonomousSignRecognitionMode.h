@@ -16,8 +16,8 @@ public:
     ~AutonomousSignRecognitionMode() {}
     void doEntryAction();
 
-    void handleSignRecognizedEvent(const SignRecognizedEvent ev);
-    void handleWallSensingEvent(const WallSensingEvent ev);
+    void handleSignRecognizedEvent(SignRecognizedEvent ev);
+    void handleWallSensingEvent(WallSensingEvent ev);
 private:
     bool mSignFound;
     bool mLeftWallDetected;

@@ -6,19 +6,15 @@
 ///////////////////////////////////////////////////////////
 
 #include "MainController.h"
-#include "ManualMode.h"
-#include "AutonomousPathPlanningMode.h"
 #include "AutonomousMovingMode.h"
 #include "AutonomousSignRecognitionMode.h"
 #include "SuspendMode.h"
-#include "../camera/ImageRecognizer.h"
 #include "../common/Logging.h"
-#include <thread>
-
-// TODO : Implement function sending robot status
+#include "../sensorreadloop/SensorData.h"
 
 MainController::MainController() :
-    mCurrentMode(NULL) {
+    mCurrentMode(NULL),
+    mConnected(false) {
 }
 
 void MainController::start() {
@@ -46,6 +42,21 @@ void MainController::createModeInstances()  {
 
 void MainController::runLoop() {
     while (true) {
+        // Send sensor data to RUI
+        SensorData* sensorData = SensorData::getInstance();
+
+        int leftDistance = sensorData->getData(SensorType::left);
+        int frontDistance = sensorData->getData(SensorType::front);
+        int rightDistance = sensorData->getData(SensorType::right);
+
+        char distances[100] = { 0 };
+        snprintf(distances, 100, "%d/%d/%d",
+                 leftDistance, frontDistance, rightDistance);
+
+        if (mConnected) {
+            networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
+        }
+
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
@@ -62,13 +73,15 @@ void MainController::initializeRobot() {
     // Set robot mode as manual
     setCurrentMode(RobotMode::Manual);
     Logging::logOutput(Logging::INFO, "Robot mode changed to Manual Mode");
-}
 
-void MainController::moveRobot(const void *data) {
-
+    // Send robot initialization status to RUI
+    networkManager()->send(NetworkMsg::RobotInitialized, 0, NULL);
 }
 
 void MainController::setCurrentMode(RobotMode mode) {
+    if (mode == mCurrentMode->getModeName())
+        return;
+
     mCurrentMode->doExitAction();
 
     char msg[255] = { 0 };
@@ -85,7 +98,7 @@ void MainController::setCurrentMode(RobotMode mode) {
 
     // Send new robot mode to RUI
     char robotMode = mCurrentMode->getModeNameChar();
-    networkManager()->send(7, sizeof(char), &robotMode);
+    networkManager()->send(NetworkMsg::RobotMode, sizeof(char), &robotMode);
 
     mCurrentMode->doEntryAction();
 }
@@ -146,12 +159,12 @@ void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev)
     currentMode()->handleSquareRecognizedEvent(ev);
 }
 
-void MainController::handleMessage(int type, void* data) {
+void MainController::handleMessage(NetworkMsg type, void* data) {
     switch (type) {
-        case 1: // Initialize robot
+        case NetworkMsg::Initialize: // Initialize robot
             initializeRobot();
             break;
-        case 2: // Mode Selection
+        case NetworkMsg::ChangeMode: // Mode Selection
         {
             auto mode = *(char*)data;
             if (mode == 'A')
@@ -162,14 +175,20 @@ void MainController::handleMessage(int type, void* data) {
                 setCurrentMode(RobotMode::Suspend);
             break;
         }
-        case 3: // Move robot manually
+        case NetworkMsg::MoveRobot: // Move robot manually
             if (currentMode()->getModeName() == RobotMode::Manual) {
                ((ManualMode *)currentMode())->moveRobot(*(char*)(data));
             }
             break;
-        case 4: // Adjust camera Pan/Tilt
+        case NetworkMsg::AdjustCameraPanTilt: // Adjust camera Pan/Tilt
             if (currentMode()->getModeName() == RobotMode::Manual)
                 ((ManualMode*)currentMode())->adjustCamera(*(char*)(data));
+            break;
+        case NetworkMsg::NetworkConnection: // Network connection
+            mConnected = true;
+            break;
+        case NetworkMsg::NetworkDisconnection: // Network disconnection
+            mConnected = false;
             break;
         default:
             break;

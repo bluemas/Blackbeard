@@ -4,6 +4,7 @@
 
 #include "NetworkManager.h"
 #include "../common/Logging.h"
+#include "../common/Constants.h"
 #include <thread>
 #include <iostream>
 #include <cstring>
@@ -11,7 +12,7 @@
 #define TCP_RECV_PORT 3001
 #define SEND_BUFFER_SIZE 1024
 #define RECV_BUFFER_SIZE 1024
-#define RUI_ADDRESS "192.168.0.100"
+#define RUI_ADDRESS "192.168.253.1"
 #define RUI_PORT "3000"
 
 NetworkManager::NetworkManager() :
@@ -39,23 +40,7 @@ void NetworkManager::init() {
 }
 
 void NetworkManager::startTCPServer() {
-    // Listen TCP Port
-    mListenPort = mCommandRcvSocket.OpenTcpListenPort(TCP_RECV_PORT);
-
-    if (mListenPort == NULL)
-        Logging::logOutput(Logging::ERROR, "TCP Socket Listen Failed.");
-
-    // Accept TCP Port
-    struct sockaddr_in client_addr;
-    socklen_t len = sizeof(client_addr);
-
-    mClientPort = mCommandRcvSocket.AcceptTcpConnection(
-        mListenPort, &client_addr, &len);
-
-    if (mClientPort == NULL)
-        Logging::logOutput(Logging::ERROR, "TCP Socket Accept Failed.");
-    else
-        mConnected = true;
+    establishTcpConnection();
 
     // Read TCP Data
     unsigned char msg[RECV_BUFFER_SIZE] = { 0 };
@@ -73,38 +58,74 @@ void NetworkManager::startTCPServer() {
 //                continue;
 //            }
 
-            // FIXME : Remove test
+            // FIXME : Remove test code
 //            char temp[2] { 0 };
 //            snprintf(temp, 2, "%c", msg[0]);
 //            mListener->handleMessage(atoi(temp), &msg[5]);
-            mListener->handleMessage(int(msg[0]), &msg[5]);
-
-//            mListener->handleMessage((int)msg[0], &msg[5]);
+            mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
         }
-        else if (recvLen == -1) {
+        else {
             // Notify network connection
-            mListener->handleDisconnectionEvent();
             mConnected = false;
+            mListener->handleMessage(NetworkMsg::NetworkDisconnection, NULL);
+
+            // Try to reestablish connection
+            establishTcpConnection();
+            Logging::logOutput(Logging::ERROR, "Trying to reestablish network.");
         }
     }
 }
 
-void NetworkManager::send(int type, int length, void* data) {
+void NetworkManager::establishTcpConnection() {// Listen TCP Port
+    if (mListenPort != NULL)
+        mCommandRcvSocket.CloseTcpListenPort(&mListenPort);
+
+    mListenPort = mCommandRcvSocket.OpenTcpListenPort(TCP_RECV_PORT);
+
+    if (mListenPort == NULL)
+        Logging::logOutput(Logging::ERROR, "TCP Socket Listen Failed.");
+
+    // Accept TCP Port
+    struct sockaddr_in client_addr;
+    socklen_t len = sizeof(client_addr);
+
+    if (mClientPort != NULL)
+        mCommandRcvSocket.CloseTcpConnectedPort(&mClientPort);
+
+    mClientPort = mCommandRcvSocket.AcceptTcpConnection(
+            mListenPort, &client_addr, &len);
+
+    if (mClientPort == NULL)
+        Logging::logOutput(Logging::ERROR, "TCP Socket Accept Failed.");
+    else
+        mConnected = true;
+
+    // Notify network connection
+    mListener->handleMessage(NetworkMsg::NetworkConnection, NULL);
+
+    Logging::logOutput(Logging::INFO, "TCP Connection is established.");
+}
+
+void NetworkManager::send(NetworkMsg type, int length, void* data) {
     char msg[SEND_BUFFER_SIZE] = { 0 };
     int msgLen = sizeof(char) + sizeof(int) + length;
     switch (type) {
-        case 5:
-        case 7:
-        case 8:
+        case NetworkMsg::SensorData:
+        case NetworkMsg::RobotMode:
+        case NetworkMsg::RobotStatusMessage:
+        case NetworkMsg::MazeSovlingCompleted:
+        case NetworkMsg::RobotInitialized:
             msg[0] = (char)type;
             memcpy(&msg[1], &length, sizeof(int));
             memcpy(&msg[5], data, length);
             break;
-        case 6:
+        case NetworkMsg::MazeMap:
             // TODO : How does Maze Map be sent?
 //            sprintf(msg, "%c%d%s", type, length, (char*)data);
             break;
     }
+
+//    std::cout << "[(" << (int)type << ") " << msgLen << ": " << (char*)&msg[5] << "]" << std::endl;
     mCommandRcvSocket.WriteDataTcp(mClientPort,
                                    reinterpret_cast<unsigned char *>(msg), msgLen);
 }

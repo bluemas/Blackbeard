@@ -44,6 +44,7 @@ public class MazeRepository {
 				cell.setSigns(new String[] { "B", "GO", "T", "STOP" });
 				cell.setVisited(true);
 				cell.setHasRedDot(true);
+				cell.setCurrentPosition(true);
 			}
 		}
 
@@ -51,6 +52,7 @@ public class MazeRepository {
 
 	public void updateMaze(String payload) {
 		// first, check whether it is within the bound of maze
+		generateMaze();
 	}
 
 	boolean withinBounds(int r, int c) {

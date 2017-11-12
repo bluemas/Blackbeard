@@ -44,14 +44,20 @@ void AutonomousPathPlanningMode::doEntryAction() {
     }
     else {
         // In case of fail to determine next direction, transition to suspend mode
-        mMainController->setCurrentMode(RobotMode::Suspend);
+        mMainController->networkManager()->send(NetworkMsg::MazeSovlingCompleted,
+                                                0, NULL);
+        mMainController->setCurrentMode(RobotMode::Manual);
 
-        Logging::logOutput(Logging::ERROR, "Failed to determine next direction.");
+        Logging::logOutput(Logging::ERROR, "Finished solving a maze.");
     }
 }
 
 void AutonomousPathPlanningMode::handleCollisionEvent(WallCollisionEvent ev) {
-    // TODO : Not implemented
+    if (ev.isWarnCollision()) {
+        char warning[256] = "E/Robot is about to hit the wall.";
+        mMainController->networkManager()->send(NetworkMsg::RobotStatusMessage,
+                                                strlen(warning), warning);
+    }
 }
 
 

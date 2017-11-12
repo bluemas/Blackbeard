@@ -16,9 +16,10 @@ public:
     ~NetworkManager() {}
 
     void start();
-    void send(int type, int length, void* data);
-    void sendCameraImage();
     void addListener(NetMessageEventAdapter* listener);
+    void send(NetworkMsg type, int length, void* data);
+    void sendCameraImage();
+
 private:
     void init();
     void startTCPServer();
@@ -33,5 +34,7 @@ private:
     TUdpLocalPort* mRUIUDPPort;
     std::thread* mSvrThread;
     std::thread* mImageSender;
+
+    void establishTcpConnection();
 };
 #endif //BLACKBEARD_CNETWORKMANAGER_H

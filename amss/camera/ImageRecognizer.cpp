@@ -47,12 +47,13 @@ void ImageRecognizer::stop() {
 
 void ImageRecognizer::addLineRecogEventHandler(LineRecognizedEventHandler *eventHandler) {
     mLineRecogHandlers.push_back(eventHandler);
-
 }
 
+void ImageRecognizer::addCrossRecogEventHandler(CrossRecognizedEventHandler *eventHandler) {
+    mCrossRecogHandlers.push_back(eventHandler);
+}
 void ImageRecognizer::addRedDotRecogEventHandler(RedDotRecognizedEventHandler *eventHandler) {
     mRedDotRecogHandlers.push_back(eventHandler);
-
 }
 
 void ImageRecognizer::addSignRecogEventHandler(SignRecognizedEventHandler *eventHandler) {
@@ -85,10 +86,11 @@ void ImageRecognizer::RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg) {
 void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg) {
     bool foundSquare = false;
     bool foundDot = false;
+    bool foundCross = false;
     float offset = 0.0;
 
     //recognize line
-    offset = mLineRecog.calculateLineOffset(orgImg,synthImg);
+    offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
     //recognize reddot
     foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
     //recognize end square;
@@ -98,6 +100,13 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     LineRecognizedEvent lineEvent(offset);
     for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
         mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+    }
+
+    if (foundCross){
+        CrossRecognizedEvent crossEvent;
+        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+        }                    
     }
 
     if (foundDot){
@@ -147,7 +156,7 @@ void ImageRecognizer::run() {
 
         imencode(".jpg", synthImage, imgWriteBuf, gJpgParam);
         mImgData->writeData(imgWriteBuf.data(), imgWriteBuf.size());
-        waitKey(1);
+        waitKey(10);
     }
     cout << "ImageRecognizer run is finished" << endl;
 }

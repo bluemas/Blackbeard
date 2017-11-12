@@ -11,6 +11,7 @@
 
 #include "CameraReader.h"
 #include "../common/event/LineRecognizedEventHandler.h"
+#include "../common/event/CrossRecognizedEventHandler.h"
 #include "../common/event/RedDotRecognizedEventHandler.h"
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
@@ -35,6 +36,7 @@ public:
     ImageRecognizer();
     virtual ~ImageRecognizer();
     void addLineRecogEventHandler(LineRecognizedEventHandler *eventHandler);
+    void addCrossRecogEventHandler(CrossRecognizedEventHandler *eventHandler);
     void addRedDotRecogEventHandler(RedDotRecognizedEventHandler *eventHandler);
     void addSignRecogEventHandler(SignRecognizedEventHandler *eventHandler);
     void addSquareRecogEventHandler(SquareRecognizedEventHandler *eventHandler);
@@ -55,6 +57,7 @@ private:
     std::thread mThread;
 
     vector<LineRecognizedEventHandler*> mLineRecogHandlers;
+    vector<CrossRecognizedEventHandler*> mCrossRecogHandlers;
     vector<RedDotRecognizedEventHandler*> mRedDotRecogHandlers;
     vector<SignRecognizedEventHandler*> mSignRecogHandlers;
     vector<SquareRecognizedEventHandler*> mSquareRecogHandlers;

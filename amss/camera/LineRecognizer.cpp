@@ -25,7 +25,7 @@ LineRecognizer::~LineRecognizer(){
 
 }
 
-float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg) {
+float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &crossDetect) {
    char text[1024];
    float offsetfromcenter;
    cv::Scalar mean,stddev;
@@ -53,11 +53,12 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg) {
   double minMaxCx = -DBL_MAX;
   Rect selected_edge(0,0,0,0); //Edge beging followed
   Rect nav_point(0,0,0,0);
+  float areaContour = 0.0;
   for(unsigned int i = 0; i<contours.size();i++)  //Find the biggest contour 
-     {
-       Moments mu = moments(contours[i]);
+    {
+        Moments mu = moments(contours[i]);
        if (mu.m00 > 100.0) // area threadhold
-         {
+        {
            Rect r = boundingRect(contours[i]);
            Rect show(r.x+RoiRec.x,r.y+RoiRec.y,r.width,r.height);
            rectangle(synthImg, show, TRACK_COLOR,3); // Draw contours found
@@ -76,9 +77,14 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg) {
                nav_point=show;
                nav_point.x=10+minMaxCx-10;
                nav_point.width=20;
+               areaContour = mu.m00;
              }
          }
      }
+    if (areaContour > 1800.0) 
+        crossDetect = true;
+    else
+        crossDetect = false;
 
   if (fabs(minMaxCx)==DBL_MAX) minMaxCx = roi.cols/2;
 

@@ -1,9 +1,10 @@
-CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread -lwiringPi -lvl53l0x -lraspicamcv -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_video -I/usr/local/include -I/home/pi/git/robidouille/raspicam_cv
+CXXFLAGS=-O2 -g -Wall -std=gnu++11 -lpthread -lwiringPi -lvl53l0x -lraspicamcv_320_240 -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_video -I/usr/local/include -I/home/pi/git/robidouille/raspicam_cv
 
 OBJS = \
 	common/RecognizerBase.o common/event/EventHandlerAdapter.o common/event/EventBase.o \
 	common/event/WallCollisionEvent.o common/event/WallSensingEvent.o \
 	common/event/LineRecognizedEvent.o common/event/RedDotRecognizedEvent.o \
+	common/event/CrossRecognizedEvent.o common/event/CrossRecognizedEventHandler.o \
 	common/event/SignRecognizedEvent.o common/event/SquareRecognizedEvent.o \
 	common/event/WallCollisionEventHandler.o common/event/WallSensingEventHandler.o \
 	common/event/LineRecognizedEventHandler.o common/event/RedDotRecognizedEventHandler.o \

@@ -29,6 +29,7 @@ public class MonitoringReceiver implements Runnable {
 				bis.read(payloadSizeByte);
 
 				int payloadSize = Utils.getBigEndian(payloadSizeByte);
+				// int payloadSize = ByteBuffer.wrap(payloadSizeByte).getInt();
 
 				byte[] payloadByte = new byte[payloadSize];
 				bis.read(payloadByte);

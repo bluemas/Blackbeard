@@ -1,5 +1,6 @@
 package rui;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
@@ -235,7 +236,11 @@ public class RUIMain {
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				networkManager.sendCommand(new Command(1, ""));
+				try {
+					networkManager.sendCommand(new Command(1, Utils.getLocalIPAddress()));
+				} catch (UnknownHostException ex) {
+					RUIMain.this.appendLogMessage(Utils.getStackTrace(ex));
+				}
 			}
 		});
 		GridData gd_btnInitialize = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);

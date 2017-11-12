@@ -65,7 +65,7 @@ public class NetworkManager {
 			}
 	}
 
-	public boolean isConnected() {
+	private boolean isConnected() {
 		return socket != null && socket.isConnected() && !socket.isClosed();
 	}
 
@@ -81,7 +81,7 @@ public class NetworkManager {
 		}
 	}
 
-	public void startNetworkWatchdog() {
+	private void startNetworkWatchdog() {
 		if (watchdog != null)
 			watchdog.stop();
 
@@ -97,9 +97,7 @@ public class NetworkManager {
 			while (isRunning && !rui.getShell().isDisposed()) {
 				try {
 					if (!isConnected()) {
-//						rui.appendLogMessage("Error > Network connection is lost ... ");
 						rui.notify(new Command(7, "S"));
-//						rui.notify(new Command(8, "E/Network connection is lost"));
 						connect();
 					}
 

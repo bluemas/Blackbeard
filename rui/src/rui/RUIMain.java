@@ -141,11 +141,12 @@ public class RUIMain {
 
 	class Timer implements Runnable {
 		private int time = -1;
-
+		private boolean isPaused = false;
+		
 		@Override
 		public void run() {
 			while (!shell.isDisposed()) {
-				if (time != -1) {
+				if (time != -1 && !isPaused) {
 					display.asyncExec(new Runnable() {
 						public void run() {
 							lblTime.setText(time++ + IConstants.SECOND);
@@ -162,6 +163,10 @@ public class RUIMain {
 
 		public void reset() {
 			this.time = 0;
+		}
+		
+		public void toggle() {
+			isPaused = !isPaused;
 		}
 	}
 
@@ -199,6 +204,7 @@ public class RUIMain {
 		formToolkit.paintBordersFor(grpRemoteSetup);
 
 		Button btnConnect = new Button(grpRemoteSetup, SWT.FLAT);
+		btnConnect.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/wi-fi.png"));
 		btnConnect.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -527,13 +533,13 @@ public class RUIMain {
 		lblRobotMessage.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.adapt(lblRobotMessage, true, true);
 
-		Composite composite_1 = new Composite(grpMonitoringInfo, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
-		formToolkit.adapt(composite_1);
-		formToolkit.paintBordersFor(composite_1);
-		composite_1.setLayout(new GridLayout(5, false));
+		Composite compositeDistance = new Composite(grpMonitoringInfo, SWT.NONE);
+		compositeDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		formToolkit.adapt(compositeDistance);
+		formToolkit.paintBordersFor(compositeDistance);
+		compositeDistance.setLayout(new GridLayout(5, false));
 
-		Group grpDistanceLeft = new Group(composite_1, SWT.NONE);
+		Group grpDistanceLeft = new Group(compositeDistance, SWT.NONE);
 		GridData gd_grpDistanceLeft = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_grpDistanceLeft.widthHint = 140;
 		grpDistanceLeft.setLayoutData(gd_grpDistanceLeft);
@@ -548,7 +554,7 @@ public class RUIMain {
 		formToolkit.adapt(lblLeftDistance, true, true);
 		lblLeftDistance.setText("0 mm");
 
-		Group grpDistanceFront = new Group(composite_1, SWT.NONE);
+		Group grpDistanceFront = new Group(compositeDistance, SWT.NONE);
 		GridData gd_grpDistanceFront = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_grpDistanceFront.widthHint = 150;
 		grpDistanceFront.setLayoutData(gd_grpDistanceFront);
@@ -564,7 +570,7 @@ public class RUIMain {
 		lblFrontDistance.setBounds(0, 0, 155, 37);
 		formToolkit.adapt(lblFrontDistance, true, true);
 
-		Group grpDistanceRight = new Group(composite_1, SWT.NONE);
+		Group grpDistanceRight = new Group(compositeDistance, SWT.NONE);
 		GridData gd_grpDistanceRight = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_grpDistanceRight.widthHint = 150;
 		grpDistanceRight.setLayoutData(gd_grpDistanceRight);
@@ -580,10 +586,10 @@ public class RUIMain {
 		formToolkit.adapt(lblRightDistance, true, true);
 		lblRightDistance.setText("0" + IConstants.MM);
 
-		Label label_1 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		Label label_1 = new Label(compositeDistance, SWT.SEPARATOR | SWT.VERTICAL);
 		formToolkit.adapt(label_1, true, true);
 
-		Group grpTimeElapsed = new Group(composite_1, SWT.NONE);
+		Group grpTimeElapsed = new Group(compositeDistance, SWT.NONE);
 		grpTimeElapsed.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		grpTimeElapsed.setLayout(new GridLayout(1, false));
 		grpTimeElapsed.setText("Time Elapsed");
@@ -591,6 +597,12 @@ public class RUIMain {
 		formToolkit.paintBordersFor(grpTimeElapsed);
 
 		lblTime = new Label(grpTimeElapsed, SWT.NONE);
+		lblTime.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				timer.toggle();
+			}
+		});
 		lblTime.setAlignment(SWT.CENTER);
 		lblTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblTime.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
@@ -645,10 +657,10 @@ public class RUIMain {
 
 							configManager.persist();
 
-							Utils.showMessageDialog(shell, "Configuration Saving completed.\n\nFile Path = " + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
+							Utils.showMessageDialog(shell, IConstants.SAVE_SUCCESS + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
 						} catch (Exception ex) {
 							RUIMain.this.appendLogMessage(Utils.getStackTrace(ex));
-							Utils.showMessageDialog(shell, "Error occurred while saving.\nPlease check the error message in Message Console Tab", SWT.ICON_ERROR);
+							Utils.showMessageDialog(shell, IConstants.SAVE_ERROR, SWT.ICON_ERROR);
 						}
 					}
 				});
@@ -725,6 +737,7 @@ public class RUIMain {
 		compositeSimulation.setLayout(new GridLayout(2, false));
 
 		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
+		txtCommandMessages.setText("{type=1, payload=} \n{type=7, payload=M}\n\n{type=6, payload=TBD}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Waring Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}");
 		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		formToolkit.adapt(txtCommandMessages, true, true);
 
@@ -756,7 +769,8 @@ public class RUIMain {
 	}
 
 	private void simulateCommands(boolean isLoopback) {
-		String str = txtCommandMessages.getText();
+		String selectedText = txtCommandMessages.getSelectionText();
+		String str = Utils.isEmpty(selectedText) ? txtCommandMessages.getText() : selectedText;
 
 		new Thread() {
 			public void run() {
@@ -840,23 +854,6 @@ public class RUIMain {
 		timer.reset();
 	}
 
-	public void enableButtons(boolean enabled) {
-		btnInitialize.setEnabled(enabled);
-		btnAuto.setEnabled(enabled);
-		btnManual.setEnabled(enabled);
-		btnSend.setEnabled(enabled);
-
-		btnUp.setEnabled(enabled);
-		btnRight.setEnabled(enabled);
-		btnDown.setEnabled(enabled);
-		btnLeft.setEnabled(enabled);
-
-		btnCameraUp.setEnabled(enabled);
-		btnCameraLeft.setEnabled(enabled);
-		btnCameraRight.setEnabled(enabled);
-		btnCameraDown.setEnabled(enabled);
-	}
-
 	private void changeMode(String mode) {
 		if ("A".equals(mode)) {
 			btnAuto.setSelection(true);
@@ -908,7 +905,7 @@ public class RUIMain {
 		display.asyncExec(new Runnable() {
 			public void run() {
 				lblConnected.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/" + (connected ? "connected-16.png" : "disconnected-16.png")));
-				lblNetworkStatusMessage.setText(connected ? "" : "Network is not connected ...");
+				lblNetworkStatusMessage.setText(connected ? "" : "Network is not connected");
 			}
 		});
 	}

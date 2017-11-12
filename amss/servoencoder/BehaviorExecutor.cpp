@@ -64,14 +64,14 @@ void BehaviorExecutor::manualMove(Direction dir)
 	case Direction::left:
 		printf("Left turn\n");
 		mServoEncoder->setWheelSpeed(-mSpeed, mSpeed);
-		usleep(800000);
-		mServoEncoder->setWheelSpeed(0, 0);
+		//usleep(800000);
+		//mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::right:
 		printf("Right turn\n");
 		mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
-		usleep(800000);
-		mServoEncoder->setWheelSpeed(0, 0);
+		//usleep(800000);
+		//mServoEncoder->setWheelSpeed(0, 0);
 		break;
 	case Direction::backward:
 		// nothing
@@ -84,7 +84,7 @@ void BehaviorExecutor::manualMove(Direction dir)
 void BehaviorExecutor::gotoCross(void)
 {
 	mServoEncoder->setWheelSpeed(BASESPEED, BASESPEED);
-	sleep(1);
+	usleep(1050000);
 	mServoEncoder->setWheelSpeed(0, 0);
 }
 

@@ -8,6 +8,8 @@
 #ifndef SAM_MAZEGRID_H_
 #define SAM_MAZEGRID_H_
 
+#include "../common/Constants.h"
+
 class MazeGrid {
 
     const int WALL_TOP = 1;
@@ -22,8 +24,15 @@ public:
     MazeGrid();
     virtual ~MazeGrid();
 
+    void setRedDotFound();
+    void setSignFound(SignType signType);
+    void setEndSquare();
+
 private:
     int mWallStatus = WALL_NONE;
+    bool mRedDotFound = false;
+    SignType mSignType = SignType::SignNone;
+    bool mEndSqureFound = false;
 };
 
 

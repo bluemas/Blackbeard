@@ -1,5 +1,7 @@
 package rui;
 
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
@@ -8,6 +10,7 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -28,13 +31,14 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import rui.configure.ConfigManager;
+import rui.configure.IConstants;
 import rui.maze.MazeDrawer;
 import rui.monitor.CameraImageReceiver;
 import rui.monitor.NetworkManager;
 import rui.utils.Utils;
 
 public class RUIMain {
-	protected Shell shlBlackbeardPirates;
+	protected Shell shell;
 	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 	private Label cameraImage;
 	public static Display display;
@@ -44,6 +48,8 @@ public class RUIMain {
 	private NetworkManager networkManager;
 	private Canvas canvas;
 	private MazeDrawer mazeDrawer;
+	private Timer timer;
+	private NetworkWatchdog watchdog;
 
 	private Button btnUp;
 	private Button btnRight;
@@ -59,6 +65,7 @@ public class RUIMain {
 	private Label lblFrontDistance;
 	private Label lblRightDistance;
 
+	private Button btnInitialize;
 	private Button btnAuto;
 	private Button btnManual;
 	private CLabel lblSuspended;
@@ -73,6 +80,8 @@ public class RUIMain {
 	private Text txtColumnCnt;
 	private Text txtMaxPacketSize;
 	private Text txtCommandMessages;
+
+	private Button btnSend;
 
 	/**
 	 * Launch the application.
@@ -95,11 +104,14 @@ public class RUIMain {
 		display = Display.getDefault();
 		createContents();
 
-		shlBlackbeardPirates.open();
-		shlBlackbeardPirates.layout();
+		shell.open();
+		shell.layout();
 
 		imageReceiver = new CameraImageReceiver(this);
 		new Thread(imageReceiver).start();
+
+		timer = new Timer();
+		new Thread(timer).start();
 
 		networkManager = new NetworkManager(this);
 		mazeDrawer = new MazeDrawer(this);
@@ -108,24 +120,48 @@ public class RUIMain {
 		setNetworkStatus(false);
 		setConfigData();
 
-		shlBlackbeardPirates.addListener(SWT.Close, new Listener() {
+		shell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				if (imageReceiver != null) {
+				if (imageReceiver != null)
 					imageReceiver.close();
-				}
 
-				if (networkManager != null) {
+				if (networkManager != null)
 					networkManager.disconnect();
-				}
 
 				SWTResourceManager.dispose();
 			}
 		});
 
-		while (!shlBlackbeardPirates.isDisposed()) {
+		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
+		}
+	}
+
+	class Timer implements Runnable {
+		private int time = -1;
+
+		@Override
+		public void run() {
+			while (!shell.isDisposed()) {
+				if (time != -1) {
+					display.asyncExec(new Runnable() {
+						public void run() {
+							lblTime.setText(time++ + IConstants.SECOND);
+						}
+					});
+				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+
+		public void reset() {
+			this.time = 0;
 		}
 	}
 
@@ -144,12 +180,12 @@ public class RUIMain {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlBlackbeardPirates = new Shell();
-		shlBlackbeardPirates.setSize(1400, 750);
-		shlBlackbeardPirates.setText("Blackbeard Pirates");
-		shlBlackbeardPirates.setLayout(new GridLayout(1, false));
+		shell = new Shell();
+		shell.setSize(1400, 750);
+		shell.setText("Blackbeard Pirates");
+		shell.setLayout(new GridLayout(1, false));
 
-		Composite composite = new Composite(shlBlackbeardPirates, SWT.NONE);
+		Composite composite = new Composite(shell, SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		composite.setLayout(new GridLayout(4, false));
 
@@ -171,6 +207,7 @@ public class RUIMain {
 						try {
 							networkManager.connect();
 						} catch (Exception e) {
+							e.printStackTrace();
 						}
 					}
 				});
@@ -183,7 +220,7 @@ public class RUIMain {
 		formToolkit.adapt(btnConnect, true, true);
 		btnConnect.setText("Connect to Robot");
 
-		Button btnInitialize = new Button(grpRemoteSetup, SWT.FLAT | SWT.CENTER);
+		btnInitialize = new Button(grpRemoteSetup, SWT.FLAT | SWT.CENTER);
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -228,8 +265,7 @@ public class RUIMain {
 		btnUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				// networkManager.sendCommand(new Command(3, "F"));
-				networkManager.sendCommand(new Command(2, "A"));
+				networkManager.sendCommand(new Command(3, "F"));
 			}
 
 			@Override
@@ -485,7 +521,7 @@ public class RUIMain {
 		gd_lblTime.widthHint = 60;
 		lblTime.setLayoutData(gd_lblTime);
 		formToolkit.adapt(lblTime, true, true);
-		lblTime.setText("45s");
+		lblTime.setText("0 s");
 
 		Label split1 = new Label(compositeStatus, SWT.SEPARATOR | SWT.VERTICAL);
 		GridData gd_split1 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -515,7 +551,7 @@ public class RUIMain {
 		lblLeftDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblLeftDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		formToolkit.adapt(lblLeftDistance, true, true);
-		lblLeftDistance.setText("0 mm");
+		lblLeftDistance.setText("0" + IConstants.MM);
 		new Label(grpMonitoringInfo, SWT.NONE);
 
 		Group grpDistanceFront = new Group(grpMonitoringInfo, SWT.NONE);
@@ -527,7 +563,7 @@ public class RUIMain {
 
 		lblFrontDistance = new Label(grpDistanceFront, SWT.NONE);
 		lblFrontDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
-		lblFrontDistance.setText("0 mm");
+		lblFrontDistance.setText("0" + IConstants.MM);
 		lblFrontDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		lblFrontDistance.setBounds(0, 0, 155, 37);
 		formToolkit.adapt(lblFrontDistance, true, true);
@@ -547,7 +583,7 @@ public class RUIMain {
 		lblRightDistance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		lblRightDistance.setFont(SWTResourceManager.getFont(".SF NS Text", 26, SWT.BOLD));
 		formToolkit.adapt(lblRightDistance, true, true);
-		lblRightDistance.setText("0 mm");
+		lblRightDistance.setText("0" + IConstants.MM);
 
 		TabFolder tabFolder = new TabFolder(composite, SWT.NONE);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1));
@@ -596,11 +632,11 @@ public class RUIMain {
 							configManager.setMazeColumnCount(Integer.parseInt(txtColumnCnt.getText()));
 
 							configManager.persist();
-							
-							Utils.showMessageDialog(shlBlackbeardPirates, "Configuration Saving completed.\n\nFile Path = " + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
+
+							Utils.showMessageDialog(shell, "Configuration Saving completed.\n\nFile Path = " + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
 						} catch (Exception ex) {
 							RUIMain.this.appendLogMessage(Utils.getStackTrace(ex));
-							Utils.showMessageDialog(shlBlackbeardPirates, "Error occurred while saving.\nPlease check the error message in Message Console Tab", SWT.ICON_ERROR);
+							Utils.showMessageDialog(shell, "Error occurred while saving.\nPlease check the error message in Message Console Tab", SWT.ICON_ERROR);
 						}
 					}
 				});
@@ -667,31 +703,37 @@ public class RUIMain {
 		txtColumnCnt = new Text(compositeMaze, SWT.BORDER);
 		txtColumnCnt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.adapt(txtColumnCnt, true, true);
-		
+
 		TabItem tbtmSimulation = new TabItem(tabFolder, SWT.NONE);
 		tbtmSimulation.setText("Simulation");
-		
+
 		Composite compositeSimulation = new Composite(tabFolder, SWT.NONE);
 		tbtmSimulation.setControl(compositeSimulation);
 		formToolkit.paintBordersFor(compositeSimulation);
 		compositeSimulation.setLayout(new GridLayout(2, false));
-		
+
 		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
 		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		formToolkit.adapt(txtCommandMessages, true, true);
-		
+
 		Button btnLoopback = new Button(compositeSimulation, SWT.NONE);
 		btnLoopback.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				simulateCommands(true);
 			}
 		});
 		btnLoopback.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
 		formToolkit.adapt(btnLoopback, true, true);
 		btnLoopback.setText("Loopback");
-		
-		Button btnSend = new Button(compositeSimulation, SWT.NONE);
+
+		btnSend = new Button(compositeSimulation, SWT.NONE);
+		btnSend.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				simulateCommands(false);
+			}
+		});
 		btnSend.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
 		formToolkit.adapt(btnSend, true, true);
 		btnSend.setText("Send");
@@ -699,6 +741,29 @@ public class RUIMain {
 		new Label(composite, SWT.NONE);
 		new Label(composite, SWT.NONE);
 		new Label(composite, SWT.NONE);
+	}
+
+	private void simulateCommands(boolean isLoopback) {
+		String str = txtCommandMessages.getText();
+
+		new Thread() {
+			public void run() {
+				List<Command> commands = Command.getCommandList(str);
+
+				for (Command command : commands) {
+					try {
+						if (isLoopback)
+							RUIMain.this.notify(command);
+						else
+							networkManager.sendCommand(command);
+
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}.start();
 	}
 
 	public Label getCameraImageLabel() {
@@ -722,31 +787,31 @@ public class RUIMain {
 		case 1:
 			initialize();
 			break;
-		case 2:
-			changeMode(command.getPayload());
-			break;
 		case 5:
 			changeSensorData(command.getPayload());
 			break;
 		case 6:
 			mazeDrawer.updateMaze(command.getPayload());
 			break;
-		case 9:
-			handleErrorState(command.getPayload());
+		case 2:
+		case 7:
+			changeMode(command.getPayload());
 			break;
-		default:
+		case 8:
+			changeStatusMessage(command.getPayload());
 			break;
 		}
 	}
 
-	private void handleErrorState(String payload) {
-		if ("S".equals(payload)) {
-			lblRobotMessage.setText("Can not recognize a sign");
-		} else if ("P".equals(payload)) {
-			lblRobotMessage.setText("Can not find a path to go");
-		} else {
-			lblRobotMessage.setText("Unknown message");
-		}
+	private void changeStatusMessage(String payload) {
+		String[] tokens = payload.split("/", -1);
+		if (tokens.length != 2)
+			return;
+
+		Color color = SWTResourceManager.getColor("E".equals(tokens[0]) ? SWT.COLOR_RED : SWT.COLOR_BLACK);
+
+		lblRobotMessage.setForeground(color);
+		lblRobotMessage.setText(tokens[1]);
 	}
 
 	public Canvas getMazeCanvas() {
@@ -755,31 +820,58 @@ public class RUIMain {
 
 	private void initialize() {
 		mazeDrawer.clear();
-		btnManual.notifyListeners(SWT.Selection, new Event());
+
+		changeStatusMessage("N/");
+		changeSensorData("0/0/0");
+
+		txtLogMessge.setText("");
+		timer.reset();
 	}
 
-	// A: autonomous, M : Manual, S : Suspend
+	public void enableButtons(boolean enabled) {
+		btnInitialize.setEnabled(enabled);
+		btnAuto.setEnabled(enabled);
+		btnManual.setEnabled(enabled);
+		btnSend.setEnabled(enabled);
+
+		btnUp.setEnabled(enabled);
+		btnRight.setEnabled(enabled);
+		btnDown.setEnabled(enabled);
+		btnLeft.setEnabled(enabled);
+
+		btnCameraUp.setEnabled(enabled);
+		btnCameraLeft.setEnabled(enabled);
+		btnCameraRight.setEnabled(enabled);
+		btnCameraDown.setEnabled(enabled);
+	}
+
 	private void changeMode(String mode) {
+		// A: autonomous, M : Manual, S : Suspend
 		if ("A".equals(mode)) {
 			btnAuto.setSelection(true);
+			btnManual.setSelection(false);
+
 			setEnableRobotMovement(false);
 		} else if ("M".equals(mode) || "S".equals(mode)) {
+			btnAuto.setSelection(false);
 			btnManual.setSelection(true);
+
 			setEnableRobotMovement(true);
 		}
 
-		lblSuspended.setForeground(SWTResourceManager.getColor("S".equals(mode) ? SWT.COLOR_RED : SWT.COLOR_GRAY));
+		Color color = SWTResourceManager.getColor("S".equals(mode) ? SWT.COLOR_RED : SWT.COLOR_GRAY);
+		lblSuspended.setForeground(color);
 	}
 
-	// Front distance / Left distance / Right distance
 	private void changeSensorData(String payload) {
+		// Front distance / Left distance / Right distance
 		String[] data = payload.split("/");
 		if (data.length != 3)
 			return;
 
-		lblFrontDistance.setText(data[0] + " mm");
-		lblLeftDistance.setText(data[1] + " mm");
-		lblRightDistance.setText(data[2] + " mm");
+		lblFrontDistance.setText(data[0] + IConstants.MM);
+		lblLeftDistance.setText(data[1] + IConstants.MM);
+		lblRightDistance.setText(data[2] + IConstants.MM);
 	}
 
 	public void notify(Command command) {
@@ -808,5 +900,40 @@ public class RUIMain {
 				lblConnected.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/" + (connected ? "connected-16.png" : "disconnected-16.png")));
 			}
 		});
+	}
+
+	public Shell getShell() {
+		return this.shell;
+	}
+
+	public void startNetworkWatchdog() {
+		if (watchdog != null)
+			watchdog.stop();
+
+		watchdog = new NetworkWatchdog();
+		new Thread(watchdog).start();
+	}
+
+	class NetworkWatchdog implements Runnable {
+		private boolean isRunning = true;
+
+		@Override
+		public void run() {
+			while (isRunning && !shell.isDisposed()) {
+				try {
+					if (!networkManager.isConnected()) {
+						appendLogMessage("Error > Network connection is lost ... ");
+						networkManager.connect();
+					}
+
+					Thread.sleep(1000);
+				} catch (Exception e) {
+				}
+			}
+		}
+
+		public void stop() {
+			isRunning = false;
+		}
 	}
 }

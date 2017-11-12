@@ -7,34 +7,38 @@
 
 #include "WallSensingEvent.h"
 
-WallSensingEvent::WallSensingEvent(unsigned char wallStatus) {
-    mWallStatus = wallStatus;
+WallSensingEvent::WallSensingEvent() {
+    mWallStatus = 0;
 }
 
 WallSensingEvent::~WallSensingEvent() {
 
 }
 
+unsigned char WallSensingEvent::getWallStatus() {
+    return mWallStatus;
+}
+
 bool WallSensingEvent::isFrontWall() {
-    return (mWallStatus & static_cast<unsigned char>(WallStatus::front)) == 1;
+    return (mWallStatus & 1) == 1;
 }
 
 bool WallSensingEvent::isLeftWall() {
-    return (mWallStatus & static_cast<unsigned char>(WallStatus::left)) == 1;
+    return (mWallStatus & 2) == 2;
 }
 
 bool WallSensingEvent::isRightWall() {
-    return (mWallStatus & static_cast<unsigned char>(WallStatus::right)) == 1;
+    return (mWallStatus & 4) == 4;
 }
 
 void WallSensingEvent::setFrontWall() {
-
+    mWallStatus |= 1;
 }
 
 void WallSensingEvent::setLeftWall() {
-
+    mWallStatus |= 2;
 }
 
 void WallSensingEvent::setRightWall() {
-
+    mWallStatus |= 4;
 }

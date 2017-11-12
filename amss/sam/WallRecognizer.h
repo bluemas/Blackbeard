@@ -44,11 +44,11 @@ public:
 private:
     const int SENSING_PERIOD_IN_MS = 500;
 
-    const double MIN_FRONT_COLLISION_DISTANCE = 50;
-    const double MIN_SIDE_COLLISION_DISTANCE  = 50;
+    const int MIN_FRONT_COLLISION_DISTANCE = 50;
+    const int MIN_SIDE_COLLISION_DISTANCE  = 50;
 
-    const double MIN_FRONT_DISTANCE = 50;
-    const double MIN_SIDE_DISTANCE  = 50;
+    const int MIN_FRONT_WALL_DISTANCE = 100;
+    const int MIN_SIDE_WALL_DISTANCE  = 100;
 
     std::atomic<bool> mIsRun;
     std::thread mThread;
@@ -61,8 +61,8 @@ private:
     FlightSensorRight *mFlightSensorRight;
 
     void run();
-    WallCollisionEvent checkCollision(double frontDistance, double leftDistance, double rightDistance);
-    WallSensingEvent checkWallStatus(double frontDistance, double leftDistance, double rightDistance);
+    WallCollisionEvent checkCollision(int frontDistance, int leftDistance, int rightDistance);
+    WallSensingEvent checkWallStatus(int frontDistance, int leftDistance, int rightDistance);
 };
 
 #endif /* RECOGNIZER_WALLRECOGNIZER_H_ */

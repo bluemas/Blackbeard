@@ -11,7 +11,7 @@
 #include <wiringPi.h>
 
 #include "main/MainController.h"
-
+#include "servoencoder/BehaviorExecutor.h"
 #include "sam/WallRecognizer.h"
 #include "sam/MazeMapper.h"
 #include "sam/PathPlanner.h"
@@ -55,6 +55,9 @@ int main() {
     // 1. Initiate MainController
     MainController *mainController = new MainController();
 
+    BehaviorExecutor *behaviorExecutor = new BehaviorExecutor();
+    behaviorExecutor->setCamDefaultTrackLine();
+
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
     wallRecognizer->addWallCollisionEventHandler(mainController);
@@ -64,7 +67,6 @@ int main() {
     NetworkManager* networkManager = new NetworkManager();
     networkManager->addListener(mainController);
     mainController->setNetworkManager(networkManager);
-    networkManager->start();
 
     // Initialize ImageRecognizer
     ImageRecognizer* imageRecognizer = new ImageRecognizer();
@@ -72,7 +74,6 @@ int main() {
     imageRecognizer->addRedDotRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mainController);
     imageRecognizer->addSquareRecogEventHandler(mainController);
-//    imageRecognizer->start();
 
     // 4. Initiate other components
     MapData *mapRepo = new MapData();
@@ -81,12 +82,20 @@ int main() {
 
     // 5. Make a relationship between components
     wallRecognizer->setMazeMapper(mazeMapper);
-    mainController->setPathPlanner(pathPlanner);
-    mainController->setImageRecognizer(imageRecognizer);
+    //mainController->setPathPlanner(pathPlanner);
+    //mainController->setImageRecognizer(imageRecognizer);
+
+    imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
+//    imageRecognizer->addCrossRecogEventHandler(mazeMapper);
+    imageRecognizer->addSignRecogEventHandler(mazeMapper);
+    imageRecognizer->addSquareRecogEventHandler(mazeMapper);
 
     // 5. Start threads
-//    wallRecognizer->start();  // FIXME : CPU Usage goes high
+    networkManager->start();
 
+    wallRecognizer->start();  // FIXME : CPU Usage goes high
+
+    imageRecognizer->start();
 
     mainController->start();
 
@@ -97,10 +106,12 @@ int main() {
     cout << "AMSS is terminating..." << endl;
 
     // 99. Terminate instants
+    imageRecognizer->stop();
     wallRecognizer->stop();
 
     // 100. Clean up
-    delete mainController;
+    //delete mainController;
+    delete imageRecognizer;
     delete wallRecognizer;
     delete mapRepo;
     delete mazeMapper;

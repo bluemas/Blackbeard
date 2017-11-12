@@ -13,7 +13,7 @@
 class SquareRecognizedEventHandler {
 public:
     virtual ~SquareRecognizedEventHandler();
-    virtual void handleSquareRecognizedEvent(const SquareRecognizedEvent ev) = 0; // REVIEW : const »èÁ¦(Á¤À±½Ä, ±èÁö¼º)
+    virtual void handleSquareRecognizedEvent(SquareRecognizedEvent ev) = 0;
 };
 
 #endif /* COMMON_EVENT_SQUARERECOGNIZEDEVENTHANDLER_H_ */

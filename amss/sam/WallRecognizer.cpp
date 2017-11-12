@@ -91,25 +91,25 @@ void WallRecognizer::run() {
 }
 
 WallCollisionEvent WallRecognizer::checkCollision(
-        double frontDistance, double leftDistance, double rightDistance) {
+        int frontDistance, int leftDistance, int rightDistance) {
 
     // Check whether a collision is predicted
     WallCollisionEvent ev;
 
     if (frontDistance < MIN_FRONT_COLLISION_DISTANCE) {
-        ev.setFrontDistance(1);
+        ev.setFrontDistance(frontDistance);
     }
 
     if (leftDistance < MIN_SIDE_COLLISION_DISTANCE) {
-        ev.setRightDistance(1);
+        ev.setRightDistance(leftDistance);
     }
 
     if (rightDistance < MIN_SIDE_COLLISION_DISTANCE) {
-        ev.setRightDistance(1);
+        ev.setRightDistance(rightDistance);
     }
 
     if (ev.isWarnCollision()) {
-        cout << "Front : " << frontDistance << ", Left : " << leftDistance
+        cout << "Warn collision. " << "Front : " << frontDistance << ", Left : " << leftDistance
                 << ", Right : " << rightDistance << endl;
     }
 
@@ -117,26 +117,24 @@ WallCollisionEvent WallRecognizer::checkCollision(
 }
 
 WallSensingEvent WallRecognizer::checkWallStatus(
-        double frontDistance, double leftDistance, double rightDistace) {
+        int frontDistance, int leftDistance, int rightDistance) {
 
-    unsigned char wallStatus = 0;
+    WallSensingEvent ev;
 
-    if (frontDistance < MIN_FRONT_DISTANCE) {
+    if (frontDistance < MIN_FRONT_WALL_DISTANCE) {
         // There is the wall in front
-        wallStatus |= static_cast<unsigned char>(WallStatus::front);
+        ev.setFrontWall();
     }
 
-    if (leftDistance < MIN_SIDE_DISTANCE) {
+    if (leftDistance < MIN_SIDE_WALL_DISTANCE) {
         // There is the wall in left
-        wallStatus |= static_cast<unsigned char>(WallStatus::left);
+        ev.setLeftWall();
     }
 
-    if (leftDistance < MIN_SIDE_DISTANCE) {
+    if (rightDistance < MIN_SIDE_WALL_DISTANCE) {
         // there is the wall in right
-        wallStatus |= static_cast<unsigned char>(WallStatus::right);
+        ev.setRightWall();
     }
-
-    WallSensingEvent ev(wallStatus);
 
     return ev;
 }

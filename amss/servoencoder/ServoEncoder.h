@@ -8,9 +8,10 @@
 #include <string.h>
 #include <unistd.h>
 
-#define SERVO_CENTER_OR_STOP	150
+#define SERVO_WHEEL_CENTER		150
+#define SERVO_CENTER_OR_STOP	157	//150
 
-#define TRK_LINE_CAM_PAN		149	//157
+#define TRK_LINE_CAM_PAN		157	//149	//157
 #define TRK_LINE_CAM_TILT		211	//192
 
 #define CAMERA_PAN				0
@@ -36,8 +37,6 @@ private:
 	int mWheelRSpeed;
 	static ServoEncoder * mpServo;
 	ServoEncoder();
-	int	getServoMinVal(unsigned int servo);
-	int	getServoMaxVal(unsigned int servo);
 	void setServoVal(unsigned int servo, int position);
 	
 public:
@@ -47,6 +46,8 @@ public:
 	int openServos(void);
 	void closeServos(void);
 	void resetServos(void);
+	int	getServoMinVal(unsigned int servo);
+	int	getServoMaxVal(unsigned int servo);
 	int  setServoPosition(unsigned int servo,int position);
 	void setWheelSpeed(int left,int right);
 	void setCameraServosLineTrackMode(int pan,int tilt);

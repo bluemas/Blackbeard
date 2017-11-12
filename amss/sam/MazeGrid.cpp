@@ -15,3 +15,14 @@ MazeGrid::~MazeGrid() {
 
 }
 
+void MazeGrid::setRedDotFound() {
+    mRedDotFound = true;
+}
+
+void MazeGrid::setSignFound(SignType signType) {
+    mSignType = signType;
+}
+
+void MazeGrid::setEndSquare() {
+    mEndSqureFound = true;
+}

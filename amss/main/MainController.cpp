@@ -21,6 +21,8 @@ MainController::MainController() :
     mCurrentMode(NULL) {
 }
 
+MainController::~MainController() {}
+
 void MainController::start() {
     init();
     std::thread t(&MainController::runLoop, this);

@@ -80,7 +80,8 @@ void BehaviorExecutor::manualMoveDir(void)
 			mServoEncoder->setWheelSpeed(mSpeed, -mSpeed);
 			break;
 		case Direction::backward:
-			// nothing
+			printf("Backward\n");
+			mServoEncoder->setWheelSpeed(-mSpeed, -mSpeed);
 			break;
 		default:
 			break;

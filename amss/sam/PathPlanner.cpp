@@ -19,10 +19,12 @@ PathPlanner::~PathPlanner() {
 
 void PathPlanner::init() {
     mMapData->init();
+
+    mCount = 0; // TODO remove
 }
 
 Direction PathPlanner::nextDirection() {
-    Direction dir = Direction::forward;
+    Direction dir = Direction::none;
 
     // TODO Find next direction using MapRepo
 

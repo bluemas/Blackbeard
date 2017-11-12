@@ -41,6 +41,16 @@ Direction PathPlanner::nextDirection() {
         dir = Direction::right;
         mMapData->setNextDirection(dir);
         mCount++;
+    } else if (mCount == 3) {
+        cout << "Move front in PathPlanning" << endl;
+        dir = Direction::forward;
+        mMapData->setNextDirection(dir);
+        mCount++;
+    } else if (mCount == 4) {
+        cout << "Move none in PathPlanning" << endl;
+        dir = Direction::none;
+        mMapData->setNextDirection(dir);
+        mCount++;
     }
 
     return dir;

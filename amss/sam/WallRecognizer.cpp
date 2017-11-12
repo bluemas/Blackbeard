@@ -91,7 +91,7 @@ void WallRecognizer::run() {
 }
 
 WallCollisionEvent WallRecognizer::checkCollision(
-        double frontDistance, double leftDistance, double rightDistance) {
+        int frontDistance, int leftDistance, int rightDistance) {
 
     // Check whether a collision is predicted
     WallCollisionEvent ev;
@@ -117,21 +117,21 @@ WallCollisionEvent WallRecognizer::checkCollision(
 }
 
 WallSensingEvent WallRecognizer::checkWallStatus(
-        double frontDistance, double leftDistance, double rightDistance) {
+        int frontDistance, int leftDistance, int rightDistance) {
 
     WallSensingEvent ev;
 
-    if (frontDistance < MIN_FRONT_DISTANCE) {
+    if (frontDistance < MIN_FRONT_WALL_DISTANCE) {
         // There is the wall in front
         ev.setFrontWall();
     }
 
-    if (leftDistance < MIN_SIDE_DISTANCE) {
+    if (leftDistance < MIN_SIDE_WALL_DISTANCE) {
         // There is the wall in left
         ev.setLeftWall();
     }
 
-    if (rightDistance < MIN_SIDE_DISTANCE) {
+    if (rightDistance < MIN_SIDE_WALL_DISTANCE) {
         // there is the wall in right
         ev.setRightWall();
     }

@@ -17,9 +17,14 @@ public:
     ManualMode(MainController* mainController);
     ~ManualMode() {}
 
+    void doEntryAction();
+    void doExitAction();
+
     void adjustCamera(char direction);
     void moveRobot(char direction);
-    void wallEventHandler(EventBase *ev);
-    void signRecognizerEventHandler(EventBase *ev);
+
+    void handleCollisionEvent(WallCollisionEvent ev);
+    void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev);
+    void handleSignRecognizedEvent(SignRecognizedEvent ev);
 };
 #endif // !defined(EA_D7F4455E_FAA3_42b8_9887_D9E5F1BD2D0C__INCLUDED_)

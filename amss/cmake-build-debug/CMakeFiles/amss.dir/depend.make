@@ -561,6 +561,7 @@ CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../servoencoder/BehaviorExecutor.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../servoencoder/PID.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../servoencoder/ServoEncoder.h
 
+CMakeFiles/amss.dir/network/NetworkManager.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o: ../common/Logging.h
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o: ../network/NetMessageEventAdapter.h
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o: ../network/NetworkManager.cpp

@@ -357,22 +357,16 @@ ModeBase.h
 /media/sf_Share/Blackbeard/amss/main/MainController.cpp
 MainController.h
 /media/sf_Share/Blackbeard/amss/main/MainController.h
-ManualMode.h
-/media/sf_Share/Blackbeard/amss/main/ManualMode.h
-AutonomousPathPlanningMode.h
-/media/sf_Share/Blackbeard/amss/main/AutonomousPathPlanningMode.h
 AutonomousMovingMode.h
 /media/sf_Share/Blackbeard/amss/main/AutonomousMovingMode.h
 AutonomousSignRecognitionMode.h
 /media/sf_Share/Blackbeard/amss/main/AutonomousSignRecognitionMode.h
 SuspendMode.h
 /media/sf_Share/Blackbeard/amss/main/SuspendMode.h
-../camera/ImageRecognizer.h
-/media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
 ../common/Logging.h
 /media/sf_Share/Blackbeard/amss/common/Logging.h
-thread
--
+../sensorreadloop/SensorData.h
+/media/sf_Share/Blackbeard/amss/sensorreadloop/SensorData.h
 
 /media/sf_Share/Blackbeard/amss/main/MainController.h
 ModeBase.h
@@ -445,12 +439,16 @@ ModeBase.h
 /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
 
 /media/sf_Share/Blackbeard/amss/network/NetMessageEventAdapter.h
+../common/Constants.h
+/media/sf_Share/Blackbeard/amss/common/Constants.h
 
 /media/sf_Share/Blackbeard/amss/network/NetworkManager.cpp
 NetworkManager.h
 /media/sf_Share/Blackbeard/amss/network/NetworkManager.h
 ../common/Logging.h
 /media/sf_Share/Blackbeard/amss/common/Logging.h
+../common/Constants.h
+/media/sf_Share/Blackbeard/amss/common/Constants.h
 thread
 -
 iostream

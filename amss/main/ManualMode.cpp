@@ -14,15 +14,6 @@ ManualMode::ManualMode(MainController* mainController) {
     mMainController = mainController;
 }
 
-void ManualMode::wallEventHandler(EventBase *ev) {
-    // TODO : define collision warning message(ethernet)
-//    mMainController->networkManager()->send(/* Collision Warning Message */);
-}
-
-void ManualMode::signRecognizerEventHandler(EventBase *ev) {
-    // REVIEW : Do I need to update map to include sign into map in Manual Mode?
-}
-
 void ManualMode::moveRobot(char direction) {
     if (direction == 'S') {
         mMainController->behaviorExecutor()->stop();
@@ -73,6 +64,30 @@ void ManualMode::adjustCamera(char direction) {
         mMainController->behaviorExecutor()->panAndTilt(newDirection);
         Logging::logOutput(Logging::DEBUG, "Adjust Camera Pan/Tilt");
     }
+}
+
+void ManualMode::handleCollisionEvent(WallCollisionEvent ev) {
+    if (ev.isWarnCollision()) {
+        char warning[256] = "E/Robot is about to hit the wall.";
+        mMainController->networkManager()->send(NetworkMsg::RobotStatusMessage,
+                                                strlen(warning), warning);
+    }
+}
+
+void ManualMode::handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {
+}
+
+void ManualMode::handleSignRecognizedEvent(SignRecognizedEvent ev) {
+}
+
+void ManualMode::doEntryAction() {
+    // Enable sign recognizer
+    mMainController->imageRecognizer()->setSignRecognizeMode(true);
+}
+
+void ManualMode::doExitAction() {
+    // Disable sign recognizer
+    mMainController->imageRecognizer()->setSignRecognizeMode(false);
 }
 
 

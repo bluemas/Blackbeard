@@ -263,7 +263,7 @@ ssize_t TCPSocket::WriteDataTcp(TTcpConnectedPort *TcpConnectedPort,
   while (total_bytes_written != length) {
     bytes_written = send(TcpConnectedPort->ConnectedFd,
                          (char *) (data + total_bytes_written),
-                         length - total_bytes_written, 0);
+                         length - total_bytes_written, MSG_NOSIGNAL);
     if (bytes_written == -1) {
       return (-1);
     }

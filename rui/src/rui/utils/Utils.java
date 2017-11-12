@@ -17,6 +17,16 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class Utils {
+	public static int getBigEndian(byte[] v) throws Exception {
+		int[] arr = new int[4];
+
+		for (int i = 0; i < 4; i++) {
+			arr[i] = (int) (v[3 - i] & 0xFF);
+		}
+
+		return ((arr[0] << 24) + (arr[1] << 16) + (arr[2] << 8) + (arr[3] << 0));
+	}
+	
 	public static int showMessageDialog(Shell shell, String message, int dialogType) {
 		MessageBox messageBox = new MessageBox(shell, dialogType);
 		messageBox.setMessage(message);

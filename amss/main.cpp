@@ -83,7 +83,7 @@ int main() {
     // 5. Make a relationship between components
     wallRecognizer->setMazeMapper(mazeMapper);
     mainController->setPathPlanner(pathPlanner);
-    //mainController->setImageRecognizer(imageRecognizer);
+    mainController->setImageRecognizer(imageRecognizer);
 
     imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
     imageRecognizer->addCrossRecogEventHandler(mazeMapper);
@@ -93,10 +93,12 @@ int main() {
     // 5. Start threads
     networkManager->start();
 
-//    wallRecognizer->start();  // FIXME : CPU Usage goes high
+    wallRecognizer->start();  // FIXME : CPU Usage goes high
 
-//    imageRecognizer->start(); // FIXME : SIGSEGV
-
+    #ifndef UBUNTU
+    imageRecognizer->start(); // FIXME : SIGSEGV
+    #endif
+    
     mainController->start();
 
     // 10. Wait for stopping AMSS

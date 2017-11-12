@@ -55,6 +55,7 @@ void WallRecognizer::run() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     while(mIsRun) {
+        #ifndef UBUNTU
         mSonarFront->read();
         mFlightSensorLeft->read();
         mFlightSensorRight->read();
@@ -84,6 +85,7 @@ void WallRecognizer::run() {
             // TODO async call
             handler->handleWallSensingEvent(wallSensingEvent);
         }
+        #endif
 
         // Sleep for a while
         std::this_thread::sleep_for(std::chrono::milliseconds(SENSING_PERIOD_IN_MS));

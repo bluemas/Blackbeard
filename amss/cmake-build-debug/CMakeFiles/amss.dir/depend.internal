@@ -8,9 +8,14 @@ CMakeFiles/amss.dir/camera/CameraReader.cpp.o
 CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.cpp
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+CMakeFiles/amss.dir/camera/ImageData.cpp.o
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.cpp
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
+ /media/sf_Share/Blackbeard/amss/common/Constants.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.cpp
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
@@ -18,6 +23,8 @@ CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/SignRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -48,6 +55,15 @@ CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.o
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.cpp
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
 CMakeFiles/amss.dir/common/event/EventBase.cpp.o
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.cpp
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
@@ -129,6 +145,7 @@ CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o
 CMakeFiles/amss.dir/main.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -136,6 +153,8 @@ CMakeFiles/amss.dir/main.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -182,6 +201,7 @@ CMakeFiles/amss.dir/main.cpp.o
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -189,6 +209,8 @@ CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -236,6 +258,7 @@ CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -244,6 +267,8 @@ CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/Logging.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -290,6 +315,7 @@ CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -297,6 +323,8 @@ CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -344,6 +372,7 @@ CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o
 CMakeFiles/amss.dir/main/MainController.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -352,6 +381,8 @@ CMakeFiles/amss.dir/main/MainController.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/Logging.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -401,6 +432,7 @@ CMakeFiles/amss.dir/main/MainController.cpp.o
 CMakeFiles/amss.dir/main/ManualMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -409,6 +441,8 @@ CMakeFiles/amss.dir/main/ManualMode.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/Logging.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -473,6 +507,7 @@ CMakeFiles/amss.dir/main/ModeBase.cpp.o
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
  /media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h
+ /media/sf_Share/Blackbeard/amss/camera/ImageData.h
  /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.h
  /media/sf_Share/Blackbeard/amss/camera/PI3OpencvCompat.h
@@ -480,6 +515,8 @@ CMakeFiles/amss.dir/main/SuspendMode.cpp.o
  /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
  /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.h
  /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.h
@@ -547,11 +584,20 @@ CMakeFiles/amss.dir/sam/MapRepo.cpp.o
  /media/sf_Share/Blackbeard/amss/sam/MapRepo.cpp
  /media/sf_Share/Blackbeard/amss/sam/MapRepo.h
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.o
+ /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/sam/MazeGrid.cpp
  /media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/WallSensingEvent.h
  /media/sf_Share/Blackbeard/amss/common/event/WallSensingEventHandler.h
  /media/sf_Share/Blackbeard/amss/sam/MapData.h
@@ -560,7 +606,15 @@ CMakeFiles/amss.dir/sam/MazeMapper.cpp.o
  /media/sf_Share/Blackbeard/amss/sam/MazeMapper.h
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/WallSensingEvent.h
  /media/sf_Share/Blackbeard/amss/common/event/WallSensingEventHandler.h
  /media/sf_Share/Blackbeard/amss/sam/MapData.h
@@ -571,7 +625,15 @@ CMakeFiles/amss.dir/sam/PathPlanner.cpp.o
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o
  /media/sf_Share/Blackbeard/amss/common/Constants.h
  /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEvent.h
+ /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/WallCollisionEvent.h
  /media/sf_Share/Blackbeard/amss/common/event/WallCollisionEventHandler.h
  /media/sf_Share/Blackbeard/amss/common/event/WallSensingEvent.h

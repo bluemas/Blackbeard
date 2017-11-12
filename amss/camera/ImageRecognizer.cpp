@@ -12,11 +12,13 @@
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
 
-using namespace cv;
+static  int gInitJpgValues[2] = { cv::IMWRITE_JPEG_QUALITY,80 }; //default(95) 0-100
+static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
 
 ImageRecognizer::ImageRecognizer()
         : mSignRecogEnable(false) {
     mCamera = new CameraReader();
+    mImgData = ImageData::getInstance();
 }
 
 ImageRecognizer::~ImageRecognizer(){
@@ -27,6 +29,7 @@ ImageRecognizer::~ImageRecognizer(){
 }
 
 void ImageRecognizer::start() {
+    cout << "ImageRecognizer thread started" << endl;
     mIsRun = true;
 
     // Start thread
@@ -44,12 +47,13 @@ void ImageRecognizer::stop() {
 
 void ImageRecognizer::addLineRecogEventHandler(LineRecognizedEventHandler *eventHandler) {
     mLineRecogHandlers.push_back(eventHandler);
-
 }
 
+void ImageRecognizer::addCrossRecogEventHandler(CrossRecognizedEventHandler *eventHandler) {
+    mCrossRecogHandlers.push_back(eventHandler);
+}
 void ImageRecognizer::addRedDotRecogEventHandler(RedDotRecognizedEventHandler *eventHandler) {
     mRedDotRecogHandlers.push_back(eventHandler);
-
 }
 
 void ImageRecognizer::addSignRecogEventHandler(SignRecognizedEventHandler *eventHandler) {
@@ -82,10 +86,11 @@ void ImageRecognizer::RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg) {
 void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg) {
     bool foundSquare = false;
     bool foundDot = false;
+    bool foundCross = false;
     float offset = 0.0;
 
     //recognize line
-    offset = mLineRecog.calculateLineOffset(orgImg,synthImg);
+    offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
     //recognize reddot
     foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
     //recognize end square;
@@ -95,6 +100,13 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     LineRecognizedEvent lineEvent(offset);
     for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
         mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+    }
+
+    if (foundCross){
+        CrossRecognizedEvent crossEvent;
+        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+        }                    
     }
 
     if (foundDot){
@@ -117,10 +129,15 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
 void ImageRecognizer::run() {
     Mat orgImage;
     Mat synthImage;
-
+    std::vector<uchar> imgWriteBuf;
+    if(!IsPi3) {
+        printf("create synth image\n");
+        namedWindow("synthImage", CV_WINDOW_AUTOSIZE);
+    }
     while (mIsRun) {
         // read Camera image
         mCamera->readCamera(orgImage);
+
         orgImage.copyTo(synthImage);
 
         if (mSignRecogEnable) {
@@ -128,9 +145,20 @@ void ImageRecognizer::run() {
         } else {
             RecognizeLineDotSquareAndNotify(orgImage, synthImage);
         }
+
+        if(!IsPi3) {
+            printf("show synthImage\n");
+            imshow("synthImage",synthImage);
+        }
+
         //encode synthesized Image as Jpeg
         //store encoded Image
+
+        imencode(".jpg", synthImage, imgWriteBuf, gJpgParam);
+        mImgData->writeData(imgWriteBuf.data(), imgWriteBuf.size());
+        waitKey(10);
     }
+    cout << "ImageRecognizer run is finished" << endl;
 }
 
 

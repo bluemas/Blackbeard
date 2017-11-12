@@ -7,7 +7,6 @@
 
 #include "LineRecognizer.h"
 
-using namespace cv;
 using namespace std;
 
 #define FUDGE_BIAS 0.01 // Bias robot to the left or right

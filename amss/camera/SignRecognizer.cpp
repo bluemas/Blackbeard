@@ -14,7 +14,7 @@
 
 #include "SignRecognizer.h"
 
-using namespace cv;
+
 
 SignRecognizer::SignRecognizer() {
     readRefImages();

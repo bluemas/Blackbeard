@@ -20,6 +20,7 @@
 
 #define NUM_SIGNS 10
 
+using namespace cv;
 using namespace std;
 
 class SignRecognizer
@@ -28,13 +29,13 @@ class SignRecognizer
 public:
 	SignRecognizer();
 	virtual ~SignRecognizer();
-    SignType recognizeSign(cv::Mat& orgImage, cv::Mat& synthImage);
+    SignType recognizeSign(Mat& orgImage, Mat& synthImage);
 
 private:
 
     class Symbol{
 public:
-		cv::Mat img;
+        Mat img;
         string name;
     };
 

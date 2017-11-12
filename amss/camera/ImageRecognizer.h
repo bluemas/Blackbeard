@@ -65,7 +65,7 @@ private:
     bool mSignRecogEnable;
 
     void run();
-    void RecognizeLineDotSquareAndNotify(cv::Mat& orgImg, cv::Mat& synthImg);
-    void RecognizeSignAndNotify(cv::Mat& orgImg, cv::Mat& synthImg);
+    void RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg);
+    void RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg);
 };
 #endif // !defined(_ImageRecognizer_H_)

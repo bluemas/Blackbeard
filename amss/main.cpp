@@ -86,16 +86,16 @@ int main() {
     //mainController->setImageRecognizer(imageRecognizer);
 
     imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
-//    imageRecognizer->addCrossRecogEventHandler(mazeMapper);
+    imageRecognizer->addCrossRecogEventHandler(mazeMapper);
     imageRecognizer->addSignRecogEventHandler(mazeMapper);
     imageRecognizer->addSquareRecogEventHandler(mazeMapper);
 
     // 5. Start threads
     networkManager->start();
 
-    wallRecognizer->start();  // FIXME : CPU Usage goes high
+//    wallRecognizer->start();  // FIXME : CPU Usage goes high
 
-    imageRecognizer->start();
+//    imageRecognizer->start(); // FIXME : SIGSEGV
 
     mainController->start();
 

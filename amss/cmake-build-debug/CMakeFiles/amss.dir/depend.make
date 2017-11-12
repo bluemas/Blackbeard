@@ -8,8 +8,13 @@ CMakeFiles/amss.dir/camera/CameraReader.cpp.o: ../camera/PI3OpencvCompat.h
 CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o: ../camera/DotRecognizer.cpp
 CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o: ../camera/DotRecognizer.h
 
+CMakeFiles/amss.dir/camera/ImageData.cpp.o: ../camera/ImageData.cpp
+CMakeFiles/amss.dir/camera/ImageData.cpp.o: ../camera/ImageData.h
+CMakeFiles/amss.dir/camera/ImageData.cpp.o: ../common/Constants.h
+
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/ImageRecognizer.cpp
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/LineRecognizer.h
@@ -17,6 +22,8 @@ CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/PI3OpencvCompat.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/SignRecognizer.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/Constants.h
+CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -47,6 +54,15 @@ CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o: ../camera/SquareRecognizer.h
 
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.o: ../common/RecognizerBase.cpp
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.o: ../common/RecognizerBase.h
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o: ../common/event/CrossRecognizedEvent.cpp
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o: ../common/event/EventBase.h
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: ../common/event/CrossRecognizedEventHandler.cpp
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: ../common/event/CrossRecognizedEventHandler.h
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: ../common/event/EventBase.h
 
 CMakeFiles/amss.dir/common/event/EventBase.cpp.o: ../common/event/EventBase.cpp
 CMakeFiles/amss.dir/common/event/EventBase.cpp.o: ../common/event/EventBase.h
@@ -128,6 +144,7 @@ CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o: ../common/event/
 
 CMakeFiles/amss.dir/main.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main.cpp.o: ../camera/PI3OpencvCompat.h
@@ -135,6 +152,8 @@ CMakeFiles/amss.dir/main.cpp.o: ../camera/SignRecognizer.h
 CMakeFiles/amss.dir/main.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -181,6 +200,7 @@ CMakeFiles/amss.dir/main.cpp.o: ../servoencoder/ServoEncoder.h
 
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/PI3OpencvCompat.h
@@ -188,6 +208,8 @@ CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/SignRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -235,6 +257,7 @@ CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../servoencoder/ServoEncode
 
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/PI3OpencvCompat.h
@@ -243,6 +266,8 @@ CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../camera/SquareRecog
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/Logging.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -289,6 +314,7 @@ CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../servoencoder/Servo
 
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/PI3OpencvCompat.h
@@ -296,6 +322,8 @@ CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/SignReco
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -343,6 +371,7 @@ CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../servoencoder/Se
 
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/PI3OpencvCompat.h
@@ -351,6 +380,8 @@ CMakeFiles/amss.dir/main/MainController.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/Logging.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -400,6 +431,7 @@ CMakeFiles/amss.dir/main/MainController.cpp.o: ../servoencoder/ServoEncoder.h
 
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/PI3OpencvCompat.h
@@ -408,6 +440,8 @@ CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/Logging.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -472,6 +506,7 @@ CMakeFiles/amss.dir/main/ModeBase.cpp.o: ../main/ModeBase.h
 
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/CameraReader.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/DotRecognizer.h
+CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/ImageData.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/ImageRecognizer.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/LineRecognizer.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/PI3OpencvCompat.h
@@ -479,6 +514,8 @@ CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/SignRecognizer.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../camera/SquareRecognizer.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/event/EventBase.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/event/EventHandlerAdapter.h
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../common/event/LineRecognizedEvent.h
@@ -546,11 +583,20 @@ CMakeFiles/amss.dir/sam/MapRepo.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/sam/MapRepo.cpp.o: ../sam/MapRepo.cpp
 CMakeFiles/amss.dir/sam/MapRepo.cpp.o: ../sam/MapRepo.h
 
+CMakeFiles/amss.dir/sam/MazeGrid.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.o: ../sam/MazeGrid.cpp
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.o: ../sam/MazeGrid.h
 
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/Constants.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/EventBase.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/RedDotRecognizedEvent.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/RedDotRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/SignRecognizedEvent.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/SignRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/SquareRecognizedEvent.h
+CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/SquareRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/WallSensingEvent.h
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../common/event/WallSensingEventHandler.h
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../sam/MapData.h
@@ -559,7 +605,15 @@ CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../sam/MazeMapper.cpp
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../sam/MazeMapper.h
 
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/Constants.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/EventBase.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/RedDotRecognizedEvent.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/RedDotRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/SignRecognizedEvent.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/SignRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/SquareRecognizedEvent.h
+CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/SquareRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/WallSensingEvent.h
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../common/event/WallSensingEventHandler.h
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../sam/MapData.h
@@ -570,7 +624,15 @@ CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../sam/PathPlanner.h
 
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/Constants.h
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/RecognizerBase.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/CrossRecognizedEvent.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/CrossRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/EventBase.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/RedDotRecognizedEvent.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/RedDotRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/SignRecognizedEvent.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/SignRecognizedEventHandler.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/SquareRecognizedEvent.h
+CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/SquareRecognizedEventHandler.h
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/WallCollisionEvent.h
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/WallCollisionEventHandler.h
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../common/event/WallSensingEvent.h

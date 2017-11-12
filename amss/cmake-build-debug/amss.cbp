@@ -102,6 +102,12 @@
 		<Unit filename="/media/sf_Share/Blackbeard/amss/camera/DotRecognizer.h">
 			<Option target="amss"/>
 		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/camera/ImageData.cpp">
+			<Option target="amss"/>
+		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/camera/ImageData.h">
+			<Option target="amss"/>
+		</Unit>
 		<Unit filename="/media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.cpp">
 			<Option target="amss"/>
 		</Unit>
@@ -142,6 +148,18 @@
 			<Option target="amss"/>
 		</Unit>
 		<Unit filename="/media/sf_Share/Blackbeard/amss/common/RecognizerBase.h">
+			<Option target="amss"/>
+		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp">
+			<Option target="amss"/>
+		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h">
+			<Option target="amss"/>
+		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp">
+			<Option target="amss"/>
+		</Unit>
+		<Unit filename="/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h">
 			<Option target="amss"/>
 		</Unit>
 		<Unit filename="/media/sf_Share/Blackbeard/amss/common/event/EventBase.cpp">

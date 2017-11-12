@@ -7,7 +7,6 @@
 
 #include "DotRecognizer.h"
 
-using namespace cv;
 
 DotRecognizer::DotRecognizer(){
 

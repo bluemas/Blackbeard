@@ -105,9 +105,33 @@ CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o.provides: CMakeFiles/amss.dir/cam
 CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o.provides.build: CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o
 
 
+CMakeFiles/amss.dir/camera/ImageData.cpp.o: CMakeFiles/amss.dir/flags.make
+CMakeFiles/amss.dir/camera/ImageData.cpp.o: ../camera/ImageData.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/amss.dir/camera/ImageData.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/ImageData.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/ImageData.cpp
+
+CMakeFiles/amss.dir/camera/ImageData.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/amss.dir/camera/ImageData.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/sf_Share/Blackbeard/amss/camera/ImageData.cpp > CMakeFiles/amss.dir/camera/ImageData.cpp.i
+
+CMakeFiles/amss.dir/camera/ImageData.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/amss.dir/camera/ImageData.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/sf_Share/Blackbeard/amss/camera/ImageData.cpp -o CMakeFiles/amss.dir/camera/ImageData.cpp.s
+
+CMakeFiles/amss.dir/camera/ImageData.cpp.o.requires:
+
+.PHONY : CMakeFiles/amss.dir/camera/ImageData.cpp.o.requires
+
+CMakeFiles/amss.dir/camera/ImageData.cpp.o.provides: CMakeFiles/amss.dir/camera/ImageData.cpp.o.requires
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/camera/ImageData.cpp.o.provides.build
+.PHONY : CMakeFiles/amss.dir/camera/ImageData.cpp.o.provides
+
+CMakeFiles/amss.dir/camera/ImageData.cpp.o.provides.build: CMakeFiles/amss.dir/camera/ImageData.cpp.o
+
+
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o: ../camera/ImageRecognizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.cpp
 
 CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.i: cmake_force
@@ -131,7 +155,7 @@ CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o.provides.build: CMakeFiles/amss
 
 CMakeFiles/amss.dir/camera/ImageSender.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/camera/ImageSender.cpp.o: ../camera/ImageSender.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/amss.dir/camera/ImageSender.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/amss.dir/camera/ImageSender.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/ImageSender.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/ImageSender.cpp
 
 CMakeFiles/amss.dir/camera/ImageSender.cpp.i: cmake_force
@@ -155,7 +179,7 @@ CMakeFiles/amss.dir/camera/ImageSender.cpp.o.provides.build: CMakeFiles/amss.dir
 
 CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o: ../camera/LineRecognizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/LineRecognizer.cpp
 
 CMakeFiles/amss.dir/camera/LineRecognizer.cpp.i: cmake_force
@@ -179,7 +203,7 @@ CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o.provides.build: CMakeFiles/amss.
 
 CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o: ../camera/SignRecognizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/SignRecognizer.cpp
 
 CMakeFiles/amss.dir/camera/SignRecognizer.cpp.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o.provides.build: CMakeFiles/amss.
 
 CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o: ../camera/SquareRecognizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o -c /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.cpp
 
 CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.i: cmake_force
@@ -225,9 +249,57 @@ CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o.provides: CMakeFiles/amss.dir/
 CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o.provides.build: CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o
 
 
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o: CMakeFiles/amss.dir/flags.make
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o: ../common/event/CrossRecognizedEvent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp > CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.i
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp -o CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.s
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.requires:
+
+.PHONY : CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.requires
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.provides: CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.requires
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.provides.build
+.PHONY : CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.provides
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.provides.build: CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o
+
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o: ../common/event/CrossRecognizedEventHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp > CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.i
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp -o CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.s
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.requires:
+
+.PHONY : CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.requires
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.provides: CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.requires
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.provides.build
+.PHONY : CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.provides
+
+CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.provides.build: CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o
+
+
 CMakeFiles/amss.dir/common/event/EventBase.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/EventBase.cpp.o: ../common/event/EventBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/amss.dir/common/event/EventBase.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/amss.dir/common/event/EventBase.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/EventBase.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/EventBase.cpp
 
 CMakeFiles/amss.dir/common/event/EventBase.cpp.i: cmake_force
@@ -251,7 +323,7 @@ CMakeFiles/amss.dir/common/event/EventBase.cpp.o.provides.build: CMakeFiles/amss
 
 CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o: ../common/event/EventHandlerAdapter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/EventHandlerAdapter.cpp
 
 CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.i: cmake_force
@@ -275,7 +347,7 @@ CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o.provides.build: CMake
 
 CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o: ../common/event/LineRecognizedEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.cpp
 
 CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.i: cmake_force
@@ -299,7 +371,7 @@ CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o.provides.build: CMake
 
 CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o: ../common/event/LineRecognizedEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.i: cmake_force
@@ -323,7 +395,7 @@ CMakeFiles/amss.dir/common/event/LineRecognizedEventHandler.cpp.o.provides.build
 
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o: ../common/event/RedDotRecognizedEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEvent.cpp
 
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.i: cmake_force
@@ -347,7 +419,7 @@ CMakeFiles/amss.dir/common/event/RedDotRecognizedEvent.cpp.o.provides.build: CMa
 
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o: ../common/event/RedDotRecognizedEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.i: cmake_force
@@ -371,7 +443,7 @@ CMakeFiles/amss.dir/common/event/RedDotRecognizedEventHandler.cpp.o.provides.bui
 
 CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o: ../common/event/SignRecognizedEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEvent.cpp
 
 CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.i: cmake_force
@@ -395,7 +467,7 @@ CMakeFiles/amss.dir/common/event/SignRecognizedEvent.cpp.o.provides.build: CMake
 
 CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o: ../common/event/SignRecognizedEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.i: cmake_force
@@ -419,7 +491,7 @@ CMakeFiles/amss.dir/common/event/SignRecognizedEventHandler.cpp.o.provides.build
 
 CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o: ../common/event/SquareRecognizedEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEvent.cpp
 
 CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.i: cmake_force
@@ -443,7 +515,7 @@ CMakeFiles/amss.dir/common/event/SquareRecognizedEvent.cpp.o.provides.build: CMa
 
 CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o: ../common/event/SquareRecognizedEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.i: cmake_force
@@ -467,7 +539,7 @@ CMakeFiles/amss.dir/common/event/SquareRecognizedEventHandler.cpp.o.provides.bui
 
 CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o: ../common/event/WallCollisionEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/WallCollisionEvent.cpp
 
 CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.i: cmake_force
@@ -491,7 +563,7 @@ CMakeFiles/amss.dir/common/event/WallCollisionEvent.cpp.o.provides.build: CMakeF
 
 CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o: ../common/event/WallCollisionEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/WallCollisionEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.i: cmake_force
@@ -515,7 +587,7 @@ CMakeFiles/amss.dir/common/event/WallCollisionEventHandler.cpp.o.provides.build:
 
 CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o: ../common/event/WallSensingEvent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/WallSensingEvent.cpp
 
 CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.i: cmake_force
@@ -539,7 +611,7 @@ CMakeFiles/amss.dir/common/event/WallSensingEvent.cpp.o.provides.build: CMakeFil
 
 CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o: ../common/event/WallSensingEventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o -c /media/sf_Share/Blackbeard/amss/common/event/WallSensingEventHandler.cpp
 
 CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.i: cmake_force
@@ -563,7 +635,7 @@ CMakeFiles/amss.dir/common/event/WallSensingEventHandler.cpp.o.provides.build: C
 
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.o: ../common/RecognizerBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/amss.dir/common/RecognizerBase.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/amss.dir/common/RecognizerBase.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/common/RecognizerBase.cpp.o -c /media/sf_Share/Blackbeard/amss/common/RecognizerBase.cpp
 
 CMakeFiles/amss.dir/common/RecognizerBase.cpp.i: cmake_force
@@ -587,7 +659,7 @@ CMakeFiles/amss.dir/common/RecognizerBase.cpp.o.provides.build: CMakeFiles/amss.
 
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o: ../main/AutonomousMovingMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o -c /media/sf_Share/Blackbeard/amss/main/AutonomousMovingMode.cpp
 
 CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.i: cmake_force
@@ -611,7 +683,7 @@ CMakeFiles/amss.dir/main/AutonomousMovingMode.cpp.o.provides.build: CMakeFiles/a
 
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o: ../main/AutonomousPathPlanningMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o -c /media/sf_Share/Blackbeard/amss/main/AutonomousPathPlanningMode.cpp
 
 CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.i: cmake_force
@@ -635,7 +707,7 @@ CMakeFiles/amss.dir/main/AutonomousPathPlanningMode.cpp.o.provides.build: CMakeF
 
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o: ../main/AutonomousSignRecognitionMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o -c /media/sf_Share/Blackbeard/amss/main/AutonomousSignRecognitionMode.cpp
 
 CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.i: cmake_force
@@ -659,7 +731,7 @@ CMakeFiles/amss.dir/main/AutonomousSignRecognitionMode.cpp.o.provides.build: CMa
 
 CMakeFiles/amss.dir/main/MainController.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/MainController.cpp.o: ../main/MainController.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/amss.dir/main/MainController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/amss.dir/main/MainController.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/MainController.cpp.o -c /media/sf_Share/Blackbeard/amss/main/MainController.cpp
 
 CMakeFiles/amss.dir/main/MainController.cpp.i: cmake_force
@@ -683,7 +755,7 @@ CMakeFiles/amss.dir/main/MainController.cpp.o.provides.build: CMakeFiles/amss.di
 
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/ManualMode.cpp.o: ../main/ManualMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/amss.dir/main/ManualMode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/amss.dir/main/ManualMode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/ManualMode.cpp.o -c /media/sf_Share/Blackbeard/amss/main/ManualMode.cpp
 
 CMakeFiles/amss.dir/main/ManualMode.cpp.i: cmake_force
@@ -707,7 +779,7 @@ CMakeFiles/amss.dir/main/ManualMode.cpp.o.provides.build: CMakeFiles/amss.dir/ma
 
 CMakeFiles/amss.dir/main/ModeBase.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/ModeBase.cpp.o: ../main/ModeBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/amss.dir/main/ModeBase.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/amss.dir/main/ModeBase.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/ModeBase.cpp.o -c /media/sf_Share/Blackbeard/amss/main/ModeBase.cpp
 
 CMakeFiles/amss.dir/main/ModeBase.cpp.i: cmake_force
@@ -731,7 +803,7 @@ CMakeFiles/amss.dir/main/ModeBase.cpp.o.provides.build: CMakeFiles/amss.dir/main
 
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main/SuspendMode.cpp.o: ../main/SuspendMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/amss.dir/main/SuspendMode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/amss.dir/main/SuspendMode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main/SuspendMode.cpp.o -c /media/sf_Share/Blackbeard/amss/main/SuspendMode.cpp
 
 CMakeFiles/amss.dir/main/SuspendMode.cpp.i: cmake_force
@@ -755,7 +827,7 @@ CMakeFiles/amss.dir/main/SuspendMode.cpp.o.provides.build: CMakeFiles/amss.dir/m
 
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/network/NetworkManager.cpp.o: ../network/NetworkManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/amss.dir/network/NetworkManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/amss.dir/network/NetworkManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/network/NetworkManager.cpp.o -c /media/sf_Share/Blackbeard/amss/network/NetworkManager.cpp
 
 CMakeFiles/amss.dir/network/NetworkManager.cpp.i: cmake_force
@@ -779,7 +851,7 @@ CMakeFiles/amss.dir/network/NetworkManager.cpp.o.provides.build: CMakeFiles/amss
 
 CMakeFiles/amss.dir/network/TCPSocket.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/network/TCPSocket.cpp.o: ../network/TCPSocket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/amss.dir/network/TCPSocket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/amss.dir/network/TCPSocket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/network/TCPSocket.cpp.o -c /media/sf_Share/Blackbeard/amss/network/TCPSocket.cpp
 
 CMakeFiles/amss.dir/network/TCPSocket.cpp.i: cmake_force
@@ -803,7 +875,7 @@ CMakeFiles/amss.dir/network/TCPSocket.cpp.o.provides.build: CMakeFiles/amss.dir/
 
 CMakeFiles/amss.dir/network/UDPSocket.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/network/UDPSocket.cpp.o: ../network/UDPSocket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/amss.dir/network/UDPSocket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/amss.dir/network/UDPSocket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/network/UDPSocket.cpp.o -c /media/sf_Share/Blackbeard/amss/network/UDPSocket.cpp
 
 CMakeFiles/amss.dir/network/UDPSocket.cpp.i: cmake_force
@@ -827,7 +899,7 @@ CMakeFiles/amss.dir/network/UDPSocket.cpp.o.provides.build: CMakeFiles/amss.dir/
 
 CMakeFiles/amss.dir/sam/MapData.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/MapData.cpp.o: ../sam/MapData.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/amss.dir/sam/MapData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/amss.dir/sam/MapData.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/MapData.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/MapData.cpp
 
 CMakeFiles/amss.dir/sam/MapData.cpp.i: cmake_force
@@ -851,7 +923,7 @@ CMakeFiles/amss.dir/sam/MapData.cpp.o.provides.build: CMakeFiles/amss.dir/sam/Ma
 
 CMakeFiles/amss.dir/sam/MapRepo.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/MapRepo.cpp.o: ../sam/MapRepo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/amss.dir/sam/MapRepo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/amss.dir/sam/MapRepo.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/MapRepo.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/MapRepo.cpp
 
 CMakeFiles/amss.dir/sam/MapRepo.cpp.i: cmake_force
@@ -875,7 +947,7 @@ CMakeFiles/amss.dir/sam/MapRepo.cpp.o.provides.build: CMakeFiles/amss.dir/sam/Ma
 
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.o: ../sam/MazeGrid.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/amss.dir/sam/MazeGrid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/amss.dir/sam/MazeGrid.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/MazeGrid.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/MazeGrid.cpp
 
 CMakeFiles/amss.dir/sam/MazeGrid.cpp.i: cmake_force
@@ -899,7 +971,7 @@ CMakeFiles/amss.dir/sam/MazeGrid.cpp.o.provides.build: CMakeFiles/amss.dir/sam/M
 
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.o: ../sam/MazeMapper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/amss.dir/sam/MazeMapper.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/amss.dir/sam/MazeMapper.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/MazeMapper.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/MazeMapper.cpp
 
 CMakeFiles/amss.dir/sam/MazeMapper.cpp.i: cmake_force
@@ -923,7 +995,7 @@ CMakeFiles/amss.dir/sam/MazeMapper.cpp.o.provides.build: CMakeFiles/amss.dir/sam
 
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.o: ../sam/PathPlanner.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/amss.dir/sam/PathPlanner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/amss.dir/sam/PathPlanner.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/PathPlanner.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/PathPlanner.cpp
 
 CMakeFiles/amss.dir/sam/PathPlanner.cpp.i: cmake_force
@@ -947,7 +1019,7 @@ CMakeFiles/amss.dir/sam/PathPlanner.cpp.o.provides.build: CMakeFiles/amss.dir/sa
 
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o: ../sam/WallRecognizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o -c /media/sf_Share/Blackbeard/amss/sam/WallRecognizer.cpp
 
 CMakeFiles/amss.dir/sam/WallRecognizer.cpp.i: cmake_force
@@ -971,7 +1043,7 @@ CMakeFiles/amss.dir/sam/WallRecognizer.cpp.o.provides.build: CMakeFiles/amss.dir
 
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o: ../sensorreadloop/FlightSensorLeft.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o -c /media/sf_Share/Blackbeard/amss/sensorreadloop/FlightSensorLeft.cpp
 
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.i: cmake_force
@@ -995,7 +1067,7 @@ CMakeFiles/amss.dir/sensorreadloop/FlightSensorLeft.cpp.o.provides.build: CMakeF
 
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o: ../sensorreadloop/FlightSensorRight.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o -c /media/sf_Share/Blackbeard/amss/sensorreadloop/FlightSensorRight.cpp
 
 CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.i: cmake_force
@@ -1019,7 +1091,7 @@ CMakeFiles/amss.dir/sensorreadloop/FlightSensorRight.cpp.o.provides.build: CMake
 
 CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o: ../sensorreadloop/SensorData.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o -c /media/sf_Share/Blackbeard/amss/sensorreadloop/SensorData.cpp
 
 CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.i: cmake_force
@@ -1043,7 +1115,7 @@ CMakeFiles/amss.dir/sensorreadloop/SensorData.cpp.o.provides.build: CMakeFiles/a
 
 CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o: ../sensorreadloop/SensorReader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o -c /media/sf_Share/Blackbeard/amss/sensorreadloop/SensorReader.cpp
 
 CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.i: cmake_force
@@ -1067,7 +1139,7 @@ CMakeFiles/amss.dir/sensorreadloop/SensorReader.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o: ../sensorreadloop/SonarFront.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o -c /media/sf_Share/Blackbeard/amss/sensorreadloop/SonarFront.cpp
 
 CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.i: cmake_force
@@ -1091,7 +1163,7 @@ CMakeFiles/amss.dir/sensorreadloop/SonarFront.cpp.o.provides.build: CMakeFiles/a
 
 CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o: ../servoencoder/BehaviorExecutor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o -c /media/sf_Share/Blackbeard/amss/servoencoder/BehaviorExecutor.cpp
 
 CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.i: cmake_force
@@ -1115,7 +1187,7 @@ CMakeFiles/amss.dir/servoencoder/BehaviorExecutor.cpp.o.provides.build: CMakeFil
 
 CMakeFiles/amss.dir/servoencoder/PID.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/servoencoder/PID.cpp.o: ../servoencoder/PID.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/amss.dir/servoencoder/PID.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/amss.dir/servoencoder/PID.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/servoencoder/PID.cpp.o -c /media/sf_Share/Blackbeard/amss/servoencoder/PID.cpp
 
 CMakeFiles/amss.dir/servoencoder/PID.cpp.i: cmake_force
@@ -1139,7 +1211,7 @@ CMakeFiles/amss.dir/servoencoder/PID.cpp.o.provides.build: CMakeFiles/amss.dir/s
 
 CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o: ../servoencoder/ServoEncoder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o -c /media/sf_Share/Blackbeard/amss/servoencoder/ServoEncoder.cpp
 
 CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.i: cmake_force
@@ -1163,7 +1235,7 @@ CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o.provides.build: CMakeFiles/a
 
 CMakeFiles/amss.dir/main.cpp.o: CMakeFiles/amss.dir/flags.make
 CMakeFiles/amss.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/amss.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/amss.dir/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/amss.dir/main.cpp.o -c /media/sf_Share/Blackbeard/amss/main.cpp
 
 CMakeFiles/amss.dir/main.cpp.i: cmake_force
@@ -1189,11 +1261,14 @@ CMakeFiles/amss.dir/main.cpp.o.provides.build: CMakeFiles/amss.dir/main.cpp.o
 amss_OBJECTS = \
 "CMakeFiles/amss.dir/camera/CameraReader.cpp.o" \
 "CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o" \
+"CMakeFiles/amss.dir/camera/ImageData.cpp.o" \
 "CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o" \
 "CMakeFiles/amss.dir/camera/ImageSender.cpp.o" \
 "CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o" \
 "CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o" \
 "CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o" \
+"CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o" \
+"CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o" \
 "CMakeFiles/amss.dir/common/event/EventBase.cpp.o" \
 "CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o" \
 "CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o" \
@@ -1240,11 +1315,14 @@ amss_EXTERNAL_OBJECTS =
 
 amss: CMakeFiles/amss.dir/camera/CameraReader.cpp.o
 amss: CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o
+amss: CMakeFiles/amss.dir/camera/ImageData.cpp.o
 amss: CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o
 amss: CMakeFiles/amss.dir/camera/ImageSender.cpp.o
 amss: CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o
 amss: CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o
 amss: CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o
+amss: CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o
+amss: CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o
 amss: CMakeFiles/amss.dir/common/event/EventBase.cpp.o
 amss: CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o
 amss: CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o
@@ -1287,7 +1365,7 @@ amss: CMakeFiles/amss.dir/servoencoder/ServoEncoder.cpp.o
 amss: CMakeFiles/amss.dir/main.cpp.o
 amss: CMakeFiles/amss.dir/build.make
 amss: CMakeFiles/amss.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Linking CXX executable amss"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/sf_Share/Blackbeard/amss/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Linking CXX executable amss"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/amss.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -1297,11 +1375,14 @@ CMakeFiles/amss.dir/build: amss
 
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/CameraReader.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/DotRecognizer.cpp.o.requires
+CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/ImageData.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/ImageRecognizer.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/ImageSender.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/LineRecognizer.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/SignRecognizer.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/camera/SquareRecognizer.cpp.o.requires
+CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o.requires
+CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/common/event/EventBase.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/common/event/EventHandlerAdapter.cpp.o.requires
 CMakeFiles/amss.dir/requires: CMakeFiles/amss.dir/common/event/LineRecognizedEvent.cpp.o.requires

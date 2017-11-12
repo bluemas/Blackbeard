@@ -177,6 +177,33 @@ camera/DotRecognizer.cpp.s:
 	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/camera/DotRecognizer.cpp.s
 .PHONY : camera/DotRecognizer.cpp.s
 
+camera/ImageData.o: camera/ImageData.cpp.o
+
+.PHONY : camera/ImageData.o
+
+# target to build an object file
+camera/ImageData.cpp.o:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/camera/ImageData.cpp.o
+.PHONY : camera/ImageData.cpp.o
+
+camera/ImageData.i: camera/ImageData.cpp.i
+
+.PHONY : camera/ImageData.i
+
+# target to preprocess a source file
+camera/ImageData.cpp.i:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/camera/ImageData.cpp.i
+.PHONY : camera/ImageData.cpp.i
+
+camera/ImageData.s: camera/ImageData.cpp.s
+
+.PHONY : camera/ImageData.s
+
+# target to generate assembly for a file
+camera/ImageData.cpp.s:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/camera/ImageData.cpp.s
+.PHONY : camera/ImageData.cpp.s
+
 camera/ImageRecognizer.o: camera/ImageRecognizer.cpp.o
 
 .PHONY : camera/ImageRecognizer.o
@@ -338,6 +365,60 @@ common/RecognizerBase.s: common/RecognizerBase.cpp.s
 common/RecognizerBase.cpp.s:
 	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/RecognizerBase.cpp.s
 .PHONY : common/RecognizerBase.cpp.s
+
+common/event/CrossRecognizedEvent.o: common/event/CrossRecognizedEvent.cpp.o
+
+.PHONY : common/event/CrossRecognizedEvent.o
+
+# target to build an object file
+common/event/CrossRecognizedEvent.cpp.o:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.o
+.PHONY : common/event/CrossRecognizedEvent.cpp.o
+
+common/event/CrossRecognizedEvent.i: common/event/CrossRecognizedEvent.cpp.i
+
+.PHONY : common/event/CrossRecognizedEvent.i
+
+# target to preprocess a source file
+common/event/CrossRecognizedEvent.cpp.i:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.i
+.PHONY : common/event/CrossRecognizedEvent.cpp.i
+
+common/event/CrossRecognizedEvent.s: common/event/CrossRecognizedEvent.cpp.s
+
+.PHONY : common/event/CrossRecognizedEvent.s
+
+# target to generate assembly for a file
+common/event/CrossRecognizedEvent.cpp.s:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEvent.cpp.s
+.PHONY : common/event/CrossRecognizedEvent.cpp.s
+
+common/event/CrossRecognizedEventHandler.o: common/event/CrossRecognizedEventHandler.cpp.o
+
+.PHONY : common/event/CrossRecognizedEventHandler.o
+
+# target to build an object file
+common/event/CrossRecognizedEventHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.o
+.PHONY : common/event/CrossRecognizedEventHandler.cpp.o
+
+common/event/CrossRecognizedEventHandler.i: common/event/CrossRecognizedEventHandler.cpp.i
+
+.PHONY : common/event/CrossRecognizedEventHandler.i
+
+# target to preprocess a source file
+common/event/CrossRecognizedEventHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.i
+.PHONY : common/event/CrossRecognizedEventHandler.cpp.i
+
+common/event/CrossRecognizedEventHandler.s: common/event/CrossRecognizedEventHandler.cpp.s
+
+.PHONY : common/event/CrossRecognizedEventHandler.s
+
+# target to generate assembly for a file
+common/event/CrossRecognizedEventHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/common/event/CrossRecognizedEventHandler.cpp.s
+.PHONY : common/event/CrossRecognizedEventHandler.cpp.s
 
 common/event/EventBase.o: common/event/EventBase.cpp.o
 
@@ -1407,6 +1488,9 @@ help:
 	@echo "... camera/DotRecognizer.o"
 	@echo "... camera/DotRecognizer.i"
 	@echo "... camera/DotRecognizer.s"
+	@echo "... camera/ImageData.o"
+	@echo "... camera/ImageData.i"
+	@echo "... camera/ImageData.s"
 	@echo "... camera/ImageRecognizer.o"
 	@echo "... camera/ImageRecognizer.i"
 	@echo "... camera/ImageRecognizer.s"
@@ -1425,6 +1509,12 @@ help:
 	@echo "... common/RecognizerBase.o"
 	@echo "... common/RecognizerBase.i"
 	@echo "... common/RecognizerBase.s"
+	@echo "... common/event/CrossRecognizedEvent.o"
+	@echo "... common/event/CrossRecognizedEvent.i"
+	@echo "... common/event/CrossRecognizedEvent.s"
+	@echo "... common/event/CrossRecognizedEventHandler.o"
+	@echo "... common/event/CrossRecognizedEventHandler.i"
+	@echo "... common/event/CrossRecognizedEventHandler.s"
 	@echo "... common/event/EventBase.o"
 	@echo "... common/event/EventBase.i"
 	@echo "... common/event/EventBase.s"

@@ -28,6 +28,20 @@ DotRecognizer.h
 opencv2/opencv.hpp
 -
 
+/media/sf_Share/Blackbeard/amss/camera/ImageData.cpp
+ImageData.h
+/media/sf_Share/Blackbeard/amss/camera/ImageData.h
+stdio.h
+-
+cstring
+-
+
+/media/sf_Share/Blackbeard/amss/camera/ImageData.h
+map
+-
+../common/Constants.h
+/media/sf_Share/Blackbeard/amss/common/Constants.h
+
 /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.cpp
 ImageRecognizer.h
 /media/sf_Share/Blackbeard/amss/camera/ImageRecognizer.h
@@ -47,6 +61,8 @@ CameraReader.h
 /media/sf_Share/Blackbeard/amss/camera/CameraReader.h
 ../common/event/LineRecognizedEventHandler.h
 /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEventHandler.h
+../common/event/CrossRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
 ../common/event/RedDotRecognizedEventHandler.h
 /media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.h
 ../common/event/SignRecognizedEventHandler.h
@@ -65,6 +81,8 @@ SignRecognizer.h
 /media/sf_Share/Blackbeard/amss/camera/SignRecognizer.h
 SquareRecognizer.h
 /media/sf_Share/Blackbeard/amss/camera/SquareRecognizer.h
+ImageData.h
+/media/sf_Share/Blackbeard/amss/camera/ImageData.h
 thread
 -
 
@@ -129,6 +147,22 @@ RecognizerBase.h
 /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
 
 /media/sf_Share/Blackbeard/amss/common/RecognizerBase.h
+
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.cpp
+CrossRecognizedEvent.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
+EventBase.h
+/media/sf_Share/Blackbeard/amss/common/event/EventBase.h
+
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.cpp
+CrossRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
+
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
+CrossRecognizedEvent.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEvent.h
 
 /media/sf_Share/Blackbeard/amss/common/event/EventBase.cpp
 EventBase.h
@@ -265,6 +299,8 @@ wiringPi.h
 -
 main/MainController.h
 /media/sf_Share/Blackbeard/amss/main/MainController.h
+servoencoder/BehaviorExecutor.h
+/media/sf_Share/Blackbeard/amss/servoencoder/BehaviorExecutor.h
 sam/WallRecognizer.h
 /media/sf_Share/Blackbeard/amss/sam/WallRecognizer.h
 sam/MazeMapper.h
@@ -515,16 +551,30 @@ MapRepo.h
 /media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
 
 /media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
+../common/Constants.h
+/media/sf_Share/Blackbeard/amss/common/Constants.h
 
 /media/sf_Share/Blackbeard/amss/sam/MazeMapper.cpp
 MazeMapper.h
 /media/sf_Share/Blackbeard/amss/sam/MazeMapper.h
 
 /media/sf_Share/Blackbeard/amss/sam/MazeMapper.h
+iostream
+-
+atomic
+-
 ../common/Constants.h
 /media/sf_Share/Blackbeard/amss/common/Constants.h
 ../common/event/WallSensingEventHandler.h
 /media/sf_Share/Blackbeard/amss/common/event/WallSensingEventHandler.h
+../common/event/CrossRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
+../common/event/RedDotRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/RedDotRecognizedEventHandler.h
+../common/event/SignRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.h
+../common/event/SquareRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.h
 MapData.h
 /media/sf_Share/Blackbeard/amss/sam/MapData.h
 

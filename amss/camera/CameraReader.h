@@ -13,14 +13,14 @@
 #include <opencv2/opencv.hpp>
 #include "PI3OpencvCompat.h"
 
-
+using namespace cv;
 class CameraReader
 {
 
 public:
     CameraReader();
     virtual ~CameraReader();
-    int readCamera(cv::Mat &image);
+    int readCamera(Mat &image);
 
     
 private:

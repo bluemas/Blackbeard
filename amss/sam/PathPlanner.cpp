@@ -26,7 +26,19 @@ Direction PathPlanner::nextDirection() {
 
     // TODO Find next direction using MapRepo
 
-    mMapData->setNextDirection(dir);
+    if (mCount == 0) {
+        dir = Direction::forward;
+        mMapData->setNextDirection(dir);
+        mCount++;
+    } else if (mCount == 1) {
+        dir = Direction::left;
+        mMapData->setNextDirection(dir);
+        mCount++;
+    } else if (mCount == 2) {
+        dir = Direction::right;
+        mMapData->setNextDirection(dir);
+        mCount++;
+    }
 
     return dir;
 }

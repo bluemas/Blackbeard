@@ -23,6 +23,8 @@ public:
 
 private:
     MapData *mMapData;
+
+    int mCount = 0; // TEMP
 };
 
 #endif /* SAM_PATHPLANNER_H_ */

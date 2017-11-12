@@ -21,6 +21,7 @@
 #include "LineRecognizer.h"
 #include "SignRecognizer.h"
 #include "SquareRecognizer.h"
+#include "ImageData.h"
 
 #include <thread>
 
@@ -48,6 +49,7 @@ private:
     LineRecognizer mLineRecog;
     SignRecognizer mSignRecog;
     SquareRecognizer mSquareRecog;
+    ImageData *mImgData;
 
     bool mIsRun;
     std::thread mThread;

@@ -11,7 +11,7 @@
 #define HEIGHT 240
 #define FPS 30
 
-
+using namespace cv;
 
 CameraReader::CameraReader() {
     mCapture =cvCreateCameraCapture(0);   // Open default Camera
@@ -29,12 +29,13 @@ CameraReader::CameraReader() {
 }
 
 int CameraReader::readCamera(Mat &image) {
-    IplImage * iplCameraImage;
+    IplImage* iplCameraImage;
     iplCameraImage = cvQueryFrame(mCapture); // Get Camera image
     image = cv::cvarrToMat(iplCameraImage);  // Convert Camera image to Mat format
     
     if (IsPi3) 
         flip(image, image, -1);       // if running on PI3 flip(-1)=180 degrees
+
     return 0;
 }
 

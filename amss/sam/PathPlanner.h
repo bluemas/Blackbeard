@@ -9,6 +9,7 @@
 #define SAM_PATHPLANNER_H_
 
 #include <iostream>
+#include <stack>
 #include "../common/Constants.h"
 #include "MapData.h"
 #include "MazeMapper.h"
@@ -26,9 +27,11 @@ public:
 
 private:
     MapData *mMapData;
-    // TODO Declare path stack
+    stack<Direction> mDirStack;
 
     int mCount = 0; // TEMP
+
+    bool isMappedComplete();
 };
 
 #endif /* SAM_PATHPLANNER_H_ */

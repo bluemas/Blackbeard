@@ -27,9 +27,10 @@ Direction PathPlanner::nextDirection() {
     Direction dir = Direction::none;
 
     /*
-    if (mMapData->isBackTrackingMode()) {
-        // TODO Poll a direction from the stack
-        dir = a direction from the stack
+    // Return previous direction if the mode is back tracking
+    if (mMapData->isBackTrackingMode() && !mDirStack.empty()) {
+        dir = mDirStack.top();
+        mDirStack.pop();
         return dir;
     }
 
@@ -40,10 +41,16 @@ Direction PathPlanner::nextDirection() {
         dir = Direction::forward;
     } else if (mMapData->isRightAvailable()) {
         dir = Direction::right;
+    } else if (isMappedComplete()){
+        return Direction::none;
+    } else {
+        // No way to go.
+        return Direction::backward;
     }
 
+    // Push a direction to the stack for back tracking
     if (!mMapData->isBackTrackingMode()) {
-        // TODO Put a direction to the stack for back tracking
+        mDirStack.push(dir);
     }
     */
 
@@ -116,4 +123,9 @@ Direction PathPlanner::nextDirection() {
     }
 
     return dir;
+}
+
+bool PathPlanner::isMappedComplete() {
+    // TODO Check whether a maze is mapped completely
+    return false;
 }

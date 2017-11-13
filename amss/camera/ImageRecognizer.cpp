@@ -68,6 +68,9 @@ void ImageRecognizer::setSignRecognizeMode(bool enable) {
     mSignRecogEnable = enable;
 }
 
+void ImageRecognizer::setLineRecognizeMode(bool enable) {
+    mLineRecogEnable = enable;
+}
 void ImageRecognizer::RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg) {
     SignType sign = SignType::SignNone;
     //Recognize sign
@@ -97,16 +100,18 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
 
     // notify event to handler
-    LineRecognizedEvent lineEvent(offset);
-    for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
-        mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
-    }
+    if (mLineRecogEnable) {
+        LineRecognizedEvent lineEvent(offset);
+        for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
+            mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+        }
 
-    if (foundCross){
-        CrossRecognizedEvent crossEvent;
-        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
-            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
-        }                    
+        if (foundCross){
+            CrossRecognizedEvent crossEvent;
+            for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+                mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+            }                    
+        }
     }
 
     if (foundDot){

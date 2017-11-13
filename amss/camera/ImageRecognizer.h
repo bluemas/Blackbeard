@@ -41,6 +41,7 @@ public:
     void addSignRecogEventHandler(SignRecognizedEventHandler *eventHandler);
     void addSquareRecogEventHandler(SquareRecognizedEventHandler *eventHandler);
     void setSignRecognizeMode(bool enable);
+    void setLineRecognizeMode(bool enable);
     void start();
     void stop();
 
@@ -63,6 +64,7 @@ private:
     vector<SquareRecognizedEventHandler*> mSquareRecogHandlers;
 
     bool mSignRecogEnable;
+    bool mLineRecogEnable;
 
     void run();
     void RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg);

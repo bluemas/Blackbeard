@@ -169,11 +169,14 @@ int UDPSocket::SendUDPMsg(TUdpLocalPort * UdpLocalPort,TUdpDest *dest, unsigned 
 {
   int  slen;
   int  retval;
-  if ((dest==NULL) || (UdpLocalPort==NULL)) return(-1);
+  if ((dest==NULL) || (UdpLocalPort==NULL))
+    return(-1);
 
   slen = sizeof(dest->remaddr);
-  if (UdpLocalPort->UdpFd== BAD_SOCKET_FD) return(-1);
-  if ((retval=sendto(UdpLocalPort->UdpFd, (const char *)msg, (int)length, 0, (struct sockaddr *)&dest->remaddr, slen)) == -1)
+  if (UdpLocalPort->UdpFd== BAD_SOCKET_FD)
+    return(-1);
+  if ((retval=sendto(UdpLocalPort->UdpFd, (const char *)msg, (int)length, 0,
+                     (struct sockaddr *)&dest->remaddr, slen)) == -1)
   {
     perror("sendto");
     return(-1);

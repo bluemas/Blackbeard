@@ -35,7 +35,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/amss.dir/network/TCPSocket.cpp.o"
   "CMakeFiles/amss.dir/network/UDPSocket.cpp.o"
   "CMakeFiles/amss.dir/sam/MapData.cpp.o"
-  "CMakeFiles/amss.dir/sam/MapRepo.cpp.o"
   "CMakeFiles/amss.dir/sam/MazeGrid.cpp.o"
   "CMakeFiles/amss.dir/sam/MazeMapper.cpp.o"
   "CMakeFiles/amss.dir/sam/PathPlanner.cpp.o"

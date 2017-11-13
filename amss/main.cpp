@@ -74,6 +74,7 @@ int main() {
     imageRecognizer->addRedDotRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mainController);
     imageRecognizer->addSquareRecogEventHandler(mainController);
+    imageRecognizer->addCrossRecogEventHandler(mainController);
 
     // 4. Initiate other components
     MapData *mapRepo = new MapData();

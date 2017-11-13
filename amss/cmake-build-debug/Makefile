@@ -1122,33 +1122,6 @@ sam/MapData.cpp.s:
 	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/sam/MapData.cpp.s
 .PHONY : sam/MapData.cpp.s
 
-sam/MapRepo.o: sam/MapRepo.cpp.o
-
-.PHONY : sam/MapRepo.o
-
-# target to build an object file
-sam/MapRepo.cpp.o:
-	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/sam/MapRepo.cpp.o
-.PHONY : sam/MapRepo.cpp.o
-
-sam/MapRepo.i: sam/MapRepo.cpp.i
-
-.PHONY : sam/MapRepo.i
-
-# target to preprocess a source file
-sam/MapRepo.cpp.i:
-	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/sam/MapRepo.cpp.i
-.PHONY : sam/MapRepo.cpp.i
-
-sam/MapRepo.s: sam/MapRepo.cpp.s
-
-.PHONY : sam/MapRepo.s
-
-# target to generate assembly for a file
-sam/MapRepo.cpp.s:
-	$(MAKE) -f CMakeFiles/amss.dir/build.make CMakeFiles/amss.dir/sam/MapRepo.cpp.s
-.PHONY : sam/MapRepo.cpp.s
-
 sam/MazeGrid.o: sam/MazeGrid.cpp.o
 
 .PHONY : sam/MazeGrid.o
@@ -1593,9 +1566,6 @@ help:
 	@echo "... sam/MapData.o"
 	@echo "... sam/MapData.i"
 	@echo "... sam/MapData.s"
-	@echo "... sam/MapRepo.o"
-	@echo "... sam/MapRepo.i"
-	@echo "... sam/MapRepo.s"
 	@echo "... sam/MazeGrid.o"
 	@echo "... sam/MazeGrid.i"
 	@echo "... sam/MazeGrid.s"

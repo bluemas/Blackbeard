@@ -189,6 +189,8 @@ SignRecognizedEventHandler.h
 /media/sf_Share/Blackbeard/amss/common/event/SignRecognizedEventHandler.h
 SquareRecognizedEventHandler.h
 /media/sf_Share/Blackbeard/amss/common/event/SquareRecognizedEventHandler.h
+CrossRecognizedEventHandler.h
+/media/sf_Share/Blackbeard/amss/common/event/CrossRecognizedEventHandler.h
 
 /media/sf_Share/Blackbeard/amss/common/event/LineRecognizedEvent.cpp
 LineRecognizedEvent.h
@@ -345,6 +347,8 @@ AutonomousSignRecognitionMode.h
 /media/sf_Share/Blackbeard/amss/common/event/EventBase.h
 MainController.h
 /media/sf_Share/Blackbeard/amss/main/MainController.h
+../common/Logging.h
+/media/sf_Share/Blackbeard/amss/common/Logging.h
 
 /media/sf_Share/Blackbeard/amss/main/AutonomousSignRecognitionMode.h
 ModeBase.h
@@ -533,16 +537,8 @@ MapData.h
 /media/sf_Share/Blackbeard/amss/sam/MapData.h
 
 /media/sf_Share/Blackbeard/amss/sam/MapData.h
-../common/Constants.h
-/media/sf_Share/Blackbeard/amss/common/Constants.h
-MazeGrid.h
-/media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
-
-/media/sf_Share/Blackbeard/amss/sam/MapRepo.cpp
-MapRepo.h
-/media/sf_Share/Blackbeard/amss/sam/MapRepo.h
-
-/media/sf_Share/Blackbeard/amss/sam/MapRepo.h
+iostream
+-
 ../common/Constants.h
 /media/sf_Share/Blackbeard/amss/common/Constants.h
 

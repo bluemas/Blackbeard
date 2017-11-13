@@ -30,6 +30,7 @@ class MainController :
     public SquareRecognizedEventHandler,
     public SignRecognizedEventHandler,
     public RedDotRecognizedEventHandler,
+    public CrossRecognizedEventHandler,
     public LineRecognizedEventHandler,
     public NetMessageEventAdapter {
 
@@ -60,6 +61,7 @@ private:
     void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
     void handleSignRecognizedEvent(const SignRecognizedEvent ev);
     void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
+    void handleCrossRecognizedEvent(const CrossRecognizedEvent ev);
     void handleLineRecognizedEvent(const LineRecognizedEvent ev);
     void handleMessage(NetworkMsg type, void* data);
 

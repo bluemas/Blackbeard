@@ -318,12 +318,6 @@
 		<Unit filename="/media/sf_Share/Blackbeard/amss/sam/MapData.h">
 			<Option target="amss"/>
 		</Unit>
-		<Unit filename="/media/sf_Share/Blackbeard/amss/sam/MapRepo.cpp">
-			<Option target="amss"/>
-		</Unit>
-		<Unit filename="/media/sf_Share/Blackbeard/amss/sam/MapRepo.h">
-			<Option target="amss"/>
-		</Unit>
 		<Unit filename="/media/sf_Share/Blackbeard/amss/sam/MazeGrid.cpp">
 			<Option target="amss"/>
 		</Unit>

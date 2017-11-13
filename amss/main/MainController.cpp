@@ -43,7 +43,7 @@ void MainController::runLoop() {
     while (bRun) {
         // Send sensor data to RUI
         if (mConnected) {
-            sendSensorData();
+//            sendSensorData();
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -59,7 +59,7 @@ void MainController::sendSensorData() {
 
     char distances[100] = { 0 };
     snprintf(distances, 100, "%d/%d/%d",
-             leftDistance, frontDistance, rightDistance);
+             frontDistance, leftDistance, rightDistance);
     networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
 }
 
@@ -164,6 +164,10 @@ void MainController::handleSignRecognizedEvent(const SignRecognizedEvent ev) {
 
 void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev) {
     currentMode()->handleSquareRecognizedEvent(ev);
+}
+
+void MainController::handleCrossRecognizedEvent(const CrossRecognizedEvent ev) {
+    currentMode()->handleCrossRecognizedEvent(ev);
 }
 
 void MainController::handleMessage(NetworkMsg type, void* data) {

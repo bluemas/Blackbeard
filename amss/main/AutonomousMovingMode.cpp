@@ -34,3 +34,7 @@ void AutonomousMovingMode::handleRedDotRecognizedEvent(
     mMainController->behaviorExecutor()->gotoCross();
     mMainController->setCurrentMode(RobotMode::AutoSignRecognition);
 }
+
+void AutonomousMovingMode::handleCrossRecognizedEvent(CrossRecognizedEvent ev) {
+    mMainController->setCurrentMode(RobotMode::AutoPathPlanning);
+}

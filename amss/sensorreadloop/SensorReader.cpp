@@ -9,7 +9,7 @@ SensorReader::SensorReader()
 
 SensorReader::~SensorReader() {}
 
-void SensorReader::inputData(SensorType type, int value)
+void SensorReader::putData(SensorType type, int value)
 {
 	mData->putData(type, value);
 }

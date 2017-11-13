@@ -49,6 +49,6 @@ void SonarFront::read(void)
     distanceMm = travelTimeUsec/5.8;
 
     //Save Sensor Data Class
-    inputData(SensorType::front, (int)distanceMm);
+    putData(SensorType::front, (int)distanceMm);
 }
 

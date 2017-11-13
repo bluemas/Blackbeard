@@ -15,7 +15,7 @@ public:
     SensorReader();
     virtual ~SensorReader();
     virtual void read() =0;
-    void inputData(SensorType type, int value);
+    void putData(SensorType type, int value);
 };
 
 #endif

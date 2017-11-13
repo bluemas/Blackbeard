@@ -102,6 +102,7 @@ public class RUIMain {
 	 */
 	public void open() {
 		display = Display.getDefault();
+
 		createContents();
 
 		shell.open();
@@ -217,7 +218,7 @@ public class RUIMain {
 					public void run() {
 						try {
 							if (networkManager.connect()) {
-								networkManager.sendCommand(new Command(1, networkManager.getLocalIPAddress()));								
+								networkManager.sendCommand(new Command(1, networkManager.getLocalIPAddress()));
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -355,7 +356,8 @@ public class RUIMain {
 
 		canvas.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
-				mazeDrawer.draw(e);
+				if (mazeDrawer != null)
+					mazeDrawer.draw(e);
 			}
 		});
 

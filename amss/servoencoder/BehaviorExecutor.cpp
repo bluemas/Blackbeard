@@ -13,6 +13,8 @@ BehaviorExecutor:: BehaviorExecutor()
 	mTilt = SERVO_CENTER_OR_STOP;
 
 	mServoEncoder->openServos();
+
+	mIsSearching = false;
 }
 
 BehaviorExecutor::~BehaviorExecutor() {}
@@ -168,13 +170,7 @@ void BehaviorExecutor::setOffset(float offset)
 	mServoEncoder->setWheelSpeed(left, right);	
 }
 
-void* BehaviorExecutor::runSign(void * ptr)
-{
-	((BehaviorExecutor*)ptr)->searchSignDir();
-	return ptr;
-}
-
-void BehaviorExecutor::searchSignDir(void)
+void BehaviorExecutor::searchSign(Direction dir)
 {
 	int searchCnt = 0;
 	int check = 0;
@@ -182,8 +178,10 @@ void BehaviorExecutor::searchSignDir(void)
 	
 	mTilt = SERVO_CENTER_OR_STOP;
 	check = CAMSEARCHOFFSET * 2;
+
+	mIsSearching = true;
 	
-	switch(mSearchDir) {
+	switch(dir) {
 	case Direction::forward:
 		mPan = SERVO_CENTER_OR_STOP;
 		break;
@@ -204,6 +202,8 @@ void BehaviorExecutor::searchSignDir(void)
 	tiltPos = mTilt - CAMSEARCHOFFSET;
 	for(searchCnt = 0; searchCnt < check; searchCnt++)
 	{
+		if(mIsSearching == false)	return;
+		
 		mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
 		tiltPos++;
 		usleep(200000);
@@ -215,6 +215,8 @@ void BehaviorExecutor::searchSignDir(void)
 		mServoEncoder->setServoPosition(CAMERA_PAN, mPan-CAMSEARCHOFFSET);
 		for(searchCnt = 0 ; searchCnt < check; searchCnt++)
 		{
+			if(mIsSearching == false)	return;
+			
 			mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
 			tiltPos++;
 			usleep(200000);
@@ -227,25 +229,20 @@ void BehaviorExecutor::searchSignDir(void)
 		mServoEncoder->setServoPosition(CAMERA_PAN, mPan+CAMSEARCHOFFSET);
 		for(searchCnt = 0 ; searchCnt < check; searchCnt++)
 		{
+			if(mIsSearching == false)	return;
+			
 			mServoEncoder->setServoPosition(CAMERA_TILT, tiltPos);
 			tiltPos++;
 			usleep(200000);
 		}
 	}
-	pthread_join(mThreadSign, NULL);
-}
 
-void BehaviorExecutor::searchSign(Direction dir)
-{
-	// Save Search direction
-	mSearchDir = dir;
-
-	pthread_create(&mThreadSign, NULL, &BehaviorExecutor::runSign, (void*)this);
+	mIsSearching = false;
 }
 
 void BehaviorExecutor::stopSign(void)
 {	
-	pthread_cancel(mThreadSign);
+	mIsSearching = false;
 	setCamDefaultTrackLine();
 }
 

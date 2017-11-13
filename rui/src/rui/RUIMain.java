@@ -216,7 +216,9 @@ public class RUIMain {
 				display.asyncExec(new Runnable() {
 					public void run() {
 						try {
-							networkManager.connect();
+							if (networkManager.connect()) {
+								networkManager.sendCommand(new Command(1, networkManager.getLocalIPAddress()));								
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -42,7 +42,7 @@ public:
     void addWallSensingEventHandler(WallSensingEventHandler *eventHandler);
 
 private:
-    const int SENSING_PERIOD_IN_MS = 500;
+    const int SENSING_PERIOD_IN_MS = 200;
 
     const int MIN_FRONT_COLLISION_DISTANCE = 50;
     const int MIN_SIDE_COLLISION_DISTANCE  = 50;

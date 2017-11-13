@@ -26,6 +26,7 @@ public:
 
 private:
     MapData *mMapData;
+    // TODO Declare path stack
 
     int mCount = 0; // TEMP
 };

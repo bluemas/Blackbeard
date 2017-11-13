@@ -33,24 +33,30 @@ public class CameraImageReceiver implements Runnable {
 
 			/* Receiving loop */
 			while (!this.socket.isClosed()) {
-				/* Receive a UDP packet */
-				DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-				socket.receive(dp);
+				try {
+					/* Receive a UDP packet */
+					DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+					socket.receive(dp);
 
-				byte[] data = dp.getData();
-				
-				BufferedImage bi = ImageIO.read(new ByteArrayInputStream(data));
-				ImageData img = Utils.convertToSWT(bi);
-				bi.flush();
-				bi = null;
-				
-				RUIMain.display.asyncExec(new Runnable() {
-					public void run() {
-						Image image = new Image(null, img);
-						rui.getCameraImageLabel().setImage(image);
-						image.dispose();
-					}
-				});
+					byte[] data = dp.getData();
+
+					BufferedImage bi = ImageIO.read(new ByteArrayInputStream(data));
+					if (bi == null)
+						continue;
+
+					ImageData img = Utils.convertToSWT(bi);
+					bi.flush();
+					bi = null;
+
+					RUIMain.display.asyncExec(new Runnable() {
+						public void run() {
+							Image image = new Image(null, img);
+							rui.getCameraImageLabel().setImage(image);
+							image.dispose();
+						}
+					});
+				} catch (Exception ex) {
+				}
 			}
 		} catch (IOException e) {
 		}

@@ -43,7 +43,7 @@ public class NetworkManager {
 
 			socket = new Socket();
 			socket.connect(new InetSocketAddress(ip, port), IConstants.SOCKET_TIMEOUT);
-			
+
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();
@@ -52,12 +52,12 @@ public class NetworkManager {
 			rui.setNetworkStatus(true);
 
 			startNetworkWatchdog();
-			
+
 			return true;
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			rui.setNetworkStatus(false);
-			
+
 			return false;
 		}
 	}
@@ -102,12 +102,17 @@ public class NetworkManager {
 		return this.localIPAddress;
 	}
 
-	private void startNetworkWatchdog() {
+	public void startNetworkWatchdog() {
 		if (watchdog != null)
 			watchdog.stop();
 
 		watchdog = new NetworkWatchdog();
 		new Thread(watchdog).start();
+	}
+
+	public void stopNetworkWatchdog() {
+		if (watchdog != null)
+			watchdog.stop();
 	}
 
 	class NetworkWatchdog implements Runnable {

@@ -94,7 +94,8 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     float offset = 0.0;
 
     //recognize line
-    offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
+    if (mLineRecogEnable)
+        offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
     //recognize reddot
     foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
     //recognize end square;

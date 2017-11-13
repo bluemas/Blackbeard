@@ -44,6 +44,8 @@ public:
     void setPathPlanner(PathPlanner* pathPlanner);
     void setCurrentMode(RobotMode mode);
 
+    void ignoreCrossDetection(bool ignore);
+
     BehaviorExecutor* behaviorExecutor();
     ImageRecognizer* imageRecognizer();
     PathPlanner* pathPlanner();
@@ -66,6 +68,7 @@ private:
     void handleMessage(NetworkMsg type, void* data);
 
     bool mConnected;
+    bool mIgnoreCrossDetection;
     std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
     BehaviorExecutor mBehaviorExecutor;
@@ -73,7 +76,5 @@ private:
     NetworkManager* mNetworkManager;
     SignRecognizer* mSignRecognizer;
     ImageRecognizer* mImageRecognizer;
-
-
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

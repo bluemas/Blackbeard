@@ -60,8 +60,6 @@ int main() {
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
-    wallRecognizer->addWallCollisionEventHandler(mainController);
-    wallRecognizer->addWallSensingEventHandler(mainController);
 
     // Initialize NetworkManager
     NetworkManager* networkManager = new NetworkManager();
@@ -74,6 +72,7 @@ int main() {
     imageRecognizer->addRedDotRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mainController);
     imageRecognizer->addSquareRecogEventHandler(mainController);
+    imageRecognizer->addCrossRecogEventHandler(mainController);
 
     // 4. Initiate other components
     MapData *mapRepo = new MapData();
@@ -84,6 +83,10 @@ int main() {
     wallRecognizer->setMazeMapper(mazeMapper);
     mainController->setPathPlanner(pathPlanner);
     mainController->setImageRecognizer(imageRecognizer);
+
+    wallRecognizer->addWallCollisionEventHandler(mainController);
+    wallRecognizer->addWallSensingEventHandler(mainController);
+    wallRecognizer->addWallSensingEventHandler(mazeMapper);
 
     imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
     imageRecognizer->addCrossRecogEventHandler(mazeMapper);

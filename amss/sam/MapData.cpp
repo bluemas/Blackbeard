@@ -31,6 +31,10 @@ void MapData::init() {
     mPosX = 10; // TODO
     mPosY = 10; // TODO
     mMazeArr[mPosX][mPosY] = 'S';
+
+    mRobotDirection = Direction::forward;
+    mNextDirection = Direction::forward;
+    mIsBackTracking = false;
 }
 
 void MapData::setNextDirection(Direction dir) {
@@ -135,4 +139,55 @@ bool MapData::isFirstGrid() {
     return mPosY == 10 && mPosX == 10;
 }
 
+bool MapData::isForwardAvailable() {
+    bool isAvailable = false;
 
+    if (mRobotDirection == Direction::forward)
+        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+    else if (mRobotDirection == Direction::backward)
+        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+    else if (mRobotDirection == Direction::left)
+        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+    else if (mRobotDirection == Direction::right)
+        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+
+    return isAvailable;
+}
+
+bool MapData::isLeftAvailable() {
+    bool isAvailable = false;
+
+    if (mRobotDirection == Direction::forward)
+        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+    else if (mRobotDirection == Direction::backward)
+        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+    else if (mRobotDirection == Direction::left)
+        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+    else if (mRobotDirection == Direction::right)
+        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+
+    return isAvailable;
+}
+
+bool MapData::isRightAvailable() {
+    bool isAvailable = false;
+
+    if (mRobotDirection == Direction::forward)
+        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+    else if (mRobotDirection == Direction::backward)
+        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+    else if (mRobotDirection == Direction::left)
+        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+    else if (mRobotDirection == Direction::right)
+        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+
+    return isAvailable;
+}
+
+void MapData::setBackTrackingMode(bool isBackTracking) {
+    mIsBackTracking = isBackTracking;
+}
+
+bool MapData::isBackTrackingMode() {
+    return mIsBackTracking;
+}

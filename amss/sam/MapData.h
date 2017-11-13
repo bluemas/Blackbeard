@@ -29,6 +29,11 @@ public:
     void getMapData();
     void printMap();
     bool isFirstGrid();
+    bool isForwardAvailable();
+    bool isLeftAvailable();
+    bool isRightAvailable();
+    void setBackTrackingMode(bool isBackTracking);
+    bool isBackTrackingMode();
 
 private:
     static const int MAZE_SIZE = 20;
@@ -38,6 +43,7 @@ private:
     //MazeGrid mMazeArr[MAZE_SIZE][MAZE_SIZE];
     Direction mRobotDirection = Direction::forward;
     Direction mNextDirection = Direction::forward;
+    bool mIsBackTracking = false;
 };
 
 #endif /* SAM_MAPDATA_H_ */

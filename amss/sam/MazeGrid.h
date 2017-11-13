@@ -12,13 +12,11 @@
 
 class MazeGrid {
 
-    const int WALL_TOP = 1;
-    const int WALL_RIGHT = 2;
-    const int WALL_BOTTOM = 4;
-    const int WALL_LEFT = 8;
-
     const int WALL_NONE = 0;
-    const int WALL_ALL = WALL_TOP | WALL_RIGHT | WALL_BOTTOM | WALL_LEFT;
+    const int WALL_FRONT = 1;
+    const int WALL_LEFT = 2;
+    const int WALL_RIGHT = 4;
+    const int WALL_BACK = 8;
 
 public:
     MazeGrid();

@@ -8,8 +8,10 @@
 #ifndef SAM_MAPDATA_H_
 #define SAM_MAPDATA_H_
 
+#include <iostream>
 #include "../common/Constants.h"
-#include "MazeGrid.h"
+
+using namespace std;
 
 class MapData {
 
@@ -20,22 +22,22 @@ public:
     void init();
     void setNextDirection(Direction dir);
     Direction getNextDirection();
-    MazeGrid getCurrMazeGrid();
-    void setCurrMazeGrid(MazeGrid grid);
-    void setFrontMazeGrid(MazeGrid grid);
+    //MazeGrid getCurrMazeGrid();
+    //void setCurrMazeGrid(MazeGrid grid);
+    //void setFrontMazeGrid(MazeGrid grid);
+    void setMazeStatus(char front, char left, char right, char floor);
     void getMapData();
     void printMap();
     bool isFirstGrid();
 
 private:
-    static const int MAZE_SIZE = 10;
+    static const int MAZE_SIZE = 20;
     bool mFirstGrid = true;
-    int mPosX = 5, mPosY = 10;
+    int mPosX = 10, mPosY = 10;
+    char mMazeArr[MAZE_SIZE][MAZE_SIZE];
+    //MazeGrid mMazeArr[MAZE_SIZE][MAZE_SIZE];
     Direction mRobotDirection = Direction::forward;
-    MazeGrid mMazeArr[MAZE_SIZE][MAZE_SIZE];
     Direction mNextDirection = Direction::forward;
-
-    void mergeGrid(MazeGrid g1, MazeGrid g2);
 };
 
 #endif /* SAM_MAPDATA_H_ */

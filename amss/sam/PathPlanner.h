@@ -8,9 +8,12 @@
 #ifndef SAM_PATHPLANNER_H_
 #define SAM_PATHPLANNER_H_
 
+#include <iostream>
 #include "../common/Constants.h"
 #include "MapData.h"
 #include "MazeMapper.h"
+
+using namespace std;
 
 class PathPlanner {
 public:
@@ -23,6 +26,8 @@ public:
 
 private:
     MapData *mMapData;
+
+    int mCount = 0; // TEMP
 };
 
 #endif /* SAM_PATHPLANNER_H_ */

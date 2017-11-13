@@ -2,11 +2,15 @@ package rui.monitor;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import rui.Command;
 import rui.RUIMain;
 import rui.configure.ConfigManager;
+import rui.configure.IConstants;
+import rui.utils.Utils;
 
 public class NetworkManager {
 	private ConfigManager configManager = ConfigManager.getInstance();
@@ -16,12 +20,19 @@ public class NetworkManager {
 
 	private NetworkWatchdog watchdog = null;
 	private RUIMain rui;
+	private String localIPAddress;
 
 	public NetworkManager(RUIMain rui) {
 		this.rui = rui;
+
+		try {
+			this.localIPAddress = Utils.getLocalIPAddress();
+		} catch (UnknownHostException e) {
+			rui.appendLogMessage("Connection failed. " + e.getMessage());
+		}
 	}
 
-	public void connect() {
+	public boolean connect() {
 		try {
 			String ip = configManager.getRobotIp();
 			int port = configManager.getRobotPort();
@@ -30,7 +41,9 @@ public class NetworkManager {
 
 			disconnect();
 
-			socket = new Socket(ip, port);
+			socket = new Socket();
+			socket.connect(new InetSocketAddress(ip, port), IConstants.SOCKET_TIMEOUT);
+
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();
@@ -39,9 +52,13 @@ public class NetworkManager {
 			rui.setNetworkStatus(true);
 
 			startNetworkWatchdog();
+
+			return true;
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			rui.setNetworkStatus(false);
+
+			return false;
 		}
 	}
 
@@ -81,12 +98,21 @@ public class NetworkManager {
 		}
 	}
 
-	private void startNetworkWatchdog() {
+	public String getLocalIPAddress() {
+		return this.localIPAddress;
+	}
+
+	public void startNetworkWatchdog() {
 		if (watchdog != null)
 			watchdog.stop();
 
 		watchdog = new NetworkWatchdog();
 		new Thread(watchdog).start();
+	}
+
+	public void stopNetworkWatchdog() {
+		if (watchdog != null)
+			watchdog.stop();
 	}
 
 	class NetworkWatchdog implements Runnable {

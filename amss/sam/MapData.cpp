@@ -18,9 +18,18 @@ MapData::~MapData() {
 }
 
 void MapData::init() {
-    // TODO init MapRepo
+    // Initialize map data
+    for(int inx = 0; inx < MAZE_SIZE; inx++) {
+        for(int jnx = 0; jnx < MAZE_SIZE; jnx++) {
+            mMazeArr[jnx][inx] = '\0';
+        }
+    }
+
+    // Initialize robot position
     mFirstGrid = true;
 
+    mPosX = 10; // TODO
+    mPosY = 10; // TODO
     mMazeArr[mPosX][mPosY] = 'S';
 }
 

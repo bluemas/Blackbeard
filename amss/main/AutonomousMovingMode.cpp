@@ -38,3 +38,11 @@ void AutonomousMovingMode::handleRedDotRecognizedEvent(
 void AutonomousMovingMode::handleCrossRecognizedEvent(CrossRecognizedEvent ev) {
     mMainController->setCurrentMode(RobotMode::AutoPathPlanning);
 }
+
+void AutonomousMovingMode::doEntryAction() {
+    mMainController->imageRecognizer()->setLineRecognizeMode(true);
+}
+
+void AutonomousMovingMode::doExitAction() {
+    mMainController->imageRecognizer()->setLineRecognizeMode(false);
+}

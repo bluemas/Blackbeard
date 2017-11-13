@@ -17,6 +17,8 @@ public:
     AutonomousMovingMode(MainController* mainController);
     ~AutonomousMovingMode() {}
 
+    void doEntryAction();
+    void doExitAction();
     void handleCollisionEvent(WallCollisionEvent ev);
     void handleWallSensingEvent(WallSensingEvent ev);
     void handleLineRecognizedEvent(LineRecognizedEvent ev);

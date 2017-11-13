@@ -16,7 +16,8 @@ static  int gInitJpgValues[2] = { cv::IMWRITE_JPEG_QUALITY,80 }; //default(95) 0
 static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
 
 ImageRecognizer::ImageRecognizer()
-        : mSignRecogEnable(false) {
+        : mSignRecogEnable(false) ,
+          mLineRecogEnable(false) {
     mCamera = new CameraReader();
     mImgData = ImageData::getInstance();
 }

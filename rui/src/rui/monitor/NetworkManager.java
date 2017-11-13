@@ -4,13 +4,11 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import rui.Command;
 import rui.RUIMain;
 import rui.configure.ConfigManager;
 import rui.configure.IConstants;
-import rui.utils.Utils;
 
 public class NetworkManager {
 	private ConfigManager configManager = ConfigManager.getInstance();
@@ -20,16 +18,9 @@ public class NetworkManager {
 
 	private NetworkWatchdog watchdog = null;
 	private RUIMain rui;
-	private String localIPAddress;
 
 	public NetworkManager(RUIMain rui) {
 		this.rui = rui;
-
-		try {
-			this.localIPAddress = Utils.getLocalIPAddress();
-		} catch (UnknownHostException e) {
-			rui.appendLogMessage("Connection failed. " + e.getMessage());
-		}
 	}
 
 	public boolean connect() {
@@ -96,10 +87,6 @@ public class NetworkManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public String getLocalIPAddress() {
-		return this.localIPAddress;
 	}
 
 	public void startNetworkWatchdog() {

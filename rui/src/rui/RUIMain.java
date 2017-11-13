@@ -11,6 +11,7 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -82,6 +83,7 @@ public class RUIMain {
 	private Text txtCommandMessages;
 
 	private Button btnSend;
+	private Text txtRuiIP;
 
 	/**
 	 * Launch the application.
@@ -185,6 +187,7 @@ public class RUIMain {
 		this.txtMaxPacketSize.setText(configManager.getCameraDatagramMaxSize() + "");
 		this.txtRowCnt.setText(configManager.getMazeRowCount() + "");
 		this.txtColumnCnt.setText(configManager.getMazeColumnCount() + "");
+		this.txtRuiIP.setText(configManager.getRuiIp());
 	}
 
 	/**
@@ -192,9 +195,10 @@ public class RUIMain {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(1400, 750);
+		shell.setMinimumSize(new Point(1400, 800));
 		shell.setText("Blackbeard Pirates");
 		shell.setLayout(new GridLayout(1, false));
+		shell.setMaximized(true);
 
 		Composite composite = new Composite(shell, SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
@@ -218,7 +222,7 @@ public class RUIMain {
 					public void run() {
 						try {
 							if (networkManager.connect()) {
-								networkManager.sendCommand(new Command(1, networkManager.getLocalIPAddress()));
+								networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp()));
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -238,7 +242,7 @@ public class RUIMain {
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				networkManager.sendCommand(new Command(1, networkManager.getLocalIPAddress()));
+				networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp()));
 			}
 		});
 		GridData gd_btnInitialize = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
@@ -251,7 +255,7 @@ public class RUIMain {
 		grpCameraView.setLayout(new FillLayout(SWT.HORIZONTAL));
 		GridData gd_grpCameraView = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 2);
 		gd_grpCameraView.heightHint = 256;
-		gd_grpCameraView.widthHint = 356;
+		gd_grpCameraView.widthHint = 330;
 		grpCameraView.setLayoutData(gd_grpCameraView);
 		grpCameraView.setText("Camera View");
 		formToolkit.adapt(grpCameraView);
@@ -664,6 +668,7 @@ public class RUIMain {
 							configManager.setCameraDatagramMaxSize(Integer.parseInt(txtMaxPacketSize.getText()));
 							configManager.setMazeRowCount(Integer.parseInt(txtRowCnt.getText()));
 							configManager.setMazeColumnCount(Integer.parseInt(txtColumnCnt.getText()));
+							configManager.setRuiIp(txtRuiIP.getText());
 
 							configManager.persist();
 
@@ -676,7 +681,7 @@ public class RUIMain {
 				});
 			}
 		});
-		btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 5));
+		btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 6));
 		formToolkit.adapt(btnSave, true, true);
 		btnSave.setText("Save");
 
@@ -689,10 +694,21 @@ public class RUIMain {
 		txtPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.adapt(txtPort, true, true);
 
+		Label lblRuiLocalIp = new Label(compositeSettings, SWT.NONE);
+		lblRuiLocalIp.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblRuiLocalIp, true, true);
+		lblRuiLocalIp.setText("RUI IP");
+
+		txtRuiIP = new Text(compositeSettings, SWT.BORDER);
+		txtRuiIP.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtRuiIP, true, true);
+
 		Label lblCameraListenPort = new Label(compositeSettings, SWT.NONE);
-		lblCameraListenPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		GridData gd_lblCameraListenPort = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		gd_lblCameraListenPort.horizontalIndent = 10;
+		lblCameraListenPort.setLayoutData(gd_lblCameraListenPort);
 		formToolkit.adapt(lblCameraListenPort, true, true);
-		lblCameraListenPort.setText("Camera Listen Port");
+		lblCameraListenPort.setText("RUI Camera Listen Port");
 
 		txtListenPort = new Text(compositeSettings, SWT.BORDER);
 		txtListenPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));

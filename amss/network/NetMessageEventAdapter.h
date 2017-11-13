@@ -5,9 +5,12 @@
 #ifndef AMSS_IMESSAGEHANDLER_H
 #define AMSS_IMESSAGEHANDLER_H
 
+#include "../common/Constants.h"
 
 class NetMessageEventAdapter {
-    void handleMessage(int type, void* data) {}
+public:
+    virtual void handleMessage(NetworkMsg type, void* data) {}
+    virtual void handleDisconnectionEvent() {}
 };
 
 

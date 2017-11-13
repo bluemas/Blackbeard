@@ -16,9 +16,6 @@ public class MazeDrawer {
 	
 	public MazeDrawer(RUIMain rui) {
 		this.canvas = rui.getMazeCanvas();
-		
-		// @ TODO
-		MazeRepository.getInstance().generateMaze();
 	}
 	
 	public void updateMaze(String data) {
@@ -46,8 +43,11 @@ public class MazeDrawer {
 		int cellWidth = w / nColumn;
 		int cellHeight = h / nRow;
 
-		gc.setLineWidth(1);
-		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+		gc.fillRectangle(clientArea);
+		
+//		gc.setLineWidth(1);
+//		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 
 //		for (int i = 0; i <= nRow; i++) {
 //			gc.drawLine(margin, margin + i * cellHeight, margin + nColumn * cellWidth, margin + i * cellHeight);
@@ -56,18 +56,18 @@ public class MazeDrawer {
 //		for (int i = 0; i <= nColumn; i++) {
 //			gc.drawLine(margin + i * cellWidth, margin, margin + i * cellWidth, margin + nRow * cellHeight);
 //		}
-
+		
 		MazeCell[][] maze = MazeRepository.getInstance().getMaze();
-
-		for (int r = 0; r < nRow; r++) {
-			for (int c = 0; c < nColumn; c++) {
+		
+		for (int r = 0; r < maze.length; r++) {
+			MazeCell[] mazeCells = maze[r];
+			
+			for (int c = 0; c < mazeCells.length; c++) {
 				int x = margin + c * cellWidth;
 				int y = margin + r * cellHeight;
 
 				maze[r][c].draw(gc, x, y, cellWidth, cellHeight);
 			}
 		}
-
-//		rui.appendLogMessage(">>> maze drawing completed");
 	}
 }

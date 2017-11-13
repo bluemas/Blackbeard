@@ -7,27 +7,87 @@
 
 #include "ManualMode.h"
 #include "MainController.h"
+#include "../common/Logging.h"
 
 ManualMode::ManualMode(MainController* mainController) {
     mModeName = RobotMode::Manual;
     mMainController = mainController;
 }
 
-void ManualMode::wallEventHandler(EventBase *ev) {
-    // TODO : define collision warning message(ethernet)
-    mMainController->networkManager()->send(/* Collision Warning Message */);
+void ManualMode::moveRobot(char direction) {
+    if (direction == 'S') {
+        mMainController->behaviorExecutor()->stop();
+        Logging::logOutput(Logging::DEBUG, "Stop robot");
+    }
+    else {
+        Direction newDirection = Direction::forward;
+        switch (direction) {
+            case 'F':
+                newDirection = Direction::forward;
+                break;
+            case 'L':
+                newDirection = Direction::left;
+                break;
+            case 'R':
+                newDirection = Direction::right;
+                break;
+            case 'B':
+                newDirection = Direction::backward;
+                break;
+        }
+        mMainController->behaviorExecutor()->manualMove(newDirection);
+        Logging::logOutput(Logging::DEBUG, "Move robot manually");
+    }
 }
 
-void ManualMode::signRecognizerEventHandler(EventBase *ev) {
-    // REVIEW : Do I need to update map to include sign into map in Manual Mode?
+void ManualMode::adjustCamera(char direction) {
+    if (direction == 'S') {
+        mMainController->behaviorExecutor()->stopPanAndTilt();
+        Logging::logOutput(Logging::DEBUG, "Stop camera pan/tilt");
+    }
+    else {
+        CamDirection newDirection;
+        switch (direction) {
+            case 'L':
+                newDirection = CamDirection::panleft;
+                break;
+            case 'R':
+                newDirection = CamDirection::panright;
+                break;
+            case 'U':
+                newDirection = CamDirection::tiltup;
+                break;
+            case 'D':
+                newDirection = CamDirection::tiltdown;
+                break;
+        }
+        mMainController->behaviorExecutor()->panAndTilt(newDirection);
+        Logging::logOutput(Logging::DEBUG, "Adjust Camera Pan/Tilt");
+    }
 }
 
-void ManualMode::moveRobot(void *data) {
-    mMainController->behaviorExecutor()->manualMove(Direction::forward); // FIXME :
+void ManualMode::handleCollisionEvent(WallCollisionEvent ev) {
+    if (ev.isWarnCollision()) {
+        char warning[256] = "E/Robot is about to hit the wall.";
+        mMainController->networkManager()->send(NetworkMsg::RobotStatusMessage,
+                                                strlen(warning), warning);
+    }
 }
 
-void ManualMode::adjustCamera(void *data) {
-    mMainController->behaviorExecutor()->panAndTilt(CamDirection::panleft); // FIXME :
+void ManualMode::handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {
+}
+
+void ManualMode::handleSignRecognizedEvent(SignRecognizedEvent ev) {
+}
+
+void ManualMode::doEntryAction() {
+    // Enable sign recognizer
+    mMainController->imageRecognizer()->setSignRecognizeMode(true);
+}
+
+void ManualMode::doExitAction() {
+    // Disable sign recognizer
+    mMainController->imageRecognizer()->setSignRecognizeMode(false);
 }
 
 

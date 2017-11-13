@@ -16,13 +16,15 @@
 #include "RedDotRecognizedEventHandler.h"
 #include "SignRecognizedEventHandler.h"
 #include "SquareRecognizedEventHandler.h"
+#include "CrossRecognizedEventHandler.h"
 
 class EventHandlerAdapter : public WallCollisionEventHandler,
                             public WallSensingEventHandler,
                             public LineRecognizedEventHandler,
                             public RedDotRecognizedEventHandler,
                             public SignRecognizedEventHandler,
-                            public SquareRecognizedEventHandler {
+                            public SquareRecognizedEventHandler,
+                            public CrossRecognizedEventHandler {
 public:
     EventHandlerAdapter();
     virtual ~EventHandlerAdapter();
@@ -33,6 +35,7 @@ public:
     virtual void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {}
     virtual void handleSignRecognizedEvent(SignRecognizedEvent ev) {}
     virtual void handleSquareRecognizedEvent(SquareRecognizedEvent ev) {}
+    virtual void handleCrossRecognizedEvent(CrossRecognizedEvent ev) {}
 };
 
 #endif /* COMMON_EVENT_EVENTHANDLERADAPTER_H_ */

@@ -17,7 +17,7 @@ import rui.utils.Utils;
 
 public class CameraImageReceiver implements Runnable {
 	private ConfigManager configManager = ConfigManager.getInstance();
-	private DatagramSocket clientsocket;
+	private DatagramSocket socket;
 	private RUIMain rui;
 
 	public CameraImageReceiver(RUIMain rui) {
@@ -26,16 +26,16 @@ public class CameraImageReceiver implements Runnable {
 
 	public void run() {
 		try {
-			this.clientsocket = new DatagramSocket(configManager.getCameraListenport());
+			this.socket = new DatagramSocket(configManager.getCameraListenport());
 
 			/* Setup byte array to store data received */
 			byte[] buffer = new byte[configManager.getCameraDatagramMaxSize()];
 
 			/* Receiving loop */
-			while (!this.clientsocket.isClosed()) {
+			while (!this.socket.isClosed()) {
 				/* Receive a UDP packet */
 				DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-				clientsocket.receive(dp);
+				socket.receive(dp);
 
 				byte[] data = dp.getData();
 				
@@ -57,9 +57,9 @@ public class CameraImageReceiver implements Runnable {
 	}
 
 	public void close() {
-		if (clientsocket != null) {
+		if (socket != null) {
 			try {
-				clientsocket.close();
+				socket.close();
 			} catch (Exception e) {
 			}
 		}

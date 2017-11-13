@@ -19,3 +19,21 @@ ModeBase::~ModeBase(){
 RobotMode ModeBase::getModeName() {
     return mModeName;
 }
+
+char ModeBase::getModeNameChar() {
+    char mode;
+    switch (mModeName) {
+        case RobotMode::Manual:
+            mode = 'M';
+            break;
+        case RobotMode::AutoPathPlanning:
+        case RobotMode::AutoMoving:
+        case RobotMode::AutoSignRecognition:
+            mode = 'A';
+            break;
+        case RobotMode::Suspend:
+            mode = 'S';
+            break;
+    }
+    return mode;
+}

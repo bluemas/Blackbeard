@@ -48,31 +48,33 @@ void initDevices() {
 
 int main() {
     // 0. Initialize device
+    #ifndef UBUNTU
     initDevices();
+    #endif
 
     // 1. Initiate MainController
-    //MainController *mainController = new MainController();
+    MainController *mainController = new MainController();
 
     BehaviorExecutor *behaviorExecutor = new BehaviorExecutor();
     behaviorExecutor->setCamDefaultTrackLine();
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
-    //wallRecognizer->addWallCollisionEventHandler(mainController);
-    //wallRecognizer->addWallSensingEventHandler(mainController);
+    wallRecognizer->addWallCollisionEventHandler(mainController);
+    wallRecognizer->addWallSensingEventHandler(mainController);
 
     // Initialize NetworkManager
-    //NetworkManager* networkManager = new NetworkManager();
-    //networkManager->addListener(mainController);
-    //mainController->setNetworkManager(networkManager);
-    //networkManager->start();
+    NetworkManager* networkManager = new NetworkManager();
+    networkManager->addListener(mainController);
+    mainController->setNetworkManager(networkManager);
 
     // Initialize ImageRecognizer
     ImageRecognizer* imageRecognizer = new ImageRecognizer();
-    //imageRecognizer->addLineRecogEventHandler(mainController);
-    //imageRecognizer->addRedDotRecogEventHandler(mainController);
-    //imageRecognizer->addSignRecogEventHandler(mainController);
-    //imageRecognizer->addSquareRecogEventHandler(mainController);
+    imageRecognizer->addLineRecogEventHandler(mainController);
+    imageRecognizer->addRedDotRecogEventHandler(mainController);
+    imageRecognizer->addSignRecogEventHandler(mainController);
+    imageRecognizer->addSquareRecogEventHandler(mainController);
+    imageRecognizer->addCrossRecogEventHandler(mainController);
 
     // 4. Initiate other components
     MapData *mapRepo = new MapData();
@@ -81,8 +83,8 @@ int main() {
 
     // 5. Make a relationship between components
     wallRecognizer->setMazeMapper(mazeMapper);
-    //mainController->setPathPlanner(pathPlanner);
-    //mainController->setImageRecognizer(imageRecognizer);
+    mainController->setPathPlanner(pathPlanner);
+    mainController->setImageRecognizer(imageRecognizer);
 
     imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
     imageRecognizer->addCrossRecogEventHandler(mazeMapper);
@@ -90,9 +92,15 @@ int main() {
     imageRecognizer->addSquareRecogEventHandler(mazeMapper);
 
     // 5. Start threads
-    wallRecognizer->start();
-    imageRecognizer->start();
+    networkManager->start();
 
+    wallRecognizer->start();  // FIXME : CPU Usage goes high
+
+    #ifndef UBUNTU
+    imageRecognizer->start(); // FIXME : SIGSEGV
+    #endif
+
+    mainController->start();
 
     // 10. Wait for stopping AMSS
     std::thread mainThread(keyInRunner);

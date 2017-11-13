@@ -49,3 +49,7 @@ int ImageData::readData(unsigned char *buf, size_t BufSize) {
     return mImgLength;
 }
 
+int ImageData::getImageSize() {
+    return mImgLength;
+}
+

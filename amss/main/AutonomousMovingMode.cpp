@@ -14,9 +14,11 @@ AutonomousMovingMode::AutonomousMovingMode(MainController* mainController) {
 }
 
 void AutonomousMovingMode::handleCollisionEvent(WallCollisionEvent ev) {
-    // TODO : define collision warning message(ethernet)
-    if (ev.isWarnCollision())
-        mMainController->networkManager()->send(/* Collision Warning Message */);
+    if (ev.isWarnCollision()) {
+        char warning[256] = "E/Robot is about to hit the wall.";
+        mMainController->networkManager()->send(NetworkMsg::RobotStatusMessage, 
+                                                strlen(warning), warning);
+    }
 }
 
 void AutonomousMovingMode::handleWallSensingEvent(WallSensingEvent ev) {
@@ -31,4 +33,8 @@ void AutonomousMovingMode::handleRedDotRecognizedEvent(
         RedDotRecognizedEvent ev) {
     mMainController->behaviorExecutor()->gotoCross();
     mMainController->setCurrentMode(RobotMode::AutoSignRecognition);
+}
+
+void AutonomousMovingMode::handleCrossRecognizedEvent(CrossRecognizedEvent ev) {
+    mMainController->setCurrentMode(RobotMode::AutoPathPlanning);
 }

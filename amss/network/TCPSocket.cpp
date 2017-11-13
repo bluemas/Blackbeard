@@ -98,7 +98,7 @@ void TCPSocket::CloseTcpListenPort(TTcpListenPort **TcpListenPort) {
 // AcceptTcpConnection -Accepts a TCP Connection request from a
 // Listening port
 //-----------------------------------------------------------------
-TTcpConnectedPort *
+TTcpConnectedPort*
 TCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
                                 struct sockaddr_in *cli_addr,
                                 socklen_t *clilen) {
@@ -147,7 +147,6 @@ TCPSocket::AcceptTcpConnection(TTcpListenPort *TcpListenPort,
 TTcpConnectedPort *TCPSocket::OpenTcpConnection(const char *remotehostname,
                                                  const char *remoteportno) {
   TTcpConnectedPort *TcpConnectedPort;
-  struct sockaddr_in myaddr;
   int s;
   struct addrinfo hints;
   struct addrinfo *result = NULL;
@@ -247,15 +246,7 @@ void TCPSocket::CloseTcpConnectedPort(TTcpConnectedPort **TcpConnectedPort) {
 //-----------------------------------------------------------------
 ssize_t TCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                 unsigned char *data, size_t length) {
-  ssize_t bytes;
-
-  for (size_t i = 0; i < length; i += bytes) {
-    if ((bytes = recv(TcpConnectedPort->ConnectedFd, (char *) (data + i),
-                      length - i, 0)) == -1) {
-      return (-1);
-    }
-  }
-  return (length);
+    return recv(TcpConnectedPort->ConnectedFd, (char *)data, length, 0);
 }
 
 //-----------------------------------------------------------------
@@ -266,12 +257,12 @@ ssize_t TCPSocket::ReadDataTcp(TTcpConnectedPort *TcpConnectedPort,
 //-----------------------------------------------------------------
 ssize_t TCPSocket::WriteDataTcp(TTcpConnectedPort *TcpConnectedPort,
                                  unsigned char *data, size_t length) {
-  ssize_t total_bytes_written = 0;
+  size_t total_bytes_written = 0;
   ssize_t bytes_written;
   while (total_bytes_written != length) {
     bytes_written = send(TcpConnectedPort->ConnectedFd,
                          (char *) (data + total_bytes_written),
-                         length - total_bytes_written, 0);
+                         length - total_bytes_written, MSG_NOSIGNAL);
     if (bytes_written == -1) {
       return (-1);
     }

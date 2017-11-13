@@ -23,8 +23,9 @@ public class MazeCell {
 	private boolean isEndPosition = false;
 	private boolean hasRedDot = false;
 
-	private int LINE_WIDTH = 9;
-
+	private int LINE_WIDTH = 8;
+	private int LINE_WIDTH_2 = LINE_WIDTH / 2;
+	
 	public MazeCell(int row, int column) {
 		this.column = column;
 		this.row = row;
@@ -40,7 +41,10 @@ public class MazeCell {
 
 		if (isStartPosition || isEndPosition) {
 			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
-			gc.fillRectangle(x, y, width, height);
+			gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width - LINE_WIDTH, height - LINE_WIDTH);
+		} else {
+			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+			gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width - LINE_WIDTH, height - LINE_WIDTH);
 		}
 
 		if (hasRedDot) {
@@ -61,7 +65,7 @@ public class MazeCell {
 			if (!Utils.isEmpty(signs[0])) {
 				Image img = getSignImage(signs[0]);
 				Rectangle rec = img.getBounds();
-				gc.drawImage(img, 0, 0, rec.width, rec.height, x + xoffset, y + LINE_WIDTH / 2, width / 4, height / 4);
+				gc.drawImage(img, 0, 0, rec.width, rec.height, x + xoffset, y + LINE_WIDTH_2, width / 4, height / 4);
 			}
 		}
 
@@ -71,7 +75,7 @@ public class MazeCell {
 			if (!Utils.isEmpty(signs[1])) {
 				Image img = getSignImage(signs[1]);
 				Rectangle rec = img.getBounds();
-				gc.drawImage(img, 0, 0, rec.width, rec.height, x + width - s - LINE_WIDTH / 2, y + yoffset, width / 4, height / 4);
+				gc.drawImage(img, 0, 0, rec.width, rec.height, x + width - s - LINE_WIDTH_2, y + yoffset, width / 4, height / 4);
 			}
 		}
 
@@ -81,7 +85,7 @@ public class MazeCell {
 			if (!Utils.isEmpty(signs[2])) {
 				Image img = getSignImage(signs[2]);
 				Rectangle rec = img.getBounds();
-				gc.drawImage(img, 0, 0, rec.width, rec.height, x + xoffset, y + height - s - LINE_WIDTH / 2, width / 4, height / 4);
+				gc.drawImage(img, 0, 0, rec.width, rec.height, x + xoffset, y + height - s - LINE_WIDTH_2, width / 4, height / 4);
 			}
 		}
 
@@ -91,7 +95,7 @@ public class MazeCell {
 			if (!Utils.isEmpty(signs[3])) {
 				Image img = getSignImage(signs[3]);
 				Rectangle rec = img.getBounds();
-				gc.drawImage(img, 0, 0, rec.width, rec.height, x + LINE_WIDTH / 2, y + yoffset, width / 4, height / 4);
+				gc.drawImage(img, 0, 0, rec.width, rec.height, x + LINE_WIDTH_2, y + yoffset, width / 4, height / 4);
 			}
 		}
 	}

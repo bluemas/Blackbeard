@@ -6,38 +6,29 @@
 ///////////////////////////////////////////////////////////
 
 #include "MainController.h"
-#include "ManualMode.h"
-#include "AutonomousPathPlanningMode.h"
 #include "AutonomousMovingMode.h"
 #include "AutonomousSignRecognitionMode.h"
 #include "SuspendMode.h"
-#include "../camera/ImageRecognizer.h"
-#include <thread>
-
+#include "../common/Logging.h"
+#include "../sensorreadloop/SensorData.h"
 
 MainController::MainController() :
-    mCurrentMode(NULL) {
+    mCurrentMode(NULL),
+    mConnected(false),
+    mIgnoreCrossDetection(false) {
 }
 
-MainController::~MainController() {}
-
 void MainController::start() {
-    initDevices();
+    init();
     std::thread t(&MainController::runLoop, this);
     t.join();
 }
 
-void MainController::initDevices() {
+void MainController::init() {
     // Create mode instances
     createModeInstances();
 
     mCurrentMode = mModeList[RobotMode::Manual];
-
-    // Initialize Camera Pan/Tilt
-    behaviorExecutor()->setCamDefaultTrackLine();
-
-    // Initialize maze map
-    pathPlanner()->init();
 }
 
 void MainController::createModeInstances()  {
@@ -49,24 +40,77 @@ void MainController::createModeInstances()  {
 }
 
 void MainController::runLoop() {
-    while (true) {
+    bool bRun = true;
+    while (bRun) {
+        // Send sensor data to RUI
+        if (mConnected) {
+            sendSensorData();
+        }
 
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+}
 
+void MainController::sendSensorData() {
+    SensorData* sensorData = SensorData::getInstance();
+
+    int leftDistance = sensorData->getData(SensorType::left);
+    int frontDistance = sensorData->getData(SensorType::front);
+    int rightDistance = sensorData->getData(SensorType::right);
+
+    char distances[100] = { 0 };
+    snprintf(distances, 100, "%d/%d/%d",
+             frontDistance, leftDistance, rightDistance);
+    networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
 }
 
 void MainController::initializeRobot() {
-    // TODO : implement function which initializes robot
-}
+    // Initialize Camera Pan/Tilt
+    behaviorExecutor()->setCamDefaultTrackLine();
+    Logging::logOutput(Logging::INFO, "Camera position initialized");
 
-void MainController::moveRobot(const void *data) {
+    // Initialize maze map
+    pathPlanner()->init();
+    Logging::logOutput(Logging::INFO, "Maze Map initialized");
 
+    // Stop robot movement
+    behaviorExecutor()->stop();
+
+    // Set robot mode as manual
+    setCurrentMode(RobotMode::Manual);
+
+    // Send new robot mode to RUI
+    char robotMode = mCurrentMode->getModeNameChar();
+    networkManager()->send(NetworkMsg::RobotMode, sizeof(char), &robotMode);
+
+    Logging::logOutput(Logging::INFO, "Robot mode changed to Manual Mode");
+
+    // Send robot initialization status to RUI
+    networkManager()->send(NetworkMsg::RobotInitialized, 0, NULL);
 }
 
 void MainController::setCurrentMode(RobotMode mode) {
+    if (mode == mCurrentMode->getModeName())
+        return;
+
     mCurrentMode->doExitAction();
+
+    char msg[255] = { 0 };
+    snprintf(msg, 255, "Current robot mode changed to %s.",
+             mode == RobotMode::Manual ? "Manual" :
+             (mode == RobotMode::AutoSignRecognition ? "AutoSignRecognition" :
+              (mode == RobotMode::AutoMoving ? "AutoMoving" :
+               (mode == RobotMode::AutoPathPlanning ? "AutoPathPlanning" :
+                (mode == RobotMode::Suspend ? "Suspend" : "Unknown")))));
+
+    Logging::logOutput(Logging::DEBUG, msg);
+
     mCurrentMode = mModeList[mode];
+
+    // Send new robot mode to RUI
+    char robotMode = mCurrentMode->getModeNameChar();
+    networkManager()->send(NetworkMsg::RobotMode, sizeof(char), &robotMode);
+
     mCurrentMode->doEntryAction();
 }
 
@@ -126,29 +170,47 @@ void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev)
     currentMode()->handleSquareRecognizedEvent(ev);
 }
 
-void MainController::handleMessage(int type, void* data) {
+void MainController::handleCrossRecognizedEvent(const CrossRecognizedEvent ev) {
+    if (!mIgnoreCrossDetection)
+        currentMode()->handleCrossRecognizedEvent(ev);
+}
+
+void MainController::handleMessage(NetworkMsg type, void* data) {
     switch (type) {
-        case 1: // Initialize robot
+        case NetworkMsg::Initialize: // Initialize robot
             initializeRobot();
             break;
-        case 2: // Mode Selection
+        case NetworkMsg::ChangeMode: // Mode Selection
         {
             auto mode = *(char*)data;
             if (mode == 'A')
                 setCurrentMode(RobotMode::AutoPathPlanning);
             else if (mode == 'M')
                 setCurrentMode(RobotMode::Manual);
+            else if (mode == 'S')
+                setCurrentMode(RobotMode::Suspend);
             break;
         }
-        case 3: // Move robot
-            if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->moveRobot(NULL);  // FIXME : Need to modify parameter
+        case NetworkMsg::MoveRobot: // Move robot manually
+            if (currentMode()->getModeName() == RobotMode::Manual) {
+               ((ManualMode *)currentMode())->moveRobot(*(char*)(data));
+            }
             break;
-        case 4: // Adjust camera Pan/Tilt
+        case NetworkMsg::AdjustCameraPanTilt: // Adjust camera Pan/Tilt
             if (currentMode()->getModeName() == RobotMode::Manual)
-                ((ManualMode*)currentMode())->adjustCamera(NULL);     // FIXME : Need to modify parameter
+                ((ManualMode*)currentMode())->adjustCamera(*(char*)(data));
+            break;
+        case NetworkMsg::NetworkConnection: // Network connection
+            mConnected = true;
+            break;
+        case NetworkMsg::NetworkDisconnection: // Network disconnection
+            mConnected = false;
             break;
         default:
             break;
     }
+}
+
+void MainController::ignoreCrossDetection(bool ignore) {
+    mIgnoreCrossDetection = ignore;
 }

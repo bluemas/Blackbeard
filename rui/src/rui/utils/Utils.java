@@ -7,6 +7,8 @@ import java.awt.image.IndexColorModel;
 import java.awt.image.WritableRaster;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -17,12 +19,27 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class Utils {
+	public static String getLocalIPAddress() throws UnknownHostException {
+		InetAddress iAddress = InetAddress.getLocalHost();
+		return iAddress.getHostAddress();
+	}
+
+	public static int getBigEndian(byte[] v) throws Exception {
+		int[] arr = new int[4];
+
+		for (int i = 0; i < 4; i++) {
+			arr[i] = (int) (v[3 - i] & 0xFF);
+		}
+
+		return ((arr[0] << 24) + (arr[1] << 16) + (arr[2] << 8) + (arr[3] << 0));
+	}
+
 	public static int showMessageDialog(Shell shell, String message, int dialogType) {
 		MessageBox messageBox = new MessageBox(shell, dialogType);
 		messageBox.setMessage(message);
-		return messageBox.open();	
+		return messageBox.open();
 	}
-	
+
 	public static String getStackTrace(Throwable ex) {
 		StringWriter sw = null;
 		PrintWriter pw = null;
@@ -31,7 +48,7 @@ public class Utils {
 		try {
 			sw = new StringWriter();
 			pw = new PrintWriter(sw);
-			
+
 			ex.printStackTrace(pw);
 			pw.flush();
 
@@ -53,18 +70,20 @@ public class Utils {
 
 		return s;
 	}
-	
+
 	public static boolean isEmpty(String value) {
-		if(value == null || value.trim().length() == 0) return true;
-		else return false;
+		if (value == null || value.trim().length() == 0)
+			return true;
+		else
+			return false;
 	}
-	
+
 	public static String getLogTime() {
 		Calendar currentDate = Calendar.getInstance();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 		return dateFormat.format(currentDate.getTime());
 	}
-	
+
 	public static ImageData convertToSWT(BufferedImage bufferedImage) {
 		if (bufferedImage.getColorModel() instanceof DirectColorModel) {
 			DirectColorModel colorModel = (DirectColorModel) bufferedImage.getColorModel();

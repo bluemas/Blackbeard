@@ -22,13 +22,17 @@ private:
 	ServoEncoder* mServoEncoder;
 	pthread_t mThreadSign;
 	pthread_t mThreadPanTilt;
+	pthread_t mThreadMove;
 	Direction mSearchDir;
 	CamDirection mCamDir;
+	Direction mMoveDir;
 
 	static void* runSign(void* ptr);
 	static void* runPanTilt(void* ptr);
+	static void* runManualMove(void* ptr); 
 	void searchSignDir(void);
 	void panAndTiltDir(void);
+	void manualMoveDir(void);
 
 public:
 	BehaviorExecutor();

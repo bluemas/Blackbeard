@@ -20,6 +20,7 @@ public:
 	virtual ~ModeBase();
 
 	RobotMode getModeName();
+	char getModeNameChar();
 
     virtual void doEntryAction() {};
     virtual void doExitAction() {};

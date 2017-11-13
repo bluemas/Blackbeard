@@ -3,10 +3,12 @@ package rui.monitor;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import rui.Command;
 import rui.RUIMain;
 import rui.configure.ConfigManager;
+import rui.utils.Utils;
 
 public class NetworkManager {
 	private ConfigManager configManager = ConfigManager.getInstance();
@@ -14,10 +16,18 @@ public class NetworkManager {
 	private BufferedOutputStream bos = null;
 	private Socket socket = null;
 
+	private NetworkWatchdog watchdog = null;
 	private RUIMain rui;
+	private String localIPAddress;
 
 	public NetworkManager(RUIMain rui) {
 		this.rui = rui;
+
+		try {
+			this.localIPAddress = Utils.getLocalIPAddress();
+		} catch (UnknownHostException e) {
+			rui.appendLogMessage("Connection failed. " + e.getMessage());
+		}
 	}
 
 	public void connect() {
@@ -36,8 +46,8 @@ public class NetworkManager {
 
 			rui.appendLogMessage("Connection established.");
 			rui.setNetworkStatus(true);
-			
-			rui.startNetworkWatchdog();
+
+			startNetworkWatchdog();
 		} catch (Exception e) {
 			rui.appendLogMessage("Connection failed. " + e.getMessage());
 			rui.setNetworkStatus(false);
@@ -64,7 +74,7 @@ public class NetworkManager {
 			}
 	}
 
-	public boolean isConnected() {
+	private boolean isConnected() {
 		return socket != null && socket.isConnected() && !socket.isClosed();
 	}
 
@@ -77,6 +87,42 @@ public class NetworkManager {
 			bos.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public String getLocalIPAddress() {
+		return this.localIPAddress;
+	}
+
+	private void startNetworkWatchdog() {
+		if (watchdog != null)
+			watchdog.stop();
+
+		watchdog = new NetworkWatchdog();
+		new Thread(watchdog).start();
+	}
+
+	class NetworkWatchdog implements Runnable {
+		private boolean isRunning = true;
+
+		@Override
+		public void run() {
+			while (isRunning && !rui.getShell().isDisposed()) {
+				try {
+					if (!isConnected()) {
+						rui.notify(new Command(7, "S"));
+						connect();
+					}
+
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		public void stop() {
+			isRunning = false;
 		}
 	}
 }

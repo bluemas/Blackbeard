@@ -68,7 +68,7 @@ void WallRecognizer::run() {
                 checkCollision(frontDistance, leftDistance, rightDistance);
 
         if (wallCollisionEvent.isWarnCollision()) {
-            // Notify to MainController
+            // Notify to EventHandlers
             for(WallCollisionEventHandler *handler : mWallCollisionEventHandlers) {
                 // TODO async call
                 handler->handleWallCollisionEvent(wallCollisionEvent);

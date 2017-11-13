@@ -5,6 +5,7 @@
 #ifndef BLACKBEARD_CNETWORKMANAGER_H
 #define BLACKBEARD_CNETWORKMANAGER_H
 
+#include <thread>
 #include "UDPSocket.h"
 #include "TCPSocket.h"
 #include "NetMessageEventAdapter.h"
@@ -15,15 +16,26 @@ public:
     ~NetworkManager() {}
 
     void start();
-    void send();
     void addListener(NetMessageEventAdapter* listener);
+    void send(NetworkMsg type, int length, void* data);
+    void sendCameraImage();
 
 private:
-    void initDevices();
+    void initUDPPort(char* address);
     void startTCPServer();
 
+    bool mConnected;
+    bool mIPReceived;
     UDPSocket mCameraImageSendSocket;
-    TCPSocket mCommandRecvSocket;
+    TCPSocket mCommandRcvSocket;
     NetMessageEventAdapter* mListener;
+    TTcpListenPort* mListenPort;
+    TTcpConnectedPort* mClientPort;
+    TUdpDest* mRUIUDPDest;
+    TUdpLocalPort* mRUIUDPPort;
+    std::thread* mSvrThread;
+    std::thread* mImageSender;
+
+    void establishTcpConnection();
 };
 #endif //BLACKBEARD_CNETWORKMANAGER_H

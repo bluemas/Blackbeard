@@ -21,5 +21,6 @@ public:
     void handleWallSensingEvent(WallSensingEvent ev);
     void handleLineRecognizedEvent(LineRecognizedEvent ev);
     void handleRedDotRecognizedEvent(RedDotRecognizedEvent ev);
+    void handleCrossRecognizedEvent(CrossRecognizedEvent ev);
 };
 #endif

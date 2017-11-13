@@ -60,4 +60,22 @@ enum class SignType {
     SignGo
 };
 
+enum class NetworkMsg {
+    // from RUI
+    Initialize = 1,
+    ChangeMode = 2,
+    MoveRobot = 3,
+    AdjustCameraPanTilt = 4,
+    RUIIpAddress = 11,
+
+    // from AMSS
+    SensorData = 5,
+    MazeMap	= 6,
+    RobotMode = 7,
+    RobotStatusMessage = 8,
+    MazeSovlingCompleted = 9,
+    RobotInitialized = 10,
+    NetworkConnection = 98,
+    NetworkDisconnection = 99,
+};
 #endif /* COMMON_CONSTANTS_H_ */

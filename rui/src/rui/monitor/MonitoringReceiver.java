@@ -3,7 +3,6 @@ package rui.monitor;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 
 import rui.Command;
 import rui.RUIMain;
@@ -28,7 +27,9 @@ public class MonitoringReceiver implements Runnable {
 
 				byte[] payloadSizeByte = new byte[4];
 				bis.read(payloadSizeByte);
-				int payloadSize = ByteBuffer.wrap(payloadSizeByte).getInt();
+
+				int payloadSize = Utils.getBigEndian(payloadSizeByte);
+				// int payloadSize = ByteBuffer.wrap(payloadSizeByte).getInt();
 
 				byte[] payloadByte = new byte[payloadSize];
 				bis.read(payloadByte);
@@ -37,7 +38,6 @@ public class MonitoringReceiver implements Runnable {
 				rui.notify(new Command(type, payload));
 			}
 		} catch (Exception e) {
-			rui.appendLogMessage(Utils.getStackTrace(e));
 		} finally {
 			if (bis != null)
 				try {

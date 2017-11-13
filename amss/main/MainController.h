@@ -30,50 +30,51 @@ class MainController :
     public SquareRecognizedEventHandler,
     public SignRecognizedEventHandler,
     public RedDotRecognizedEventHandler,
+    public CrossRecognizedEventHandler,
     public LineRecognizedEventHandler,
     public NetMessageEventAdapter {
 
 public:
     MainController();
-    ~MainController();
+    ~MainController() {}
 
     void start();
     void setImageRecognizer(ImageRecognizer* imageRecognizer);
     void setNetworkManager(NetworkManager* networkManger);
     void setPathPlanner(PathPlanner* pathPlanner);
+    void setCurrentMode(RobotMode mode);
+
+    void ignoreCrossDetection(bool ignore);
 
     BehaviorExecutor* behaviorExecutor();
     ImageRecognizer* imageRecognizer();
     PathPlanner* pathPlanner();
     NetworkManager* networkManager();
-
-    void setCurrentMode(RobotMode mode);
     ModeBase* currentMode();
 
 private:
-    void initDevices();
+    void init();
     void createModeInstances();
+    void initializeRobot();
     void runLoop();
-
+    void sendSensorData();
     void handleWallSensingEvent(const WallSensingEvent ev);
     void handleWallCollisionEvent(const WallCollisionEvent ev);
     void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
     void handleSignRecognizedEvent(const SignRecognizedEvent ev);
     void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
-
+    void handleCrossRecognizedEvent(const CrossRecognizedEvent ev);
     void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+    void handleMessage(NetworkMsg type, void* data);
 
-    void handleMessage(int type, void* data);
-    void initializeRobot();
-
-    void moveRobot(const void *data);
+    bool mConnected;
+    bool mIgnoreCrossDetection;
     std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
     BehaviorExecutor mBehaviorExecutor;
     PathPlanner* mPathPlanner;
     NetworkManager* mNetworkManager;
     SignRecognizer* mSignRecognizer;
-
     ImageRecognizer* mImageRecognizer;
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

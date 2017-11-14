@@ -110,7 +110,7 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
 
     if (foundCross){
         CrossRecognizedEvent crossEvent;
-        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+        for (unsigned int i=0; i < mCrossRecogHandlers.size(); i++) {
             mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
         }                    
     }

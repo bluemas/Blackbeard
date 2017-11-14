@@ -21,6 +21,8 @@
 #include "../common/RecognizerBase.h"
 #include "../common/event/WallCollisionEventHandler.h"
 #include "../common/event/WallSensingEventHandler.h"
+#include "../common/Logging.h"
+#include "../common/Utils.h"
 #include "../sensorreadloop/SensorData.h"
 #include "../sensorreadloop/SonarFront.h"
 #include "../sensorreadloop/FlightSensorLeft.h"
@@ -42,13 +44,13 @@ public:
     void addWallSensingEventHandler(WallSensingEventHandler *eventHandler);
 
 private:
-    const int SENSING_PERIOD_IN_MS = 200;
+    const int SENSING_PERIOD_IN_MS = 50;
 
-    const int MIN_FRONT_COLLISION_DISTANCE = 50;
-    const int MIN_SIDE_COLLISION_DISTANCE  = 50;
+    const int MIN_FRONT_COLLISION_DISTANCE = 25;
+    const int MIN_SIDE_COLLISION_DISTANCE  = 40;
 
-    const int MIN_FRONT_WALL_DISTANCE = 100;
-    const int MIN_SIDE_WALL_DISTANCE  = 100;
+    const int MIN_FRONT_WALL_DISTANCE = 250;
+    const int MIN_SIDE_WALL_DISTANCE  = 200;
 
     std::atomic<bool> mIsRun;
     std::thread mThread;

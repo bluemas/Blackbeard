@@ -40,7 +40,7 @@ Direction PathPlanner::nextDirection() {
         Logging::logOutput(Logging::DEBUG, "Possible direction : %d%d%d",
                            mMapData->isLeftAvailable(),
                            mMapData->isForwardAvailable(),
-                           mMapData->isLeftAvailable());
+                           mMapData->isRightAvailable());
 
         bool foundDirection = false;
         if (!currentNode->visited)
@@ -117,6 +117,8 @@ Direction PathPlanner::nextDirection() {
         }
     }
 
+    mMapData->setNextDirection(newDirection);
+    
     return newDirection;
 }
 

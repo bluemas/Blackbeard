@@ -200,13 +200,20 @@ bool MapData::isBackTrackingMode() {
 void MapData::printMap() {
     for(int inx = mMinY; inx <= mMaxY; inx++) {
         for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
-            cout << " " << (mMazeArr[inx][jnx].isForwardWall() ? '-' : ' ') << " ";
+            if (jnx == mMinX) {
+                cout << " ";
+            } else {
+                cout << (mMazeArr[inx][jnx].isForwardWall() ? '-' : ' ') << " ";
+            }
+            
         }
 
         cout << endl;
 
         for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
-            cout << (mMazeArr[inx][jnx].isLeftWall() ? '|' : ' ');
+            if (jnx == mMinX) {
+                cout << (mMazeArr[inx][jnx].isLeftWall() ? '|' : ' ');
+            }            
 
             // Red dot, Start square, ...
             if (mPosX == jnx && mPosY == inx)
@@ -222,7 +229,10 @@ void MapData::printMap() {
         cout << endl;
 
         for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
-            cout << " " << (mMazeArr[inx][jnx].isBackwardWall() ? '-' : ' ') << " ";
+            if (jnx == mMinX) {
+                cout << " ";
+            }
+            cout << (mMazeArr[inx][jnx].isBackwardWall() ? '-' : ' ') << " ";
         }
 
         cout << endl;
@@ -233,12 +243,16 @@ void MapData::printMap() {
 
 string MapData::getMazeString() {
     string str = "";
+    int row, col;
 
     for(int inx = mMinY; inx <= mMaxY; inx++) {
         for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
+            row = inx - mMinY;
+            col = jnx - mMinX;
+
             str += "{";
-            str += inx + ',' + jnx + ','; // row, column
-            str += (mMazeArr[inx][jnx].isVisited() ? 'Y' : 'N') + ',';  // visited
+            str += row + ',' + col + ','; // row, column
+            str += (mMazeArr[row][col].isVisited() ? 'Y' : 'N') + ',';  // visited
 
             // current robot direction
             if      (mRobotDirection == Direction::forward)
@@ -250,15 +264,15 @@ string MapData::getMazeString() {
             else if (mRobotDirection == Direction::backward)
                 str += "S,";
 
-            str += (mMazeArr[inx][jnx].isStartSquare() ? 'Y' : 'N') + ',';  // Start square
-            str += (mMazeArr[inx][jnx].isEndSquare() ? 'Y' : 'N') + ',';    // End square
-            str += (mMazeArr[inx][jnx].isRedDot() ? 'Y' : 'N') + ',';       // Red dot
-            str += (mMazeArr[inx][jnx].isForwardWall() ? 'Y' : 'N') + ',';  // Front wall
-            str += (mMazeArr[inx][jnx].isRightWall() ? 'Y' : 'N') + ',';    // Right wall
-            str += (mMazeArr[inx][jnx].isBackwardWall() ? 'Y' : 'N') + ','; // Backward wall
-            str += (mMazeArr[inx][jnx].isLeftWall() ? 'Y' : 'N') + ',';     // Left wall
+            str += (mMazeArr[row][col].isStartSquare() ? 'Y' : 'N') + ',';  // Start square
+            str += (mMazeArr[row][col].isEndSquare() ? 'Y' : 'N') + ',';    // End square
+            str += (mMazeArr[row][col].isRedDot() ? 'Y' : 'N') + ',';       // Red dot
+            str += (mMazeArr[row][col].isForwardWall() ? 'Y' : 'N') + ',';  // Front wall
+            str += (mMazeArr[row][col].isRightWall() ? 'Y' : 'N') + ',';    // Right wall
+            str += (mMazeArr[row][col].isBackwardWall() ? 'Y' : 'N') + ','; // Backward wall
+            str += (mMazeArr[row][col].isLeftWall() ? 'Y' : 'N') + ',';     // Left wall
 
-            SignType st = mMazeArr[inx][jnx].getSignType();
+            SignType st = mMazeArr[row][col].getSignType();
 
             if (st != SignType::SignNone) {
                 if (st == SignType::SignBall) {

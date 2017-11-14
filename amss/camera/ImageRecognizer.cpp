@@ -12,8 +12,20 @@
 #include "../common/event/SignRecognizedEventHandler.h"
 #include "../common/event/SquareRecognizedEventHandler.h"
 
+// for time checking
+#define CAMERA_TIME_CHECK
+
+#ifdef CAMERA_TIME_CHECK
+#include <time.h>
+static const int kCheckFrequency = 100;
+static int gTimeCheckCnt = 0;
+static timespec startTime;
+#endif
+
 static  int gInitJpgValues[2] = { cv::IMWRITE_JPEG_QUALITY,80 }; //default(95) 0-100
 static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
+
+
 
 ImageRecognizer::ImageRecognizer()
         : mSignRecogEnable(false),
@@ -96,23 +108,32 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     float offset = 0.0;
 
     //recognize line
-    offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
+    if (mLineRecogEnable)
+        offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
     //recognize reddot
     foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
     //recognize end square;
     foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
 
     // notify event to handler
-    LineRecognizedEvent lineEvent(offset);
-    for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
-        mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
-    }
+    if (mLineRecogEnable) {
+        LineRecognizedEvent lineEvent(offset);
+        for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
+            mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+        }
 
-    if (foundCross){
-        CrossRecognizedEvent crossEvent;
-        for (unsigned int i=0; i < mCrossRecogHandlers.size(); i++) {
-            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
-        }                    
+        if (foundCross){
+            CrossRecognizedEvent crossEvent;
+#if 0 // for Dump
+            static int sCnt=0;
+            char fileName[256];
+            sprintf(fileName, "img_%d.jpg", sCnt++);
+            imwrite(fileName, orgImg);
+#endif        
+            for (unsigned int i=0; i < mCrossRecogHandlers.size(); i++) {
+                mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+            }                    
+        }
     }
 
     if (foundDot){
@@ -136,12 +157,27 @@ void ImageRecognizer::run() {
     Mat orgImage;
     Mat synthImage;
     std::vector<uchar> imgWriteBuf;
+
+
     if(!IsPi3) {
         printf("create synth image\n");
         namedWindow("synthImage", CV_WINDOW_AUTOSIZE);
     }
     while (mIsRun) {
+#ifdef CAMERA_TIME_CHECK        
+        timespec   currentTime;
+        clock_gettime(CLOCK_MONOTONIC, &currentTime);       
+        if (gTimeCheckCnt ==0 ) startTime = currentTime;
+        if (++gTimeCheckCnt == kCheckFrequency) {
+            time_t timeDiff = (currentTime.tv_sec - startTime.tv_sec) * 1000l + 
+                    (currentTime.tv_nsec - startTime.tv_nsec)/1000000l;
+
+            printf("average time for camera capture %ld ms\n", timeDiff/(time_t)kCheckFrequency);
+            gTimeCheckCnt = 0;
+        }
+#endif  
         // read Camera image
+
         mCamera->readCamera(orgImage);
 
         orgImage.copyTo(synthImage);
@@ -153,7 +189,6 @@ void ImageRecognizer::run() {
         }
 
         if(!IsPi3) {
-            printf("show synthImage\n");
             imshow("synthImage",synthImage);
         }
 
@@ -162,7 +197,7 @@ void ImageRecognizer::run() {
 
         imencode(".jpg", synthImage, imgWriteBuf, gJpgParam);
         mImgData->writeData(imgWriteBuf.data(), imgWriteBuf.size());
-        waitKey(20);
+        waitKey(10);
     }
     cout << "ImageRecognizer run is finished" << endl;
 }

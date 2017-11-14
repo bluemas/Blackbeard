@@ -40,7 +40,7 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &cros
 
    //std::cout<<"Variance: "<<stddev.val[0]<<std::endl;
    GaussianBlur(mono, blur,Size(7, 7), 2, 2); // blur image to remove small irregularities
-   threshold(blur, thresh, 35, 255, THRESH_BINARY_INV);//THRESH_OTSU); //Color thresholding makes image more blacka nd white
+   threshold(blur, thresh, 40, 255, THRESH_BINARY_INV);//THRESH_OTSU); //Color thresholding makes image more blacka nd white
    Mat erodeElmt = getStructuringElement(MORPH_RECT, Size(3,3));
    Mat dilateElmt = getStructuringElement(MORPH_RECT, Size(5,5));
    erode(thresh, erodeImg, erodeElmt);       // reduces noise Extract edges 
@@ -120,6 +120,10 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &cros
     crossDetect = true;
   else
     crossDetect = false;
+  
+  if (crossDetect == true) {
+   minMaxCx = roi.cols/2; 
+  }
 
 
   rectangle(synthImg, selected_edge, SELECT_COLOR,3);

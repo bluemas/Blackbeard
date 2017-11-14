@@ -135,10 +135,13 @@ public class RUIMain {
 		display.addFilter(SWT.KeyDown, new Listener() {
 			@Override
 			public void handleEvent(Event e) {
-				if (btnUp.isEnabled()) {
+				if (btnUp.isEnabled() && !(e.widget instanceof Text)) {
 					if (e.keyCode == SWT.ARROW_UP) {
 						if (isUpPressed)
 							return;
+
+						btnUp.setSelection(true);
+						btnUp.setFocus();
 
 						networkManager.sendCommand(new Command(3, "F"));
 						isUpPressed = true;
@@ -146,17 +149,26 @@ public class RUIMain {
 						if (isRightPressed)
 							return;
 
+						btnRight.setSelection(true);
+						btnRight.setFocus();
+
 						networkManager.sendCommand(new Command(3, "R"));
 						isRightPressed = true;
 					} else if (e.keyCode == SWT.ARROW_DOWN) {
 						if (isDownPressed)
 							return;
 
+						btnDown.setSelection(true);
+						btnDown.setFocus();
+
 						networkManager.sendCommand(new Command(3, "B"));
 						isDownPressed = true;
 					} else if (e.keyCode == SWT.ARROW_LEFT) {
 						if (isLeftPressed)
 							return;
+
+						btnLeft.setSelection(true);
+						btnLeft.setFocus();
 
 						networkManager.sendCommand(new Command(3, "L"));
 						isLeftPressed = true;
@@ -168,17 +180,21 @@ public class RUIMain {
 		display.addFilter(SWT.KeyUp, new Listener() {
 			@Override
 			public void handleEvent(Event e) {
-				if (btnUp.isEnabled()) {
+				if (btnUp.isEnabled() && !(e.widget instanceof Text)) {
 					if (e.keyCode == SWT.ARROW_UP) {
+						btnUp.setSelection(false);
 						networkManager.sendCommand(new Command(3, "S"));
 						isUpPressed = false;
 					} else if (e.keyCode == SWT.ARROW_RIGHT) {
+						btnRight.setSelection(false);
 						networkManager.sendCommand(new Command(3, "S"));
 						isRightPressed = false;
 					} else if (e.keyCode == SWT.ARROW_DOWN) {
+						btnDown.setSelection(false);
 						networkManager.sendCommand(new Command(3, "S"));
 						isDownPressed = false;
 					} else if (e.keyCode == SWT.ARROW_LEFT) {
+						btnLeft.setSelection(false);
 						networkManager.sendCommand(new Command(3, "S"));
 						isLeftPressed = false;
 					}
@@ -189,10 +205,13 @@ public class RUIMain {
 		display.addFilter(SWT.KeyDown, new Listener() {
 			@Override
 			public void handleEvent(Event e) {
-				if (btnCameraUp.isEnabled()) {
+				if (btnCameraUp.isEnabled() && !(e.widget instanceof Text)) {
 					if (e.character == 'e') {
 						if (isCameraUpPressed)
 							return;
+
+						btnCameraUp.setSelection(true);
+						btnCameraUp.setFocus();
 
 						networkManager.sendCommand(new Command(4, "F"));
 						isCameraUpPressed = true;
@@ -200,17 +219,26 @@ public class RUIMain {
 						if (isCameraRightPressed)
 							return;
 
+						btnCameraRight.setSelection(true);
+						btnCameraRight.setFocus();
+
 						networkManager.sendCommand(new Command(4, "R"));
 						isCameraRightPressed = true;
 					} else if (e.character == 'd') {
 						if (isCameraDownPressed)
 							return;
 
+						btnCameraDown.setSelection(true);
+						btnCameraDown.setFocus();
+
 						networkManager.sendCommand(new Command(4, "B"));
 						isCameraDownPressed = true;
 					} else if (e.character == 's') {
 						if (isCameraLeftPressed)
 							return;
+
+						btnCameraLeft.setSelection(true);
+						btnCameraLeft.setFocus();
 
 						networkManager.sendCommand(new Command(4, "L"));
 						isCameraLeftPressed = true;
@@ -222,17 +250,21 @@ public class RUIMain {
 		display.addFilter(SWT.KeyUp, new Listener() {
 			@Override
 			public void handleEvent(Event e) {
-				if (btnCameraUp.isEnabled()) {
+				if (btnCameraUp.isEnabled() && !(e.widget instanceof Text)) {
 					if (e.character == 'e') {
+						btnCameraUp.setSelection(false);
 						networkManager.sendCommand(new Command(4, "S"));
 						isCameraUpPressed = false;
 					} else if (e.character == 'f') {
+						btnCameraRight.setSelection(false);
 						networkManager.sendCommand(new Command(4, "S"));
 						isCameraRightPressed = false;
 					} else if (e.character == 'd') {
+						btnCameraDown.setSelection(false);
 						networkManager.sendCommand(new Command(4, "S"));
 						isCameraDownPressed = false;
 					} else if (e.character == 's') {
+						btnCameraLeft.setSelection(false);
 						networkManager.sendCommand(new Command(4, "S"));
 						isCameraLeftPressed = false;
 					}
@@ -397,7 +429,7 @@ public class RUIMain {
 
 		new Label(grpRobotMovement, SWT.NONE);
 
-		btnUp = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
+		btnUp = new Button(grpRobotMovement, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
 		btnUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -406,13 +438,14 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnUp.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-up-01_186407.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		btnLeft = new Button(grpRobotMovement, SWT.FLAT);
+		btnLeft = new Button(grpRobotMovement, SWT.FLAT | SWT.TOGGLE);
 		btnLeft.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -421,13 +454,14 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnLeft.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-left-01_186410.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		btnRight = new Button(grpRobotMovement, SWT.FLAT);
+		btnRight = new Button(grpRobotMovement, SWT.FLAT | SWT.TOGGLE);
 		btnRight.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -436,13 +470,14 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
 		btnRight.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/if_arrow-right-01_186409.png"));
 		new Label(grpRobotMovement, SWT.NONE);
 
-		btnDown = new Button(grpRobotMovement, SWT.FLAT | SWT.CENTER);
+		btnDown = new Button(grpRobotMovement, SWT.FLAT | SWT.TOGGLE | SWT.CENTER);
 		btnDown.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -451,6 +486,7 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(3, "S"));
 			}
 		});
@@ -552,7 +588,7 @@ public class RUIMain {
 		formToolkit.paintBordersFor(grpPanTilt);
 		new Label(grpPanTilt, SWT.NONE);
 
-		btnCameraUp = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraUp = new Button(grpPanTilt, SWT.FLAT | SWT.TOGGLE);
 		btnCameraUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -561,6 +597,7 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
@@ -568,7 +605,7 @@ public class RUIMain {
 		formToolkit.adapt(btnCameraUp, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		btnCameraLeft = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraLeft = new Button(grpPanTilt, SWT.FLAT | SWT.TOGGLE);
 		btnCameraLeft.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -577,6 +614,7 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
@@ -584,7 +622,7 @@ public class RUIMain {
 		formToolkit.adapt(btnCameraLeft, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		btnCameraRight = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraRight = new Button(grpPanTilt, SWT.FLAT | SWT.TOGGLE);
 		btnCameraRight.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -593,6 +631,7 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
@@ -600,7 +639,7 @@ public class RUIMain {
 		formToolkit.adapt(btnCameraRight, true, true);
 		new Label(grpPanTilt, SWT.NONE);
 
-		btnCameraDown = new Button(grpPanTilt, SWT.FLAT);
+		btnCameraDown = new Button(grpPanTilt, SWT.FLAT | SWT.TOGGLE);
 		btnCameraDown.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -609,6 +648,7 @@ public class RUIMain {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				((Button) e.widget).setSelection(false);
 				networkManager.sendCommand(new Command(4, "S"));
 			}
 		});
@@ -901,8 +941,9 @@ public class RUIMain {
 		compositeSimulation.setLayout(new GridLayout(2, false));
 
 		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
+		txtCommandMessages.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.NORMAL));
 		txtCommandMessages.setText(
-				"{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload={0,0,Y,N,N,N,N,Y,Y,N,N,G,B,N,N}&{0,1,Y,,N,N,N,Y,Y,N,N,G,,,}}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Warning Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
+				"{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload={0,0,Y,N,N,N,N,Y,Y,N,N,G,B,N,N}}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Warning Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
 		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		formToolkit.adapt(txtCommandMessages, true, true);
 

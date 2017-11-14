@@ -78,6 +78,7 @@ public class NetworkManager {
 	}
 
 	public void sendCommand(Command command) {
+		// System.out.println(command.toString());
 		if (!isConnected())
 			return;
 
@@ -103,6 +104,7 @@ public class NetworkManager {
 	}
 
 	class NetworkWatchdog implements Runnable {
+		private int retryCnt = IConstants.RETRY_CNT;
 		private boolean isRunning = true;
 
 		@Override
@@ -111,7 +113,12 @@ public class NetworkManager {
 				try {
 					if (!isConnected()) {
 						rui.notify(new Command(7, "S"));
-						connect();
+
+						if (connect()) {
+							retryCnt = IConstants.RETRY_CNT;
+						} else if (--retryCnt == 0) {
+							break;
+						}
 					}
 
 					Thread.sleep(1000);

@@ -28,19 +28,19 @@ LineRecognizer::~LineRecognizer(){
 float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &crossDetect) {
    char text[1024];
    float offsetfromcenter;
-   cv::Scalar mean,stddev;
+   //cv::Scalar mean,stddev;
    vector<vector<Point> > contours;
    vector<Vec4i> hierarchy;
    Mat mono,blur,thresh,erodeImg,dilateImg;
-   Rect RoiRec(10, 2*orgImg.rows/3, orgImg.cols-20, orgImg.rows/12); //Define region of interest rectangle
+   Rect RoiRec(10, 2*orgImg.rows/3, orgImg.cols-20, orgImg.rows/8); //Define region of interest rectangle
 
    Mat roi(orgImg,RoiRec); // clip image to region of interest 
    cvtColor(roi, mono, COLOR_BGR2GRAY);  // coovert image to grayscale 
-   meanStdDev(mono,mean,stddev);         // Comppute image mean and stddev -- be to used later if needed
+   //meanStdDev(mono,mean,stddev);         // Comppute image mean and stddev -- be to used later if needed
 
    //std::cout<<"Variance: "<<stddev.val[0]<<std::endl;
-   GaussianBlur(mono, blur,Size(9, 9), 2, 2); // blur image to remove small irregularities
-   threshold(blur, thresh, 0, 255, THRESH_BINARY_INV|THRESH_OTSU); //Color thresholding makes image more blacka nd white
+   GaussianBlur(mono, blur,Size(7, 7), 2, 2); // blur image to remove small irregularities
+   threshold(blur, thresh, 35, 255, THRESH_BINARY_INV);//THRESH_OTSU); //Color thresholding makes image more blacka nd white
    Mat erodeElmt = getStructuringElement(MORPH_RECT, Size(3,3));
    Mat dilateElmt = getStructuringElement(MORPH_RECT, Size(5,5));
    erode(thresh, erodeImg, erodeElmt);       // reduces noise Extract edges 
@@ -53,11 +53,12 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &cros
   double minMaxCx = -DBL_MAX;
   Rect selected_edge(0,0,0,0); //Edge beging followed
   Rect nav_point(0,0,0,0);
-  float areaContour = 0.0;
+  float areaContourW = 0.0;
+
   for(unsigned int i = 0; i<contours.size();i++)  //Find the biggest contour 
     {
         Moments mu = moments(contours[i]);
-       if (mu.m00 > 100.0) // area threadhold
+       if (mu.m00 > 300.0) // area threadhold
         {
            Rect r = boundingRect(contours[i]);
            Rect show(r.x+RoiRec.x,r.y+RoiRec.y,r.width,r.height);
@@ -77,16 +78,49 @@ float LineRecognizer::calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &cros
                nav_point=show;
                nav_point.x=10+minMaxCx-10;
                nav_point.width=20;
-               areaContour = mu.m00;
+               areaContourW = mu.m00;
              }
          }
      }
-    if (areaContour > 1800.0) 
-        crossDetect = true;
-    else
-        crossDetect = false;
 
   if (fabs(minMaxCx)==DBL_MAX) minMaxCx = roi.cols/2;
+
+
+#if 0   //Define region of interest rectangle for height
+   Rect RoiRecH(orgImg.cols/2 - orgImg.cols/8, orgImg.rows/3, orgImg.cols/4, 2*(orgImg.rows/3) - 2);
+
+   Mat roiH(orgImg,RoiRecH); // clip image to region of interest 
+   cvtColor(roiH, mono, COLOR_BGR2GRAY);  // coovert image to grayscale 
+   //meanStdDev(mono,mean,stddev);         // Comppute image mean and stddev -- be to used later if needed
+
+   //std::cout<<"Variance: "<<stddev.val[0]<<std::endl;
+   GaussianBlur(mono, blur,Size(7, 7), 2, 2); // blur image to remove small irregularities
+   threshold(blur, thresh, 10, 255, THRESH_BINARY_INV);//THRESH_OTSU); //Color thresholding makes image more blacka nd white
+   erodeElmt = getStructuringElement(MORPH_RECT, Size(3,3));
+   dilateElmt = getStructuringElement(MORPH_RECT, Size(5,5));
+   erode(thresh, erodeImg, erodeElmt);       // reduces noise Extract edges 
+   dilate(erodeImg, dilateImg, dilateElmt);
+
+  findContours(dilateImg, contours, hierarchy, RETR_LIST,CHAIN_APPROX_SIMPLE);// Find the contours of the frame
+  float areaContourH = 0.0;
+  for(unsigned int i = 0; i<contours.size();i++)  //Find the biggest contour 
+  {
+      Moments mu = moments(contours[i]);
+      Rect r = boundingRect(contours[i]);
+      if (mu.m00 > areaContourH)
+        areaContourH = mu.m00;      
+      if (mu.m00 > 6000.0) {
+        Rect show(r.x+RoiRecH.x,r.y+RoiRecH.y,r.width,r.height);
+        rectangle(synthImg, show, TRACK_COLOR,3); // Draw contours found
+      }
+
+  }
+#endif
+  if (areaContourW > 5500.0)//&& areaContourH > 6000.0) 
+    crossDetect = true;
+  else
+    crossDetect = false;
+
 
   rectangle(synthImg, selected_edge, SELECT_COLOR,3);
   rectangle(synthImg, nav_point, NAV_COLOR,3);

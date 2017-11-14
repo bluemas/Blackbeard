@@ -85,6 +85,15 @@ public class RUIMain {
 	private Button btnSend;
 	private Text txtRuiIP;
 
+	protected boolean isUpPressed;
+	protected boolean isRightPressed;
+	protected boolean isDownPressed;
+	protected boolean isLeftPressed;
+	protected boolean isCameraUpPressed;
+	protected boolean isCameraRightPressed;
+	protected boolean isCameraDownPressed;
+	protected boolean isCameraLeftPressed;
+
 	/**
 	 * Launch the application.
 	 * 
@@ -122,6 +131,114 @@ public class RUIMain {
 		setEnableRobotMovement(false);
 		setNetworkStatus(false);
 		setConfigData();
+
+		display.addFilter(SWT.KeyDown, new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				if (btnUp.isEnabled()) {
+					if (e.keyCode == SWT.ARROW_UP) {
+						if (isUpPressed)
+							return;
+
+						networkManager.sendCommand(new Command(3, "F"));
+						isUpPressed = true;
+					} else if (e.keyCode == SWT.ARROW_RIGHT) {
+						if (isRightPressed)
+							return;
+
+						networkManager.sendCommand(new Command(3, "R"));
+						isRightPressed = true;
+					} else if (e.keyCode == SWT.ARROW_DOWN) {
+						if (isDownPressed)
+							return;
+
+						networkManager.sendCommand(new Command(3, "B"));
+						isDownPressed = true;
+					} else if (e.keyCode == SWT.ARROW_LEFT) {
+						if (isLeftPressed)
+							return;
+
+						networkManager.sendCommand(new Command(3, "L"));
+						isLeftPressed = true;
+					}
+				}
+			}
+		});
+
+		display.addFilter(SWT.KeyUp, new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				if (btnUp.isEnabled()) {
+					if (e.keyCode == SWT.ARROW_UP) {
+						networkManager.sendCommand(new Command(3, "S"));
+						isUpPressed = false;
+					} else if (e.keyCode == SWT.ARROW_RIGHT) {
+						networkManager.sendCommand(new Command(3, "S"));
+						isRightPressed = false;
+					} else if (e.keyCode == SWT.ARROW_DOWN) {
+						networkManager.sendCommand(new Command(3, "S"));
+						isDownPressed = false;
+					} else if (e.keyCode == SWT.ARROW_LEFT) {
+						networkManager.sendCommand(new Command(3, "S"));
+						isLeftPressed = false;
+					}
+				}
+			}
+		});
+
+		display.addFilter(SWT.KeyDown, new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				if (btnCameraUp.isEnabled()) {
+					if (e.character == 'e') {
+						if (isCameraUpPressed)
+							return;
+
+						networkManager.sendCommand(new Command(4, "F"));
+						isCameraUpPressed = true;
+					} else if (e.character == 'f') {
+						if (isCameraRightPressed)
+							return;
+
+						networkManager.sendCommand(new Command(4, "R"));
+						isCameraRightPressed = true;
+					} else if (e.character == 'd') {
+						if (isCameraDownPressed)
+							return;
+
+						networkManager.sendCommand(new Command(4, "B"));
+						isCameraDownPressed = true;
+					} else if (e.character == 's') {
+						if (isCameraLeftPressed)
+							return;
+
+						networkManager.sendCommand(new Command(4, "L"));
+						isCameraLeftPressed = true;
+					}
+				}
+			}
+		});
+
+		display.addFilter(SWT.KeyUp, new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				if (btnCameraUp.isEnabled()) {
+					if (e.character == 'e') {
+						networkManager.sendCommand(new Command(4, "S"));
+						isCameraUpPressed = false;
+					} else if (e.character == 'f') {
+						networkManager.sendCommand(new Command(4, "S"));
+						isCameraRightPressed = false;
+					} else if (e.character == 'd') {
+						networkManager.sendCommand(new Command(4, "S"));
+						isCameraDownPressed = false;
+					} else if (e.character == 's') {
+						networkManager.sendCommand(new Command(4, "S"));
+						isCameraLeftPressed = false;
+					}
+				}
+			}
+		});
 
 		shell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
@@ -631,10 +748,31 @@ public class RUIMain {
 		TabItem tbtmMessageConsole = new TabItem(tabFolder, SWT.NONE);
 		tbtmMessageConsole.setText("Message Console");
 
-		txtLogMessge = new Text(tabFolder, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
-		tbtmMessageConsole.setControl(txtLogMessge);
+		Composite compositeConsole = new Composite(tabFolder, SWT.NONE);
+		tbtmMessageConsole.setControl(compositeConsole);
+		formToolkit.paintBordersFor(compositeConsole);
+		compositeConsole.setLayout(new GridLayout(2, false));
+
+		txtLogMessge = new Text(compositeConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		txtLogMessge.setEditable(false);
+		txtLogMessge.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		txtLogMessge.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.NORMAL));
 		formToolkit.adapt(txtLogMessge, true, true);
+
+		Button btnClear = new Button(compositeConsole, SWT.NONE);
+		btnClear.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				display.syncExec(new Runnable() {
+					public void run() {
+						txtLogMessge.setText("");
+					}
+				});
+			}
+		});
+		btnClear.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+		formToolkit.adapt(btnClear, true, true);
+		btnClear.setText("Clear");
 
 		TabItem tbtmSettings = new TabItem(tabFolder, SWT.NONE);
 		tbtmSettings.setText("Settings");
@@ -764,7 +902,7 @@ public class RUIMain {
 
 		txtCommandMessages = new Text(compositeSimulation, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
 		txtCommandMessages.setText(
-				"{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload=TBD}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Warning Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
+				"{type=10, payload=} \n{type=7, payload=M}\n\n{type=6, payload={0,0,Y,N,N,N,N,Y,Y,N,N,G,B,N,N}&{0,1,Y,,N,N,N,Y,Y,N,N,G,,,}}\n\n{type=5, payload=0/0/0}\n{type=5, payload=123/456/789}\n{type=5, payload=232/67/623}\n{type=5, payload=1/3/2}\n\n{type=8, payload=E/Warning Collision}\n\n{type=2, payload=A} \n{type=2, payload=M} \n\n{type=8, payload=E/Cannot recoginize signs}\n{type=7, payload=S}\n{type=7, payload=M}\n\n{type=8, payload=N/Complete}\n\n{type=9, payload=} ");
 		txtCommandMessages.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		formToolkit.adapt(txtCommandMessages, true, true);
 
@@ -831,7 +969,7 @@ public class RUIMain {
 		});
 	}
 
-	protected void executeCommand(Command command) {
+	private void executeCommand(Command command) {
 		int cmdType = command.getType();
 
 		if (cmdType != 5) {

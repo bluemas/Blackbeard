@@ -1,5 +1,7 @@
 CXXFLAGS=-O2 -g -Wall -std=gnu++11 -I../common
 
+#TARGET_DEVICE = PI
+
 OBJS_CAM_LIB =  CameraReader.o \
 				DotRecognizer.o \
 				ImageRecognizer.o \
@@ -15,12 +17,15 @@ OBJS_CAM_LIB =  CameraReader.o \
 				../common/event/SignRecognizedEvent.o \
 				../common/event/SignRecognizedEventHandler.o \
 				../common/event/SquareRecognizedEvent.o \
-				../common/event/SquareRecognizedEventHandler.o
+				../common/event/SquareRecognizedEventHandler.o \
+				../common/event/CrossRecognizedEvent.o \
+				../common/event/CrossRecognizedEventHandler.o
 
 
 OBJS_IMG_RECOG_TEST = ImageRecognizerTest.o
 
 LIBS = -lpthread -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_video -lopencv_videoio -L/usr/local/lib
+
 
 
 COM_HEADER_DIR = ../common \
@@ -32,6 +37,10 @@ INC = -I../common \
 TARGET = camera.a
 TEST = image_recognizer_test
 
+ifeq ($(TARGET_DEVICE), PI) 
+LIBS += lraspicamcv_320_240
+INC += -I/home/pi/git/robidouille/raspicam_cv
+endif
 
 all: $(TARGET) $(TEST)
 

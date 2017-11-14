@@ -12,9 +12,13 @@
 #define FPS 30
 
 using namespace cv;
+using namespace std;
 
-CameraReader::CameraReader() {
-    mCapture =cvCreateCameraCapture(0);   // Open default Camera
+CameraReader::CameraReader()
+        : mIsRun(false),
+          mIsCaptured(false) {
+//    printf("camera reader constructor\n");
+    mCapture = cvCreateCameraCapture(0);   // Open default Camera
     if(!mCapture) {
          printf("Camera Not Initialized\n");
     }
@@ -29,12 +33,11 @@ CameraReader::CameraReader() {
 }
 
 int CameraReader::readCamera(Mat &image) {
-    IplImage* iplCameraImage;
-    iplCameraImage = cvQueryFrame(mCapture); // Get Camera image
-    image = cv::cvarrToMat(iplCameraImage);  // Convert Camera image to Mat format
     
-    if (IsPi3) 
-        flip(image, image, -1);       // if running on PI3 flip(-1)=180 degrees
+    std::unique_lock<std::mutex> lock(mMutex);
+    while (!mIsCaptured)
+        mCondition.wait(lock);
+    mImg.copyTo(image);
 
     return 0;
 }
@@ -43,4 +46,38 @@ int CameraReader::readCamera(Mat &image) {
 CameraReader::~CameraReader(){
     if (mCapture)
         cvReleaseCapture(&mCapture);
+}
+
+void CameraReader::start() {
+    cout << "CameraReader thread started" << endl;
+    mIsRun = true;
+
+    // Start thread
+    mThread = std::thread(&CameraReader::run, this);
+}
+
+void CameraReader::stop() {
+    mIsRun = false;
+
+    mThread.join();
+    cout << "CameraReader thread is terminated" << endl;
+}
+
+void CameraReader::run() {
+    IplImage* iplCameraImage;
+    printf("Camera reader run\n");
+    while (mIsRun) {
+        iplCameraImage = cvQueryFrame(mCapture); // Get Camera image
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+
+            mImg = cv::cvarrToMat(iplCameraImage);  // Convert Camera image to Mat format
+            
+            if (IsPi3) 
+                flip(mImg, mImg, -1);       // if running on PI3 flip(-1)=180 degrees
+           // printf("Camera reader caputred\n");
+            mIsCaptured = true;
+            mCondition.notify_all();
+        }
+    }
 }

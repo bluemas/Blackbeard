@@ -16,7 +16,7 @@ static  int gInitJpgValues[2] = { cv::IMWRITE_JPEG_QUALITY,80 }; //default(95) 0
 static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
 
 ImageRecognizer::ImageRecognizer()
-        : mSignRecogEnable(false) ,
+        : mSignRecogEnable(false),
           mLineRecogEnable(false) {
     mCamera = new CameraReader();
     mImgData = ImageData::getInstance();
@@ -32,6 +32,7 @@ ImageRecognizer::~ImageRecognizer(){
 void ImageRecognizer::start() {
     cout << "ImageRecognizer thread started" << endl;
     mIsRun = true;
+    mCamera->start();
 
     // Start thread
     mThread = std::thread(&ImageRecognizer::run, this);
@@ -41,8 +42,8 @@ void ImageRecognizer::stop() {
     mIsRun = false;
 
     mThread.join();
-
     cout << "ImageRecognizer thread is terminated" << endl;
+    mCamera->stop();
     // TODO thread detach???
 }
 
@@ -72,6 +73,7 @@ void ImageRecognizer::setSignRecognizeMode(bool enable) {
 void ImageRecognizer::setLineRecognizeMode(bool enable) {
     mLineRecogEnable = enable;
 }
+
 void ImageRecognizer::RecognizeSignAndNotify(Mat& orgImg, Mat& synthImg) {
     SignType sign = SignType::SignNone;
     //Recognize sign
@@ -101,18 +103,16 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
 
     // notify event to handler
-    if (mLineRecogEnable) {
-        LineRecognizedEvent lineEvent(offset);
-        for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
-            mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
-        }
+    LineRecognizedEvent lineEvent(offset);
+    for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
+        mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+    }
 
-        if (foundCross){
-            CrossRecognizedEvent crossEvent;
-            for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
-                mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
-            }                    
-        }
+    if (foundCross){
+        CrossRecognizedEvent crossEvent;
+        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+        }                    
     }
 
     if (foundDot){
@@ -162,7 +162,7 @@ void ImageRecognizer::run() {
 
         imencode(".jpg", synthImage, imgWriteBuf, gJpgParam);
         mImgData->writeData(imgWriteBuf.data(), imgWriteBuf.size());
-        waitKey(10);
+        waitKey(20);
     }
     cout << "ImageRecognizer run is finished" << endl;
 }

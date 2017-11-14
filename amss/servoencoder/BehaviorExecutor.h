@@ -26,7 +26,6 @@ private:
 	CamDirection mCamDir;
 	Direction mMoveDir;
 	bool mIsSearching;
-	bool mIsManualMoving;
 
 	static void* runPanTilt(void* ptr);
 	static void* runManualMove(void* ptr); 

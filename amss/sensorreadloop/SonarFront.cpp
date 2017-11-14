@@ -19,7 +19,7 @@ void SonarFront::read(void)
 
     if ((mTrigger==-1) || (mEcho==-1)) return;
 
-    delay(10);
+//    delay(10);
     digitalWrite(mTrigger, HIGH);
     delayMicroseconds(10);
     digitalWrite(mTrigger, LOW);

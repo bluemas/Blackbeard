@@ -15,7 +15,6 @@ BehaviorExecutor:: BehaviorExecutor()
 	mServoEncoder->openServos();
 
 	mIsSearching = false;
-	mIsManualMoving = false;
 }
 
 BehaviorExecutor::~BehaviorExecutor() {}
@@ -54,12 +53,8 @@ void BehaviorExecutor::stop(void)
 {
 	mSpeed = 0;
 	mServoEncoder->setWheelSpeed(mSpeed, mSpeed);
-
-	if(mIsManualMoving)
-	{
-		pthread_cancel(mThreadMove);
-		mIsManualMoving = false;
-	}
+	
+//	pthread_cancel(mThreadMove);
 }
 
 void* BehaviorExecutor::runManualMove(void* ptr)
@@ -104,14 +99,12 @@ void BehaviorExecutor::manualMove(Direction dir)
 	mMoveDir = dir;
 
 	pthread_create(&mThreadMove, NULL, &BehaviorExecutor::runManualMove, (void*)this);
-
-	mIsManualMoving = true;
 }
 
 void BehaviorExecutor::gotoCross(void)
 {
 	mServoEncoder->setWheelSpeed(BASESPEED, BASESPEED);
-	usleep(1050000);
+	usleep(950000);
 	mServoEncoder->setWheelSpeed(0, 0);
 }
 

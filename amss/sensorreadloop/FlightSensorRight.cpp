@@ -56,7 +56,7 @@ void FlightSensorRight::read()
     if(distance > 0)
         putData(SensorType::right, (int)distance);
 
-    usleep(mTiming);
+//    usleep(mTiming);
 }
 
 /******************************************************************************

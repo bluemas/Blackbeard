@@ -36,7 +36,7 @@ void MazeMapper::handleWallSensingEvent(WallSensingEvent ev) {
             mMapData->setMazeStatus('\0', ' ', '*', '\0');
         }
 
-        mMapData->printMap();
+        //mMapData->printMap();
 
         /*
         MazeGrid grid;

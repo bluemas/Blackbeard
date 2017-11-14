@@ -18,11 +18,12 @@ public:
     void start();
     void addListener(NetMessageEventAdapter* listener);
     void send(NetworkMsg type, int length, void* data);
-    void sendCameraImage();
 
 private:
     void initUDPPort(char* address);
     void startTCPServer();
+    void sendCameraImage();
+    void sendMazeMap();
 
     bool mConnected;
     bool mIPReceived;

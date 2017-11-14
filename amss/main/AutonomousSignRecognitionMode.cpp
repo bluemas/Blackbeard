@@ -5,7 +5,6 @@
 #include "AutonomousSignRecognitionMode.h"
 #include "../common/event/EventBase.h"
 #include "MainController.h"
-#include "../common/Logging.h"
 
 AutonomousSignRecognitionMode::AutonomousSignRecognitionMode(
         MainController* mainController) {
@@ -40,10 +39,8 @@ void AutonomousSignRecognitionMode::doEntryAction() {
     }
 
     // If sign is not found, transition to suspend mode
-    if (!mSignFound) {
-        Logging::logOutput(Logging::ERROR, "Sign not found");
+    if (!mSignFound)
         mMainController->setCurrentMode(RobotMode::Suspend);
-    }
 }
 
 void AutonomousSignRecognitionMode::handleSignRecognizedEvent(

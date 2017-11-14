@@ -6,6 +6,7 @@
 #include "../common/Logging.h"
 #include "../common/Constants.h"
 #include "../camera/ImageData.h"
+#include "../sam/MapData.h"
 #include <thread>
 #include <iostream>
 #include <cstring>
@@ -19,8 +20,6 @@ NetworkManager::NetworkManager() :
     mConnected(false) {
     mListenPort = NULL;
     mClientPort = NULL;
-    mRUIUDPDest = NULL;
-    mRUIUDPPort = NULL;
 }
 
 void NetworkManager::addListener(NetMessageEventAdapter* listener) {
@@ -33,15 +32,12 @@ void NetworkManager::start() {
 
     // Start Camera Image Sender
     mImageSender = new std::thread(&NetworkManager::sendCameraImage, this);
+
+    // Start Maze Map Sender
+//    mImageSender = new std::thread(&NetworkManager::sendMazeMap, this);
 }
 
 void NetworkManager::initUDPPort(char* address) {
-    if (mRUIUDPDest != NULL) {
-        mCameraImageSendSocket.DeleteUdpDest(&mRUIUDPDest);
-    }
-    if (mRUIUDPPort != NULL) {
-        mCameraImageSendSocket.CloseUdpPort(&mRUIUDPPort);
-    }
     mRUIUDPDest = mCameraImageSendSocket.GetUdpDest(address, RUI_PORT);
     mRUIUDPPort = mCameraImageSendSocket.OpenUdpPort(3000);
     mIPReceived = true;
@@ -66,12 +62,11 @@ void NetworkManager::startTCPServer() {
 //                continue;
 //            }
 
-            if (NetworkMsg(msg[0]) == NetworkMsg::Initialize) {
+            if (NetworkMsg(msg[0]) == NetworkMsg::RUIIpAddress) {
                 initUDPPort((char*)&msg[5]);
-                Logging::logOutput(Logging::INFO, "RUI IP Address received(%s)",
-                                   (char*)&msg[5]);
             }
-            mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
+            else
+                mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
         }
         else {
             // Notify network connection
@@ -127,8 +122,7 @@ void NetworkManager::send(NetworkMsg type, int length, void* data) {
         case NetworkMsg::RobotInitialized:
             msg[0] = (char)type;
             memcpy(&msg[1], &length, sizeof(int));
-            if (length > 0)
-                memcpy(&msg[5], data, length);
+            memcpy(&msg[5], data, length);
             break;
         case NetworkMsg::MazeMap:
             // TODO : How does Maze Map be sent?
@@ -154,6 +148,25 @@ void NetworkManager::sendCameraImage() {
                                                   image, imgSize);
             }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
+
+// TODO : Not Implemented
+void NetworkManager::sendMazeMap() {
+    bool bRun = true;
+    while (bRun) {
+        if (mConnected && mIPReceived) {
+//            // Retrieve camera image from image repo and send image to RUI
+//            MapData* mapData = MapData::getInstance();
+//            int imgSize = imageData->getImageSize();
+//            if (imgSize > 0) {
+//                unsigned char *image = new unsigned char[imgSize];
+//                imageData->readData(image, imgSize);
+//                mCameraImageSendSocket.SendUDPMsg(mRUIUDPPort, mRUIUDPDest,
+//                                                  image, imgSize);
+//            }
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }

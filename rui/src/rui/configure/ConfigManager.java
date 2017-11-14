@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
+import rui.utils.Utils;
+
 public class ConfigManager {
 	File configFile = new File(System.getProperty("user.home") + File.separator + "robot_config.properties");
 
@@ -15,6 +17,8 @@ public class ConfigManager {
 	private int mazeRowCount;
 	private int mazeColumnCount;
 
+	private String ruiIp;
+
 	private String robotIp;
 	private int robotPort;
 
@@ -23,7 +27,7 @@ public class ConfigManager {
 	private ConfigManager() {
 		try {
 			this.load();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -60,6 +64,11 @@ public class ConfigManager {
 
 			String ROBOT_PORT = props.getProperty(IConfigKeys.KEY_ROBOT_PORT, IConfigKeys.ROBOT_PORT + "");
 			this.robotPort = Integer.parseInt(ROBOT_PORT);
+
+			this.ruiIp = props.getProperty(IConfigKeys.KEY_RUI_IP);
+			if (Utils.isEmpty(this.ruiIp)) {
+				this.ruiIp = Utils.getLocalIPAddress();
+			}
 		} finally {
 			if (reader != null)
 				try {
@@ -83,6 +92,7 @@ public class ConfigManager {
 			props.setProperty(IConfigKeys.KEY_MAZE_COLUMN_COUNT, this.mazeColumnCount + "");
 			props.setProperty(IConfigKeys.KEY_ROBOT_IP, this.robotIp);
 			props.setProperty(IConfigKeys.KEY_ROBOT_PORT, this.robotPort + "");
+			props.setProperty(IConfigKeys.KEY_RUI_IP, this.ruiIp);
 
 			props.store(writer, "RUI Settings");
 		} finally {
@@ -142,8 +152,16 @@ public class ConfigManager {
 	public void setRobotPort(int robotPort) {
 		this.robotPort = robotPort;
 	}
-	
+
 	public String getConfigFilePath() {
 		return this.configFile.getAbsolutePath();
+	}
+
+	public String getRuiIp() {
+		return ruiIp;
+	}
+
+	public void setRuiIp(String ruiIp) {
+		this.ruiIp = ruiIp;
 	}
 }

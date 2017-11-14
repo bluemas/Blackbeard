@@ -30,8 +30,8 @@ class MainController :
     public SquareRecognizedEventHandler,
     public SignRecognizedEventHandler,
     public RedDotRecognizedEventHandler,
-    public CrossRecognizedEventHandler,
     public LineRecognizedEventHandler,
+    public CrossRecognizedEventHandler,
     public NetMessageEventAdapter {
 
 public:
@@ -43,8 +43,6 @@ public:
     void setNetworkManager(NetworkManager* networkManger);
     void setPathPlanner(PathPlanner* pathPlanner);
     void setCurrentMode(RobotMode mode);
-
-    void ignoreCrossDetection(bool ignore);
 
     BehaviorExecutor* behaviorExecutor();
     ImageRecognizer* imageRecognizer();
@@ -63,12 +61,11 @@ private:
     void handleSquareRecognizedEvent(const SquareRecognizedEvent ev);
     void handleSignRecognizedEvent(const SignRecognizedEvent ev);
     void handleRedDotRecognizedEvent(const RedDotRecognizedEvent ev);
-    void handleCrossRecognizedEvent(const CrossRecognizedEvent ev);
     void handleLineRecognizedEvent(const LineRecognizedEvent ev);
+    void handleCrossRecognizedEvent(CrossRecognizedEvent ev);
     void handleMessage(NetworkMsg type, void* data);
 
     bool mConnected;
-    bool mIgnoreCrossDetection;
     std::map<RobotMode, ModeBase*> mModeList;
     ModeBase* mCurrentMode;
     BehaviorExecutor mBehaviorExecutor;
@@ -76,5 +73,7 @@ private:
     NetworkManager* mNetworkManager;
     SignRecognizer* mSignRecognizer;
     ImageRecognizer* mImageRecognizer;
+
+
 };
 #endif // !defined(EA_6F5C1742_CB6A_41e4_8863_8CDFEDFB70C0__INCLUDED_)

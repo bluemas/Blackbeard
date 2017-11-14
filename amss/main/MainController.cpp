@@ -14,8 +14,7 @@
 
 MainController::MainController() :
     mCurrentMode(NULL),
-    mConnected(false),
-    mIgnoreCrossDetection(false) {
+    mConnected(false) {
 }
 
 void MainController::start() {
@@ -60,7 +59,7 @@ void MainController::sendSensorData() {
 
     char distances[100] = { 0 };
     snprintf(distances, 100, "%d/%d/%d",
-             frontDistance, leftDistance, rightDistance);
+             leftDistance, frontDistance, rightDistance);
     networkManager()->send(NetworkMsg::SensorData, strlen(distances), distances);
 }
 
@@ -72,9 +71,6 @@ void MainController::initializeRobot() {
     // Initialize maze map
     pathPlanner()->init();
     Logging::logOutput(Logging::INFO, "Maze Map initialized");
-
-    // Stop robot movement
-    behaviorExecutor()->stop();
 
     // Set robot mode as manual
     setCurrentMode(RobotMode::Manual);
@@ -171,8 +167,8 @@ void MainController::handleSquareRecognizedEvent(const SquareRecognizedEvent ev)
 }
 
 void MainController::handleCrossRecognizedEvent(const CrossRecognizedEvent ev) {
-    if (!mIgnoreCrossDetection)
-        currentMode()->handleCrossRecognizedEvent(ev);
+    Logging::logOutput(Logging::INFO, "CROSS RECOGNIZED");
+    currentMode()->handleCrossRecognizedEvent(ev);
 }
 
 void MainController::handleMessage(NetworkMsg type, void* data) {
@@ -209,8 +205,4 @@ void MainController::handleMessage(NetworkMsg type, void* data) {
         default:
             break;
     }
-}
-
-void MainController::ignoreCrossDetection(bool ignore) {
-    mIgnoreCrossDetection = ignore;
 }

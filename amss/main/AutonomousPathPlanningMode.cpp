@@ -37,9 +37,7 @@ void AutonomousPathPlanningMode::doEntryAction() {
         }
 
         // Move robot
-        mMainController->ignoreCrossDetection(true);
         mMainController->behaviorExecutor()->move(nextDirection);
-        mMainController->ignoreCrossDetection(false);
 
         // Transition to AutonomousMovingMode
         mMainController->setCurrentMode(RobotMode::AutoMoving);

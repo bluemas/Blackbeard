@@ -7,6 +7,7 @@
 
 #include "../sam/PathPlanner.h"
 #include "MazeMapper.h"
+#include "../common/Logging.h"
 
 PathPlanner::PathPlanner(MapData *mapData) {
     mMapData = mapData;
@@ -36,6 +37,11 @@ Direction PathPlanner::nextDirection() {
     Direction newDirection = Direction::none;
     
     if (!mBackTracingMode) {
+        Logging::logOutput(Logging::DEBUG, "Possible direction : %d%d%d",
+                           mMapData->isLeftAvailable(),
+                           mMapData->isForwardAvailable(),
+                           mMapData->isLeftAvailable());
+
         bool foundDirection = false;
         if (!currentNode->visited)
             currentNode->visited = true;
@@ -91,6 +97,10 @@ Direction PathPlanner::nextDirection() {
         else {
             mBackTracingMode = false;
             mBackTracingDestNode = NULL;
+            Logging::logOutput(Logging::INFO, "PathPlanner Direction Output = %s",
+                               newDirection == Direction::left ? "LEFT" :
+                               (newDirection == Direction::forward ? "FRONT" :
+                                (newDirection == Direction::right ? "RIGHT" : "UNKNOWN")));
         }
     }
     else {
@@ -150,20 +160,20 @@ MazeNode* PathPlanner::backTrackToDestNode(MazeNode* node) {
     MazeNode* parentNode = node->parent;
     while (parentNode != NULL) {
         if (parentNode->leftNode && parentNode->leftNode->visited) {
-            if (parentNode->frontNode && !parentNode->frontNode->visited ||
-                parentNode->rightNode && !parentNode->rightNode->visited) {
+            if ((parentNode->frontNode && !parentNode->frontNode->visited) ||
+                (parentNode->rightNode && !parentNode->rightNode->visited)) {
                 break;
             }
         }
         else if (parentNode->frontNode && parentNode->frontNode->visited) {
-            if (parentNode->leftNode && !parentNode->leftNode->visited ||
-                parentNode->rightNode && !parentNode->rightNode->visited) {
+            if ((parentNode->leftNode && !parentNode->leftNode->visited) ||
+                (parentNode->rightNode && !parentNode->rightNode->visited)) {
                 break;
             }
         }
         else if (parentNode->rightNode && parentNode->rightNode->visited) {
-            if (parentNode->leftNode && !parentNode->leftNode->visited ||
-                parentNode->frontNode && !parentNode->frontNode->visited) {
+            if ((parentNode->leftNode && !parentNode->leftNode->visited) ||
+                (parentNode->frontNode && !parentNode->frontNode->visited)) {
                 break;
             }
         }

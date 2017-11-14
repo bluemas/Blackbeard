@@ -27,7 +27,7 @@ public:
         #endif
         {
             std::cout << (level == Logging::INFO ? "[INFO] " :
-                          (level == ERROR ? "[ERROR] " : "[UNKNOW] ")) << msg
+                          (level == ERROR ? "[ERROR] " : "[UNKNOWN] ")) << msg
                       << std::endl;
         }
     }

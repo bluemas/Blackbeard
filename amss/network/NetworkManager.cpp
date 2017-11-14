@@ -34,7 +34,7 @@ void NetworkManager::start() {
     mImageSender = new std::thread(&NetworkManager::sendCameraImage, this);
 
     // Start Maze Map Sender
-//    mImageSender = new std::thread(&NetworkManager::sendMazeMap, this);
+//    mImageSender = new std::thread(&NetworkManager::sendMazeMap, this);   // FIXME : Uncomment
 }
 
 void NetworkManager::initUDPPort(char* address) {
@@ -127,6 +127,12 @@ void NetworkManager::send(NetworkMsg type, int length, void* data) {
         case NetworkMsg::MazeMap:
             // TODO : How does Maze Map be sent?
 //            sprintf(msg, "%c%d%s", type, length, (char*)data);
+        case NetworkMsg::ChangeMode:
+        case NetworkMsg::MoveRobot:
+        case NetworkMsg::AdjustCameraPanTilt:
+        case NetworkMsg::RUIIpAddress:
+        case NetworkMsg::NetworkConnection:
+        case NetworkMsg::NetworkDisconnection:
             break;
     }
 

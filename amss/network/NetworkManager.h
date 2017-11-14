@@ -6,9 +6,11 @@
 #define BLACKBEARD_CNETWORKMANAGER_H
 
 #include <thread>
+#include <string>
 #include "UDPSocket.h"
 #include "TCPSocket.h"
 #include "NetMessageEventAdapter.h"
+#include "../sam/MapData.h"
 
 class NetworkManager {
 public:
@@ -23,7 +25,7 @@ private:
     void initUDPPort(char* address);
     void startTCPServer();
     void sendCameraImage();
-    void sendMazeMap();
+    void sendMazeData();
 
     bool mConnected;
     bool mIPReceived;
@@ -36,6 +38,7 @@ private:
     TUdpLocalPort* mRUIUDPPort;
     std::thread* mSvrThread;
     std::thread* mImageSender;
+    std::thread* mMazeSender;
 
     void establishTcpConnection();
 };

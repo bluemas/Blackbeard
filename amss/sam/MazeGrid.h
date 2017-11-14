@@ -8,28 +8,48 @@
 #ifndef SAM_MAZEGRID_H_
 #define SAM_MAZEGRID_H_
 
+#include <string>
 #include "../common/Constants.h"
 
-class MazeGrid {
+using namespace std;
 
-    const int WALL_NONE = 0;
-    const int WALL_FRONT = 1;
-    const int WALL_LEFT = 2;
-    const int WALL_RIGHT = 4;
-    const int WALL_BACK = 8;
+class MazeGrid {
 
 public:
     MazeGrid();
     virtual ~MazeGrid();
 
-    void setRedDotFound();
-    void setSignFound(SignType signType);
+    void init();
+    void setForwardWall(bool isWall);
+    void setBackwardWall(bool isWall);
+    void setLeftWall(bool isWall);
+    void setRightWall(bool isWall);
+    bool isForwardWall();
+    bool isBackwardWall();
+    bool isLeftWall();
+    bool isRightWall();
+    void setVisited();
+    void setRedDot();
+    void setSign(SignType signType, Direction dir);
+    void setStartSquare();
     void setEndSquare();
+    bool isVisited();
+    bool isRedDot();
+    bool isStartSquare();
+    bool isEndSquare();
+    SignType getSignType();
+    Direction getSignDirection();
 
 private:
-    int mWallStatus = WALL_NONE;
+    bool mVisited = false;
+    bool mForwardWall = false;
+    bool mLeftWall = false;
+    bool mRightWall = false;
+    bool mBackwardWall = false;
     bool mRedDotFound = false;
     SignType mSignType = SignType::SignNone;
+    Direction mSignDirection = Direction::none;
+    bool mStartSqureFound = false;
     bool mEndSqureFound = false;
 };
 

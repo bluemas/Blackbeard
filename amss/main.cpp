@@ -75,9 +75,9 @@ int main() {
     imageRecognizer->addCrossRecogEventHandler(mainController);
 
     // 4. Initiate other components
-    MapData *mapRepo = new MapData();
-    MazeMapper *mazeMapper = new MazeMapper(mapRepo);
-    PathPlanner *pathPlanner = new PathPlanner(mapRepo);
+
+    MazeMapper *mazeMapper = new MazeMapper(MapData::getInstance());
+    PathPlanner *pathPlanner = new PathPlanner(MapData::getInstance());
 
     // 5. Make a relationship between components
     wallRecognizer->setMazeMapper(mazeMapper);
@@ -96,10 +96,10 @@ int main() {
     // 5. Start threads
     networkManager->start();
 
-    wallRecognizer->start();  // FIXME : CPU Usage goes high
+    wallRecognizer->start();
 
     #ifndef UBUNTU
-    imageRecognizer->start(); // FIXME : SIGSEGV
+    imageRecognizer->start();
     #endif
 
     mainController->start();
@@ -118,7 +118,6 @@ int main() {
     //delete mainController;
     delete imageRecognizer;
     delete wallRecognizer;
-    delete mapRepo;
     delete mazeMapper;
     delete pathPlanner;
 

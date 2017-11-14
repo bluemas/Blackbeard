@@ -9,7 +9,7 @@
 
 
 MazeMapper::MazeMapper(MapData *mapData) {
-    mStatus = 1;
+    //mStatus = 1;
     mMapData = mapData;
 }
 
@@ -18,73 +18,20 @@ MazeMapper::~MazeMapper() {
 }
 
 void MazeMapper::handleWallSensingEvent(WallSensingEvent ev) {
-    if ((mStatus & WALL_SENSING_ENABLE) == 1) {
+    cout << "- Wall recognized. L : "<< ev.isLeftWall() << ", F " << ev.isFrontWall() << ", R : " << ev.isRightWall() << endl;
+    mMapData->setWallRecognized(ev.isFrontWall(), ev.isLeftWall(), ev.isRightWall());
 
-        if (ev.isFrontWall()) {
-            mMapData->setMazeStatus('*', '\0', '\0', '\0');
-        }
-
-        if (ev.isLeftWall() && ev.isRightWall()) {
-            mMapData->setMazeStatus('\0', '*', '*', '\0');
-        }
-
-        if (ev.isLeftWall() && !ev.isRightWall()) {
-            mMapData->setMazeStatus('\0', '*', ' ', '\0');
-        }
-
-        if (!ev.isLeftWall() && ev.isRightWall()) {
-            mMapData->setMazeStatus('\0', ' ', '*', '\0');
-        }
-
-        //mMapData->printMap();
-
-        /*
-        MazeGrid grid;
-
-        if (mMapData->isFirstGrid()) {
-            // Save current wall status
-            //mMapData->setCurrMazeGrid(grid);
-        }
-
-        if (mPrevLeftWall != ev.isLeftWall()) {
-            if (ev.isLeftWall()) {
-                // Left wall on next grid
-                cout << "Left wall" << endl;
-                //mMapData->setFrontMazeGrid(grid);
-            } else {
-                // Left open on next grid
-                cout << "Left open" << endl;
-            }
-
-//            mMapData->setFrontMazeGrid(grid);
-//            mPrevLeftWall = ev.isLeftWall();
-        }
-
-        if (mPrevRightWall != ev.isRightWall()) {
-            if (ev.isRightWall()) {
-                cout << "Right wall" << endl;
-            } else {
-                cout << "Right open" << endl;
-            }
-        }
-        */
-    }
+    //mMapData->printMap();
 }
 
 void MazeMapper::handleCrossRecognizedEvent(CrossRecognizedEvent ev) {
-    //mMapData->setMazeStatus('\0', '\0', '\0', ' ');
-
     cout << "- Cross recognized." << endl;
 
     mMapData->printMap();
 }
 
 void MazeMapper::handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {
-    /*MazeGrid grid;
-    grid.setRedDotFound();
-    mMapData->setFrontMazeGrid(grid);*/
-
-    mMapData->setMazeStatus('\0', '\0', '\0', 'R');
+    mMapData->setRedDotRecognized();
 
     cout << "- Red dot recognized." << endl;
 
@@ -92,11 +39,7 @@ void MazeMapper::handleRedDotRecognizedEvent(RedDotRecognizedEvent ev) {
 }
 
 void MazeMapper::handleSignRecognizedEvent(SignRecognizedEvent ev) {
-    /*MazeGrid grid;
-    grid.setSignFound(ev.getSignType());
-    mMapData->setCurrMazeGrid(grid);*/
-
-    mMapData->setMazeStatus('\0', 'G', '\0', 'R');
+    mMapData->setSignRecognized(ev.getSignType(), Direction::right); // FIXME
 
     cout << "- Sign recognized." << endl;
 
@@ -104,11 +47,7 @@ void MazeMapper::handleSignRecognizedEvent(SignRecognizedEvent ev) {
 }
 
 void MazeMapper::handleSquareRecognizedEvent(SquareRecognizedEvent ev) {
-    /*MazeGrid grid;
-    grid.setEndSquare();
-    mMapData->setFrontMazeGrid(grid);*/
-
-    mMapData->setMazeStatus('\0', '\0', '\0', 'E');
+    mMapData->setSquareRecognized();
 
     cout << "- Square recognized." << endl;
 

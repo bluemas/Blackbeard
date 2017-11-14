@@ -7,30 +7,38 @@
 
 #include "MapData.h"
 
+MapData *MapData::sInstance;
 
 MapData::MapData() {
 
 }
 
-
 MapData::~MapData() {
 
+}
+
+MapData* MapData::getInstance() {
+    if(sInstance == NULL) {
+        sInstance = new MapData();
+    }
+
+    return sInstance;
 }
 
 void MapData::init() {
     // Initialize map data
     for(int inx = 0; inx < MAZE_SIZE; inx++) {
         for(int jnx = 0; jnx < MAZE_SIZE; jnx++) {
-            mMazeArr[jnx][inx] = '\0';
+            mMazeArr[jnx][inx].init();
         }
     }
 
     // Initialize robot position
     mFirstGrid = true;
 
-    mPosX = 10; // TODO
-    mPosY = 10; // TODO
-    mMazeArr[mPosX][mPosY] = 'S';
+    mPosX = mPosY = mMinX = mMinY = mMaxX = mMaxY = INIT_POSITION;
+
+    mMazeArr[mPosX][mPosY].setStartSquare();
 
     mRobotDirection = Direction::forward;
     mNextDirection = Direction::forward;
@@ -41,147 +49,144 @@ void MapData::setNextDirection(Direction dir) {
     mNextDirection = dir;
 
     if (dir == Direction::forward) {
-        if      (mRobotDirection == Direction::forward)     { mPosY -= 1; mRobotDirection = Direction::forward; }// forward
-        else if (mRobotDirection == Direction::left)        { mPosX -= 1; mRobotDirection = Direction::left; }// left
-        else if (mRobotDirection == Direction::right)       { mPosX += 1; mRobotDirection = Direction::right; }// right
-        else if (mRobotDirection == Direction::backward)    { mPosY += 1; mRobotDirection = Direction::backward; }// backward
+        if      (mRobotDirection == Direction::forward)     { mPosY -= 1; mRobotDirection = Direction::forward; }
+        else if (mRobotDirection == Direction::left)        { mPosX -= 1; mRobotDirection = Direction::left; }
+        else if (mRobotDirection == Direction::right)       { mPosX += 1; mRobotDirection = Direction::right; }
+        else if (mRobotDirection == Direction::backward)    { mPosY += 1; mRobotDirection = Direction::backward; }
     } else if (dir == Direction::left) {
-        if      (mRobotDirection == Direction::forward)     { mPosX -= 1; mRobotDirection = Direction::left; } // left
-        else if (mRobotDirection == Direction::left)        { mPosY += 1; mRobotDirection = Direction::backward; } // backward
-        else if (mRobotDirection == Direction::right)       { mPosY -= 1; mRobotDirection = Direction::forward; } // forward
-        else if (mRobotDirection == Direction::backward)    { mPosX += 1; mRobotDirection = Direction::right; } // right
+        if      (mRobotDirection == Direction::forward)     { mPosX -= 1; mRobotDirection = Direction::left; }
+        else if (mRobotDirection == Direction::left)        { mPosY += 1; mRobotDirection = Direction::backward; }
+        else if (mRobotDirection == Direction::right)       { mPosY -= 1; mRobotDirection = Direction::forward; }
+        else if (mRobotDirection == Direction::backward)    { mPosX += 1; mRobotDirection = Direction::right; }
     } else if (dir == Direction::right) {
-        if      (mRobotDirection == Direction::forward)     { mPosX += 1; mRobotDirection = Direction::right; } // right
-        else if (mRobotDirection == Direction::left)        { mPosY -= 1; mRobotDirection = Direction::forward; } // forward
-        else if (mRobotDirection == Direction::right)       { mPosY += 1; mRobotDirection = Direction::backward; } // backward
-        else if (mRobotDirection == Direction::backward)    { mPosX -= 1; mRobotDirection = Direction::left; } // left
+        if      (mRobotDirection == Direction::forward)     { mPosX += 1; mRobotDirection = Direction::right; }
+        else if (mRobotDirection == Direction::left)        { mPosY -= 1; mRobotDirection = Direction::forward; }
+        else if (mRobotDirection == Direction::right)       { mPosY += 1; mRobotDirection = Direction::backward; }
+        else if (mRobotDirection == Direction::backward)    { mPosX -= 1; mRobotDirection = Direction::left; }
     } else if (dir == Direction::backward) {
-        if      (mRobotDirection == Direction::forward)     { mPosY += 1; mRobotDirection = Direction::backward; } // backward
-        else if (mRobotDirection == Direction::left)        { mPosX += 1; mRobotDirection = Direction::right; } // right
-        else if (mRobotDirection == Direction::right)       { mPosX -= 1; mRobotDirection = Direction::left; } // left
-        else if (mRobotDirection == Direction::backward)    { mPosY -= 1; mRobotDirection = Direction::forward; } // forward
+        if      (mRobotDirection == Direction::forward)     { mPosY += 1; mRobotDirection = Direction::backward; }
+        else if (mRobotDirection == Direction::left)        { mPosX += 1; mRobotDirection = Direction::right; }
+        else if (mRobotDirection == Direction::right)       { mPosX -= 1; mRobotDirection = Direction::left; }
+        else if (mRobotDirection == Direction::backward)    { mPosY -= 1; mRobotDirection = Direction::forward; }
     }
+
+    if (mPosX < mMinX) mMinX = mPosX;
+    if (mPosY < mMinY) mMinY = mPosY;
+    if (mPosX > mMaxX) mMaxX = mPosX;
+    if (mPosY > mMaxY) mMaxY = mPosY;
+
+    // Mark visited
+    mMazeArr[mPosY][mPosX].setVisited();
+
+    printMap();
 }
 
 Direction MapData::getNextDirection() {
     return mNextDirection;
 }
 
-void MapData::setMazeStatus(char front, char left, char right, char floor) {
-    // If the direction of robot is front.
+void MapData::setWallRecognized(bool forward, bool left, bool right) {
     if (mRobotDirection == Direction::forward) {
-        if (front != '\0')  mMazeArr[mPosX][mPosY - 1] = front;
-        if (left  != '\0')  mMazeArr[mPosX - 1][mPosY] = left;
-        if (right != '\0')  mMazeArr[mPosX + 1][mPosY] = right;
+        mMazeArr[mPosY][mPosX].setForwardWall(forward);
+        mMazeArr[mPosY - 1][mPosX].setBackwardWall(forward);
+
+        mMazeArr[mPosY][mPosX].setLeftWall(left);
+        mMazeArr[mPosY][mPosX - 1].setRightWall(left);
+
+        mMazeArr[mPosY][mPosX].setRightWall(right);
+        mMazeArr[mPosY][mPosX + 1].setLeftWall(right);
+
     } else if (mRobotDirection == Direction::backward) {
-        if (front != '\0')  mMazeArr[mPosX][mPosY + 1] = front;
-        if (left  != '\0')  mMazeArr[mPosX + 1][mPosY] = left;
-        if (right != '\0')  mMazeArr[mPosX - 1][mPosY] = right;
+        mMazeArr[mPosY][mPosX].setBackwardWall(forward);
+        mMazeArr[mPosY + 1][mPosX].setForwardWall(forward);
+
+        mMazeArr[mPosY][mPosX].setRightWall(left);
+        mMazeArr[mPosY][mPosX + 1].setLeftWall(left);
+
+        mMazeArr[mPosY][mPosX].setLeftWall(right);
+        mMazeArr[mPosY][mPosX - 1].setRightWall(right);
+
     } else if (mRobotDirection == Direction::left) {
-        if (front != '\0')  mMazeArr[mPosX - 1][mPosY] = front;
-        if (left  != '\0')  mMazeArr[mPosX][mPosY + 1] = left;
-        if (right != '\0')  mMazeArr[mPosX][mPosY - 1] = right;
+        mMazeArr[mPosY][mPosX].setLeftWall(forward);
+        mMazeArr[mPosY][mPosX - 1].setRightWall(forward);
+
+        mMazeArr[mPosY][mPosX].setBackwardWall(left);
+        mMazeArr[mPosY + 1][mPosX].setForwardWall(left);
+
+        mMazeArr[mPosY][mPosX].setForwardWall(right);
+        mMazeArr[mPosY - 1][mPosX].setBackwardWall(right);
+
     } else if (mRobotDirection == Direction::right) {
-        if (front != '\0')  mMazeArr[mPosX - 1][mPosY] = front;
-        if (left  != '\0')  mMazeArr[mPosX][mPosY + 1] = left;
-        if (right != '\0')  mMazeArr[mPosX][mPosY - 1] = right;
-    }
+        mMazeArr[mPosY][mPosX].setRightWall(forward);
+        mMazeArr[mPosY][mPosX + 1].setLeftWall(forward);
 
-    if (floor != '\0') {
-        mMazeArr[mPosX][mPosY] = floor;
+        mMazeArr[mPosY][mPosX].setForwardWall(left);
+        mMazeArr[mPosY - 1][mPosX].setBackwardWall(left);
+
+        mMazeArr[mPosY][mPosX].setBackwardWall(right);
+        mMazeArr[mPosY + 1][mPosX].setForwardWall(right);
     }
 }
 
-/*
-MazeGrid MapData::getCurrMazeGrid() {
-    return mMazeArr[mPosX][mPosY];
+void MapData::setSignRecognized(SignType signType, Direction dir) {
+    mMazeArr[mPosY][mPosX].setSign(signType, dir);
 }
 
-void MapData::setCurrMazeGrid(MazeGrid grid) {
-    MazeGrid curGrid = mMazeArr[mPosX][mPosY];
-    // TODO Merge grid info
+void MapData::setSquareRecognized() {
+    mMazeArr[mPosY][mPosX].setEndSquare();
 }
 
-void MapData::setFrontMazeGrid(MazeGrid newNextGrid) {
-    int nextPosX = mPosX, nextPosY = mPosY;
-
-    if (mRobotDirection == Direction::forward) {
-        nextPosY++;
-    } else if (mRobotDirection == Direction::backward) {
-        nextPosY--;
-    } else if (mRobotDirection == Direction::left) {
-        nextPosX--;
-    } else if (mRobotDirection == Direction::right) {
-        nextPosX++;
-    }
-
-    MazeGrid oldNextGrid = mMazeArr[nextPosX][nextPosY];
-
-    mergeGrid(oldNextGrid, newNextGrid);
-}
-*/
-
-void MapData::printMap() {
-    for(int inx = 0; inx < MAZE_SIZE; inx++) {
-        for(int jnx = 0; jnx < MAZE_SIZE; jnx++) {
-            if (mPosX == jnx && mPosY == inx)
-                cout << 'C';
-            else
-                cout << (mMazeArr[jnx][inx] == '\0' ? ' ' : mMazeArr[jnx][inx]);
-        }
-
-        cout << endl;
-    }
-    cout << "12345678901234567890" << endl;
+void MapData::setRedDotRecognized() {
+    mMazeArr[mPosY][mPosX].setRedDot();
 }
 
 bool MapData::isFirstGrid() {
-    return mPosY == 10 && mPosX == 10;
+    return mPosY == INIT_POSITION && mPosX == INIT_POSITION;
 }
 
 bool MapData::isForwardAvailable() {
-    bool isAvailable = false;
+    bool isWall = false;
 
     if (mRobotDirection == Direction::forward)
-        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isForwardWall();
     else if (mRobotDirection == Direction::backward)
-        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isBackwardWall();
     else if (mRobotDirection == Direction::left)
-        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isLeftWall();
     else if (mRobotDirection == Direction::right)
-        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isRightWall();
 
-    return isAvailable;
+    return !isWall;
 }
 
 bool MapData::isLeftAvailable() {
-    bool isAvailable = false;
+    bool isWall = false;
 
     if (mRobotDirection == Direction::forward)
-        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isLeftWall();
     else if (mRobotDirection == Direction::backward)
-        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isRightWall();
     else if (mRobotDirection == Direction::left)
-        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isBackwardWall();
     else if (mRobotDirection == Direction::right)
-        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isForwardWall();
 
-    return isAvailable;
+    return !isWall;
 }
 
 bool MapData::isRightAvailable() {
-    bool isAvailable = false;
+    bool isWall = false;
 
     if (mRobotDirection == Direction::forward)
-        isAvailable = mMazeArr[mPosX + 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isRightWall();
     else if (mRobotDirection == Direction::backward)
-        isAvailable = mMazeArr[mPosX - 1][mPosY] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isLeftWall();
     else if (mRobotDirection == Direction::left)
-        isAvailable = mMazeArr[mPosX][mPosY - 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isForwardWall();
     else if (mRobotDirection == Direction::right)
-        isAvailable = mMazeArr[mPosX][mPosY + 1] != '*';
+        isWall = mMazeArr[mPosY][mPosX].isBackwardWall();
 
-    return isAvailable;
+    return !isWall;
 }
 
 void MapData::setBackTrackingMode(bool isBackTracking) {
@@ -190,4 +195,92 @@ void MapData::setBackTrackingMode(bool isBackTracking) {
 
 bool MapData::isBackTrackingMode() {
     return mIsBackTracking;
+}
+
+void MapData::printMap() {
+    for(int inx = mMinY; inx <= mMaxY; inx++) {
+        for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
+            cout << " " << (mMazeArr[inx][jnx].isForwardWall() ? '-' : ' ') << " ";
+        }
+
+        cout << endl;
+
+        for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
+            cout << (mMazeArr[inx][jnx].isLeftWall() ? '|' : ' ');
+
+            // Red dot, Start square, ...
+            if (mPosX == jnx && mPosY == inx)
+                cout << 'C';
+            else if (mMazeArr[inx][jnx].isStartSquare())
+                cout << 'S';
+            else
+                cout << ' ';
+
+            cout << (mMazeArr[inx][jnx].isRightWall() ? '|' : ' ');
+        }
+
+        cout << endl;
+
+        for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
+            cout << " " << (mMazeArr[inx][jnx].isBackwardWall() ? '-' : ' ') << " ";
+        }
+
+        cout << endl;
+    }
+
+    cout << "------------------------" << endl;
+}
+
+string MapData::getMazeString() {
+    string str = "";
+
+    for(int inx = mMinY; inx <= mMaxY; inx++) {
+        for(int jnx = mMinX; jnx <= mMaxX; jnx++) {
+            str += "{";
+            str += inx + ',' + jnx + ','; // row, column
+            str += (mMazeArr[inx][jnx].isVisited() ? 'Y' : 'N') + ',';  // visited
+
+            // current robot direction
+            if      (mRobotDirection == Direction::forward)
+                str += "N,";
+            else if (mRobotDirection == Direction::left)
+                str += "W,";
+            else if (mRobotDirection == Direction::right)
+                str += "E,";
+            else if (mRobotDirection == Direction::backward)
+                str += "S,";
+
+            str += (mMazeArr[inx][jnx].isStartSquare() ? 'Y' : 'N') + ',';  // Start square
+            str += (mMazeArr[inx][jnx].isEndSquare() ? 'Y' : 'N') + ',';    // End square
+            str += (mMazeArr[inx][jnx].isRedDot() ? 'Y' : 'N') + ',';       // Red dot
+            str += (mMazeArr[inx][jnx].isForwardWall() ? 'Y' : 'N') + ',';  // Front wall
+            str += (mMazeArr[inx][jnx].isRightWall() ? 'Y' : 'N') + ',';    // Right wall
+            str += (mMazeArr[inx][jnx].isBackwardWall() ? 'Y' : 'N') + ','; // Backward wall
+            str += (mMazeArr[inx][jnx].isLeftWall() ? 'Y' : 'N') + ',';     // Left wall
+
+            SignType st = mMazeArr[inx][jnx].getSignType();
+
+            if (st != SignType::SignNone) {
+                if (st == SignType::SignBall) {
+                    str += "B,,,,"; // TODO Direction
+                }
+                if (st == SignType::SignGo) {
+                    str += "G,,,,"; // TODO Direction
+                }
+                if (st == SignType::SignStraight) {
+                    str += "A,,,,"; // TODO Direction
+                }
+                if (st == SignType::SignStop) {
+                    str += "S,,,,"; // TODO Direction
+                }
+            } else {
+                // No sign
+                str += ",,,,";
+            }
+
+            str += "}&";
+        }
+    }
+
+    return str;
 }

@@ -20,6 +20,8 @@ NetworkManager::NetworkManager() :
     mConnected(false) {
     mListenPort = NULL;
     mClientPort = NULL;
+    mRUIUDPDest = NULL;
+    mRUIUDPPort = NULL;
 }
 
 void NetworkManager::addListener(NetMessageEventAdapter* listener) {
@@ -33,11 +35,17 @@ void NetworkManager::start() {
     // Start Camera Image Sender
     mImageSender = new std::thread(&NetworkManager::sendCameraImage, this);
 
-    // Start Maze Map Sender
-//    mImageSender = new std::thread(&NetworkManager::sendMazeMap, this);   // FIXME : Uncomment
+    // Start Maze data sender
+    mMazeSender = new std::thread(&NetworkManager::sendMazeData, this);
 }
 
 void NetworkManager::initUDPPort(char* address) {
+    if (mRUIUDPDest != NULL) {
+        mCameraImageSendSocket.DeleteUdpDest(&mRUIUDPDest);
+    }
+    if (mRUIUDPPort != NULL) {
+        mCameraImageSendSocket.CloseUdpPort(&mRUIUDPPort);
+    }
     mRUIUDPDest = mCameraImageSendSocket.GetUdpDest(address, RUI_PORT);
     mRUIUDPPort = mCameraImageSendSocket.OpenUdpPort(3000);
     mIPReceived = true;
@@ -62,11 +70,12 @@ void NetworkManager::startTCPServer() {
 //                continue;
 //            }
 
-            if (NetworkMsg(msg[0]) == NetworkMsg::RUIIpAddress) {
+            if (NetworkMsg(msg[0]) == NetworkMsg::Initialize) {
                 initUDPPort((char*)&msg[5]);
+                Logging::logOutput(Logging::INFO, "RUI IP Address received(%s)",
+                                   (char*)&msg[5]);
             }
-            else
-                mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
+            mListener->handleMessage(NetworkMsg(msg[0]), &msg[5]);
         }
         else {
             // Notify network connection
@@ -122,7 +131,8 @@ void NetworkManager::send(NetworkMsg type, int length, void* data) {
         case NetworkMsg::RobotInitialized:
             msg[0] = (char)type;
             memcpy(&msg[1], &length, sizeof(int));
-            memcpy(&msg[5], data, length);
+            if (length > 0)
+                memcpy(&msg[5], data, length);
             break;
         case NetworkMsg::MazeMap:
             // TODO : How does Maze Map be sent?
@@ -154,25 +164,34 @@ void NetworkManager::sendCameraImage() {
                                                   image, imgSize);
             }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    }
+}
+
+void NetworkManager::sendMazeData() {
+    bool bRun = true;
+    while (bRun) {
+        string mazeString = MapData::getInstance()->getMazeString();
+        send(NetworkMsg::MazeMap, mazeString.size(), (void*)mazeString.c_str());
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
 
 // TODO : Not Implemented
-void NetworkManager::sendMazeMap() {
-    bool bRun = true;
-    while (bRun) {
-        if (mConnected && mIPReceived) {
-//            // Retrieve camera image from image repo and send image to RUI
-//            MapData* mapData = MapData::getInstance();
-//            int imgSize = imageData->getImageSize();
-//            if (imgSize > 0) {
-//                unsigned char *image = new unsigned char[imgSize];
-//                imageData->readData(image, imgSize);
-//                mCameraImageSendSocket.SendUDPMsg(mRUIUDPPort, mRUIUDPDest,
-//                                                  image, imgSize);
-//            }
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-}
+//void NetworkManager::sendMazeMap() {
+//    bool bRun = true;
+//    while (bRun) {
+//        if (mConnected && mIPReceived) {
+////            // Retrieve camera image from image repo and send image to RUI
+////            MapData* mapData = MapData::getInstance();
+////            int imgSize = imageData->getImageSize();
+////            if (imgSize > 0) {
+////                unsigned char *image = new unsigned char[imgSize];
+////                imageData->readData(image, imgSize);
+////                mCameraImageSendSocket.SendUDPMsg(mRUIUDPPort, mRUIUDPDest,
+////                                                  image, imgSize);
+////            }
+//        }
+//        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//    }
+//}

@@ -465,12 +465,16 @@ cstring
 /media/sf_Share/Blackbeard/amss/network/NetworkManager.h
 thread
 -
+string
+-
 UDPSocket.h
 /media/sf_Share/Blackbeard/amss/network/UDPSocket.h
 TCPSocket.h
 /media/sf_Share/Blackbeard/amss/network/TCPSocket.h
 NetMessageEventAdapter.h
 /media/sf_Share/Blackbeard/amss/network/NetMessageEventAdapter.h
+../sam/MapData.h
+/media/sf_Share/Blackbeard/amss/sam/MapData.h
 
 /media/sf_Share/Blackbeard/amss/network/TCPSocket.cpp
 TCPSocket.h
@@ -539,14 +543,20 @@ MapData.h
 /media/sf_Share/Blackbeard/amss/sam/MapData.h
 iostream
 -
+string
+-
 ../common/Constants.h
 /media/sf_Share/Blackbeard/amss/common/Constants.h
+MazeGrid.h
+/media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
 
 /media/sf_Share/Blackbeard/amss/sam/MazeGrid.cpp
 ../sam/MazeGrid.h
 /media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
 
 /media/sf_Share/Blackbeard/amss/sam/MazeGrid.h
+string
+-
 ../common/Constants.h
 /media/sf_Share/Blackbeard/amss/common/Constants.h
 
@@ -579,6 +589,8 @@ MapData.h
 /media/sf_Share/Blackbeard/amss/sam/PathPlanner.h
 MazeMapper.h
 /media/sf_Share/Blackbeard/amss/sam/MazeMapper.h
+../common/Logging.h
+/media/sf_Share/Blackbeard/amss/common/Logging.h
 
 /media/sf_Share/Blackbeard/amss/sam/PathPlanner.h
 iostream

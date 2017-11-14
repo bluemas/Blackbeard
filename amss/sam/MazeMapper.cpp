@@ -8,9 +8,8 @@
 #include "MazeMapper.h"
 //#include "../common/Utils.h"
 
-MazeMapper::MazeMapper(MapData *mapData) {
-    //mStatus = 1;
-    mMapData = mapData;
+MazeMapper::MazeMapper() {
+    mMapData = MapData::getInstance();
 }
 
 MazeMapper::~MazeMapper() {

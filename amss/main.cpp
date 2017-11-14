@@ -15,9 +15,7 @@
 #include "sam/WallRecognizer.h"
 #include "sam/MazeMapper.h"
 #include "sam/PathPlanner.h"
-
 #include "network/NetworkManager.h"
-#include "sam/MapData.h"
 
 using namespace std;
 
@@ -55,47 +53,46 @@ int main() {
     // 1. Initiate MainController
     MainController *mainController = new MainController();
 
-    BehaviorExecutor *behaviorExecutor = new BehaviorExecutor();
-    behaviorExecutor->setCamDefaultTrackLine();
 
     // 2. Initiate recognizers
     WallRecognizer *wallRecognizer = new WallRecognizer();
+    ImageRecognizer* imageRecognizer = new ImageRecognizer();
 
-    // Initialize NetworkManager
+
+    // 3. Initiate other components
+    BehaviorExecutor *behaviorExecutor = new BehaviorExecutor();
+    behaviorExecutor->setCamDefaultTrackLine();
+
     NetworkManager* networkManager = new NetworkManager();
     networkManager->addListener(mainController);
+
+    MazeMapper *mazeMapper = new MazeMapper();
+    PathPlanner *pathPlanner = new PathPlanner();
+
+
+    // 4. Make a relationship between components
     mainController->setNetworkManager(networkManager);
-
-    // Initialize ImageRecognizer
-    ImageRecognizer* imageRecognizer = new ImageRecognizer();
-    imageRecognizer->addLineRecogEventHandler(mainController);
-    imageRecognizer->addRedDotRecogEventHandler(mainController);
-    imageRecognizer->addSignRecogEventHandler(mainController);
-    imageRecognizer->addSquareRecogEventHandler(mainController);
-    imageRecognizer->addCrossRecogEventHandler(mainController);
-
-    // 4. Initiate other components
-
-    MazeMapper *mazeMapper = new MazeMapper(MapData::getInstance());
-    PathPlanner *pathPlanner = new PathPlanner(MapData::getInstance());
-
-    // 5. Make a relationship between components
-    wallRecognizer->setMazeMapper(mazeMapper);
     mainController->setPathPlanner(pathPlanner);
     mainController->setImageRecognizer(imageRecognizer);
 
+    wallRecognizer->setMazeMapper(mazeMapper);
     wallRecognizer->addWallCollisionEventHandler(mainController);
     wallRecognizer->addWallSensingEventHandler(mainController);
     wallRecognizer->addWallSensingEventHandler(mazeMapper);
 
-    imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
+    imageRecognizer->addLineRecogEventHandler(mainController);
+    imageRecognizer->addCrossRecogEventHandler(mainController);
     imageRecognizer->addCrossRecogEventHandler(mazeMapper);
+    imageRecognizer->addRedDotRecogEventHandler(mainController);
+    imageRecognizer->addRedDotRecogEventHandler(mazeMapper);
+    imageRecognizer->addSignRecogEventHandler(mainController);
     imageRecognizer->addSignRecogEventHandler(mazeMapper);
+    imageRecognizer->addSquareRecogEventHandler(mainController);
     imageRecognizer->addSquareRecogEventHandler(mazeMapper);
+
 
     // 5. Start threads
     networkManager->start();
-
     wallRecognizer->start();
 
     #ifndef UBUNTU
@@ -104,15 +101,18 @@ int main() {
 
     mainController->start();
 
-    // 10. Wait for stopping AMSS
+
+    // 6. Wait for stopping AMSS
     std::thread mainThread(keyInRunner);
     mainThread.join();
 
     cout << "AMSS is terminating..." << endl;
 
+
     // 99. Terminate instants
     imageRecognizer->stop();
     wallRecognizer->stop();
+
 
     // 100. Clean up
     //delete mainController;

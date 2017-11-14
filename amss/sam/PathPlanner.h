@@ -32,7 +32,6 @@ struct MazeNode {
 class PathPlanner {
 public:
     PathPlanner();
-    PathPlanner(MapData *mapData);
     virtual ~PathPlanner();
 
     void init();
@@ -48,7 +47,7 @@ private:
                                 MazeNode* nextNode, Direction& nextDirection);
 
     Direction getDirectionToBackTrace();
-    int mCount = 0; // TEMP
+    //int mCount = 0; // TODO REMOVE
     stack<Direction> mDirStack;
     MapData *mMapData;
     MazeNode* mGraph;

@@ -28,7 +28,7 @@ class MazeMapper :
         public SquareRecognizedEventHandler {
 
 public:
-    MazeMapper(MapData *mapData);
+    MazeMapper();
     virtual ~MazeMapper();
 
     void handleWallSensingEvent(WallSensingEvent ev);
@@ -38,15 +38,7 @@ public:
     void handleSquareRecognizedEvent(SquareRecognizedEvent ev);
 
 private:
-    //static const int NO_SENSING              = 0;
-    //static const int WALL_SENSING_ENABLE     = 1;
-    //static const int REDDOT_SENSING_ENABLE   = 2;
-    //static const int SIGN_RECOGNIZED_ENABLE  = 4;
-    //static const int CROSS_RECOGNIZED_ENABLE = 8;
-
     MapData *mMapData;
-    //int mStatus;
-
     bool mPrevLeftWall = false;
     bool mPrevRightWall = false;
 };

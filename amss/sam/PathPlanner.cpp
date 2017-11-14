@@ -6,11 +6,11 @@
  */
 
 #include "../sam/PathPlanner.h"
-#include "MazeMapper.h"
 #include "../common/Logging.h"
+#include "MazeMapper.h"
 
-PathPlanner::PathPlanner(MapData *mapData) {
-    mMapData = mapData;
+PathPlanner::PathPlanner() {
+    mMapData = MapData::getInstance();
     init();
 }
 
@@ -23,7 +23,7 @@ void PathPlanner::init() {
 
     initGraph();
 
-    mCount = 0; // TODO remove
+    //mCount = 0; // TODO REMOVE
 }
 
 void PathPlanner::initGraph() {
@@ -35,7 +35,7 @@ void PathPlanner::initGraph() {
 Direction PathPlanner::nextDirection() {
     MazeNode* currentNode = mNextNode == NULL ? mStartSquare : mNextNode;
     Direction newDirection = Direction::none;
-    
+
     if (!mBackTracingMode) {
         Logging::logOutput(Logging::DEBUG, "Possible direction : %d%d%d",
                            mMapData->isLeftAvailable(),
@@ -88,7 +88,7 @@ Direction PathPlanner::nextDirection() {
 
             // Find node to back trace
             mBackTracingDestNode = backTrackToDestNode(currentNode);
-            // TODO : mBackTracingDestNode�� NULL ��� ó��
+            // TODO : mBackTracingDestNode
 
             // Get next back tracing node and direction
             getNextBackTracingNode(mBackTracingDestNode, currentNode, mNextNode,
@@ -118,7 +118,7 @@ Direction PathPlanner::nextDirection() {
     }
 
     mMapData->setNextDirection(newDirection);
-    
+
     return newDirection;
 }
 
@@ -185,7 +185,7 @@ MazeNode* PathPlanner::backTrackToDestNode(MazeNode* node) {
     return parentNode;
 }
 
-#if 0
+#if 0   // TODO REMOVE
 Direction PathPlanner::nextDirection() {
     Direction dir = Direction::none;
 

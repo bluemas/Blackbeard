@@ -14,7 +14,7 @@ public class MazeCell {
 	private int row = -1;
 
 	private boolean visited = false;
-	private boolean isCurrentPosition = false;
+	private String currentPosition;
 
 	private boolean[] walls = new boolean[4];
 	private String[] signs = new String[4];
@@ -25,7 +25,7 @@ public class MazeCell {
 
 	private int LINE_WIDTH = 8;
 	private int LINE_WIDTH_2 = LINE_WIDTH / 2;
-	
+
 	public MazeCell(int row, int column) {
 		this.column = column;
 		this.row = row;
@@ -52,8 +52,8 @@ public class MazeCell {
 			gc.fillOval(x + xoffset, y + yoffset, s, s);
 		}
 
-		if (isCurrentPosition) {
-
+		if (!Utils.isEmpty(currentPosition)) {
+			
 		}
 
 		gc.setLineWidth(LINE_WIDTH);
@@ -128,12 +128,12 @@ public class MazeCell {
 		this.visited = visited;
 	}
 
-	public boolean isCurrentPosition() {
-		return isCurrentPosition;
+	public String getCurrentPosition() {
+		return currentPosition;
 	}
 
-	public void setCurrentPosition(boolean isCurrentPosition) {
-		this.isCurrentPosition = isCurrentPosition;
+	public void setCurrentPosition(String currentPosition) {
+		this.currentPosition = currentPosition;
 	}
 
 	public boolean[] getWalls() {

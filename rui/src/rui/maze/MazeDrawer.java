@@ -13,16 +13,16 @@ import rui.configure.ConfigManager;
 public class MazeDrawer {
 	private ConfigManager configManager = ConfigManager.getInstance();
 	private Canvas canvas;
-	
+
 	public MazeDrawer(RUIMain rui) {
 		this.canvas = rui.getMazeCanvas();
 	}
-	
+
 	public void updateMaze(String data) {
 		MazeRepository.getInstance().updateMaze(data);
 		canvas.redraw();
 	}
-	
+
 	public void clear() {
 		MazeRepository.getInstance().initialize();
 		canvas.redraw();
@@ -45,23 +45,25 @@ public class MazeDrawer {
 
 		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		gc.fillRectangle(clientArea);
-		
-//		gc.setLineWidth(1);
-//		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 
-//		for (int i = 0; i <= nRow; i++) {
-//			gc.drawLine(margin, margin + i * cellHeight, margin + nColumn * cellWidth, margin + i * cellHeight);
-//		}
-//
-//		for (int i = 0; i <= nColumn; i++) {
-//			gc.drawLine(margin + i * cellWidth, margin, margin + i * cellWidth, margin + nRow * cellHeight);
-//		}
-		
 		MazeCell[][] maze = MazeRepository.getInstance().getMaze();
 		
+		// draw Ground like the visited cell, start position, end position
 		for (int r = 0; r < maze.length; r++) {
 			MazeCell[] mazeCells = maze[r];
-			
+
+			for (int c = 0; c < mazeCells.length; c++) {
+				int x = margin + c * cellWidth;
+				int y = margin + r * cellHeight;
+
+				maze[r][c].drawGround(gc, x, y, cellWidth, cellHeight);
+			}
+		}
+		
+		// draw Red dot, Walls
+		for (int r = 0; r < maze.length; r++) {
+			MazeCell[] mazeCells = maze[r];
+
 			for (int c = 0; c < mazeCells.length; c++) {
 				int x = margin + c * cellWidth;
 				int y = margin + r * cellHeight;

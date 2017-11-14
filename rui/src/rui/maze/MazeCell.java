@@ -31,6 +31,19 @@ public class MazeCell {
 		this.row = row;
 	}
 
+	public void drawGround(GC gc, int x, int y, int width, int height) {
+		if (!visited)
+			return;
+
+		if (isStartPosition || isEndPosition) {
+			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
+		} else {
+			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		}
+
+		gc.fillRectangle(x, y, width, height);
+	}
+
 	public void draw(GC gc, int x, int y, int width, int height) {
 		if (!visited)
 			return;
@@ -39,21 +52,39 @@ public class MazeCell {
 		int xoffset = width / 2 - s / 2;
 		int yoffset = height / 2 - s / 2;
 
-		if (isStartPosition || isEndPosition) {
-			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
-			gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width - LINE_WIDTH, height - LINE_WIDTH);
-		} else {
-			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-			gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width - LINE_WIDTH, height - LINE_WIDTH);
+		// if (isStartPosition || isEndPosition) {
+		// gc.setBackground(SWTResourceManager.getColor(isStartPosition ?
+		// SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
+		// gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width -
+		// LINE_WIDTH, height - LINE_WIDTH);
+		// } else {
+		// gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		// gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width -
+		// LINE_WIDTH, height - LINE_WIDTH);
+		// }
+
+		if (!Utils.isEmpty(currentPosition)) {
+			Image robot = SWTResourceManager.getImage(RUIMain.class, "/resources/if_android_245977.png");
+			Rectangle rec = robot.getBounds();
+			gc.drawImage(robot, 0, 0, rec.width, rec.height, x + 32, y + 32, width - 64, height - 64);
+
+			Image news = SWTResourceManager.getImage(RUIMain.class, "/resources/robot_" + currentPosition + "_32.png");
+			rec = news.getBounds();
+
+			if ("N".equals(currentPosition)) {
+				gc.drawImage(news, 0, 0, rec.width, rec.height, x + width / 2 - rec.width / 2, y, rec.width, rec.height);
+			} else if ("E".equals(currentPosition)) {
+				gc.drawImage(news, 0, 0, rec.width, rec.height, x + width - rec.width, y + height / 2 - rec.height / 2, rec.width, rec.height);
+			} else if ("S".equals(currentPosition)) {
+				gc.drawImage(news, 0, 0, rec.width, rec.height, x + width / 2 - rec.width / 2, y + height - rec.height, rec.width, rec.height);
+			} else {
+				gc.drawImage(news, 0, 0, rec.width, rec.height, x, y + height / 2 - rec.height / 2, rec.width, rec.height);
+			}
 		}
 
 		if (hasRedDot) {
 			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
 			gc.fillOval(x + xoffset, y + yoffset, s, s);
-		}
-
-		if (!Utils.isEmpty(currentPosition)) {
-			
 		}
 
 		gc.setLineWidth(LINE_WIDTH);

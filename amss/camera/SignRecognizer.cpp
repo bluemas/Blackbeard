@@ -14,7 +14,11 @@
 
 #include "SignRecognizer.h"
 
-
+#if  defined(_WIN32) || defined(_WIN64)
+#define IMAGE_DIR "signs\\"
+#else
+#define IMAGE_DIR "signs/"
+#endif
 
 SignRecognizer::SignRecognizer() {
     readRefImages();
@@ -148,7 +152,7 @@ SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
 
 
 
-    GaussianBlur(greyImg, greyImg, Size(9, 9), 2, 2);
+    GaussianBlur(greyImg, greyImg, Size(7, 7), 2, 2);
 
 
     double med;
@@ -180,7 +184,7 @@ SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
             double area = contourArea(contours[i]);
 
 
-            if (area > 2000)
+            if (area > 600)
 
             {
                 std::vector<cv::Point2f> corners;

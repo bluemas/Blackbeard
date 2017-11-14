@@ -12,11 +12,6 @@
 #include <opencv2/opencv.hpp>
 #include "../common/Constants.h"
 
-#if  defined(_WIN32) || defined(_WIN64)
-#define IMAGE_DIR "signs\\"
-#else
-#define IMAGE_DIR "signs/"
-#endif
 
 #define NUM_SIGNS 10
 

@@ -55,6 +55,7 @@ private:
     ImageData *mImgData;
 
     bool mIsRun;
+    bool mIsEndSquareFound;
     std::thread mThread;
 
     vector<LineRecognizedEventHandler*> mLineRecogHandlers;

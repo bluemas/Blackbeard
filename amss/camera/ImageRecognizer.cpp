@@ -29,7 +29,8 @@ static  std::vector<int> gJpgParam (&gInitJpgValues[0], &gInitJpgValues[0]+2);
 
 ImageRecognizer::ImageRecognizer()
         : mSignRecogEnable(false),
-          mLineRecogEnable(false) {
+          mLineRecogEnable(false),
+          mIsEndSquareFound(false) {
     mCamera = new CameraReader();
     mImgData = ImageData::getInstance();
 }
@@ -56,6 +57,7 @@ void ImageRecognizer::stop() {
     mThread.join();
     cout << "ImageRecognizer thread is terminated" << endl;
     mCamera->stop();
+    mIsEndSquareFound = false;
     // TODO thread detach???
 }
 
@@ -129,7 +131,7 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     }
 
     //recognize end square;
-    if (!foundDot) {
+    if (!foundDot && !mIsEndSquareFound) {
         foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
     }
 
@@ -150,6 +152,7 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
 
     if (foundSquare) {
         SquareRecognizedEvent squareEvent;
+        mIsEndSquareFound = true;
         for (unsigned int i=0; i < mSquareRecogHandlers.size(); i++) {
             mSquareRecogHandlers[i]->handleSquareRecognizedEvent(squareEvent);
         }

@@ -66,7 +66,7 @@ public class MazeCell {
 		if (!Utils.isEmpty(currentPosition)) {
 			Image robot = SWTResourceManager.getImage(RUIMain.class, "/resources/if_android_245977.png");
 			Rectangle rec = robot.getBounds();
-			gc.drawImage(robot, 0, 0, rec.width, rec.height, x + 32, y + 32, width - 64, height - 64);
+			gc.drawImage(robot, 0, 0, rec.width, rec.height, x + width / 4, y + height / 4, width / 2, height / 2);
 
 			Image news = SWTResourceManager.getImage(RUIMain.class, "/resources/robot_" + currentPosition + "_32.png");
 			rec = news.getBounds();

@@ -299,7 +299,7 @@ public class RUIMain {
 		public void run() {
 			while (!shell.isDisposed()) {
 				if (time != -1 && !isPaused) {
-					display.asyncExec(new Runnable() {
+					display.syncExec(new Runnable() {
 						public void run() {
 							lblTime.setText(time++ + IConstants.SECOND);
 						}
@@ -1007,7 +1007,8 @@ public class RUIMain {
 	public void appendLogMessage(String message) {
 		display.asyncExec(new Runnable() {
 			public void run() {
-				txtLogMessge.append(String.format("[%s] %s \n", Utils.getLogTime(), message));
+				if (!shell.isDisposed())
+					txtLogMessge.append(String.format("[%s] %s \n", Utils.getLogTime(), message));
 			}
 		});
 	}
@@ -1103,7 +1104,8 @@ public class RUIMain {
 	public void notify(Command command) {
 		display.asyncExec(new Runnable() {
 			public void run() {
-				executeCommand(command);
+				if (!shell.isDisposed())
+					executeCommand(command);
 			}
 		});
 	}
@@ -1123,8 +1125,10 @@ public class RUIMain {
 	public void setNetworkStatus(boolean connected) {
 		display.asyncExec(new Runnable() {
 			public void run() {
-				lblConnected.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/" + (connected ? "connected-16.png" : "disconnected-16.png")));
-				lblNetworkStatusMessage.setText(connected ? "" : "Network is not connected");
+				if (!shell.isDisposed()) {
+					lblConnected.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/" + (connected ? "connected-16.png" : "disconnected-16.png")));
+					lblNetworkStatusMessage.setText(connected ? "" : "Network is not connected");
+				}
 			}
 		});
 	}

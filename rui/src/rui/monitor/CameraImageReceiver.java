@@ -50,9 +50,9 @@ public class CameraImageReceiver implements Runnable {
 
 					RUIMain.display.asyncExec(new Runnable() {
 						public void run() {
-							Image image = new Image(null, img);
-							rui.getCameraImageLabel().setImage(image);
-							image.dispose();
+							if (!rui.getShell().isDisposed()) {	
+								rui.getCameraImageLabel().setImage(new Image(RUIMain.display, img));
+							}
 						}
 					});
 				} catch (Exception ex) {

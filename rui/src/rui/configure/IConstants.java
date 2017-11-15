@@ -11,5 +11,5 @@ public interface IConstants {
 	public static final String MISSION_COMPLETED = "Solving Maze is completed.";
 	
 	public static final int SOCKET_TIMEOUT = 5000;
-	public static final int RETRY_CNT = 15;
+	public static final int RETRY_CNT = 60;
 }

@@ -7,6 +7,8 @@
 
 #include "SquareRecognizer.h"
 
+using namespace std;
+static const cv::Scalar END_SQUARE_DETECT_COLOR(0.0, 0.0, 0.0);
 
 SquareRecognizer::SquareRecognizer(){
 
@@ -17,16 +19,15 @@ SquareRecognizer::~SquareRecognizer(){
 }
 
 bool SquareRecognizer::recognizeSquare(Mat& orgImg, Mat& synthImg) {
-    bool found = false;
- #if 0   
+    bool found = false; 
     Mat hsv_image;
     Mat lower_blue_hue_range;
     Mat upper_blue_hue_range;
     Mat blue_hue_image;
     Mat bgr_image;
-    std::vector<cv::Vec3f> circles;
+   vector<vector<Point>> contours;
+   vector<Vec4i> hierarchy;
 
-    
     bgr_image = orgImg.clone();
     
     cv::medianBlur(bgr_image, bgr_image, 3);
@@ -37,8 +38,8 @@ bool SquareRecognizer::recognizeSquare(Mat& orgImg, Mat& synthImg) {
 
     // Threshold the HSV image, keep only the blue pixels
     
-    cv::inRange(hsv_image, cv::Scalar(0, 150, 100), cv::Scalar(10, 255, 255), lower_blue_hue_range);
-    cv::inRange(hsv_image, cv::Scalar(160, 150, 100), cv::Scalar(179, 255, 255), upper_blue_hue_range);
+    cv::inRange(hsv_image, cv::Scalar(0, 0, 70), cv::Scalar(40, 45, 180), lower_blue_hue_range);
+    cv::inRange(hsv_image, cv::Scalar(90, 10, 70), cv::Scalar(180, 100, 180), upper_blue_hue_range);
 
     // Combine the above two images
     
@@ -51,16 +52,21 @@ bool SquareRecognizer::recognizeSquare(Mat& orgImg, Mat& synthImg) {
     findContours(blue_hue_image, contours, hierarchy, RETR_LIST,CHAIN_APPROX_SIMPLE);// Find the contours of the frame
 
     // Loop over all detected circles and outline them on the original image
+    float totalArea = 0.0;
+    for(unsigned int i = 0; i<contours.size();i++)  {
+         Moments mu = moments(contours[i]);
+       if (mu.m00 > 7000.0) // area threadhold
+        {
+           Rect r = boundingRect(contours[i]);
+           rectangle(synthImg, r, END_SQUARE_DETECT_COLOR,3); // Draw contours found 
+           totalArea += mu.m00;
+         }       
 
-    for(size_t current_circle = 0; current_circle < circles.size(); ++current_circle) {
-        cv::Point center(std::round(circles[current_circle][0]), std::round(circles[current_circle][1]));
-        int radius = std::round(circles[current_circle][2]);
-
-        cv::circle(synthImg, center, radius, cv::Scalar(0, 255, 0), 5);
-    }    
-    
-    if (circles.size() > 0)
+    } 
+    if (totalArea > 45000.0) {
+        printf("EndSquare found, recognized EndSquare area is %f\n", totalArea);
         found = true;
-#endif
+    }
+
     return found;
 }

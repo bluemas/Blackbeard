@@ -13,9 +13,9 @@
 #include "../common/event/SquareRecognizedEventHandler.h"
 
 // for time checking
-#define CAMERA_TIME_CHECK
+//#define IMG_RECOG_TIME_CHECK
 
-#ifdef CAMERA_TIME_CHECK
+#ifdef IMG_RECOG_TIME_CHECK
 #include <time.h>
 static const int kCheckFrequency = 100;
 static int gTimeCheckCnt = 0;
@@ -35,7 +35,7 @@ ImageRecognizer::ImageRecognizer()
 }
 
 ImageRecognizer::~ImageRecognizer(){
-    stop();    
+    stop();
     if(mCamera)
         delete mCamera;
 
@@ -108,48 +108,52 @@ void ImageRecognizer::RecognizeLineDotSquareAndNotify(Mat& orgImg, Mat& synthImg
     float offset = 0.0;
 
     //recognize line
-    if (mLineRecogEnable)
-        offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
-    //recognize reddot
-    foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
-    //recognize end square;
-    foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
+    offset = mLineRecog.calculateLineOffset(orgImg,synthImg, foundCross);
 
     // notify event to handler
-    if (mLineRecogEnable) {
-        LineRecognizedEvent lineEvent(offset);
-        for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
-            mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+    LineRecognizedEvent lineEvent(offset);
+    for (unsigned int i=0; i < mLineRecogHandlers.size(); i++) {
+        mLineRecogHandlers[i]->handleLineRecognizedEvent(lineEvent);
+    }
+
+    //recognize reddot
+    foundDot = mDotRecog.recognizeDot(orgImg,synthImg);
+
+    if (foundDot) {
+        RedDotRecognizedEvent dotEvent;
+        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
+            mRedDotRecogHandlers[i]->handleRedDotRecognizedEvent(dotEvent);
         }
 
-        if (foundCross){
-            CrossRecognizedEvent crossEvent;
+        return;
+    }
+
+    //recognize end square;
+    if (!foundDot) {
+        foundSquare = mSquareRecog.recognizeSquare(orgImg,synthImg);
+    }
+
+//    if (foundCross){
+//        CrossRecognizedEvent crossEvent;
+
 #if 0 // for Dump
             static int sCnt=0;
             char fileName[256];
             sprintf(fileName, "img_%d.jpg", sCnt++);
             imwrite(fileName, orgImg);
-#endif        
-            for (unsigned int i=0; i < mCrossRecogHandlers.size(); i++) {
-                mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
-            }                    
-        }
-    }
+#endif
 
-    if (foundDot){
-        RedDotRecognizedEvent dotEvent;
-        for (unsigned int i=0; i < mRedDotRecogHandlers.size(); i++) {
-            mRedDotRecogHandlers[i]->handleRedDotRecognizedEvent(dotEvent);
-        }                    
-    }
+//        for (unsigned int i=0; i < mCrossRecogHandlers.size(); i++) {
+//            mCrossRecogHandlers[i]->handleCrossRecognizedEvent(crossEvent);
+//        }
+//    }
 
     if (foundSquare) {
         SquareRecognizedEvent squareEvent;
         for (unsigned int i=0; i < mSquareRecogHandlers.size(); i++) {
             mSquareRecogHandlers[i]->handleSquareRecognizedEvent(squareEvent);
-        }  
+        }
     }
-
 }
 
 
@@ -164,7 +168,8 @@ void ImageRecognizer::run() {
         namedWindow("synthImage", CV_WINDOW_AUTOSIZE);
     }
     while (mIsRun) {
-#ifdef CAMERA_TIME_CHECK        
+        // read Camera image
+#ifdef IMG_RECOG_TIME_CHECK        
         timespec   currentTime;
         clock_gettime(CLOCK_MONOTONIC, &currentTime);       
         if (gTimeCheckCnt ==0 ) startTime = currentTime;
@@ -184,7 +189,8 @@ void ImageRecognizer::run() {
 
         if (mSignRecogEnable) {
             RecognizeSignAndNotify(orgImage, synthImage);
-        } else {
+        } else if (mLineRecogEnable) {
+            //printf("line recog\n");
             RecognizeLineDotSquareAndNotify(orgImage, synthImage);
         }
 

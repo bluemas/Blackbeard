@@ -17,5 +17,11 @@ public:
 	LineRecognizer();
 	virtual ~LineRecognizer();
     float calculateLineOffset(Mat& orgImg, Mat& synthImg, bool &crossDetect);
+    void setReset();
+
+private:
+    float mPrevOffset;
+    bool mIsReset;
+
 };
 #endif // !defined(EA_99423EA0_8F71_479e_BC46_399A5087FDC7__INCLUDED_)

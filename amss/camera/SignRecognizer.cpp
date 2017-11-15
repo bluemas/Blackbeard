@@ -283,6 +283,7 @@ SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
                     putText(synthImage, mSymbols[match].name, Point(320, 30), 1,
                         2, Scalar(0, 255, 0), 2);
                     printf("Match %s\n", mSymbols[match].name.c_str());
+                    resultSign = (SignType)match;
 
                 }
                 else printf("No Match\n");

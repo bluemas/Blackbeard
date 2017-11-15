@@ -13,7 +13,7 @@
 #define FPS 30
 
 // for time checking
-#define CAMERA_TIME_CHECK
+//#define CAMERA_TIME_CHECK
 
 #ifdef CAMERA_TIME_CHECK
 #include <time.h>

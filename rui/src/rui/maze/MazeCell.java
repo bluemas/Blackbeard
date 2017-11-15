@@ -36,7 +36,7 @@ public class MazeCell {
 			return;
 
 		if (isStartPosition || isEndPosition) {
-			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
+			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_DARK_GREEN : SWT.COLOR_DARK_BLUE));
 		} else {
 			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		}

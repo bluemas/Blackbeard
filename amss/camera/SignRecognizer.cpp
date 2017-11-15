@@ -152,7 +152,7 @@ SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
 
 
 
-    GaussianBlur(greyImg, greyImg, Size(7, 7), 2, 2);
+    GaussianBlur(greyImg, greyImg, Size(5, 5), 2, 2);
 
 
     double med;
@@ -184,7 +184,7 @@ SignType SignRecognizer::recognizeSign(Mat& orgImage, Mat& synthImage) {
             double area = contourArea(contours[i]);
 
 
-            if (area > 600)
+            if (area > 400)
 
             {
                 std::vector<cv::Point2f> corners;

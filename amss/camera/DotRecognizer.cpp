@@ -36,8 +36,8 @@ bool DotRecognizer::recognizeDot(Mat& orgImg, Mat& synthImg) {
 
     // Threshold the HSV image, keep only the red pixels
     
-    cv::inRange(hsv_image, cv::Scalar(0, 150, 100), cv::Scalar(10, 255, 255), lower_red_hue_range);
-    cv::inRange(hsv_image, cv::Scalar(160, 150, 100), cv::Scalar(179, 255, 255), upper_red_hue_range);
+    cv::inRange(hsv_image, cv::Scalar(0, 130, 100), cv::Scalar(10, 255, 255), lower_red_hue_range);
+    cv::inRange(hsv_image, cv::Scalar(160, 130, 100), cv::Scalar(180, 255, 255), upper_red_hue_range);
 
     // Combine the above two images
     
@@ -46,13 +46,13 @@ bool DotRecognizer::recognizeDot(Mat& orgImg, Mat& synthImg) {
     cv::GaussianBlur(red_hue_image, red_hue_image, cv::Size(9, 9), 2, 2);
 
     // Use the Hough transform to detect circles in the combined threshold image
-    
-    cv::HoughCircles(red_hue_image, circles, CV_HOUGH_GRADIENT, 1, red_hue_image.rows/4, 100, 40, 0, 0);
+    cv::HoughCircles(red_hue_image, circles, CV_HOUGH_GRADIENT, 1, red_hue_image.rows/8, 100, 20, 0, 0);
 
     // Loop over all detected circles and outline them on the original image
 
     for(size_t current_circle = 0; current_circle < circles.size(); ++current_circle) {
-        cv::Point center(std::round(circles[current_circle][0]), std::round(circles[current_circle][1]));
+        cv::Point center(std::round(circles[current_circle][0]), 
+                std::round(circles[current_circle][1]));
         int radius = std::round(circles[current_circle][2]);
 
         cv::circle(synthImg, center, radius, cv::Scalar(0, 255, 0), 5);

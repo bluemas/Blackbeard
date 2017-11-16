@@ -8,11 +8,12 @@ public interface IConfigKeys {
 	public static final String KEY_ROBOT_IP = "ROBOT_IP";
 	public static final String KEY_ROBOT_PORT = "ROBOT_PORT";
 	public static final String KEY_RUI_IP = "RUI_IP";
+	public static final String KEY_ROBOT_PARAMETERS = "ROBOT_PARAMETERS";
 	
 	public static final int CAMERA_DATAGRAM_MAX_SIZE = 65507;
 	public static final int CAMERA_LISTEN_PORT = 3000;
-	public static final int MAZE_ROW_COUNT = 10;
-	public static final int MAZE_COLUMN_COUNT = 10;
-	public static final String ROBOT_IP = "192.168.56.10";
-	public static final int ROBOT_PORT = 11999;
+	public static final int MAZE_ROW_COUNT = 6;
+	public static final int MAZE_COLUMN_COUNT = 6;
+	public static final String ROBOT_IP = "172.20.10.14";
+	public static final int ROBOT_PORT = 3001;
 }

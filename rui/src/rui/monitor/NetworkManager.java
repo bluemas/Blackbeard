@@ -78,7 +78,6 @@ public class NetworkManager {
 	}
 
 	public void sendCommand(Command command) {
-		// System.out.println(command.toString());
 		if (!isConnected())
 			return;
 

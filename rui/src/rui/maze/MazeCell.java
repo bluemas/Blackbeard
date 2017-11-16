@@ -3,6 +3,7 @@ package rui.maze;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -36,7 +37,7 @@ public class MazeCell {
 			return;
 
 		if (isStartPosition || isEndPosition) {
-			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? SWT.COLOR_DARK_GREEN : SWT.COLOR_DARK_BLUE));
+			gc.setBackground(SWTResourceManager.getColor(isStartPosition ? new RGB(110, 196, 104) : new RGB(166, 166, 195)));
 		} else {
 			gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		}
@@ -51,17 +52,6 @@ public class MazeCell {
 		int s = Math.min(width, height) / 4;
 		int xoffset = width / 2 - s / 2;
 		int yoffset = height / 2 - s / 2;
-
-		// if (isStartPosition || isEndPosition) {
-		// gc.setBackground(SWTResourceManager.getColor(isStartPosition ?
-		// SWT.COLOR_BLUE : SWT.COLOR_DARK_GREEN));
-		// gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width -
-		// LINE_WIDTH, height - LINE_WIDTH);
-		// } else {
-		// gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		// gc.fillRectangle(x + LINE_WIDTH_2, y + LINE_WIDTH_2, width -
-		// LINE_WIDTH, height - LINE_WIDTH);
-		// }
 
 		if (!Utils.isEmpty(currentPosition)) {
 			Image robot = SWTResourceManager.getImage(RUIMain.class, "/resources/if_android_245977.png");

@@ -93,6 +93,7 @@ public class RUIMain {
 	protected boolean isCameraRightPressed;
 	protected boolean isCameraDownPressed;
 	protected boolean isCameraLeftPressed;
+	private Text txtRobotParameters;
 
 	/**
 	 * Launch the application.
@@ -371,7 +372,7 @@ public class RUIMain {
 					public void run() {
 						try {
 							if (networkManager.connect()) {
-								networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp()));
+								networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp() + "," + ConfigManager.getInstance().getRobotParameters()));
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -391,7 +392,7 @@ public class RUIMain {
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp()));
+				networkManager.sendCommand(new Command(1, ConfigManager.getInstance().getRuiIp() + "," + ConfigManager.getInstance().getRobotParameters()));
 			}
 		});
 		GridData gd_btnInitialize = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
@@ -795,7 +796,9 @@ public class RUIMain {
 
 		txtLogMessge = new Text(compositeConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		txtLogMessge.setEditable(false);
-		txtLogMessge.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		GridData gd_txtLogMessge = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+		gd_txtLogMessge.widthHint = 150;
+		txtLogMessge.setLayoutData(gd_txtLogMessge);
 		txtLogMessge.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.NORMAL));
 		formToolkit.adapt(txtLogMessge, true, true);
 
@@ -847,7 +850,8 @@ public class RUIMain {
 							configManager.setMazeRowCount(Integer.parseInt(txtRowCnt.getText()));
 							configManager.setMazeColumnCount(Integer.parseInt(txtColumnCnt.getText()));
 							configManager.setRuiIp(txtRuiIP.getText());
-
+							configManager.setRobotParameters(txtRobotParameters.getText());
+							
 							configManager.persist();
 
 							Utils.showMessageDialog(shell, IConstants.SAVE_SUCCESS + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);
@@ -859,7 +863,7 @@ public class RUIMain {
 				});
 			}
 		});
-		btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 6));
+		btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 7));
 		formToolkit.adapt(btnSave, true, true);
 		btnSave.setText("Save");
 
@@ -871,6 +875,15 @@ public class RUIMain {
 		txtPort = new Text(compositeSettings, SWT.BORDER);
 		txtPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.adapt(txtPort, true, true);
+
+		Label lblRobotParameters = new Label(compositeSettings, SWT.NONE);
+		lblRobotParameters.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblRobotParameters, true, true);
+		lblRobotParameters.setText("Robot Parameters");
+
+		txtRobotParameters = new Text(compositeSettings, SWT.BORDER);
+		txtRobotParameters.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		formToolkit.adapt(txtRobotParameters, true, true);
 
 		Label lblRuiLocalIp = new Label(compositeSettings, SWT.NONE);
 		lblRuiLocalIp.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));

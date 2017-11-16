@@ -21,7 +21,8 @@ public class ConfigManager {
 
 	private String robotIp;
 	private int robotPort;
-
+	private String robotParameters;
+	
 	private static ConfigManager instance = new ConfigManager();
 
 	private ConfigManager() {
@@ -59,7 +60,8 @@ public class ConfigManager {
 
 			String MAZE_COLUMN_COUNT = props.getProperty(IConfigKeys.KEY_MAZE_COLUMN_COUNT, IConfigKeys.MAZE_COLUMN_COUNT + "");
 			this.mazeColumnCount = Integer.parseInt(MAZE_COLUMN_COUNT);
-
+			
+			this.robotParameters = props.getProperty(IConfigKeys.KEY_ROBOT_PARAMETERS, "");
 			this.robotIp = props.getProperty(IConfigKeys.KEY_ROBOT_IP, IConfigKeys.ROBOT_IP);
 
 			String ROBOT_PORT = props.getProperty(IConfigKeys.KEY_ROBOT_PORT, IConfigKeys.ROBOT_PORT + "");
@@ -93,7 +95,8 @@ public class ConfigManager {
 			props.setProperty(IConfigKeys.KEY_ROBOT_IP, this.robotIp);
 			props.setProperty(IConfigKeys.KEY_ROBOT_PORT, this.robotPort + "");
 			props.setProperty(IConfigKeys.KEY_RUI_IP, this.ruiIp);
-
+			props.setProperty(IConfigKeys.KEY_ROBOT_PARAMETERS, this.robotParameters);
+			
 			props.store(writer, "RUI Settings");
 		} finally {
 			if (writer != null)
@@ -163,5 +166,13 @@ public class ConfigManager {
 
 	public void setRuiIp(String ruiIp) {
 		this.ruiIp = ruiIp;
+	}
+
+	public String getRobotParameters() {
+		return robotParameters;
+	}
+
+	public void setRobotParameters(String robotParameters) {
+		this.robotParameters = robotParameters;
 	}
 }

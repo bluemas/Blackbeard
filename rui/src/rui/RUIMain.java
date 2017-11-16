@@ -794,7 +794,7 @@ public class RUIMain {
 		formToolkit.paintBordersFor(compositeConsole);
 		compositeConsole.setLayout(new GridLayout(2, false));
 
-		txtLogMessge = new Text(compositeConsole, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		txtLogMessge = new Text(compositeConsole, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
 		txtLogMessge.setEditable(false);
 		GridData gd_txtLogMessge = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
 		gd_txtLogMessge.widthHint = 150;

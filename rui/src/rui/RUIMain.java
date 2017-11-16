@@ -66,6 +66,7 @@ public class RUIMain {
 	private Label lblRightDistance;
 	private Label lblNetworkStatusMessage;
 
+	private Button btnConnect;
 	private Button btnInitialize;
 	private Button btnAuto;
 	private Button btnManual;
@@ -82,6 +83,7 @@ public class RUIMain {
 	private Text txtMaxPacketSize;
 	private Text txtCommandMessages;
 
+	private TabFolder tabFolder;
 	private Button btnSend;
 	private Text txtRuiIP;
 
@@ -94,6 +96,8 @@ public class RUIMain {
 	protected boolean isCameraDownPressed;
 	protected boolean isCameraLeftPressed;
 	private Text txtRobotParameters;
+	protected boolean isAutonomousPressed;
+	protected boolean isManualPressed;
 
 	/**
 	 * Launch the application.
@@ -119,6 +123,7 @@ public class RUIMain {
 
 		shell.open();
 		shell.layout();
+		shell.setFocus();
 
 		imageReceiver = new CameraImageReceiver(this);
 		new Thread(imageReceiver).start();
@@ -245,6 +250,22 @@ public class RUIMain {
 						isCameraLeftPressed = true;
 					}
 				}
+
+				if (btnAuto.isEnabled() && !(e.widget instanceof Text) && e.character == 'a') {
+					if (isAutonomousPressed)
+						return;
+
+					btnAuto.notifyListeners(SWT.Selection, new Event());
+					isAutonomousPressed = true;
+				}
+
+				if (btnManual.isEnabled() && !(e.widget instanceof Text) && e.character == 'm') {
+					if (isManualPressed)
+						return;
+
+					btnManual.notifyListeners(SWT.Selection, new Event());
+					isManualPressed = true;
+				}
 			}
 		});
 
@@ -269,6 +290,14 @@ public class RUIMain {
 						networkManager.sendCommand(new Command(4, "S"));
 						isCameraLeftPressed = false;
 					}
+				}
+
+				if (btnAuto.isEnabled() && !(e.widget instanceof Text) && e.character == 'a') {
+					isAutonomousPressed = false;
+				}
+
+				if (btnManual.isEnabled() && !(e.widget instanceof Text) && e.character == 'm') {
+					isManualPressed = false;
 				}
 			}
 		});
@@ -363,7 +392,7 @@ public class RUIMain {
 		formToolkit.adapt(grpRemoteSetup);
 		formToolkit.paintBordersFor(grpRemoteSetup);
 
-		Button btnConnect = new Button(grpRemoteSetup, SWT.FLAT);
+		btnConnect = new Button(grpRemoteSetup, SWT.FLAT);
 		btnConnect.setImage(SWTResourceManager.getImage(RUIMain.class, "/resources/wi-fi.png"));
 		btnConnect.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -781,7 +810,7 @@ public class RUIMain {
 		formToolkit.adapt(lblTime, true, true);
 		lblTime.setText("0 s");
 
-		TabFolder tabFolder = new TabFolder(composite, SWT.NONE);
+		tabFolder = new TabFolder(composite, SWT.NONE);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 3, 1));
 		formToolkit.adapt(tabFolder);
 		formToolkit.paintBordersFor(tabFolder);
@@ -851,7 +880,7 @@ public class RUIMain {
 							configManager.setMazeColumnCount(Integer.parseInt(txtColumnCnt.getText()));
 							configManager.setRuiIp(txtRuiIP.getText());
 							configManager.setRobotParameters(txtRobotParameters.getText());
-							
+
 							configManager.persist();
 
 							Utils.showMessageDialog(shell, IConstants.SAVE_SUCCESS + configManager.getConfigFilePath(), SWT.ICON_INFORMATION);

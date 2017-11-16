@@ -35,7 +35,7 @@ public class NetworkManager {
 			socket = new Socket();
 			socket.connect(new InetSocketAddress(ip, port), IConstants.SOCKET_TIMEOUT);
 			socket.setSoTimeout(3000);
-			
+
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			new Thread(new MonitoringReceiver(this.rui, socket)).start();

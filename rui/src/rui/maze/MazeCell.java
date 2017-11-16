@@ -43,6 +43,14 @@ public class MazeCell {
 		}
 
 		gc.fillRectangle(x, y, width, height);
+
+		int lineStyle = gc.getLineStyle();
+		gc.setLineStyle(SWT.LINE_DOT);
+
+		gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+		gc.drawRectangle(x, y, width, height);
+
+		gc.setLineStyle(lineStyle);
 	}
 
 	public void draw(GC gc, int x, int y, int width, int height) {

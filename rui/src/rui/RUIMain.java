@@ -367,6 +367,7 @@ public class RUIMain {
 		this.txtRowCnt.setText(configManager.getMazeRowCount() + "");
 		this.txtColumnCnt.setText(configManager.getMazeColumnCount() + "");
 		this.txtRuiIP.setText(configManager.getRuiIp());
+		this.txtRobotParameters.setText(configManager.getRobotParameters());
 	}
 
 	/**
